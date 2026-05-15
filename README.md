@@ -1,27 +1,74 @@
-# Porfolio - Horacio Laphitz
+# Portfolio - Horacio Laphitz
 
-##  Tecnologías
+Portfolio profesional desplegado en GitHub Pages.
 
-- **Frontend**: Astro, React, TypeScript, Tailwind CSS.
-- **Deployment**: GitHub Pages.
+## 🚀 Deployment
 
- ### Documentación
+Este proyecto se despliega automáticamente en GitHub Pages mediante GitHub Actions.
 
-- 📖 [Quick Fix Guide](./QUICK_FIX.md) - Solución rápida
-- 📖 [Deploy Security Guide](./docs/DEPLOY_SECURITY_GUIDE.md) - Guía completa
-- 📖 [Troubleshooting](./docs/DEPLOY_TROUBLESHOOTING.md) - Solución de problemas
+### Configuración del Repositorio
 
-##  Enlaces
+1. **Nombre del repositorio**: `horaciolaphitz.github.io`
+2. **Rama principal**: `main`
+3. **Rama de deployment**: GitHub Pages usa artifacts (no gh-pages)
 
-- **Portfolio**: [hache22.github.io](https://hache22.github.io)
-- **LinkedIn**: [linkedin.com/in/horacio-laphitz](https://linkedin.com/in/horacio-laphitz)
-- **GitHub**: [github.com/hache22](https://github.com/hache22)
-- **Credly**: [credly.com/users/horacio-laphitz](https://www.credly.com/users/horacio-laphitz)
+### Workflow CI/CD
 
-## Contacto
+El proyecto usa GitHub Actions para:
+- Build automático en cada push a `main`
+- Deploy automático a GitHub Pages
+- Caché de dependencias para builds más rápidos
 
-**Email**: <horaciolaphitz99@gmail.com>
+### URL del Sitio
 
-## Licencia
+🌐 **https://horaciolaphitz.github.io**
 
-MIT License © 2026 Horacio Laphitz
+## 📦 Tecnologías
+
+- **Framework**: Astro 5.x
+- **UI**: React 18 + Tailwind CSS
+- **Lenguaje**: TypeScript
+- **Build**: Vite
+- **Deploy**: GitHub Pages + GitHub Actions
+
+## 🛠️ Desarrollo Local
+
+```bash
+# Instalar dependencias
+pnpm install
+
+# Desarrollo
+pnpm dev
+
+# Build
+pnpm build
+
+# Preview
+pnpm preview
+```
+
+## 📝 Scripts Disponibles
+
+- `pnpm dev` - Servidor de desarrollo
+- `pnpm build` - Build de producción
+- `pnpm preview` - Preview del build
+- `pnpm fetch-repos` - Actualizar repositorios de GitHub
+- `pnpm test` - Ejecutar tests
+- `pnpm test:run` - Ejecutar tests una vez
+
+## 🏗️ Arquitectura
+
+El proyecto sigue Clean Architecture:
+
+```
+src/
+├── domain/          # Lógica de negocio
+├── application/     # Casos de uso
+├── infrastructure/  # Implementaciones
+├── presentation/    # UI Components
+└── main/           # DI Container
+```
+
+## 📄 Licencia
+
+© 2026 Horacio Laphitz. Todos los derechos reservados.
