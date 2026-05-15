@@ -139,7 +139,7 @@ This project follows:
 
 For security concerns, contact:
 - Email: [Check package.json]
-- GitHub: [@HoracioGuzman](https://github.com/HoracioGuzman)
+- GitHub: [@HoracioLaphitz](https://github.com/HoracioLaphitz)
 
 ## Acknowledgments
 
