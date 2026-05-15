@@ -5,8 +5,8 @@ import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
-  // URL final de tu sitio
   site: "https://horaciolaphitz.github.io",
+  base: "/",
 
   // Configurar directorio de páginas
   srcDir: "./src",
