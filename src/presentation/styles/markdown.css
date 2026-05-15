@@ -1,0 +1,129 @@
+/* Enhanced Markdown Styles */
+
+/* Callout boxes - for special notes */
+.markdown-content blockquote[data-type="info"],
+.markdown-content blockquote[data-type="warning"],
+.markdown-content blockquote[data-type="success"],
+.markdown-content blockquote[data-type="error"] {
+  @apply border-l-4 pl-6 py-4 my-6 rounded-r-lg not-italic;
+}
+
+.markdown-content blockquote[data-type="info"] {
+  @apply border-blue-500 text-blue-900;
+  background-color: rgba(59, 130, 246, 0.1);
+}
+
+.markdown-content blockquote[data-type="warning"] {
+  @apply border-amber-500 text-amber-900;
+  background-color: rgba(245, 158, 11, 0.1);
+}
+
+.markdown-content blockquote[data-type="success"] {
+  @apply border-green-500 text-green-900;
+  background-color: rgba(34, 197, 94, 0.1);
+}
+
+.markdown-content blockquote[data-type="error"] {
+  @apply border-red-500 text-red-900;
+  background-color: rgba(239, 68, 68, 0.1);
+}
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+  .markdown-content blockquote[data-type="info"] {
+    @apply text-blue-100;
+  }
+
+  .markdown-content blockquote[data-type="warning"] {
+    @apply text-amber-100;
+  }
+
+  .markdown-content blockquote[data-type="success"] {
+    @apply text-green-100;
+  }
+
+  .markdown-content blockquote[data-type="error"] {
+    @apply text-red-100;
+  }
+}
+
+/* Better code block styling */
+.markdown-content pre[class*="language-"] {
+  @apply relative;
+}
+
+.markdown-content pre[class*="language-"]::before {
+  content: attr(data-language);
+  @apply absolute top-2 right-2 text-xs text-skin-muted bg-skin-secondary px-2 py-1 rounded uppercase font-mono;
+}
+
+/* Keyboard keys */
+.markdown-content kbd {
+  @apply inline-block px-2 py-1 text-xs font-mono bg-skin-secondary border border-skin-border rounded shadow-sm;
+}
+
+/* Definition lists */
+.markdown-content dl {
+  @apply my-6;
+}
+
+.markdown-content dt {
+  @apply font-semibold text-skin-text mt-4 mb-2;
+}
+
+.markdown-content dd {
+  @apply text-skin-muted ml-6 mb-4;
+}
+
+/* Footnotes */
+.markdown-content .footnotes {
+  @apply mt-12 pt-8 text-sm;
+  border-top: 2px solid var(--border-light);
+}
+
+.markdown-content .footnotes ol {
+  @apply space-y-2;
+}
+
+/* Task lists */
+.markdown-content input[type="checkbox"] {
+  @apply mr-2 accent-brand-primary;
+}
+
+/* Better spacing for nested elements */
+.markdown-content li > ul,
+.markdown-content li > ol {
+  @apply mt-2 mb-2;
+}
+
+/* Highlight text */
+.markdown-content mark {
+  @apply px-1 rounded;
+  background-color: rgb(254, 240, 138);
+}
+
+@media (prefers-color-scheme: dark) {
+  .markdown-content mark {
+    background-color: rgba(161, 98, 7, 0.5);
+  }
+}
+
+/* Abbreviations */
+.markdown-content abbr {
+  @apply cursor-help border-b-2 border-dotted border-skin-muted;
+}
+
+/* Better print styles */
+@media print {
+  .markdown-content {
+    @apply text-black;
+  }
+  
+  .markdown-content a {
+    @apply text-blue-600 underline;
+  }
+  
+  .markdown-content pre {
+    @apply border border-gray-300;
+  }
+}

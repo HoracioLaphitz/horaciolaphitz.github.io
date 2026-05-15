@@ -1,0 +1,19 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo "🔍 Ejecutando validaciones pre-commit..."
+
+# Validar tamaños de archivo
+node scripts/validate-file-sizes.mjs
+
+if [ $? -ne 0 ]; then
+  echo ""
+  echo "❌ Validación de tamaños falló"
+  echo "💡 Revisa los archivos listados arriba"
+  echo "💡 Mueve archivos grandes a carpetas excluidas"
+  echo "💡 Actualiza .gitignore si es necesario"
+  echo ""
+  exit 1
+fi
+
+echo "✅ Validaciones pre-commit completadas"

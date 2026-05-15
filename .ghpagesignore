@@ -1,0 +1,56 @@
+# GitHub Pages Ignore File
+# Archivos que NO deben incluirse en el deploy a GitHub Pages
+
+# Archivos grandes que rompen el deploy (>100MB)
+**/*.pbix
+**/*.sqlite
+**/*.db
+**/dump.*.sql
+
+# Bases de datos
+Proyectos/**/DB/
+Proyectos/**/Datos en si/
+
+# Datasets grandes
+**/*.csv
+**/*.xlsx
+**/*.xls
+
+# Videos
+**/*.mp4
+**/*.avi
+**/*.mov
+**/*.wmv
+
+# Archivos comprimidos grandes
+**/*.zip
+**/*.tar
+**/*.gz
+**/*.7z
+**/*.rar
+
+# Archivos de desarrollo
+node_modules/
+.git/
+.astro/
+.vscode/
+.idea/
+
+# Archivos de configuración sensibles
+.env
+.env.*
+*.key
+*.pem
+
+# Documentación interna
+docs/
+.kiro/
+.claude/
+AGENT.md
+protocolo_*.md
+
+# Archivos temporales
+*.tmp
+*.temp
+.cache/
+logs/

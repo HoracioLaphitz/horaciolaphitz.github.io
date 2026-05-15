@@ -1,0 +1,447 @@
+---
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import PageLayout from "../../layouts/PageLayout.astro";
+import "../../styles/markdown.css";
+
+export async function getStaticPaths() {
+  const proyectos = await getCollection("proyectos");
+  return proyectos.map((proyecto) => ({
+    params: { slug: proyecto.slug },
+    props: { proyecto },
+  }));
+}
+
+interface Props {
+  proyecto: CollectionEntry<"proyectos">;
+}
+
+const { proyecto } = Astro.props;
+const { Content } = await proyecto.render();
+
+const formattedDate = proyecto.data.pubDate.toLocaleDateString("es-ES", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+---
+
+<PageLayout
+  title={`${proyecto.data.title} - Horacio Laphitz`}
+  description={proyecto.data.description}
+  currentPath={`/proyectos/${proyecto.slug}`}
+>
+  <article class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <!-- Header -->
+    <header class="mb-16">
+      <!-- Breadcrumb -->
+      <nav class="mb-8">
+        <ol class="flex items-center gap-2 text-sm text-skin-muted">
+          <li>
+            <a href="/" class="hover:text-brand-primary transition-colors"
+              >Inicio</a
+            >
+          </li>
+          <li>
+            <svg
+              class="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 5l7 7-7 7"></path>
+            </svg>
+          </li>
+          <li>
+            <a
+              href="/proyectos"
+              class="hover:text-brand-primary transition-colors">Proyectos</a
+            >
+          </li>
+          <li>
+            <svg
+              class="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 5l7 7-7 7"></path>
+            </svg>
+          </li>
+          <li class="text-skin-text font-medium">{proyecto.data.title}</li>
+        </ol>
+      </nav>
+
+      <!-- Categoría -->
+      <div class="mb-6">
+        <span
+          class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-brand-primary/10 to-brand-hover/10 text-brand-primary text-sm font-semibold rounded-xl border border-brand-primary/20"
+        >
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+            <path
+              d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"
+            ></path>
+          </svg>
+          {proyecto.data.category}
+        </span>
+      </div>
+
+      <!-- Título -->
+      <h1
+        class="text-4xl sm:text-5xl lg:text-6xl font-bold text-skin-text mb-6 leading-tight"
+      >
+        {proyecto.data.title}
+      </h1>
+
+      <!-- Descripción -->
+      <p
+        class="text-xl sm:text-2xl text-skin-muted mb-8 leading-relaxed max-w-4xl"
+      >
+        {proyecto.data.description}
+      </p>
+
+      <!-- Metadata -->
+      <div
+        class="flex flex-wrap items-center gap-6 text-sm text-skin-muted pb-8 border-b border-skin-border/50"
+      >
+        <div class="flex items-center gap-2">
+          <svg
+            class="w-5 h-5 text-brand-primary"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+            ></path>
+          </svg>
+          <time datetime={proyecto.data.pubDate.toISOString()}>
+            {formattedDate}
+          </time>
+        </div>
+        <span class="text-skin-border">•</span>
+        <div class="flex items-center gap-2">
+          <svg
+            class="w-5 h-5 text-brand-primary"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+            ></path>
+          </svg>
+          <span>{proyecto.data.author}</span>
+        </div>
+        {
+          proyecto.data.github && (
+            <>
+              <span class="text-skin-border">•</span>
+              <a
+                href={proyecto.data.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 text-brand-primary hover:text-brand-hover transition-colors font-semibold group"
+              >
+                <svg
+                  class="w-5 h-5 group-hover:scale-110 transition-transform"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                </svg>
+                Ver en GitHub
+              </a>
+            </>
+          )
+        }
+        {
+          proyecto.data.dashboard && (
+            <>
+              <span class="text-skin-border">•</span>
+              <a
+                href={proyecto.data.dashboard}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 text-brand-primary hover:text-brand-hover transition-colors font-semibold group"
+              >
+                <svg
+                  class="w-5 h-5 group-hover:scale-110 transition-transform"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                  />
+                </svg>
+                Ver Dashboard
+              </a>
+            </>
+          )
+        }
+      </div>
+
+      <!-- Tags -->
+      <div class="flex flex-wrap gap-2 mt-6">
+        {
+          proyecto.data.tags.map((tag) => (
+            <span class="text-sm px-4 py-2 bg-skin-secondary text-skin-text-secondary border border-skin-border/50 rounded-lg hover:border-brand-primary/30 hover:bg-brand-primary/5 hover:text-brand-primary transition-all duration-200 font-medium">
+              {tag}
+            </span>
+          ))
+        }
+      </div>
+    </header>
+
+    <!-- Content -->
+    <div class="markdown-content">
+      <Content />
+    </div>
+
+    <style>
+      .markdown-content {
+        @apply max-w-none;
+      }
+
+      /* Headings */
+      .markdown-content :global(h1) {
+        @apply text-4xl font-bold text-skin-text mb-6 mt-12 leading-tight;
+      }
+
+      .markdown-content :global(h2) {
+        @apply text-3xl font-bold text-skin-text mb-5 mt-10 pb-3 leading-tight;
+        border-bottom-width: 2px;
+        border-bottom-style: solid;
+        border-bottom-color: var(--border-light);
+      }
+
+      .markdown-content :global(h3) {
+        @apply text-2xl font-semibold text-skin-text mb-4 mt-8 leading-snug;
+      }
+
+      .markdown-content :global(h4) {
+        @apply text-xl font-semibold text-skin-text mb-3 mt-6 leading-snug;
+      }
+
+      .markdown-content :global(h5) {
+        @apply text-lg font-semibold text-skin-text mb-2 mt-4;
+      }
+
+      .markdown-content :global(h6) {
+        @apply text-base font-semibold text-skin-text mb-2 mt-4;
+      }
+
+      /* Paragraphs */
+      .markdown-content :global(p) {
+        @apply text-skin-muted leading-relaxed mb-6 text-base;
+      }
+
+      /* Links */
+      .markdown-content :global(a) {
+        @apply text-brand-primary no-underline font-semibold hover:text-brand-hover hover:underline transition-all duration-200;
+      }
+
+      /* Strong and emphasis */
+      .markdown-content :global(strong) {
+        @apply text-skin-text font-bold;
+      }
+
+      .markdown-content :global(em) {
+        @apply text-skin-text-secondary italic;
+      }
+
+      /* Inline code */
+      .markdown-content :global(p code),
+      .markdown-content :global(li code),
+      .markdown-content :global(td code) {
+        @apply text-brand-primary bg-skin-tertiary px-2 py-0.5 rounded text-sm font-mono border border-skin-border;
+      }
+
+      .markdown-content :global(p code)::before,
+      .markdown-content :global(p code)::after,
+      .markdown-content :global(li code)::before,
+      .markdown-content :global(li code)::after,
+      .markdown-content :global(td code)::before,
+      .markdown-content :global(td code)::after {
+        content: "";
+      }
+
+      /* Code blocks */
+      .markdown-content :global(pre) {
+        @apply bg-skin-tertiary border-2 border-skin-border rounded-xl p-6 overflow-x-auto my-8 shadow-lg;
+      }
+
+      .markdown-content :global(pre code) {
+        @apply text-skin-text bg-transparent p-0 rounded-none text-sm font-mono leading-relaxed border-0;
+      }
+
+      /* Lists */
+      .markdown-content :global(ul) {
+        @apply my-6 space-y-3 pl-6;
+      }
+
+      .markdown-content :global(ol) {
+        @apply my-6 space-y-3 pl-6;
+      }
+
+      .markdown-content :global(li) {
+        @apply text-skin-muted leading-relaxed text-base;
+      }
+
+      .markdown-content :global(ul > li) {
+        @apply relative pl-2;
+      }
+
+      .markdown-content :global(ul > li)::marker {
+        @apply text-brand-primary;
+      }
+
+      .markdown-content :global(ol > li)::marker {
+        @apply text-brand-primary font-semibold;
+      }
+
+      /* Nested lists */
+      .markdown-content :global(li > ul),
+      .markdown-content :global(li > ol) {
+        @apply mt-3 mb-3;
+      }
+
+      /* Blockquotes */
+      .markdown-content :global(blockquote) {
+        @apply border-l-4 border-brand-primary pl-6 py-3 my-8 rounded-r-lg italic text-skin-text-secondary;
+        background-color: rgba(var(--accent-primary-rgb, 59, 130, 246), 0.05);
+      }
+
+      .markdown-content :global(blockquote p) {
+        @apply mb-0;
+      }
+
+      /* Images */
+      .markdown-content :global(img) {
+        @apply rounded-xl shadow-lg my-8 w-full;
+      }
+
+      /* Horizontal rules */
+      .markdown-content :global(hr) {
+        @apply border-skin-border my-12;
+        opacity: 0.5;
+      }
+
+      /* Tables */
+      .markdown-content :global(table) {
+        @apply border-collapse w-full my-8 text-sm shadow-lg rounded-lg overflow-hidden;
+      }
+
+      .markdown-content :global(thead) {
+        @apply bg-skin-secondary;
+      }
+
+      .markdown-content :global(th) {
+        @apply text-skin-text font-semibold p-4 border border-skin-border text-left;
+      }
+
+      .markdown-content :global(td) {
+        @apply p-4 border border-skin-border text-skin-muted;
+      }
+
+      .markdown-content :global(tbody tr) {
+        @apply transition-colors;
+      }
+
+      .markdown-content :global(tbody tr):hover {
+        background-color: rgba(var(--bg-secondary-rgb, 243, 244, 246), 0.5);
+      }
+
+      /* Special formatting for bold text that looks like headers */
+      .markdown-content :global(p strong:only-child) {
+        @apply block text-lg text-skin-text mt-6 mb-3;
+      }
+
+      /* Improve spacing between sections */
+      .markdown-content :global(h2 + p),
+      .markdown-content :global(h3 + p),
+      .markdown-content :global(h4 + p) {
+        @apply mt-4;
+      }
+
+      /* Code syntax highlighting improvements */
+      .markdown-content :global(pre[class*="language-"]) {
+        @apply bg-gray-900 dark:bg-gray-950;
+      }
+
+      /* Scrollbar for code blocks */
+      .markdown-content :global(pre)::-webkit-scrollbar {
+        @apply h-2;
+      }
+
+      .markdown-content :global(pre)::-webkit-scrollbar-track {
+        @apply bg-skin-secondary rounded;
+      }
+
+      .markdown-content :global(pre)::-webkit-scrollbar-thumb {
+        @apply bg-skin-border rounded;
+      }
+
+      .markdown-content :global(pre)::-webkit-scrollbar-thumb:hover {
+        background-color: rgba(var(--accent-primary-rgb, 59, 130, 246), 0.5);
+      }
+
+      /* Better spacing for consecutive elements */
+      .markdown-content :global(ul + p),
+      .markdown-content :global(ol + p),
+      .markdown-content :global(pre + p),
+      .markdown-content :global(blockquote + p) {
+        @apply mt-6;
+      }
+
+      /* Improve readability of list items with multiple paragraphs */
+      .markdown-content :global(li > p) {
+        @apply mb-3;
+      }
+
+      .markdown-content :global(li > p:last-child) {
+        @apply mb-0;
+      }
+    </style>
+
+    <!-- Navigation -->
+    <div class="mt-16 pt-12 border-t border-skin-border/50">
+      <a
+        href="/proyectos"
+        class="inline-flex items-center gap-3 px-6 py-3 bg-skin-secondary border border-skin-border/50 hover:border-brand-primary hover:bg-brand-primary/5 text-skin-text hover:text-brand-primary transition-all duration-300 font-semibold rounded-xl group"
+      >
+        <svg
+          class="w-5 h-5 group-hover:-translate-x-1 transition-transform"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M15 19l-7-7 7-7"></path>
+        </svg>
+        Volver a proyectos
+      </a>
+    </div>
+  </article>
+</PageLayout>

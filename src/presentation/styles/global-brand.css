@@ -1,0 +1,171 @@
+
+
+:root {
+  /* === ZOOM POR DEFECTO === */
+  zoom: 0.9;
+  
+  /* === COLORES PRIMARIOS === */
+  --brand-primary: #0A74DA;
+  --brand-primary-light: #3B8FE8;
+  --brand-primary-dark: #085BB0;
+  
+  /* === COLORES SECUNDARIOS === */
+  --brand-secondary: #2E2E2E;
+  --brand-secondary-light: #4A4A4A;
+  --brand-secondary-dark: #1A1A1A;
+  
+  /* === COLORES DE ACENTO === */
+  --brand-accent: #FF6B35;
+  --brand-accent-light: #FF8C5A;
+  --brand-accent-dark: #E65520;
+  
+  /* === COLORES DE FONDO === */
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F8F8F6;
+  --bg-tertiary: #FDFDFB;
+  
+  /* === COLORES DE TEXTO === */
+  --text-primary: #2E2E2E;
+  --text-secondary: #4A4A4A;
+  --text-muted: #6A6A6A;
+  
+  /* === COLORES DE BORDE === */
+  --border-light: #E2E2DE;
+  --border-medium: #C8C8C2;
+  
+  /* === GRADIENTES === */
+  --gradient-primary: linear-gradient(135deg, #0A74DA 0%, #085BB0 100%);
+  --gradient-accent: linear-gradient(135deg, #FF6B35 0%, #E65520 100%);
+  --gradient-hero: linear-gradient(135deg, rgba(10, 116, 218, 0.05) 0%, rgba(255, 107, 53, 0.05) 100%);
+  
+  /* === TIPOGRAFÍA === */
+  --font-display: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-body: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+}
+
+/* Dark Mode */
+[data-theme="dark"] {
+  /* === COLORES PRIMARIOS === */
+  --brand-primary: #4A9EFF;
+  --brand-primary-light: #6BB0FF;
+  --brand-primary-dark: #2A7EDF;
+  
+  /* === COLORES SECUNDARIOS === */
+  --brand-secondary: #E5E5E5;
+  --brand-secondary-light: #F5F5F5;
+  --brand-secondary-dark: #C5C5C5;
+  
+  /* === COLORES DE ACENTO === */
+  --brand-accent: #FF8C5A;
+  --brand-accent-light: #FFAC7A;
+  --brand-accent-dark: #FF6B35;
+  
+  /* === COLORES DE FONDO === */
+  --bg-primary: #131E33;
+  --bg-secondary: #192847;
+  --bg-tertiary: #1A2744;
+  
+  /* === COLORES DE TEXTO === */
+  --text-primary: #FFFFFF;
+  --text-secondary: #C9C1B0;
+  --text-muted: #A9A190;
+  
+  /* === COLORES DE BORDE === */
+  --border-light: #192847;
+  --border-medium: #2A3754;
+}
+
+/* === UTILIDADES DE GRADIENTE === */
+.gradient-primary {
+  background: var(--gradient-primary);
+}
+
+.gradient-accent {
+  background: var(--gradient-accent);
+}
+
+.gradient-text-primary {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-accent {
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* === ANIMACIONES === */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.4s ease-out;
+}
+
+/* === TIPOGRAFÍA === */
+body {
+  font-family: var(--font-body);
+  color: var(--text-primary);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+
+code, pre {
+  font-family: var(--font-mono);
+}
+
+/* === ACCESIBILIDAD === */
+.focus-visible:focus {
+  outline: 2px solid var(--brand-primary);
+  outline-offset: 2px;
+}
+
+/* === SMOOTH SCROLL === */
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

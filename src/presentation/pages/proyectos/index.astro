@@ -1,0 +1,20 @@
+---
+import PageLayout from "../../layouts/PageLayout.astro";
+import ProjectIndex from "../../components/proyectos/ProjectIndex";
+import { getCollection } from "astro:content";
+
+const proyectos = await getCollection("proyectos");
+
+// Ordenar por fecha (más reciente primero)
+const sortedProyectos = proyectos.sort((a, b) => {
+  return b.data.pubDate.valueOf() - a.data.pubDate.valueOf();
+});
+---
+
+<PageLayout
+  title="Proyectos | Portfolio"
+  description="Explora mi portfolio de proyectos de análisis de datos, machine learning y business intelligence"
+  currentPath="/proyectos"
+>
+  <ProjectIndex projects={sortedProyectos} client:load />
+</PageLayout>

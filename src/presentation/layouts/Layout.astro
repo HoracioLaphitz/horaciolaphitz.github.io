@@ -1,0 +1,257 @@
+---
+import Footer from "../components/layout/Footer.tsx";
+import "../styles/global.css";
+import "../styles/fonts.css";
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  type?: "website" | "article" | "profile";
+  keywords?: string[];
+  canonical?: string;
+}
+
+const {
+  title,
+  description = "Horacio Laphitz",
+  image = "/img/horacio-profile-og.jpg",
+  type = "website",
+  keywords = [
+    "Horacio Laphitz",
+    "Data Analyst Argentina",
+    "Business Intelligence Specialist",
+    "Python Data Analysis",
+    "SQL Expert",
+    "Power BI Developer",
+    "Machine Learning",
+    "AgTech Analytics",
+    "Geospatial Analysis",
+    "Predictive Analytics",
+    "ETL Pipelines",
+    "Data Visualization",
+    "Tableau",
+    "Statistical Analysis",
+    "PACE Methodology",
+    "Market Basket Analysis",
+    "Data Mining",
+    "KPI Dashboards",
+    "Business Intelligence",
+    "Data Science Portfolio",
+    "Pandas NumPy Scikit-learn",
+    "PostgreSQL MySQL",
+    "DAX Power Query",
+    "Executive Reporting",
+    "Data-Driven Decisions",
+  ],
+  canonical,
+} = Astro.props;
+
+const siteUrl = "https://horaciolaphitz.github.io";
+const fullTitle =
+  title === "Home"
+    ? "Horacio Laphitz - Data Analyst | Business Intelligence | Python & SQL"
+    : `${title} | Horacio Laphitz`;
+const ogImage = new URL(image, siteUrl).href;
+const canonicalUrl = canonical
+  ? new URL(canonical, siteUrl).href
+  : new URL(Astro.url.pathname, siteUrl).href;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <meta
+      name="robots"
+      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="bingbot" content="index, follow" />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:site_name" content="Horacio Laphitz Portfolio" />
+    <meta property="og:locale" content="es_AR" />
+
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalUrl} />
+    <meta property="twitter:title" content={fullTitle} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={ogImage} />
+    <meta property="twitter:creator" content="@horaciolaphitz" />
+
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' width='100' height='100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%231a202c'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='central' text-anchor='middle' font-family='Arial, sans-serif' font-size='50' font-weight='bold' fill='white'%3EHL%3C/text%3E%3C/svg%3E"
+    />
+
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="X-Frame-Options" content="DENY" />
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
+    <meta
+      http-equiv="Referrer-Policy"
+      content="strict-origin-when-cross-origin"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://api.github.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=SF+Pro+Display:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="dns-prefetch" href="//github.com" />
+    <link rel="dns-prefetch" href="//linkedin.com" />
+
+    <script type="application/ld+json" is:inline>
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Horacio Laphitz",
+        "jobTitle": "Data Analyst & Business Intelligence Specialist",
+        "description": "Data Analyst especializado en convertir datos complejos en decisiones estratégicas. Reduje costos operativos 30% mediante análisis predictivo en AgTech. Experto en Python, SQL, Power BI y Machine Learning con metodología PACE.",
+        "url": "https://horaciolaphitz.github.io",
+        "image": "https://horaciolaphitz.github.io/img/horacio-profile-og.jpg",
+        "email": "horaciolaphitz99@gmail.com",
+        "sameAs": [
+          "https://linkedin.com/in/horacio-laphitz",
+          "https://github.com/horaciolaphitz",
+          "https://www.credly.com/users/horacio-laphitz"
+        ],
+        "knowsAbout": [
+          "Data Analysis",
+          "Python Programming",
+          "SQL Database Management",
+          "Power BI",
+          "Tableau",
+          "Machine Learning",
+          "Statistical Analysis",
+          "Predictive Analytics",
+          "Data Visualization",
+          "Excel Advanced",
+          "R Programming",
+          "PACE Methodology",
+          "Data Science",
+          "Big Data",
+          "Data Mining"
+        ],
+        "hasCredential": [
+          {
+            "@type": "EducationalOccupationalCredential",
+            "name": "Google Data Analytics Professional Certificate",
+            "credentialCategory": "certificate",
+            "recognizedBy": {
+              "@type": "Organization",
+              "name": "Google"
+            }
+          },
+          {
+            "@type": "EducationalOccupationalCredential",
+            "name": "IBM Data Science Professional Certificate",
+            "credentialCategory": "certificate",
+            "recognizedBy": {
+              "@type": "Organization",
+              "name": "IBM"
+            }
+          },
+          {
+            "@type": "EducationalOccupationalCredential",
+            "name": "Supervised Machine Learning",
+            "credentialCategory": "certificate",
+            "recognizedBy": {
+              "@type": "Organization",
+              "name": "Stanford University"
+            }
+          }
+        ],
+        "hasOccupation": {
+          "@type": "Occupation",
+          "name": "Senior Data Analyst",
+          "occupationLocation": {
+            "@type": "Place",
+            "name": "Argentina",
+            "address": {
+              "@type": "PostalAddress",
+              "addressCountry": "AR"
+            }
+          },
+          "skills": [
+            "Python Programming (Pandas, NumPy, Scikit-learn)",
+            "SQL Database Management (PostgreSQL, MySQL)",
+            "Power BI Dashboard Development",
+            "Tableau Data Visualization",
+            "Machine Learning Model Development",
+            "Statistical Analysis & Hypothesis Testing",
+            "ETL Pipeline Development",
+            "Data Cleaning & Preprocessing",
+            "Predictive Analytics",
+            "Business Intelligence Strategy",
+            "KPI Definition & Tracking",
+            "Data Storytelling",
+            "Google Analytics",
+            "Excel Advanced (VBA, Power Query)",
+            "R Programming (ggplot2, dplyr)",
+            "Git Version Control",
+            "Agile Methodologies",
+            "PACE Methodology"
+          ],
+          "responsibilities": "Transform complex datasets into actionable business insights, develop predictive models, create executive dashboards, automate data pipelines, and communicate findings to stakeholders."
+        },
+        "alumniOf": [
+          {
+            "@type": "EducationalOrganization",
+            "name": "Google Career Certificates"
+          },
+          {
+            "@type": "EducationalOrganization",
+            "name": "IBM"
+          },
+          {
+            "@type": "EducationalOrganization",
+            "name": "Stanford University"
+          }
+        ],
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Freelance Data Analytics Consultant"
+        },
+        "seeks": {
+          "@type": "JobPosting",
+          "title": "Data Analyst, Business Intelligence Analyst, Data Scientist",
+          "employmentType": ["FULL_TIME", "CONTRACTOR", "FREELANCE"],
+          "jobLocation": {
+            "@type": "Place",
+            "address": {
+              "@type": "PostalAddress",
+              "addressCountry": "AR"
+            }
+          }
+        }
+      }
+    </script>
+
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="sitemap" href="/sitemap.xml" />
+
+    <meta name="generator" content={Astro.generator} />
+    <script
+      type="module"
+      src="https://embedding.tableauusercontent.com/tableau.embedding.3.latest.min.js"
+    ></script>
+  </head>
+  <body class="relative">
+    <slot />
+    <Footer client:load />
+  </body>
+</html>
