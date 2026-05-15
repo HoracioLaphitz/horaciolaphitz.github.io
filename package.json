@@ -10,7 +10,10 @@
     "astro": "astro",
     "fetch-repos": "node scripts/get-github-repos.mjs",
     "test": "vitest",
-    "test:run": "vitest run"
+    "test:run": "vitest run",
+    "deploy:check": "node scripts/check-deploy.mjs",
+    "security:audit": "pnpm audit --audit-level=high",
+    "validate": "pnpm astro check && pnpm test:run"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",

@@ -1,0 +1,151 @@
+# ============================================================================
+# DEPENDABOT CONFIGURATION
+# ============================================================================
+# Automated dependency updates for npm, pip, and GitHub Actions
+#
+# Schedule: Weekly on Monday at 09:00 UTC
+# Rationale: Monday morning allows team to review and merge during the week
+#
+# PR Limits:
+# - npm/pip: 5 PRs max (balance between updates and review capacity)
+# - GitHub Actions: 3 PRs max (actions update less frequently)
+#
+# Labels:
+# - "dependencies": All dependency updates for filtering
+# - "security": npm/pip updates (often security-related)
+# - "ci": GitHub Actions updates (CI/CD infrastructure)
+#
+# Commit Messages:
+# - Format: "chore(deps): update <package> to <version>"
+# - Includes scope for better changelog generation
+# ============================================================================
+
+version: 2
+updates:
+  # ============================================================================
+  # NPM DEPENDENCIES (Frontend/Node.js)
+  # ============================================================================
+  # Manages JavaScript/TypeScript dependencies including:
+  # - Astro framework and integrations
+  # - React and React DOM
+  # - Tailwind CSS and PostCSS
+  # - TypeScript and type definitions
+  # - Development tools (ESLint, Vitest, etc.)
+
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "UTC"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "security"
+    commit-message:
+      prefix: "chore(deps)"
+      include: "scope"
+    # Group minor and patch updates to reduce PR noise
+    groups:
+      development-dependencies:
+        dependency-type: "development"
+        update-types:
+          - "minor"
+          - "patch"
+      production-dependencies:
+        dependency-type: "production"
+        update-types:
+          - "patch"
+
+  # ============================================================================
+  # PIP DEPENDENCIES (Python/Backend)
+  # ============================================================================
+  # Manages Python dependencies for:
+  # - Data science projects (pandas, numpy, scikit-learn)
+  # - Machine learning frameworks (TensorFlow, PyTorch)
+  # - Jupyter notebooks and visualization libraries
+  # - API and backend services
+
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "UTC"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "security"
+    commit-message:
+      prefix: "chore(deps)"
+      include: "scope"
+    # Group minor and patch updates
+    groups:
+      python-dependencies:
+        update-types:
+          - "minor"
+          - "patch"
+
+  # ============================================================================
+  # GITHUB ACTIONS (CI/CD Workflows)
+  # ============================================================================
+  # Manages GitHub Actions versions in workflows:
+  # - actions/checkout
+  # - actions/setup-node
+  # - pnpm/action-setup
+  # - actions/upload-pages-artifact
+  # - actions/deploy-pages
+  #
+  # Lower PR limit because actions update less frequently and are critical
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "UTC"
+    open-pull-requests-limit: 3
+    labels:
+      - "dependencies"
+      - "ci"
+    commit-message:
+      prefix: "chore(deps)"
+      include: "scope"
+    # Group all action updates together
+    groups:
+      github-actions:
+        patterns:
+          - "*"
+# ============================================================================
+# CONFIGURATION NOTES
+# ============================================================================
+#
+# Reviewing Dependabot PRs:
+# 1. Check the changelog and release notes
+# 2. Review breaking changes (major versions)
+# 3. Run security audit workflow on the PR
+# 4. Test locally if significant changes
+# 5. Merge during business hours for quick rollback if needed
+#
+# Security Updates:
+# - Dependabot will create PRs for security vulnerabilities immediately
+# - These bypass the schedule and should be reviewed ASAP
+# - Check GitHub Security Advisories for details
+#
+# Disabling Dependabot:
+# - To pause updates: Close all open Dependabot PRs
+# - To disable permanently: Remove this file
+# - To disable specific ecosystem: Comment out that section
+#
+# Troubleshooting:
+# - If PRs aren't created: Check repository settings > Security > Dependabot
+# - If too many PRs: Reduce open-pull-requests-limit
+# - If conflicts: Dependabot will automatically rebase
+#
+# ============================================================================
+# Last updated: 2026-05-15
+# Review frequency: Quarterly or when changing dependency strategy
+# ============================================================================

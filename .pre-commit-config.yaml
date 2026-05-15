@@ -1,0 +1,212 @@
+# ============================================================================
+# PRE-COMMIT CONFIGURATION
+# ============================================================================
+# Automated checks that run before each commit to prevent common issues
+#
+# Installation:
+#   pip install pre-commit
+#   pre-commit install
+#
+# Manual run:
+#   pre-commit run --all-files
+#
+# Update hooks:
+#   pre-commit autoupdate
+#
+# Hook Categories:
+# 1. Secret Detection - Prevent credential leaks
+# 2. File Validation - Ensure file integrity
+# 3. Code Quality - Basic formatting and syntax
+# 4. Size Limits - Prevent large files
+# ============================================================================
+
+# Minimum pre-commit version required
+minimum_pre_commit_version: "2.20.0"
+
+# Default settings for all hooks
+default_stages: [commit]
+fail_fast: false # Run all hooks even if one fails
+
+repos:
+  # ============================================================================
+  # SECRET DETECTION HOOKS
+  # ============================================================================
+  # Critical security checks to prevent credential leaks
+  # These hooks BLOCK commits containing sensitive data
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      # Detect AWS credentials in code
+      # Checks for AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY patterns
+      - id: detect-aws-credentials
+        name: 🔒 Detect AWS Credentials
+        description: Prevents committing AWS credentials
+        args: ["--allow-missing-credentials"]
+        # Allow missing credentials (for CI environments)
+
+      # Detect private SSH/SSL keys
+      # Checks for BEGIN RSA PRIVATE KEY, BEGIN DSA PRIVATE KEY, etc.
+      - id: detect-private-key
+        name: 🔑 Detect Private Keys
+        description: Prevents committing private keys (SSH, SSL, etc.)
+
+  # ============================================================================
+  # FILE VALIDATION HOOKS
+  # ============================================================================
+  # Ensure files are properly formatted and don't contain common issues
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      # Validate YAML syntax
+      # Prevents broken YAML files in workflows, configs, etc.
+      - id: check-yaml
+        name: ✅ Check YAML Syntax
+        description: Validates YAML files for syntax errors
+        args: ["--safe"]
+        # Safe mode: only check syntax, don't execute code
+
+      # Validate JSON syntax
+      # Prevents broken JSON files in configs, package.json, etc.
+      - id: check-json
+        name: ✅ Check JSON Syntax
+        description: Validates JSON files for syntax errors
+
+      # Validate TOML syntax
+      # Prevents broken TOML files in Python configs
+      - id: check-toml
+        name: ✅ Check TOML Syntax
+        description: Validates TOML files for syntax errors
+
+      # Check for merge conflict markers
+      # Prevents committing unresolved merge conflicts
+      - id: check-merge-conflict
+        name: 🔀 Check Merge Conflicts
+        description: Detects merge conflict markers (<<<<<<, ======, >>>>>>)
+
+      # Check for files that would conflict on case-insensitive filesystems
+      # Prevents issues on Windows/macOS
+      - id: check-case-conflict
+        name: 📁 Check Case Conflicts
+        description: Detects files that differ only in case
+
+      # Prevent committing to protected branches
+      # Blocks direct commits to main/master
+      - id: no-commit-to-branch
+        name: 🚫 No Commit to Main
+        description: Prevents direct commits to main/master branches
+        args: ["--branch", "main", "--branch", "master"]
+
+  # ============================================================================
+  # CODE QUALITY HOOKS
+  # ============================================================================
+  # Basic formatting and cleanup hooks
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      # Remove trailing whitespace
+      # Cleans up unnecessary whitespace at end of lines
+      - id: trailing-whitespace
+        name: 🧹 Remove Trailing Whitespace
+        description: Removes trailing whitespace from all files
+        args: ["--markdown-linebreak-ext=md"]
+        # Preserve markdown line breaks (two spaces)
+
+      # Ensure files end with newline
+      # Fixes missing newline at end of file
+      - id: end-of-file-fixer
+        name: 📝 Fix End of File
+        description: Ensures files end with a newline
+
+      # Fix mixed line endings
+      # Converts CRLF to LF (Unix-style)
+      - id: mixed-line-ending
+        name: 🔄 Fix Line Endings
+        description: Ensures consistent line endings (LF)
+        args: ["--fix=lf"]
+
+  # ============================================================================
+  # FILE SIZE LIMITS
+  # ============================================================================
+  # Prevent large files from being committed
+  # GitHub has a 100MB file size limit, we enforce 5MB for safety
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      # Check for large files
+      # Blocks files larger than 5MB (5120 KB)
+      - id: check-added-large-files
+        name: 📦 Check File Sizes
+        description: Prevents committing files larger than 5MB
+        args: ["--maxkb=5120"]
+        # 5MB = 5120 KB
+        # Rationale: GitHub Pages has 100MB limit, but large files slow down clones
+        # Exceptions: Add to .gitattributes if needed
+
+  # ============================================================================
+  # CUSTOM HOOKS (Local Scripts)
+  # ============================================================================
+  # Project-specific validation scripts
+
+  - repo: local
+    hooks:
+      # Custom file size validation
+      # More detailed than check-added-large-files
+      - id: validate-file-sizes
+        name: 📊 Validate File Sizes (Detailed)
+        description: Runs custom file size validation script
+        entry: node scripts/validate-file-sizes.mjs
+        language: system
+        pass_filenames: false
+        always_run: true
+# ============================================================================
+# CONFIGURATION NOTES
+# ============================================================================
+#
+# Hook Execution Order:
+# 1. Secret detection (critical security)
+# 2. File validation (syntax and conflicts)
+# 3. Code quality (formatting)
+# 4. Size limits (prevent large files)
+# 5. Custom hooks (project-specific)
+#
+# Bypassing Hooks (Emergency Only):
+# - Single commit: git commit --no-verify
+# - Disable pre-commit: pre-commit uninstall
+# - Skip specific hook: SKIP=hook-id git commit
+#
+# IMPORTANT: Document why hooks were bypassed in commit message
+#
+# Updating Hooks:
+# - Auto-update: pre-commit autoupdate
+# - Manual: Update 'rev' values in this file
+# - Test after update: pre-commit run --all-files
+#
+# Troubleshooting:
+# - Hook fails: Check error message and fix issue
+# - Hook hangs: Increase timeout or skip with SKIP=
+# - Hook not running: Verify pre-commit install was run
+#
+# Adding New Hooks:
+# 1. Find hook in pre-commit hooks repository
+# 2. Add to appropriate section above
+# 3. Test: pre-commit run --all-files
+# 4. Document purpose and rationale
+#
+# Excluding Files:
+# - Use 'exclude' key in hook configuration
+# - Example: exclude: '^(dist/|build/)'
+# - Prefer .gitignore for permanent exclusions
+#
+# Performance:
+# - Hooks run in parallel when possible
+# - Use 'stages' to run hooks at different times
+# - Use 'files' to limit scope of hooks
+#
+# ============================================================================
+# Last updated: 2026-05-15
+# Review frequency: Quarterly or when adding new file types
+# ============================================================================

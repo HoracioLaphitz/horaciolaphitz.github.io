@@ -1,18 +1,15 @@
-# Dependencies
-node_modules/
-.pnp
-.pnp.js
+# ============================================================================
+# PORTFOLIO GITIGNORE - SECURITY & PERFORMANCE OPTIMIZED
+# ============================================================================
+# This file prevents sensitive data, large files, and build artifacts from
+# being committed to the repository. Organized by category for maintainability.
+# ============================================================================
 
-# Testing
-coverage/
-
-# Production
-dist/
-build/
-
-# Misc
-.DS_Store
-*.pem
+# ============================================================================
+# CREDENTIALS & SECRETS (CRITICAL SECURITY)
+# ============================================================================
+# Never commit credentials, API keys, certificates, or private keys
+# These patterns catch common credential file formats
 
 # Environment variables
 .env
@@ -25,29 +22,189 @@ build/
 .env.production.local
 .env*.local
 
-# Debug
+# Certificates and keys
+*.key
+*.pem
+*.p12
+*.pfx
+*.cer
+*.crt
+*_rsa
+*_dsa
+*_ecdsa
+*_ed25519
+
+# Secret directories
+secrets/
+.secrets/
+credentials/
+.credentials/
+*.secret
+*.private
+
+# Package manager auth
+.npmrc
+.yarnrc
+auth.json
+
+# ============================================================================
+# NODE.JS / JAVASCRIPT
+# ============================================================================
+# Dependencies and build artifacts for Node.js projects
+
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Build output
+dist/
+build/
+
+# Testing
+coverage/
+.nyc_output/
+
+# Debug logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-# Astro
+# Cache directories
+.cache/
+.temp/
+.eslintcache
+.stylelintcache
+
+# ============================================================================
+# PYTHON
+# ============================================================================
+# Python bytecode, virtual environments, and build artifacts
+
+# Bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual environments
+.Python
+venv/
+ENV/
+env/
+.venv
+
+# Distribution / packaging
+*.egg-info/
+dist/
+build/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg
+
+# Testing and coverage
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.hypothesis/
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Package management
+pip-log.txt
+pip-delete-this-directory.txt
+Pipfile.lock
+
+# ============================================================================
+# C++ BUILD ARTIFACTS
+# ============================================================================
+# Compiled object files and build directories
+
+# Compiled Object files
+*.o
+*.obj
+*.slo
+*.lo
+*.ko
+
+# Executables
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+
+# Build directories
+/build/
+/Build/
+/cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Libraries
+*.lib
+*.a
+*.la
+*.so
+*.dylib
+*.dll
+
+# ============================================================================
+# ASTRO FRAMEWORK
+# ============================================================================
+# Astro-specific build artifacts and cache
+
 .astro/
 
-# IDE
+# ============================================================================
+# IDE & EDITORS
+# ============================================================================
+# Configuration files for various IDEs and text editors
+
+# Visual Studio Code
 .vscode/
+*.code-workspace
+
+# JetBrains IDEs
 .idea/
+*.iml
+*.iws
+*.ipr
+.fleet/
+
+# Sublime Text
+.sublime-project
+.sublime-workspace
+
+# Vim
 *.swp
 *.swo
 *~
-.vs/
-.fleet/
-.sublime-project
-.sublime-workspace
-*.code-workspace
 
-# Kiro y Agentes de IA
+# Visual Studio
+.vs/
+
+# ============================================================================
+# AI AGENTS & DEVELOPMENT TOOLS
+# ============================================================================
+# Configuration for AI coding assistants and development tools
+
 .kiro/
 .agents/
 .claude/
@@ -59,171 +216,114 @@ skills-lock.json
 AGENT.md
 protocolo_*.md
 
-# Documentación interna
+# ============================================================================
+# DOCUMENTATION (INTERNAL)
+# ============================================================================
+# Exclude internal documentation, keep essential public docs
+# This prevents documentation bloat in the repository
+
 *.md
 !README.md
 !LICENSE.md
 !SECURITY.md
+!CONTRIBUTING.md
+!CODE_OF_CONDUCT.md
+!CHANGELOG.md
 
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-venv/
-ENV/
-env/
-.venv
-pip-log.txt
-pip-delete-this-directory.txt
-.pytest_cache/
-.coverage
-htmlcov/
-*.egg-info/
+# ============================================================================
+# DATA FILES & LARGE ASSETS
+# ============================================================================
+# Prevent large data files from bloating the repository
+# Exceptions are made for small sample datasets
 
-# Jupyter
-.ipynb_checkpoints/
-*.ipynb_checkpoints
-
-# Data files
-*.csv
-*.xlsx
-*.xls
+# Databases
 *.db
 *.sqlite
 *.sqlite3
-!Proyectos/**/datos/*.csv
+*.sql
+dump.*.sql
 
-# ARCHIVOS GRANDES CRÍTICOS
-Proyectos/**/DB/
-Proyectos/**/Datos en si/
-**/dump.*.sql
-**/*.sqlite
-**/*.sqlite3
-**/*.db
-public/Proyectos/**/DB/
-public/Proyectos/**/Datos en si/
+# Spreadsheets and data files
+*.csv
+*.xlsx
+*.xls
+!Proyectos/**/datos/*.csv  # Allow small sample datasets
 
-# Power BI
+# Compressed archives
+*.zip
+*.tar
+*.gz
+*.7z
+*.rar
+*.bz2
+
+# ============================================================================
+# MULTIMEDIA FILES
+# ============================================================================
+# Large media files should be stored externally (CDN, Git LFS, etc.)
+
+# Videos
+*.mp4
+*.avi
+*.mov
+*.wmv
+*.flv
+*.mkv
+*.webm
+
+# Large image formats
+*.psd
+*.ai
+*.sketch
+*.fig
+
+# ============================================================================
+# PROJECT-SPECIFIC LARGE FILES
+# ============================================================================
+# Specific directories known to contain large files
+
+# Power BI files (typically >100MB)
 **/*.pbix
 **/Desarrollo.pbix
 public/Proyectos/**/*.pbix
 Proyectos/dashboards/*.pbix
 
-# HTML grandes de notebooks
+# Large database directories
+Proyectos/**/DB/
+Proyectos/**/Datos en si/
+public/Proyectos/**/DB/
+public/Proyectos/**/Datos en si/
+
+# HTML exports from Jupyter notebooks (can be regenerated)
 public/notebooks-html/*.html
 notebooks-html/*.html
 dist/notebooks-html/*.html
 
-# Notebooks grandes
+# Large notebooks
 public/notebooks/*.ipynb
 public/notebooks/Copia de DeepDreams.ipynb
 dist/notebooks/*.ipynb
 
-# Datasets grandes
-**/*.csv
-!Proyectos/**/datos/*.csv
-**/*.xlsx
-**/*.xls
+# Large datasets in specific projects
 Proyectos/**/Datos en si/*.csv
 public/Proyectos/**/Datos en si/*.csv
 
-# Archivos comprimidos
-**/*.zip
-**/*.tar
-**/*.gz
-**/*.7z
-**/*.rar
-
-# Videos y multimedia
-**/*.mp4
-**/*.avi
-**/*.mov
-**/*.wmv
-**/*.flv
-**/*.mkv
-
-# Archivos de imagen grandes
-**/*.psd
-**/*.ai
-**/*.sketch
-
-# Python packages
-Proyectos/Notebooks/venv/
-Proyectos/Notebooks/noteooks/
-**/_pywrap_tensorflow_*.dll
-**/site-packages/tensorflow/
-**/site-packages/cv2/
-
-# TensorFlow checkpoints
+# TensorFlow and ML model checkpoints
 **/*.ckpt
 **/*.data-00000-of-00001
 **/*.index
 **/*.meta
 **/checkpoint
+**/_pywrap_tensorflow_*.dll
+**/site-packages/tensorflow/
+**/site-packages/cv2/
 
-# Git objects
-**/.git/objects/pack/*.pack
-**/.git/objects/pack/*.idx
+# ============================================================================
+# LARGE PROJECT DIRECTORIES
+# ============================================================================
+# Entire project directories that are too large for GitHub
+# These should be stored in Git LFS or external storage
 
-# Mercury
-.mercury/
-
-# Logs
-logs/
-*.log
-
-# OS
-Thumbs.db
-Desktop.ini
-
-# Temporary files
-*.tmp
-*.temp
-.cache/
-.temp/
-
-# Build artifacts
-public/notebooks/
-!public/notebooks/.gitkeep
-
-# README sync outputs
-scripts/readme-updates/
-!scripts/readme-updates/.gitkeep
-
-# Archivos críticos
-*.key
-*.pem
-*.p12
-*.pfx
-*.cer
-*.crt
-secrets/
-.secrets/
-credentials/
-.credentials/
-*.secret
-*.private
-*_rsa
-*_dsa
-*_ecdsa
-*_ed25519
-.npmrc
-.yarnrc
-auth.json
-
-# Backups
-*.bak
-*.backup
-*.old
-*~
-
-# Prevenir submódulos accidentales
-.git/modules/
-*.submodule
-
-# PROYECTOS GRANDES
 Proyectos/PrediccionImagenes/
 Proyectos/PredicePrecioAcciones/
 Proyectos/Redes-Convolucionales/
@@ -238,3 +338,87 @@ public/Proyectos/Redes-Generativas-Adversariales/
 public/Proyectos/Regresion_Lineal/
 public/Proyectos/TITANIC-Arbol_de_Decision/
 public/Proyectos/Warriors-Games/
+
+# ============================================================================
+# GIT INTERNALS
+# ============================================================================
+# Prevent accidental commits of git internal files
+
+.git/modules/
+.git/objects/pack/*.pack
+.git/objects/pack/*.idx
+*.submodule
+
+# ============================================================================
+# OPERATING SYSTEM FILES
+# ============================================================================
+# OS-generated files that should not be versioned
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows
+Thumbs.db
+Desktop.ini
+ehthumbs.db
+$RECYCLE.BIN/
+
+# Linux
+*~
+.directory
+.Trash-*
+
+# ============================================================================
+# TEMPORARY & BACKUP FILES
+# ============================================================================
+# Temporary files and backups created by various tools
+
+*.tmp
+*.temp
+*.bak
+*.backup
+*.old
+*.swp
+*.swo
+*~
+
+# ============================================================================
+# BUILD & DEPLOYMENT ARTIFACTS
+# ============================================================================
+# Files generated during build and deployment processes
+
+# Build metadata
+public/notebooks/
+!public/notebooks/.gitkeep
+
+# README sync outputs
+scripts/readme-updates/
+!scripts/readme-updates/.gitkeep
+
+# Mercury framework
+.mercury/
+
+# Logs
+logs/
+*.log
+
+# ============================================================================
+# MISCELLANEOUS
+# ============================================================================
+# Other files that should not be committed
+
+# Misc
+.DS_Store
+*.pem
+
+# ============================================================================
+# END OF GITIGNORE
+# ============================================================================
+# Last updated: 2026-05-15
+# Maintained by: DevSecOps Team
+# Review frequency: Monthly or when adding new file types
+# ============================================================================
+

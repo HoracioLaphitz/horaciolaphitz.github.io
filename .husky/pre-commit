@@ -1,9 +1,54 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-echo "🔍 Ejecutando validaciones pre-commit..."
+# ============================================================================
+# PRE-COMMIT HOOK - INTEGRATED VALIDATION
+# ============================================================================
+# This hook runs multiple validation checks before allowing a commit:
+# 1. Pre-commit framework (secret detection, file validation)
+# 2. Custom file size validation
+# 
+# If any check fails, the commit is blocked and must be fixed
+# ============================================================================
 
-# Validar tamaños de archivo
+echo "🔍 Ejecutando validaciones pre-commit..."
+echo ""
+
+# ============================================================================
+# 1. PRE-COMMIT FRAMEWORK
+# ============================================================================
+# Runs secret detection, YAML validation, and other checks
+# Requires: pip install pre-commit && pre-commit install
+
+if command -v pre-commit >/dev/null 2>&1; then
+  echo "🔒 Ejecutando pre-commit framework..."
+  pre-commit run --all-files
+  
+  if [ $? -ne 0 ]; then
+    echo ""
+    echo "❌ Pre-commit framework falló"
+    echo "💡 Revisa los errores arriba y corrígelos"
+    echo "💡 Para bypass de emergencia: git commit --no-verify"
+    echo "   (DEBE documentarse en el mensaje de commit)"
+    echo ""
+    exit 1
+  fi
+  echo "✅ Pre-commit framework completado"
+  echo ""
+else
+  echo "⚠️  Pre-commit framework no instalado"
+  echo "💡 Instalar con: pip install pre-commit && pre-commit install"
+  echo "💡 Continuando sin pre-commit framework..."
+  echo ""
+fi
+
+# ============================================================================
+# 2. CUSTOM FILE SIZE VALIDATION
+# ============================================================================
+# Validates file sizes to prevent GitHub Pages deployment issues
+# Checks for files >5MB and provides guidance
+
+echo "📦 Validando tamaños de archivo..."
 node scripts/validate-file-sizes.mjs
 
 if [ $? -ne 0 ]; then
@@ -16,4 +61,13 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
-echo "✅ Validaciones pre-commit completadas"
+echo "✅ Validación de tamaños completada"
+echo ""
+
+# ============================================================================
+# ALL CHECKS PASSED
+# ============================================================================
+
+echo "✅ Todas las validaciones pre-commit completadas exitosamente"
+echo ""
+
