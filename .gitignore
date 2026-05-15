@@ -14,7 +14,7 @@ build/
 .DS_Store
 *.pem
 
-# Environment variables - CRITICAL: Never commit these
+# Environment variables
 .env
 .env.local
 .env.development
@@ -35,7 +35,7 @@ lerna-debug.log*
 # Astro
 .astro/
 
-# IDE - Editores de código
+# IDE
 .vscode/
 .idea/
 *.swp
@@ -47,7 +47,7 @@ lerna-debug.log*
 .sublime-workspace
 *.code-workspace
 
-# Kiro y Agentes de IA - SECURITY: No exponer configuraciones de agentes
+# Kiro y Agentes de IA
 .kiro/
 .agents/
 .claude/
@@ -59,17 +59,11 @@ skills-lock.json
 AGENT.md
 protocolo_*.md
 
-# Documentación interna - Solo permitir README.md principal
+# Documentación interna
 *.md
 !README.md
 !LICENSE.md
 !SECURITY.md
-AUDITORIA_*.md
-REPORTE_*.md
-CHANGELOG_*.md
-NOTES_*.md
-TODO_*.md
-SPEC_*.md
 
 # Python
 __pycache__/
@@ -92,7 +86,7 @@ htmlcov/
 .ipynb_checkpoints/
 *.ipynb_checkpoints
 
-# Data files (large datasets)
+# Data files
 *.csv
 *.xlsx
 *.xls
@@ -101,10 +95,7 @@ htmlcov/
 *.sqlite3
 !Proyectos/**/datos/*.csv
 
-# === ARCHIVOS GRANDES CRÍTICOS ===
-# SECURITY: Estos archivos ROMPEN el deploy de GitHub Pages (límite 100MB)
-
-# Bases de datos grandes
+# ARCHIVOS GRANDES CRÍTICOS
 Proyectos/**/DB/
 Proyectos/**/Datos en si/
 **/dump.*.sql
@@ -114,7 +105,7 @@ Proyectos/**/Datos en si/
 public/Proyectos/**/DB/
 public/Proyectos/**/Datos en si/
 
-# Power BI (archivos grandes - típicamente >100MB)
+# Power BI
 **/*.pbix
 **/Desarrollo.pbix
 public/Proyectos/**/*.pbix
@@ -138,7 +129,7 @@ dist/notebooks/*.ipynb
 Proyectos/**/Datos en si/*.csv
 public/Proyectos/**/Datos en si/*.csv
 
-# Archivos comprimidos grandes
+# Archivos comprimidos
 **/*.zip
 **/*.tar
 **/*.gz
@@ -158,12 +149,23 @@ public/Proyectos/**/Datos en si/*.csv
 **/*.ai
 **/*.sketch
 
-# Python virtual environments y packages
+# Python packages
 Proyectos/Notebooks/venv/
 Proyectos/Notebooks/noteooks/
 **/_pywrap_tensorflow_*.dll
 **/site-packages/tensorflow/
 **/site-packages/cv2/
+
+# TensorFlow checkpoints
+**/*.ckpt
+**/*.data-00000-of-00001
+**/*.index
+**/*.meta
+**/checkpoint
+
+# Git objects
+**/.git/objects/pack/*.pack
+**/.git/objects/pack/*.idx
 
 # Mercury
 .mercury/
@@ -190,7 +192,7 @@ public/notebooks/
 scripts/readme-updates/
 !scripts/readme-updates/.gitkeep
 
-# Archivos críticos - SECURITY: Prevenir exposición de credenciales
+# Archivos críticos
 *.key
 *.pem
 *.p12
@@ -217,17 +219,11 @@ auth.json
 *.old
 *~
 
-# Package manager locks (opcional, descomentar si no quieres commitear)
-# pnpm-lock.yaml
-# package-lock.json
-# yarn.lock
-
 # Prevenir submódulos accidentales
 .git/modules/
 *.submodule
 
-# === PROYECTOS GRANDES - NO INCLUIR EN REPO ===
-# Estos proyectos contienen archivos grandes que rompen GitHub Pages
+# PROYECTOS GRANDES
 Proyectos/PrediccionImagenes/
 Proyectos/PredicePrecioAcciones/
 Proyectos/Redes-Convolucionales/
