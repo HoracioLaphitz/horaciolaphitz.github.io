@@ -20,7 +20,7 @@ export const GitHubRepoSchema = z.object({
   stargazers_count: z.number().int().nonnegative(),
   created_at: z.string().datetime(),
   updated_at: z.string().datetime(),
-  pushed_at: z.string().datetime().nullable(),
+  pushed_at: z.string().datetime(),
   fork: z.boolean(),
   archived: z.boolean(),
   disabled: z.boolean().optional(),

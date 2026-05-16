@@ -8,7 +8,7 @@ import {
   ProjectCategory,
   ProjectStatus,
 } from "@domain/entities/project.entity";
-import type { GitHubRepo } from "@shared/types/common.types";
+import type { GitHubRepo } from "@infrastructure/schemas/github.schema";
 
 export class GitHubMapper {
   static toDomain(repo: GitHubRepo): ProjectEntity {
@@ -85,10 +85,7 @@ export class GitHubMapper {
       return ProjectStatus.Archived;
     }
 
-    const pushedDate = repo.pushed_at
-      ? new Date(repo.pushed_at)
-      : new Date(repo.updated_at);
-    const daysSinceUpdate = this.daysSince(pushedDate);
+    const daysSinceUpdate = this.daysSince(new Date(repo.pushed_at));
 
     if (daysSinceUpdate > 180) {
       return ProjectStatus.Archived;
