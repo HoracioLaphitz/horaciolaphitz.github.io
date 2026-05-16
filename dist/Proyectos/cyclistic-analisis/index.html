@@ -1,0 +1,179 @@
+<!DOCTYPE html><html lang="es"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Análisis Cyclistic: Patrones de Uso de Bicicletas Compartidas | Horacio Laphitz</title><meta name="description" content="Análisis exhaustivo de datos de uso de bicicletas compartidas para identificar diferencias entre usuarios casuales y miembros anuales."><meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"><meta name="googlebot" content="index, follow"><meta name="bingbot" content="index, follow"><link rel="canonical" href="https://horaciolaphitz.github.io/proyectos/cyclistic-analisis/"><meta property="og:type" content="website"><meta property="og:url" content="https://horaciolaphitz.github.io/proyectos/cyclistic-analisis/"><meta property="og:title" content="Análisis Cyclistic: Patrones de Uso de Bicicletas Compartidas | Horacio Laphitz"><meta property="og:description" content="Análisis exhaustivo de datos de uso de bicicletas compartidas para identificar diferencias entre usuarios casuales y miembros anuales."><meta property="og:image" content="https://horaciolaphitz.github.io/img/horacio-profile-og.jpg"><meta property="og:site_name" content="Horacio Laphitz Portfolio"><meta property="og:locale" content="es_AR"><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://horaciolaphitz.github.io/proyectos/cyclistic-analisis/"><meta property="twitter:title" content="Análisis Cyclistic: Patrones de Uso de Bicicletas Compartidas | Horacio Laphitz"><meta property="twitter:description" content="Análisis exhaustivo de datos de uso de bicicletas compartidas para identificar diferencias entre usuarios casuales y miembros anuales."><meta property="twitter:image" content="https://horaciolaphitz.github.io/img/horacio-profile-og.jpg"><meta property="twitter:creator" content="@horaciolaphitz"><link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' width='100' height='100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%231a202c'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='central' text-anchor='middle' font-family='Arial, sans-serif' font-size='50' font-weight='bold' fill='white'%3EHL%3C/text%3E%3C/svg%3E"><meta http-equiv="X-Content-Type-Options" content="nosniff"><meta http-equiv="X-Frame-Options" content="DENY"><meta http-equiv="X-XSS-Protection" content="1; mode=block"><meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preconnect" href="https://api.github.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=SF+Pro+Display:wght@300;400;500;600;700&display=swap" rel="stylesheet"><link rel="dns-prefetch" href="//github.com"><link rel="dns-prefetch" href="//linkedin.com"><script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Horacio Laphitz",
+        "jobTitle": "Data Analyst & Business Intelligence Specialist",
+        "description": "Data Analyst especializado en convertir datos complejos en decisiones estratégicas. Reduje costos operativos 30% mediante análisis predictivo en AgTech. Experto en Python, SQL, Power BI y Machine Learning con metodología PACE.",
+        "url": "https://horaciolaphitz.github.io",
+        "image": "https://horaciolaphitz.github.io/img/horacio-profile-og.jpg",
+        "email": "horaciolaphitz99@gmail.com",
+        "sameAs": [
+          "https://linkedin.com/in/horacio-laphitz",
+          "https://github.com/horaciolaphitz",
+          "https://www.credly.com/users/horacio-laphitz"
+        ],
+        "knowsAbout": [
+          "Data Analysis",
+          "Python Programming",
+          "SQL Database Management",
+          "Power BI",
+          "Tableau",
+          "Machine Learning",
+          "Statistical Analysis",
+          "Predictive Analytics",
+          "Data Visualization",
+          "Excel Advanced",
+          "R Programming",
+          "PACE Methodology",
+          "Data Science",
+          "Big Data",
+          "Data Mining"
+        ],
+        "hasCredential": [
+          {
+            "@type": "EducationalOccupationalCredential",
+            "name": "Google Data Analytics Professional Certificate",
+            "credentialCategory": "certificate",
+            "recognizedBy": {
+              "@type": "Organization",
+              "name": "Google"
+            }
+          },
+          {
+            "@type": "EducationalOccupationalCredential",
+            "name": "IBM Data Science Professional Certificate",
+            "credentialCategory": "certificate",
+            "recognizedBy": {
+              "@type": "Organization",
+              "name": "IBM"
+            }
+          },
+          {
+            "@type": "EducationalOccupationalCredential",
+            "name": "Supervised Machine Learning",
+            "credentialCategory": "certificate",
+            "recognizedBy": {
+              "@type": "Organization",
+              "name": "Stanford University"
+            }
+          }
+        ],
+        "hasOccupation": {
+          "@type": "Occupation",
+          "name": "Senior Data Analyst",
+          "occupationLocation": {
+            "@type": "Place",
+            "name": "Argentina",
+            "address": {
+              "@type": "PostalAddress",
+              "addressCountry": "AR"
+            }
+          },
+          "skills": [
+            "Python Programming (Pandas, NumPy, Scikit-learn)",
+            "SQL Database Management (PostgreSQL, MySQL)",
+            "Power BI Dashboard Development",
+            "Tableau Data Visualization",
+            "Machine Learning Model Development",
+            "Statistical Analysis & Hypothesis Testing",
+            "ETL Pipeline Development",
+            "Data Cleaning & Preprocessing",
+            "Predictive Analytics",
+            "Business Intelligence Strategy",
+            "KPI Definition & Tracking",
+            "Data Storytelling",
+            "Google Analytics",
+            "Excel Advanced (VBA, Power Query)",
+            "R Programming (ggplot2, dplyr)",
+            "Git Version Control",
+            "Agile Methodologies",
+            "PACE Methodology"
+          ],
+          "responsibilities": "Transform complex datasets into actionable business insights, develop predictive models, create executive dashboards, automate data pipelines, and communicate findings to stakeholders."
+        },
+        "alumniOf": [
+          {
+            "@type": "EducationalOrganization",
+            "name": "Google Career Certificates"
+          },
+          {
+            "@type": "EducationalOrganization",
+            "name": "IBM"
+          },
+          {
+            "@type": "EducationalOrganization",
+            "name": "Stanford University"
+          }
+        ],
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Freelance Data Analytics Consultant"
+        },
+        "seeks": {
+          "@type": "JobPosting",
+          "title": "Data Analyst, Business Intelligence Analyst, Data Scientist",
+          "employmentType": ["FULL_TIME", "CONTRACTOR", "FREELANCE"],
+          "jobLocation": {
+            "@type": "Place",
+            "address": {
+              "@type": "PostalAddress",
+              "addressCountry": "AR"
+            }
+          }
+        }
+      }
+    </script><link rel="manifest" href="/manifest.json"><link rel="sitemap" href="/sitemap.xml"><meta name="generator" content="Astro v5.18.1"><script type="module" src="https://embedding.tableauusercontent.com/tableau.embedding.3.latest.min.js"></script><link rel="stylesheet" href="/assets/gracias.CKIFUu-_.css">
+<link rel="stylesheet" href="/assets/_slug_.dzPQ_nOh.css"></head> <body class="relative">  <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><script>(()=>{var A=Object.defineProperty;var g=(i,o,a)=>o in i?A(i,o,{enumerable:!0,configurable:!0,writable:!0,value:a}):i[o]=a;var d=(i,o,a)=>g(i,typeof o!="symbol"?o+"":o,a);{let i={0:t=>m(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>1/0*t},o=t=>{let[l,e]=t;return l in i?i[l](e):void 0},a=t=>t.map(o),m=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([l,e])=>[l,o(e)]));class y extends HTMLElement{constructor(){super(...arguments);d(this,"Component");d(this,"hydrator");d(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let c=this.querySelectorAll("astro-slot"),n={},h=this.querySelectorAll("template[data-astro-template]");for(let r of h){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("data-astro-template")||"default"]=r.innerHTML,r.remove())}for(let r of c){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("name")||"default"]=r.innerHTML)}let p;try{p=this.hasAttribute("props")?m(JSON.parse(this.getAttribute("props"))):{}}catch(r){let s=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(s+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${s}`,this.getAttribute("props"),r),r}let u;await this.hydrator(this)(this.Component,p,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});d(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),c.disconnect(),this.childrenConnectedCallback()},c=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});c.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),c=this.getAttribute("client");if(Astro[c]===void 0){window.addEventListener(`astro:${c}`,()=>this.start(),{once:!0});return}try{await Astro[c](async()=>{let n=this.getAttribute("renderer-url"),[h,{default:p}]=await Promise.all([import(this.getAttribute("component-url")),n?import(n):()=>()=>{}]),u=this.getAttribute("component-export")||"default";if(!u.includes("."))this.Component=h[u];else{this.Component=h;for(let f of u.split("."))this.Component=this.Component[f]}return this.hydrator=p,this.hydrate},e,this)}catch(n){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,n)}}attributeChangedCallback(){this.hydrate()}}d(y,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",y)}})();</script><astro-island uid="nKrO9" prefix="r1" component-url="/_astro/Navigation.CccMRknY.js" component-export="default" renderer-url="/_astro/client.doBBzrOi.js" props="{}" ssr client="load" opts="{&quot;name&quot;:&quot;Navigation&quot;,&quot;value&quot;:true}" await-children><nav class="fixed top-0 left-0 right-0 z-50 bg-skin-primary/95 backdrop-blur-xl border-b border-skin-border"><div class="container mx-auto px-6 max-w-7xl"><div class="flex items-center justify-between h-16"><a href="/" class="flex items-center gap-2 text-skin-text hover:opacity-70 transition-opacity duration-200"><div class="flex items-center justify-center "><div class="h-8 w-8 rounded-full bg-gradient-to-br from-neutral-600 to-neutral-800 dark:from-neutral-300 dark:to-neutral-100 flex items-center justify-center shadow-sm transition-all duration-300 hover:scale-105 hover:shadow-md"><span class="text-white dark:text-neutral-900 font-bold text-sm">HL</span></div></div></a><div class="hidden md:flex items-center gap-1"><a href="#inicio" class="px-4 py-2 text-sm font-medium text-skin-muted hover:text-skin-text transition-colors duration-200 rounded-lg">Inicio</a><a href="#proyectos" class="px-4 py-2 text-sm font-medium text-skin-muted hover:text-skin-text transition-colors duration-200 rounded-lg">Proyectos</a><a href="#services" class="px-4 py-2 text-sm font-medium text-skin-muted hover:text-skin-text transition-colors duration-200 rounded-lg">Servicios</a><a href="#timeline" class="px-4 py-2 text-sm font-medium text-skin-muted hover:text-skin-text transition-colors duration-200 rounded-lg">Experiencia</a><a href="#contacto" class="px-4 py-2 text-sm font-medium text-skin-muted hover:text-skin-text transition-colors duration-200 rounded-lg">Contacto</a><div class="ml-3 pl-3 border-l border-skin-border"><button type="button" class="relative p-2.5 rounded-xl bg-skin-secondary border border-skin-border text-skin-text hover:text-skin-accent hover:border-skin-accent hover:bg-skin-accent/5 transition-all duration-300 group overflow-hidden shadow-sm" aria-label="Cambiar a tema oscuro" title="Cambiar a tema oscuro"><div class="absolute inset-0 bg-gradient-to-br from-skin-accent/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div><div class="relative"><svg class="w-5 h-5 transform group-hover:rotate-12 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg></div></button></div></div><div class="md:hidden flex items-center gap-2"><button type="button" class="relative p-2.5 rounded-xl bg-skin-secondary border border-skin-border text-skin-text hover:text-skin-accent hover:border-skin-accent hover:bg-skin-accent/5 transition-all duration-300 group overflow-hidden shadow-sm" aria-label="Cambiar a tema oscuro" title="Cambiar a tema oscuro"><div class="absolute inset-0 bg-gradient-to-br from-skin-accent/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div><div class="relative"><svg class="w-5 h-5 transform group-hover:rotate-12 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg></div></button><button class="p-2 text-skin-muted hover:text-skin-text transition-colors duration-200 rounded-lg" aria-label="Toggle menu"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg></button></div></div></div></nav><!--astro:end--></astro-island> <main class="pt-14 min-h-screen bg-skin-primary">  <article class="article-layout" data-astro-cid-vu6rhdei> <!-- Header estilo NYT --> <header class="article-header" data-astro-cid-vu6rhdei> <div class="article-header-content" data-astro-cid-vu6rhdei> <!-- Categoría y fecha --> <div class="article-meta" data-astro-cid-vu6rhdei> <span class="article-category" data-astro-cid-vu6rhdei>Análisis de datos</span> <span class="article-divider" data-astro-cid-vu6rhdei>|</span> <time class="article-date" data-astro-cid-vu6rhdei> 14 de enero de 2024 </time> </div> <!-- Título principal --> <h1 class="article-title" data-astro-cid-vu6rhdei>Análisis Cyclistic: Patrones de Uso de Bicicletas Compartidas</h1> <!-- Descripción/Bajada --> <p class="article-description" data-astro-cid-vu6rhdei>Análisis exhaustivo de datos de uso de bicicletas compartidas para identificar diferencias entre usuarios casuales y miembros anuales.</p> <!-- Autor --> <div class="article-author" data-astro-cid-vu6rhdei> <span class="author-label" data-astro-cid-vu6rhdei>Por</span> <span class="author-name" data-astro-cid-vu6rhdei>Horacio Laphitz</span> </div> <!-- Tags --> <div class="article-tags" data-astro-cid-vu6rhdei> <span class="article-tag" data-astro-cid-vu6rhdei>python</span><span class="article-tag" data-astro-cid-vu6rhdei>data analysis</span><span class="article-tag" data-astro-cid-vu6rhdei>visualization</span><span class="article-tag" data-astro-cid-vu6rhdei>business intelligence</span><span class="article-tag" data-astro-cid-vu6rhdei>pandas</span> </div> <!-- Acciones -->  </div> </header> <!-- Contenido del artículo --> <div class="article-body" data-astro-cid-vu6rhdei> <div class="article-content" data-astro-cid-vu6rhdei>  <h1 id="análisis-cyclistic-patrones-de-uso-de-bicicletas-compartidas">Análisis Cyclistic: Patrones de Uso de Bicicletas Compartidas</h1>
+<p>Análisis completo de datos de uso de sistema de bicicletas compartidas para identificar patrones de comportamiento entre usuarios casuales y miembros anuales.</p>
+<h2 id="objetivo-del-proyecto">Objetivo del Proyecto</h2>
+<p>Comprender las diferencias en el uso del servicio entre:</p>
+<ul>
+<li>Usuarios casuales (pases de un día o completos)</li>
+<li>Miembros anuales (suscripción anual)</li>
+</ul>
+<h2 id="metodología">Metodología</h2>
+<h3 id="análisis-exploratorio-de-datos">Análisis Exploratorio de Datos</h3>
+<ul>
+<li>Limpieza y preparación de datos</li>
+<li>Análisis de patrones temporales</li>
+<li>Segmentación por tipo de usuario</li>
+<li>Identificación de tendencias</li>
+</ul>
+<h3 id="métricas-clave">Métricas Clave</h3>
+<ul>
+<li>Duración promedio de viajes</li>
+<li>Frecuencia de uso por día/hora</li>
+<li>Estaciones más populares</li>
+<li>Patrones estacionales</li>
+</ul>
+<h2 id="insights-principales">Insights Principales</h2>
+<h3 id="diferencias-de-comportamiento">Diferencias de Comportamiento</h3>
+<ul>
+<li><strong>Usuarios Casuales</strong>: Viajes más largos, uso recreativo, fines de semana</li>
+<li><strong>Miembros Anuales</strong>: Viajes más cortos, uso diario, días laborales</li>
+</ul>
+<h3 id="patrones-temporales">Patrones Temporales</h3>
+<ul>
+<li>Picos de uso en horas pico para miembros</li>
+<li>Uso distribuido durante el día para casuales</li>
+<li>Variación estacional significativa</li>
+</ul>
+<h2 id="stack-técnico">Stack Técnico</h2>
+<ul>
+<li><strong>Python</strong>: Análisis de datos</li>
+<li><strong>Pandas</strong>: Manipulación de datos</li>
+<li><strong>Matplotlib/Seaborn</strong>: Visualizaciones</li>
+<li><strong>Jupyter Notebook</strong>: Documentación</li>
+</ul>
+<h2 id="impacto">Impacto</h2>
+<p>Insights accionables para:</p>
+<ul>
+<li>Estrategias de marketing diferenciadas</li>
+<li>Optimización de distribución de bicicletas</li>
+<li>Diseño de planes de membresía</li>
+</ul>
+<hr>
+<p><strong>Tecnologías</strong>: Python, Pandas, Data Analysis, Business Intelligence</p>
+<p><strong>Documento</strong>: Análisis disponible en PDF</p>
+<p><strong>Tipo</strong>: Análisis de datos, Business Intelligence</p> <astro-island uid="Z1u6R3g" prefix="r0" component-url="/_astro/ResourceDownload.BWCcPMNS.js" component-export="ResourceDownload" renderer-url="/_astro/client.doBBzrOi.js" props="{&quot;notebooks&quot;:[0],&quot;pdfs&quot;:[1,[[0,{&quot;name&quot;:[0,&quot;Cyclistic_Analisis.pdf&quot;],&quot;path&quot;:[0,&quot;/Proyectos/analisis/Cyclistic_Analisis.pdf&quot;],&quot;description&quot;:[0,&quot;Análisis completo en formato PDF&quot;]}]]],&quot;datasets&quot;:[0]}" ssr client="load" opts="{&quot;name&quot;:&quot;ResourceDownload&quot;,&quot;value&quot;:true}" await-children><div class="mt-12 p-6 rounded-2xl bg-skin-surface border border-skin-border"><h2 class="text-2xl font-bold text-skin-primary mb-6">Recursos Descargables</h2><div class="space-y-6"><div><h3 class="text-lg font-semibold text-skin-primary mb-3 flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-text w-5 h-5 text-skin-accent"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path><path d="M14 2v4a2 2 0 0 0 2 2h4"></path><path d="M10 9H8"></path><path d="M16 13H8"></path><path d="M16 17H8"></path></svg>Documentos PDF</h3><div class="space-y-2"><a href="/Proyectos/analisis/Cyclistic_Analisis.pdf" download="" class="flex items-center gap-3 p-4 rounded-lg border border-skin-border bg-skin-surface hover:bg-skin-surface-hover transition-colors group"><div class="flex-shrink-0 text-skin-accent"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-text w-5 h-5"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path><path d="M14 2v4a2 2 0 0 0 2 2h4"></path><path d="M10 9H8"></path><path d="M16 13H8"></path><path d="M16 17H8"></path></svg></div><div class="flex-1 min-w-0"><p class="font-medium text-skin-primary group-hover:text-skin-accent transition-colors truncate">Cyclistic_Analisis.pdf</p><p class="text-sm text-skin-muted mt-1">Análisis completo en formato PDF</p></div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-download w-4 h-4 text-skin-muted group-hover:text-skin-accent transition-colors flex-shrink-0"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" x2="12" y1="15" y2="3"></line></svg></a></div></div></div></div><!--astro:end--></astro-island>  </div> </div> </article>  </main>  <astro-island uid="18CE0J" prefix="r2" component-url="/_astro/Footer.DVoysD-1.js" component-export="default" renderer-url="/_astro/client.doBBzrOi.js" props="{}" ssr client="load" opts="{&quot;name&quot;:&quot;Footer&quot;,&quot;value&quot;:true}" await-children><footer class="bg-skin-secondary border-t border-skin-border"><div class="container mx-auto px-6 py-12 max-w-7xl"><div class="flex flex-col items-center justify-center space-y-8"><div class="text-center"><h3 class="text-xl font-bold text-skin-text mb-1">Horacio Laphitz</h3><a href="/cv-horacio-laphitz.pdf" download="" class="inline-flex items-center gap-1.5 text-sm text-brand-primary hover:text-brand-primary/80 transition-colors duration-200"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>Descargar CV</a></div><div class="flex items-center gap-6"><a href="https://www.linkedin.com/in/horacio-laphitz/" target="_blank" rel="noopener noreferrer" class="text-skin-muted hover:text-skin-accent transition-all duration-200 hover:scale-110" aria-label="LinkedIn"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a><a href="https://github.com/horaciolaphitz" target="_blank" rel="noopener noreferrer" class="text-skin-muted hover:text-skin-accent transition-all duration-200 hover:scale-110" aria-label="GitHub"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="mailto:horaciolaphitz99@gmail.com" class="text-skin-muted hover:text-skin-accent transition-all duration-200 hover:scale-110" aria-label="Email"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg></a></div><div class="pt-6 border-t border-skin-border/50 w-full"><p class="text-sm text-skin-muted text-center">© <!-- -->2026</p></div></div></div></footer><!--astro:end--></astro-island> </body></html> 

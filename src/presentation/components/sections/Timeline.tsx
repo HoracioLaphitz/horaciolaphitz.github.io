@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { useScrollAnimation } from "@presentation/hooks/useScrollAnimation";
 import { BriefcaseIcon, BookOpenIcon } from "../ui/Icons";
 
