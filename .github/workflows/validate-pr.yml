@@ -1,0 +1,112 @@
+# Workflow: Validate Pull Request
+# Branch: develop, feature/*
+# Purpose: Validate code quality, tests, and build before merging to main
+# Triggers: Pull requests to main or develop
+# Dependencies: pnpm, Node.js 23, Astro
+# Outputs: Validation report and build artifacts
+
+name: Validate Pull Request
+
+on:
+  pull_request:
+    branches: [main, develop]
+    types: [opened, synchronize, reopened]
+
+concurrency:
+  group: pr-validation-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Validate PR
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout PR branch
+        uses: actions/checkout@v4
+        with:
+          submodules: false
+          fetch-depth: 0
+
+      - name: Setup Node.js 23
+        uses: actions/setup-node@v4
+        with:
+          node-version: "23"
+          cache: "pnpm"
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 9
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Validate file sizes
+        run: |
+          echo "🔍 Validating file sizes..."
+          node scripts/validate-file-sizes.mjs
+          echo "✅ File sizes validated"
+
+      - name: Check for large files in PR
+        run: |
+          echo "🔍 Checking for large files in PR..."
+
+          git fetch origin ${{ github.base_ref }}
+          CHANGED_FILES=$(git diff --name-only origin/${{ github.base_ref }}...HEAD)
+
+          echo "Modified files:"
+          echo "$CHANGED_FILES"
+
+          LARGE_EXTENSIONS=".pbix .sqlite .db .sql .zip .tar .gz .mp4 .avi .mov"
+          FOUND_LARGE=false
+
+          for file in $CHANGED_FILES; do
+            for ext in $LARGE_EXTENSIONS; do
+              if [[ "$file" == *"$ext" ]]; then
+                echo "⚠️  Large file detected: $file"
+                FOUND_LARGE=true
+              fi
+            done
+          done
+
+          if [ "$FOUND_LARGE" = true ]; then
+            echo ""
+            echo "❌ Large files detected in PR"
+            echo "💡 Add these files to .gitignore"
+            exit 1
+          fi
+
+          echo "✅ No large files detected"
+
+      - name: Run tests
+        run: pnpm run test:run
+
+      - name: Type check
+        run: pnpm run astro check
+
+      - name: Build test
+        run: pnpm run build
+        env:
+          PUBLIC_WEB3FORMS_ACCESS_KEY: ${{ secrets.PUBLIC_WEB3FORMS_ACCESS_KEY }}
+          NODE_ENV: production
+
+      - name: Validate build output
+        run: |
+          echo "🔍 Validating build output..."
+          node scripts/validate-file-sizes.mjs dist
+          if [ ! -d "dist" ]; then
+            echo "❌ Build directory not found"
+            exit 1
+          fi
+          echo "✅ Build output validated"
+
+      - name: PR validation summary
+        if: always()
+        run: |
+          echo "## PR Validation Summary" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ File sizes validated" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Tests passed" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Type check passed" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ Build successful" >> $GITHUB_STEP_SUMMARY

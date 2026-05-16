@@ -1,0 +1,20 @@
+---
+import Layout from "./Layout.astro";
+import Navigation from "../components/layout/Navigation.tsx";
+
+export interface Props {
+  title: string;
+  description: string;
+  currentPath: string;
+}
+
+const { title, description, currentPath } = Astro.props;
+---
+
+<Layout title={title} description={description}>
+  <Navigation client:load />
+
+  <main class="pt-14 min-h-screen bg-skin-primary">
+    <slot />
+  </main>
+</Layout>

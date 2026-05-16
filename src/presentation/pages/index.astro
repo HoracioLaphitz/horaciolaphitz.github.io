@@ -1,0 +1,41 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+import Hero from "../components/sections/Hero";
+import Timeline from "../components/sections/Timeline";
+import Services from "../components/sections/Services";
+import ProjectCategories from "../components/sections/ProjectCategories";
+import Contact from "../components/sections/Contact";
+import { getCollection } from "astro:content";
+import { ProjectMapper } from "../../infrastructure/mappers/project.mapper";
+
+// Fetch projects from Astro Content Collection and map to domain entities
+const proyectosRaw = await getCollection("proyectos");
+const proyectos = ProjectMapper.toDomainArray(proyectosRaw);
+
+// Serialize for client
+const proyectosSerializados = proyectos.map((p) => ({
+  slug: p.slug,
+  title: p.title,
+  description: p.description,
+  category: p.category,
+  tags: [...p.tags],
+  publishDate: p.publishDate.toISOString(),
+  author: p.author,
+  githubUrl: p.githubUrl,
+  dashboardUrl: p.dashboardUrl,
+  status: p.status,
+  featured: p.featured,
+}));
+---
+
+<PageLayout
+  title="Portfolio"
+  description="Data Analyst & Visualization Expert."
+  currentPath="/"
+>
+  <Hero client:load />
+  <Timeline client:visible />
+  <ProjectCategories posts={proyectosSerializados} client:visible />
+  <Services client:visible />
+  <Contact client:visible />
+</PageLayout>
