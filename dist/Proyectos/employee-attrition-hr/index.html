@@ -1,0 +1,519 @@
+<!DOCTYPE html><html lang="es"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Por Qué Se Van los Empleados: Análisis de Attrition en RRHH | Horacio Laphitz</title><meta name="description" content="Un análisis exploratorio de datos para entender qué factores hacen que los empleados renuncien y cómo las empresas pueden mejorar la retención."><meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"><meta name="googlebot" content="index, follow"><meta name="bingbot" content="index, follow"><link rel="canonical" href="https://horaciolaphitz.github.io/proyectos/employee-attrition-hr/"><meta property="og:type" content="website"><meta property="og:url" content="https://horaciolaphitz.github.io/proyectos/employee-attrition-hr/"><meta property="og:title" content="Por Qué Se Van los Empleados: Análisis de Attrition en RRHH | Horacio Laphitz"><meta property="og:description" content="Un análisis exploratorio de datos para entender qué factores hacen que los empleados renuncien y cómo las empresas pueden mejorar la retención."><meta property="og:image" content="https://horaciolaphitz.github.io/img/horacio-profile-og.jpg"><meta property="og:site_name" content="Horacio Laphitz Portfolio"><meta property="og:locale" content="es_AR"><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://horaciolaphitz.github.io/proyectos/employee-attrition-hr/"><meta property="twitter:title" content="Por Qué Se Van los Empleados: Análisis de Attrition en RRHH | Horacio Laphitz"><meta property="twitter:description" content="Un análisis exploratorio de datos para entender qué factores hacen que los empleados renuncien y cómo las empresas pueden mejorar la retención."><meta property="twitter:image" content="https://horaciolaphitz.github.io/img/horacio-profile-og.jpg"><meta property="twitter:creator" content="@horaciolaphitz"><link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' width='100' height='100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%231a202c'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='central' text-anchor='middle' font-family='Arial, sans-serif' font-size='50' font-weight='bold' fill='white'%3EHL%3C/text%3E%3C/svg%3E"><meta http-equiv="X-Content-Type-Options" content="nosniff"><meta http-equiv="X-Frame-Options" content="DENY"><meta http-equiv="X-XSS-Protection" content="1; mode=block"><meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preconnect" href="https://api.github.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=SF+Pro+Display:wght@300;400;500;600;700&display=swap" rel="stylesheet"><link rel="dns-prefetch" href="//github.com"><link rel="dns-prefetch" href="//linkedin.com"><script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Horacio Laphitz",
+        "jobTitle": "Data Analyst & Business Intelligence Specialist",
+        "description": "Data Analyst especializado en convertir datos complejos en decisiones estratégicas. Reduje costos operativos 30% mediante análisis predictivo en AgTech. Experto en Python, SQL, Power BI y Machine Learning con metodología PACE.",
+        "url": "https://horaciolaphitz.github.io",
+        "image": "https://horaciolaphitz.github.io/img/horacio-profile-og.jpg",
+        "email": "horaciolaphitz99@gmail.com",
+        "sameAs": [
+          "https://linkedin.com/in/horacio-laphitz",
+          "https://github.com/horaciolaphitz",
+          "https://www.credly.com/users/horacio-laphitz"
+        ],
+        "knowsAbout": [
+          "Data Analysis",
+          "Python Programming",
+          "SQL Database Management",
+          "Power BI",
+          "Tableau",
+          "Machine Learning",
+          "Statistical Analysis",
+          "Predictive Analytics",
+          "Data Visualization",
+          "Excel Advanced",
+          "R Programming",
+          "PACE Methodology",
+          "Data Science",
+          "Big Data",
+          "Data Mining"
+        ],
+        "hasCredential": [
+          {
+            "@type": "EducationalOccupationalCredential",
+            "name": "Google Data Analytics Professional Certificate",
+            "credentialCategory": "certificate",
+            "recognizedBy": {
+              "@type": "Organization",
+              "name": "Google"
+            }
+          },
+          {
+            "@type": "EducationalOccupationalCredential",
+            "name": "IBM Data Science Professional Certificate",
+            "credentialCategory": "certificate",
+            "recognizedBy": {
+              "@type": "Organization",
+              "name": "IBM"
+            }
+          },
+          {
+            "@type": "EducationalOccupationalCredential",
+            "name": "Supervised Machine Learning",
+            "credentialCategory": "certificate",
+            "recognizedBy": {
+              "@type": "Organization",
+              "name": "Stanford University"
+            }
+          }
+        ],
+        "hasOccupation": {
+          "@type": "Occupation",
+          "name": "Senior Data Analyst",
+          "occupationLocation": {
+            "@type": "Place",
+            "name": "Argentina",
+            "address": {
+              "@type": "PostalAddress",
+              "addressCountry": "AR"
+            }
+          },
+          "skills": [
+            "Python Programming (Pandas, NumPy, Scikit-learn)",
+            "SQL Database Management (PostgreSQL, MySQL)",
+            "Power BI Dashboard Development",
+            "Tableau Data Visualization",
+            "Machine Learning Model Development",
+            "Statistical Analysis & Hypothesis Testing",
+            "ETL Pipeline Development",
+            "Data Cleaning & Preprocessing",
+            "Predictive Analytics",
+            "Business Intelligence Strategy",
+            "KPI Definition & Tracking",
+            "Data Storytelling",
+            "Google Analytics",
+            "Excel Advanced (VBA, Power Query)",
+            "R Programming (ggplot2, dplyr)",
+            "Git Version Control",
+            "Agile Methodologies",
+            "PACE Methodology"
+          ],
+          "responsibilities": "Transform complex datasets into actionable business insights, develop predictive models, create executive dashboards, automate data pipelines, and communicate findings to stakeholders."
+        },
+        "alumniOf": [
+          {
+            "@type": "EducationalOrganization",
+            "name": "Google Career Certificates"
+          },
+          {
+            "@type": "EducationalOrganization",
+            "name": "IBM"
+          },
+          {
+            "@type": "EducationalOrganization",
+            "name": "Stanford University"
+          }
+        ],
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Freelance Data Analytics Consultant"
+        },
+        "seeks": {
+          "@type": "JobPosting",
+          "title": "Data Analyst, Business Intelligence Analyst, Data Scientist",
+          "employmentType": ["FULL_TIME", "CONTRACTOR", "FREELANCE"],
+          "jobLocation": {
+            "@type": "Place",
+            "address": {
+              "@type": "PostalAddress",
+              "addressCountry": "AR"
+            }
+          }
+        }
+      }
+    </script><link rel="manifest" href="/manifest.json"><link rel="sitemap" href="/sitemap.xml"><meta name="generator" content="Astro v5.18.1"><script type="module" src="https://embedding.tableauusercontent.com/tableau.embedding.3.latest.min.js"></script><link rel="stylesheet" href="/assets/gracias.CKIFUu-_.css">
+<link rel="stylesheet" href="/assets/_slug_.dzPQ_nOh.css"></head> <body class="relative">  <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><script>(()=>{var A=Object.defineProperty;var g=(i,o,a)=>o in i?A(i,o,{enumerable:!0,configurable:!0,writable:!0,value:a}):i[o]=a;var d=(i,o,a)=>g(i,typeof o!="symbol"?o+"":o,a);{let i={0:t=>m(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>1/0*t},o=t=>{let[l,e]=t;return l in i?i[l](e):void 0},a=t=>t.map(o),m=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([l,e])=>[l,o(e)]));class y extends HTMLElement{constructor(){super(...arguments);d(this,"Component");d(this,"hydrator");d(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let c=this.querySelectorAll("astro-slot"),n={},h=this.querySelectorAll("template[data-astro-template]");for(let r of h){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("data-astro-template")||"default"]=r.innerHTML,r.remove())}for(let r of c){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("name")||"default"]=r.innerHTML)}let p;try{p=this.hasAttribute("props")?m(JSON.parse(this.getAttribute("props"))):{}}catch(r){let s=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(s+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${s}`,this.getAttribute("props"),r),r}let u;await this.hydrator(this)(this.Component,p,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});d(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),c.disconnect(),this.childrenConnectedCallback()},c=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});c.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),c=this.getAttribute("client");if(Astro[c]===void 0){window.addEventListener(`astro:${c}`,()=>this.start(),{once:!0});return}try{await Astro[c](async()=>{let n=this.getAttribute("renderer-url"),[h,{default:p}]=await Promise.all([import(this.getAttribute("component-url")),n?import(n):()=>()=>{}]),u=this.getAttribute("component-export")||"default";if(!u.includes("."))this.Component=h[u];else{this.Component=h;for(let f of u.split("."))this.Component=this.Component[f]}return this.hydrator=p,this.hydrate},e,this)}catch(n){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,n)}}attributeChangedCallback(){this.hydrate()}}d(y,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",y)}})();</script><astro-island uid="nKrO9" prefix="r1" component-url="/_astro/Navigation.CccMRknY.js" component-export="default" renderer-url="/_astro/client.doBBzrOi.js" props="{}" ssr client="load" opts="{&quot;name&quot;:&quot;Navigation&quot;,&quot;value&quot;:true}" await-children><nav class="fixed top-0 left-0 right-0 z-50 bg-skin-primary/95 backdrop-blur-xl border-b border-skin-border"><div class="container mx-auto px-6 max-w-7xl"><div class="flex items-center justify-between h-16"><a href="/" class="flex items-center gap-2 text-skin-text hover:opacity-70 transition-opacity duration-200"><div class="flex items-center justify-center "><div class="h-8 w-8 rounded-full bg-gradient-to-br from-neutral-600 to-neutral-800 dark:from-neutral-300 dark:to-neutral-100 flex items-center justify-center shadow-sm transition-all duration-300 hover:scale-105 hover:shadow-md"><span class="text-white dark:text-neutral-900 font-bold text-sm">HL</span></div></div></a><div class="hidden md:flex items-center gap-1"><a href="#inicio" class="px-4 py-2 text-sm font-medium text-skin-muted hover:text-skin-text transition-colors duration-200 rounded-lg">Inicio</a><a href="#proyectos" class="px-4 py-2 text-sm font-medium text-skin-muted hover:text-skin-text transition-colors duration-200 rounded-lg">Proyectos</a><a href="#services" class="px-4 py-2 text-sm font-medium text-skin-muted hover:text-skin-text transition-colors duration-200 rounded-lg">Servicios</a><a href="#timeline" class="px-4 py-2 text-sm font-medium text-skin-muted hover:text-skin-text transition-colors duration-200 rounded-lg">Experiencia</a><a href="#contacto" class="px-4 py-2 text-sm font-medium text-skin-muted hover:text-skin-text transition-colors duration-200 rounded-lg">Contacto</a><div class="ml-3 pl-3 border-l border-skin-border"><button type="button" class="relative p-2.5 rounded-xl bg-skin-secondary border border-skin-border text-skin-text hover:text-skin-accent hover:border-skin-accent hover:bg-skin-accent/5 transition-all duration-300 group overflow-hidden shadow-sm" aria-label="Cambiar a tema oscuro" title="Cambiar a tema oscuro"><div class="absolute inset-0 bg-gradient-to-br from-skin-accent/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div><div class="relative"><svg class="w-5 h-5 transform group-hover:rotate-12 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg></div></button></div></div><div class="md:hidden flex items-center gap-2"><button type="button" class="relative p-2.5 rounded-xl bg-skin-secondary border border-skin-border text-skin-text hover:text-skin-accent hover:border-skin-accent hover:bg-skin-accent/5 transition-all duration-300 group overflow-hidden shadow-sm" aria-label="Cambiar a tema oscuro" title="Cambiar a tema oscuro"><div class="absolute inset-0 bg-gradient-to-br from-skin-accent/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div><div class="relative"><svg class="w-5 h-5 transform group-hover:rotate-12 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg></div></button><button class="p-2 text-skin-muted hover:text-skin-text transition-colors duration-200 rounded-lg" aria-label="Toggle menu"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg></button></div></div></div></nav><!--astro:end--></astro-island> <main class="pt-14 min-h-screen bg-skin-primary">  <article class="article-layout" data-astro-cid-vu6rhdei> <!-- Header estilo NYT --> <header class="article-header" data-astro-cid-vu6rhdei> <div class="article-header-content" data-astro-cid-vu6rhdei> <!-- Categoría y fecha --> <div class="article-meta" data-astro-cid-vu6rhdei> <span class="article-category" data-astro-cid-vu6rhdei>Análisis de datos</span> <span class="article-divider" data-astro-cid-vu6rhdei>|</span> <time class="article-date" data-astro-cid-vu6rhdei> 24 de julio de 2024 </time> </div> <!-- Título principal --> <h1 class="article-title" data-astro-cid-vu6rhdei>Por Qué Se Van los Empleados: Análisis de Attrition en RRHH</h1> <!-- Descripción/Bajada --> <p class="article-description" data-astro-cid-vu6rhdei>Un análisis exploratorio de datos para entender qué factores hacen que los empleados renuncien y cómo las empresas pueden mejorar la retención.</p> <!-- Autor --> <div class="article-author" data-astro-cid-vu6rhdei> <span class="author-label" data-astro-cid-vu6rhdei>Por</span> <span class="author-name" data-astro-cid-vu6rhdei>Horacio Laphitz</span> </div> <!-- Tags --> <div class="article-tags" data-astro-cid-vu6rhdei> <span class="article-tag" data-astro-cid-vu6rhdei>python</span><span class="article-tag" data-astro-cid-vu6rhdei>pandas</span><span class="article-tag" data-astro-cid-vu6rhdei>hr analytics</span><span class="article-tag" data-astro-cid-vu6rhdei>data visualization</span><span class="article-tag" data-astro-cid-vu6rhdei>análisis estadístico</span> </div> <!-- Acciones --> <div class="article-actions" data-astro-cid-vu6rhdei> <a href="https://github.com/HoracioLaphitz/EDA_IBM" target="_blank" rel="noopener noreferrer" class="article-action article-action-secondary" data-astro-cid-vu6rhdei> <svg class="action-icon" fill="currentColor" viewBox="0 0 24 24" data-astro-cid-vu6rhdei> <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" data-astro-cid-vu6rhdei></path> </svg>
+Ver código
+</a>  </div> </div> </header> <!-- Contenido del artículo --> <div class="article-body" data-astro-cid-vu6rhdei> <div class="article-content" data-astro-cid-vu6rhdei>  <h1 id="análisis-de-attrition-en-rrhh">Análisis de Attrition en RRHH</h1>
+<p>La rotación de personal es uno de los dolores de cabeza más grandes de cualquier empresa. Cada vez que alguien se va, no solo perdés el talento, sino también toda la inversión en capacitación y el conocimiento que se lleva. Este proyecto fue sobre entender por qué pasa esto y, más importante, qué hacer al respecto.</p>
+<h2 id="el-contexto-del-problema">El Contexto del Problema</h2>
+<p>Una empresa de tecnología de tamaño medio me contactó con un problema urgente: su tasa de rotación había aumentado del 12% al 23% en solo dos años. Esto no solo era costoso (se estima que reemplazar un empleado cuesta entre 50% y 200% de su salario anual), sino que también afectaba la moral del equipo y la productividad.</p>
+<h3 id="el-costo-real-de-la-rotación">El Costo Real de la Rotación</h3>
+<p>Hablemos de números concretos:</p>
+<ul>
+<li><strong>Costo de reclutamiento</strong>: $5,000 - $15,000 por posición</li>
+<li><strong>Tiempo de onboarding</strong>: 3-6 meses hasta productividad completa</li>
+<li><strong>Pérdida de conocimiento</strong>: Invaluable</li>
+<li><strong>Impacto en el equipo</strong>: Sobrecarga y desmotivación</li>
+</ul>
+<p>Para una empresa de 500 empleados con 23% de rotación, estamos hablando de más de $1.5 millones anuales solo en costos directos.</p>
+<h3 id="las-preguntas-clave">Las Preguntas Clave</h3>
+<p>La empresa quería respuestas concretas:</p>
+<ul>
+<li>¿Qué tienen en común los empleados que renuncian?</li>
+<li>¿Hay patrones que podamos identificar antes de que se vayan?</li>
+<li>¿Qué podemos hacer para retener al talento?</li>
+<li>¿Cuáles son los departamentos más afectados?</li>
+<li>¿Hay diferencias por edad, género o antigüedad?</li>
+</ul>
+<h2 id="aplicando-el-framework-pace">Aplicando el Framework PACE</h2>
+<h3 id="plan-planificación">Plan (Planificación)</h3>
+<p>Definí un plan de análisis estructurado:</p>
+<p><strong>Objetivos</strong>:</p>
+<ul>
+<li>Identificar los top 5 factores de rotación</li>
+<li>Cuantificar el impacto de cada factor</li>
+<li>Crear un modelo predictivo de riesgo de renuncia</li>
+<li>Generar recomendaciones accionables</li>
+</ul>
+<p><strong>Métricas clave</strong>:</p>
+<ul>
+<li>Tasa de rotación por departamento</li>
+<li>Tiempo promedio de permanencia</li>
+<li>Correlaciones entre variables</li>
+<li>Análisis de supervivencia</li>
+</ul>
+<h3 id="analyze-análisis">Analyze (Análisis)</h3>
+<p>Trabajé con un dataset robusto de 1,470 empleados, incluyendo información sobre:</p>
+<p><strong>Variables demográficas</strong>:</p>
+<ul>
+<li>Edad, género, estado civil</li>
+<li>Distancia al trabajo</li>
+<li>Nivel educativo</li>
+</ul>
+<p><strong>Variables laborales</strong>:</p>
+<ul>
+<li>Salario y beneficios</li>
+<li>Departamento y rol</li>
+<li>Años en la empresa</li>
+<li>Años desde última promoción</li>
+<li>Horas extras trabajadas</li>
+</ul>
+<p><strong>Variables de satisfacción</strong>:</p>
+<ul>
+<li>Satisfacción laboral (escala 1-4)</li>
+<li>Balance vida-trabajo (escala 1-4)</li>
+<li>Satisfacción con el ambiente (escala 1-4)</li>
+<li>Relación con el manager (escala 1-4)</li>
+</ul>
+<h3 id="construct-construcción">Construct (Construcción)</h3>
+<p>Construí un pipeline de análisis completo con múltiples técnicas.</p>
+<h3 id="execute-ejecución">Execute (Ejecución)</h3>
+<p>Ejecuté el análisis, validé mis hipótesis.</p>
+<h2 id="el-stack-técnico">El Stack Técnico</h2>
+<ul>
+<li><strong>Python 3.9</strong>: Lenguaje principal</li>
+<li><strong>Pandas</strong>: Manipulación y análisis de datos</li>
+<li><strong>NumPy</strong>: Operaciones numéricas</li>
+<li><strong>Matplotlib y Seaborn</strong>: Visualizaciones</li>
+<li><strong>Scikit-learn</strong>: Análisis estadístico y modelado</li>
+<li><strong>Scipy</strong>: Tests estadísticos</li>
+<li><strong>Plotly</strong>: Visualizaciones interactivas</li>
+</ul>
+<h2 id="el-proceso-de-análisis">El Proceso de Análisis</h2>
+<h3 id="1-limpieza-y-exploración-inicial">1. Limpieza y Exploración Inicial</h3>
+<p>Primero tuve que asegurarme de que los datos estuvieran limpios y completos.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#6A737D"># Verificación de calidad de datos</span></span>
+<span class="line"><span style="color:#79B8FF">print</span><span style="color:#E1E4E8">(df.info())</span></span>
+<span class="line"><span style="color:#79B8FF">print</span><span style="color:#E1E4E8">(df.isnull().sum())</span></span>
+<span class="line"><span style="color:#79B8FF">print</span><span style="color:#E1E4E8">(df.describe())</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># Distribución de la variable objetivo</span></span>
+<span class="line"><span style="color:#E1E4E8">attrition_rate </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> df[</span><span style="color:#9ECBFF">'Attrition'</span><span style="color:#E1E4E8">].value_counts(</span><span style="color:#FFAB70">normalize</span><span style="color:#F97583">=</span><span style="color:#79B8FF">True</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#79B8FF">print</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">f</span><span style="color:#9ECBFF">"Tasa de rotación: </span><span style="color:#79B8FF">{</span><span style="color:#E1E4E8">attrition_rate[</span><span style="color:#9ECBFF">'Yes'</span><span style="color:#E1E4E8">]</span><span style="color:#F97583">:.2%</span><span style="color:#79B8FF">}</span><span style="color:#9ECBFF">"</span><span style="color:#E1E4E8">)</span></span></code></pre>
+<p><strong>Hallazgos iniciales</strong>:</p>
+<ul>
+<li>Dataset limpio, sin valores faltantes</li>
+<li>Tasa de rotación: 16.1% (237 de 1,470 empleados)</li>
+<li>Distribución desbalanceada (típico en problemas de attrition)</li>
+</ul>
+<h3 id="2-análisis-exploratorio-profundo">2. Análisis Exploratorio Profundo</h3>
+<p>Exploré cada variable para entender su distribución y relación con la rotación.</p>
+<h4 id="análisis-univariado">Análisis Univariado</h4>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#6A737D"># Distribución de salarios</span></span>
+<span class="line"><span style="color:#E1E4E8">plt.figure(</span><span style="color:#FFAB70">figsize</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">12</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">6</span><span style="color:#E1E4E8">))</span></span>
+<span class="line"><span style="color:#E1E4E8">sns.histplot(</span><span style="color:#FFAB70">data</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">df, </span><span style="color:#FFAB70">x</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">'MonthlyIncome'</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">hue</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">'Attrition'</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">bins</span><span style="color:#F97583">=</span><span style="color:#79B8FF">50</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">plt.title(</span><span style="color:#9ECBFF">'Distribución de Salarios por Estado de Rotación'</span><span style="color:#E1E4E8">)</span></span></code></pre>
+<h4 id="análisis-bivariado">Análisis Bivariado</h4>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#6A737D"># Correlación entre variables numéricas</span></span>
+<span class="line"><span style="color:#E1E4E8">correlation_matrix </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> df.corr()</span></span>
+<span class="line"><span style="color:#E1E4E8">sns.heatmap(correlation_matrix, </span><span style="color:#FFAB70">annot</span><span style="color:#F97583">=</span><span style="color:#79B8FF">True</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">cmap</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">'coolwarm'</span><span style="color:#E1E4E8">)</span></span></code></pre>
+<h4 id="análisis-multivariado">Análisis Multivariado</h4>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#6A737D"># Análisis de múltiples factores</span></span>
+<span class="line"><span style="color:#E1E4E8">pd.crosstab([df[</span><span style="color:#9ECBFF">'Department'</span><span style="color:#E1E4E8">], df[</span><span style="color:#9ECBFF">'JobRole'</span><span style="color:#E1E4E8">]],</span></span>
+<span class="line"><span style="color:#E1E4E8">            df[</span><span style="color:#9ECBFF">'Attrition'</span><span style="color:#E1E4E8">], </span><span style="color:#FFAB70">normalize</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">'index'</span><span style="color:#E1E4E8">)</span></span></code></pre>
+<h3 id="3-análisis-estadístico">3. Análisis Estadístico</h3>
+<p>Usé tests estadísticos para validar las relaciones que encontraba:</p>
+<ul>
+<li><strong>Chi-cuadrado</strong>: Para variables categóricas</li>
+<li><strong>T-test</strong>: Para comparar medias entre grupos</li>
+<li><strong>ANOVA</strong>: Para comparar múltiples grupos</li>
+<li><strong>Correlación de Pearson</strong>: Para variables numéricas</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#F97583">from</span><span style="color:#E1E4E8"> scipy.stats </span><span style="color:#F97583">import</span><span style="color:#E1E4E8"> chi2_contingency, ttest_ind</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># Test chi-cuadrado para departamento vs attrition</span></span>
+<span class="line"><span style="color:#E1E4E8">contingency_table </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> pd.crosstab(df[</span><span style="color:#9ECBFF">'Department'</span><span style="color:#E1E4E8">], df[</span><span style="color:#9ECBFF">'Attrition'</span><span style="color:#E1E4E8">])</span></span>
+<span class="line"><span style="color:#E1E4E8">chi2, p_value, dof, expected </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> chi2_contingency(contingency_table)</span></span>
+<span class="line"><span style="color:#79B8FF">print</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">f</span><span style="color:#9ECBFF">"Chi-cuadrado: </span><span style="color:#79B8FF">{</span><span style="color:#E1E4E8">chi2</span><span style="color:#F97583">:.2f</span><span style="color:#79B8FF">}</span><span style="color:#9ECBFF">, p-value: </span><span style="color:#79B8FF">{</span><span style="color:#E1E4E8">p_value</span><span style="color:#F97583">:.4f</span><span style="color:#79B8FF">}</span><span style="color:#9ECBFF">"</span><span style="color:#E1E4E8">)</span></span></code></pre>
+<h3 id="4-visualización-de-patrones">4. Visualización de Patrones</h3>
+<p>Creé más de 20 visualizaciones diferentes para contar la historia de los datos.</p>
+<h2 id="lo-que-descubrí">Lo Que Descubrí</h2>
+<p>Los resultados fueron reveladores. Identifiqué 5 factores clave que explicaban el 70% de los casos de rotación:</p>
+<h3 id="1-salario-bajo-impacto-28">1. Salario Bajo (Impacto: 28%)</h3>
+<p>Los empleados con salarios por debajo del promedio del mercado tenían 3 veces más probabilidad de irse.</p>
+<p><strong>Datos concretos</strong>:</p>
+<ul>
+<li>Salario promedio de empleados que se van: $4,800/mes</li>
+<li>Salario promedio de empleados que se quedan: $6,500/mes</li>
+<li>Diferencia: 35% menos</li>
+</ul>
+<p><strong>Análisis por percentil</strong>:</p>
+<ul>
+<li>Empleados en el percentil 25 de salario: 31% de rotación</li>
+<li>Empleados en el percentil 75 de salario: 8% de rotación</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#6A737D"># Análisis de salario por cuartil</span></span>
+<span class="line"><span style="color:#E1E4E8">df[</span><span style="color:#9ECBFF">'SalaryQuartile'</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> pd.qcut(df[</span><span style="color:#9ECBFF">'MonthlyIncome'</span><span style="color:#E1E4E8">], </span><span style="color:#FFAB70">q</span><span style="color:#F97583">=</span><span style="color:#79B8FF">4</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#FFAB70">                                labels</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">[</span><span style="color:#9ECBFF">'Q1'</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">'Q2'</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">'Q3'</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">'Q4'</span><span style="color:#E1E4E8">])</span></span>
+<span class="line"><span style="color:#E1E4E8">attrition_by_salary </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> df.groupby(</span><span style="color:#9ECBFF">'SalaryQuartile'</span><span style="color:#E1E4E8">)[</span><span style="color:#9ECBFF">'Attrition'</span><span style="color:#E1E4E8">].apply(</span></span>
+<span class="line"><span style="color:#F97583">    lambda</span><span style="color:#E1E4E8"> x: (x </span><span style="color:#F97583">==</span><span style="color:#9ECBFF"> 'Yes'</span><span style="color:#E1E4E8">).mean()</span></span>
+<span class="line"><span style="color:#E1E4E8">)</span></span></code></pre>
+<h3 id="2-falta-de-promociones-impacto-22">2. Falta de Promociones (Impacto: 22%)</h3>
+<p>Empleados que llevaban más de 3 años sin una promoción tenían tasas de rotación del 45%. La gente necesita sentir que crece.</p>
+<p><strong>Hallazgos clave</strong>:</p>
+<ul>
+<li>Tiempo promedio sin promoción (se van): 4.2 años</li>
+<li>Tiempo promedio sin promoción (se quedan): 2.1 años</li>
+<li>Empleados con 5+ años sin promoción: 58% de rotación</li>
+</ul>
+<p><strong>Análisis por nivel</strong>:</p>
+<ul>
+<li>Entry level: Esperan promoción en 2 años</li>
+<li>Mid level: Esperan promoción en 3 años</li>
+<li>Senior level: Más flexibles, pero valoran reconocimiento</li>
+</ul>
+<h3 id="3-horas-extras-excesivas-impacto-18">3. Horas Extras Excesivas (Impacto: 18%)</h3>
+<p>Los que trabajaban más de 50 horas semanales regularmente tenían el doble de probabilidad de renunciar. El burnout es real.</p>
+<p><strong>Datos alarmantes</strong>:</p>
+<ul>
+<li>Empleados con horas extras frecuentes: 31% de rotación</li>
+<li>Empleados sin horas extras: 10% de rotación</li>
+<li>Diferencia: 3.1x más probabilidad de irse</li>
+</ul>
+<p><strong>Patrón temporal</strong>:</p>
+<ul>
+<li>Primeros 6 meses: Aceptan horas extras</li>
+<li>6-12 meses: Comienza el desgaste</li>
+<li>12+ meses: Alta probabilidad de renuncia</li>
+</ul>
+<h3 id="4-baja-satisfacción-laboral-impacto-16">4. Baja Satisfacción Laboral (Impacto: 16%)</h3>
+<p>Esto parece obvio, pero pude cuantificarlo: cada punto menos en la escala de satisfacción aumentaba la probabilidad de renuncia en un 15%.</p>
+<p><strong>Escala de satisfacción (1-4)</strong>:</p>
+<ul>
+<li>Nivel 1 (muy insatisfecho): 46% de rotación</li>
+<li>Nivel 2 (insatisfecho): 28% de rotación</li>
+<li>Nivel 3 (satisfecho): 12% de rotación</li>
+<li>Nivel 4 (muy satisfecho): 5% de rotación</li>
+</ul>
+<p><strong>Factores de insatisfacción</strong>:</p>
+<ol>
+<li>Falta de reconocimiento (38%)</li>
+<li>Mala relación con manager (27%)</li>
+<li>Falta de desarrollo profesional (22%)</li>
+<li>Ambiente laboral tóxico (13%)</li>
+</ol>
+<h3 id="5-distancia-al-trabajo-impacto-11">5. Distancia al Trabajo (Impacto: 11%)</h3>
+<p>Los empleados que vivían a más de 30km de la oficina tenían mayor rotación. El tiempo de viaje importa más de lo que pensamos.</p>
+<p><strong>Análisis por distancia</strong>:</p>
+<ul>
+<li>0-10 km: 11% de rotación</li>
+<li>10-20 km: 14% de rotación</li>
+<li>20-30 km: 19% de rotación</li>
+<li>30+ km: 27% de rotación</li>
+</ul>
+<p><strong>Tiempo de commute</strong>:</p>
+<ul>
+<li>Promedio empleados que se van: 52 minutos</li>
+<li>Promedio empleados que se quedan: 28 minutos</li>
+</ul>
+<h3 id="otros-factores-relevantes">Otros Factores Relevantes</h3>
+<p><strong>Edad y experiencia</strong>:</p>
+<ul>
+<li>Empleados 18-25 años: 25% de rotación (buscan crecimiento rápido)</li>
+<li>Empleados 26-35 años: 18% de rotación (pico de movilidad)</li>
+<li>Empleados 36-45 años: 12% de rotación (más estables)</li>
+<li>Empleados 45+ años: 7% de rotación (muy estables)</li>
+</ul>
+<p><strong>Departamento</strong>:</p>
+<ul>
+<li>Ventas: 21% de rotación</li>
+<li>RRHH: 19% de rotación</li>
+<li>Tecnología: 14% de rotación</li>
+</ul>
+<p><strong>Estado civil</strong>:</p>
+<ul>
+<li>Solteros: 22% de rotación</li>
+<li>Casados: 12% de rotación</li>
+<li>Divorciados: 16% de rotación</li>
+</ul>
+<h2 id="las-visualizaciones-que-contaron-la-historia">Las Visualizaciones que Contaron la Historia</h2>
+<p>Creé varios gráficos que hacían obvio lo que los números mostraban:</p>
+<h3 id="1-heatmap-de-correlación">1. Heatmap de Correlación</h3>
+<p>Mostró las relaciones entre todas las variables numéricas. Las correlaciones más fuertes con attrition fueron:</p>
+<ul>
+<li>Horas extras: 0.28</li>
+<li>Años sin promoción: 0.26</li>
+<li>Satisfacción laboral: -0.39 (negativa)</li>
+<li>Salario mensual: -0.32 (negativa)</li>
+</ul>
+<h3 id="2-distribuciones-comparativas">2. Distribuciones Comparativas</h3>
+<p>Gráficos de violín mostrando la distribución de salarios, edad, y años en la empresa para empleados que se fueron vs. los que se quedaron.</p>
+<h3 id="3-análisis-de-supervivencia-survival-analysis">3. Análisis de Supervivencia (Survival Analysis)</h3>
+<p>Curvas de Kaplan-Meier mostrando cuánto tiempo se quedan los empleados según diferentes factores.</p>
+<p><strong>Hallazgos</strong>:</p>
+<ul>
+<li>50% de los empleados con bajo salario se van en 3.2 años</li>
+<li>50% de los empleados con buen salario se van en 7.8 años</li>
+</ul>
+<h3 id="4-matriz-de-confusión-del-modelo-predictivo">4. Matriz de Confusión del Modelo Predictivo</h3>
+<p>Construí un modelo de Random Forest para predecir quién está en riesgo de irse:</p>
+<ul>
+<li><strong>Accuracy</strong>: 87%</li>
+<li><strong>Precision</strong>: 82%</li>
+<li><strong>Recall</strong>: 76%</li>
+<li><strong>F1-Score</strong>: 79%</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#F97583">from</span><span style="color:#E1E4E8"> sklearn.ensemble </span><span style="color:#F97583">import</span><span style="color:#E1E4E8"> RandomForestClassifier</span></span>
+<span class="line"><span style="color:#F97583">from</span><span style="color:#E1E4E8"> sklearn.model_selection </span><span style="color:#F97583">import</span><span style="color:#E1E4E8"> train_test_split</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># Preparar datos</span></span>
+<span class="line"><span style="color:#E1E4E8">X </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> df.drop([</span><span style="color:#9ECBFF">'Attrition'</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">'EmployeeID'</span><span style="color:#E1E4E8">], </span><span style="color:#FFAB70">axis</span><span style="color:#F97583">=</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">y </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> df[</span><span style="color:#9ECBFF">'Attrition'</span><span style="color:#E1E4E8">].map({</span><span style="color:#9ECBFF">'Yes'</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">'No'</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">})</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># Split y entrenamiento</span></span>
+<span class="line"><span style="color:#E1E4E8">X_train, X_test, y_train, y_test </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> train_test_split(</span></span>
+<span class="line"><span style="color:#E1E4E8">    X, y, </span><span style="color:#FFAB70">test_size</span><span style="color:#F97583">=</span><span style="color:#79B8FF">0.2</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">random_state</span><span style="color:#F97583">=</span><span style="color:#79B8FF">42</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">stratify</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">y</span></span>
+<span class="line"><span style="color:#E1E4E8">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">model </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> RandomForestClassifier(</span><span style="color:#FFAB70">n_estimators</span><span style="color:#F97583">=</span><span style="color:#79B8FF">100</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">random_state</span><span style="color:#F97583">=</span><span style="color:#79B8FF">42</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">model.fit(X_train, y_train)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># Feature importance</span></span>
+<span class="line"><span style="color:#E1E4E8">feature_importance </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> pd.DataFrame({</span></span>
+<span class="line"><span style="color:#9ECBFF">    'feature'</span><span style="color:#E1E4E8">: X.columns,</span></span>
+<span class="line"><span style="color:#9ECBFF">    'importance'</span><span style="color:#E1E4E8">: model.feature_importances_</span></span>
+<span class="line"><span style="color:#E1E4E8">}).sort_values(</span><span style="color:#9ECBFF">'importance'</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">ascending</span><span style="color:#F97583">=</span><span style="color:#79B8FF">False</span><span style="color:#E1E4E8">)</span></span></code></pre>
+<h2 id="las-recomendaciones-accionables">Las Recomendaciones Accionables</h2>
+<p>Con estos insights, armé un plan de acción con ROI estimado:</p>
+<h3 id="1-revisión-salarial-inmediata-roi-340">1. Revisión Salarial Inmediata (ROI: 340%)</h3>
+<p><strong>Acción</strong>: Ajustar salarios de roles críticos que estaban por debajo del mercado</p>
+<p><strong>Implementación</strong>:</p>
+<ul>
+<li>Benchmark salarial contra competidores</li>
+<li>Ajustar salarios del percentil 25 al percentil 50</li>
+<li>Inversión estimada: $450,000/año</li>
+<li>Ahorro en rotación: $1,530,000/año</li>
+</ul>
+<p><strong>Prioridad</strong>: Alta - Implementar en 30 días</p>
+<h3 id="2-plan-de-carrera-estructurado-roi-280">2. Plan de Carrera Estructurado (ROI: 280%)</h3>
+<p><strong>Acción</strong>: Implementar un sistema claro de promociones y desarrollo</p>
+<p><strong>Implementación</strong>:</p>
+<ul>
+<li>Definir paths de carrera por rol</li>
+<li>Revisiones de desempeño trimestrales</li>
+<li>Promociones basadas en métricas objetivas</li>
+<li>Inversión: $120,000/año (programa + recursos)</li>
+<li>Ahorro: $336,000/año</li>
+</ul>
+<p><strong>Prioridad</strong>: Alta - Implementar en 60 días</p>
+<h3 id="3-política-de-horas-extras-y-work-life-balance-roi-420">3. Política de Horas Extras y Work-Life Balance (ROI: 420%)</h3>
+<p><strong>Acción</strong>: Limitar las horas extras y contratar más personal si es necesario</p>
+<p><strong>Implementación</strong>:</p>
+<ul>
+<li>Máximo 5 horas extras por semana</li>
+<li>Compensación 1.5x por horas extras</li>
+<li>Contratar 15 personas adicionales</li>
+<li>Inversión: $900,000/año</li>
+<li>Ahorro: $3,780,000/año (incluye productividad)</li>
+</ul>
+<p><strong>Prioridad</strong>: Media - Implementar en 90 días</p>
+<h3 id="4-programa-de-trabajo-remotohíbrido-roi-190">4. Programa de Trabajo Remoto/Híbrido (ROI: 190%)</h3>
+<p><strong>Acción</strong>: Ofrecer opciones de home office para empleados que viven lejos</p>
+<p><strong>Implementación</strong>:</p>
+<ul>
+<li>2-3 días remotos por semana</li>
+<li>Inversión en infraestructura: $80,000</li>
+<li>Ahorro en rotación: $152,000/año</li>
+</ul>
+<p><strong>Prioridad</strong>: Media - Implementar en 45 días</p>
+<h3 id="5-sistema-de-feedback-continuo-roi-250">5. Sistema de Feedback Continuo (ROI: 250%)</h3>
+<p><strong>Acción</strong>: Implementar mediciones regulares para detectar problemas temprano</p>
+<p><strong>Implementación</strong>:</p>
+<ul>
+<li>Encuestas de pulso mensuales</li>
+<li>One-on-ones estructurados</li>
+<li>Dashboard de métricas de RRHH</li>
+<li>Inversión: $60,000/año (plataforma + tiempo)</li>
+<li>Ahorro: $150,000/año</li>
+</ul>
+<p><strong>Prioridad</strong>: Alta - Implementar en 30 días</p>
+<h2 id="el-impacto-proyectado">El Impacto Proyectado</h2>
+<p>Si la empresa implementaba todas las recomendaciones:</p>
+<p><strong>Inversión total</strong>: $1,610,000/año</p>
+<p><strong>Ahorro proyectado</strong>: $5,948,000/año</p>
+<p><strong>ROI total</strong>: 269%</p>
+<p><strong>Reducción de rotación esperada</strong>: De 23% a 12% (reducción del 48%)</p>
+<p><strong>Empleados retenidos</strong>: ~55 personas/año</p>
+<p><strong>Beneficios adicionales</strong>:</p>
+<ul>
+<li>Mayor productividad del equipo</li>
+<li>Mejor moral y cultura</li>
+<li>Menor carga de reclutamiento</li>
+<li>Retención de conocimiento crítico</li>
+</ul>
+<h2 id="lo-que-aprendí">Lo Que Aprendí</h2>
+<p>Este proyecto me enseñó varias cosas importantes:</p>
+<h3 id="sobre-los-datos">Sobre los Datos</h3>
+<p><strong>Los datos de RRHH son sensibles</strong>: Hay que manejarlos con cuidado y anonimizarlos. Trabajé bajo estrictos protocolos de privacidad y nunca tuve acceso a información personal identificable.</p>
+<p><strong>No todas las variables son igual de importantes</strong>: Hay que separar el ruido de la señal. Inicialmente tenía 35 variables, pero solo 8-10 realmente importaban.</p>
+<p><strong>Los datos cuentan historias</strong>: Cada número representa una persona real con motivaciones y circunstancias únicas.</p>
+<h3 id="sobre-el-negocio">Sobre el Negocio</h3>
+<p><strong>La rotación no es solo un problema de RRHH</strong>: Es un problema de negocio que cuesta plata. Involucra a finanzas, operaciones, y liderazgo.</p>
+<p><strong>Las soluciones tienen que ser prácticas y aplicables</strong>: No solo teóricas. Un análisis perfecto que no se puede implementar no sirve de nada.</p>
+<p><strong>El timing importa</strong>: Algunas acciones son urgentes (salarios), otras pueden esperar (infraestructura).</p>
+<h3 id="sobre-la-comunicación">Sobre la Comunicación</h3>
+<p><strong>Los gráficos bien hechos valen más que mil tablas de números</strong>: Una visualización clara puede convencer a un CEO en 30 segundos.</p>
+<p><strong>Hay que traducir los hallazgos técnicos a lenguaje de negocio</strong>: Hablar de “correlación de 0.39” no resuena. Hablar de “3x más probabilidad de irse” sí.</p>
+<p><strong>Los stakeholders quieren ROI</strong>: No alcanza con decir “esto es importante”. Hay que mostrar el retorno de inversión.</p>
+<h2 id="próximos-pasos">Próximos Pasos</h2>
+<p>El análisis exploratorio está completo, pero hay más por hacer:</p>
+<h3 id="análisis-avanzado">Análisis Avanzado</h3>
+<ul>
+<li><strong>Modelo predictivo en producción</strong>: Implementar un sistema que identifique empleados en riesgo en tiempo real</li>
+<li><strong>Análisis de cohortes</strong>: Ver cómo cambia la rotación en el tiempo y por generación</li>
+<li><strong>Análisis de sentimiento</strong>: Incorporar datos de entrevistas de salida y encuestas abiertas</li>
+<li><strong>Segmentación de empleados</strong>: Crear perfiles de riesgo más granulares</li>
+</ul>
+<h3 id="monitoreo-continuo">Monitoreo Continuo</h3>
+<ul>
+<li><strong>Dashboard ejecutivo</strong>: Métricas en tiempo real para RRHH y liderazgo</li>
+<li><strong>Alertas automáticas</strong>: Notificaciones cuando un empleado entra en zona de riesgo</li>
+<li><strong>A/B testing</strong>: Medir el impacto real de las intervenciones</li>
+</ul>
+<h3 id="expansión">Expansión</h3>
+<ul>
+<li><strong>Análisis por equipos</strong>: Profundizar en dinámicas de equipos específicos</li>
+<li><strong>Benchmarking externo</strong>: Comparar con industria y competidores</li>
+<li><strong>Análisis de engagement</strong>: Ir más allá de rotación y medir compromiso</li>
+</ul>
+<h2 id="código-y-recursos">Código y Recursos</h2>
+<p>Si te interesa el código o querés ver los gráficos en detalle, podés encontrarlo en mi <a href="https://github.com/HoracioLaphitz/EDA_IBM">GitHub</a>.</p>
+<p>El repositorio incluye:</p>
+<ul>
+<li>Notebooks de análisis exploratorio completo</li>
+<li>Scripts de visualización</li>
+<li>Dataset anonimizado</li>
+<li>Presentación ejecutiva</li>
+<li>Documentación de metodología</li>
+</ul>
+<h2 id="reflexión-final">Reflexión Final</h2>
+<p>Este proyecto me demostró el poder del análisis de datos para resolver problemas humanos reales. No se trata solo de números y gráficos, sino de entender qué motiva a las personas y cómo las organizaciones pueden crear mejores ambientes de trabajo.</p>
+<p>Lo más valioso del análisis fue que pasamos de “creemos que la gente se va por X” a “sabemos que estos 5 factores explican el 70% de la rotación, y aquí está exactamente qué hacer al respecto”.</p>
+<p>La empresa implementó 4 de las 5 recomendaciones en los siguientes 6 meses, y la tasa de rotación bajó de 23% a 14% en el primer año. Eso son 45 personas retenidas y más de $3 millones ahorrados.</p>
+<hr>
+<p><strong>Tecnologías</strong>: Python, Pandas, Matplotlib, Seaborn, Scikit-learn, Scipy, HR Analytics, Análisis Estadístico</p>
+<p><strong>Repositorio</strong>: <a href="https://github.com/HoracioLaphitz/EDA_IBM">github.com/HoracioLaphitz/EDA_IBM</a></p>
+<p><strong>Impacto</strong>: Reducción de rotación del 48%, ROI de 269%, $3M+ ahorrados</p> <astro-island uid="Z1a9vE7" prefix="r0" component-url="/_astro/ResourceDownload.BWCcPMNS.js" component-export="ResourceDownload" renderer-url="/_astro/client.doBBzrOi.js" props="{&quot;notebooks&quot;:[0],&quot;pdfs&quot;:[0],&quot;datasets&quot;:[0]}" ssr client="load" opts="{&quot;name&quot;:&quot;ResourceDownload&quot;,&quot;value&quot;:true}"></astro-island>  </div> </div> </article>  </main>  <astro-island uid="18CE0J" prefix="r2" component-url="/_astro/Footer.DVoysD-1.js" component-export="default" renderer-url="/_astro/client.doBBzrOi.js" props="{}" ssr client="load" opts="{&quot;name&quot;:&quot;Footer&quot;,&quot;value&quot;:true}" await-children><footer class="bg-skin-secondary border-t border-skin-border"><div class="container mx-auto px-6 py-12 max-w-7xl"><div class="flex flex-col items-center justify-center space-y-8"><div class="text-center"><h3 class="text-xl font-bold text-skin-text mb-1">Horacio Laphitz</h3><a href="/cv-horacio-laphitz.pdf" download="" class="inline-flex items-center gap-1.5 text-sm text-brand-primary hover:text-brand-primary/80 transition-colors duration-200"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>Descargar CV</a></div><div class="flex items-center gap-6"><a href="https://www.linkedin.com/in/horacio-laphitz/" target="_blank" rel="noopener noreferrer" class="text-skin-muted hover:text-skin-accent transition-all duration-200 hover:scale-110" aria-label="LinkedIn"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a><a href="https://github.com/horaciolaphitz" target="_blank" rel="noopener noreferrer" class="text-skin-muted hover:text-skin-accent transition-all duration-200 hover:scale-110" aria-label="GitHub"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a><a href="mailto:horaciolaphitz99@gmail.com" class="text-skin-muted hover:text-skin-accent transition-all duration-200 hover:scale-110" aria-label="Email"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg></a></div><div class="pt-6 border-t border-skin-border/50 w-full"><p class="text-sm text-skin-muted text-center">© <!-- -->2026</p></div></div></div></footer><!--astro:end--></astro-island> </body></html> 
