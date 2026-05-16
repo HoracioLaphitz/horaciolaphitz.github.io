@@ -1,5 +1,9 @@
 import { SearchIcon, RefreshIcon } from "../ui/Icons";
 
+// Unused imports kept for future use
+void SearchIcon;
+void RefreshIcon;
+
 interface ProjectFiltersProps {
     searchQuery: string;
     selectedCategory: string;
@@ -11,18 +15,12 @@ interface ProjectFiltersProps {
 }
 
 const ProjectFilters = ({
-    searchQuery,
     selectedCategory,
     categories,
-    onSearchChange,
     onCategoryChange,
     totalPosts,
     filteredCount,
 }: ProjectFiltersProps) => {
-    const handleReset = () => {
-        onSearchChange("");
-        onCategoryChange("all");
-    };
 
     return (
         <div className="mb-12">
@@ -30,11 +28,10 @@ const ProjectFilters = ({
             <div className="flex flex-wrap justify-center gap-3 mb-8">
                 <button
                     onClick={() => onCategoryChange("all")}
-                    className={`px-6 py-2 font-medium rounded-lg transition-all duration-200 ${
-                        selectedCategory === "all"
-                            ? "bg-brand-primary text-white"
-                            : "bg-skin-primary border-2 border-brand-primary text-brand-primary hover:bg-brand-primary hover:text-white"
-                    }`}
+                    className={`px-6 py-2 font-medium rounded-lg transition-all duration-200 ${selectedCategory === "all"
+                        ? "bg-brand-primary text-white"
+                        : "bg-skin-primary border-2 border-brand-primary text-brand-primary hover:bg-brand-primary hover:text-white"
+                        }`}
                 >
                     Mostrar todo
                 </button>
@@ -42,11 +39,10 @@ const ProjectFilters = ({
                     <button
                         key={cat}
                         onClick={() => onCategoryChange(cat)}
-                        className={`px-6 py-2 font-medium rounded-lg transition-all duration-200 ${
-                            selectedCategory === cat
-                                ? "bg-brand-primary text-white"
-                                : "bg-skin-primary border-2 border-brand-primary text-brand-primary hover:bg-brand-primary hover:text-white"
-                        }`}
+                        className={`px-6 py-2 font-medium rounded-lg transition-all duration-200 ${selectedCategory === cat
+                            ? "bg-brand-primary text-white"
+                            : "bg-skin-primary border-2 border-brand-primary text-brand-primary hover:bg-brand-primary hover:text-white"
+                            }`}
                     >
                         {cat}
                     </button>

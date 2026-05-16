@@ -9,7 +9,7 @@ coverage/
 # Production
 dist/
 build/
-
+.github 
 # Misc
 .DS_Store
 *.pem
@@ -62,14 +62,7 @@ protocolo_*.md
 # Documentación interna - Solo permitir README.md principal
 *.md
 !README.md
-!LICENSE.md
-!SECURITY.md
-AUDITORIA_*.md
-REPORTE_*.md
-CHANGELOG_*.md
-NOTES_*.md
-TODO_*.md
-SPEC_*.md
+!.github/**/*.md
 
 # Python
 __pycache__/

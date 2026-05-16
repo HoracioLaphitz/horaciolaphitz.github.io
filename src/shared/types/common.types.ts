@@ -5,7 +5,9 @@
 
 export type Nullable<T> = T | null;
 export type Optional<T> = T | undefined;
-export type Result<T, E = Error> = { success: true; data: T } | { success: false; error: E };
+export type Result<T, E = Error> =
+  | { success: true; data: T }
+  | { success: false; error: E };
 
 export interface PaginationParams {
   page: number;
@@ -32,9 +34,9 @@ export interface GitHubRepo {
   stargazers_count: number;
   created_at: string;
   updated_at: string;
-  pushed_at: string;
+  pushed_at: string | null;
   fork: boolean;
   archived: boolean;
-  disabled: boolean;
-  visibility: "public" | "private";
+  disabled?: boolean;
+  visibility?: "public" | "private";
 }
