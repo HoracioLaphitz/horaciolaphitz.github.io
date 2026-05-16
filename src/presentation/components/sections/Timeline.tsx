@@ -448,7 +448,7 @@ const Timeline = () => {
   const [selectedCert, setSelectedCert] = useState<TimelineItem | null>(null);
   const [showLeftButton, setShowLeftButton] = useState(false);
   const [showRightButton, setShowRightButton] = useState(true);
-  const scrollContainerRef = useState<HTMLDivElement | null>(null)[0];
+  const _scrollContainerRef = useState<HTMLDivElement | null>(null)[0];
 
   useEffect(() => {
     const script = document.createElement("script");
@@ -520,9 +520,8 @@ const Timeline = () => {
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div
-          className={`text-center mb-12 transition-all duration-700 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}
+          className={`text-center mb-12 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            }`}
         >
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-skin-text mb-4">
             Trayectoria Laboral y Académica
@@ -530,9 +529,8 @@ const Timeline = () => {
         </div>
 
         <div
-          className={`mb-12 transition-all duration-700 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}
+          className={`mb-12 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            }`}
           style={{ transitionDelay: "100ms" }}
         >
           <div className="flex items-center justify-center gap-2 mb-6">
@@ -593,19 +591,17 @@ const Timeline = () => {
         </div>
 
         <div
-          className={`mb-8 transition-all duration-700 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}
+          className={`mb-8 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            }`}
           style={{ transitionDelay: "200ms" }}
         >
           <div className="flex flex-wrap justify-center gap-3">
             <button
               onClick={() => setActiveFilter("all")}
-              className={`px-6 py-3 rounded-lg text-sm font-semibold transition-all duration-300 ${
-                activeFilter === "all"
+              className={`px-6 py-3 rounded-lg text-sm font-semibold transition-all duration-300 ${activeFilter === "all"
                   ? "bg-brand-primary text-skin-primary"
                   : "bg-skin-primary text-skin-text border border-skin-border hover:border-brand-primary"
-              }`}
+                }`}
             >
               <span className="flex items-center gap-2">
                 <ListBulletIcon className="w-4 h-4" />
@@ -614,11 +610,10 @@ const Timeline = () => {
             </button>
             <button
               onClick={() => setActiveFilter("work")}
-              className={`px-6 py-3 rounded-lg text-sm font-semibold transition-all duration-300 ${
-                activeFilter === "work"
+              className={`px-6 py-3 rounded-lg text-sm font-semibold transition-all duration-300 ${activeFilter === "work"
                   ? "bg-brand-primary text-skin-primary"
                   : "bg-skin-primary text-skin-text border border-skin-border hover:border-brand-primary"
-              }`}
+                }`}
             >
               <span className="flex items-center gap-2">
                 <BriefcaseIcon className="w-4 h-4" />
@@ -627,11 +622,10 @@ const Timeline = () => {
             </button>
             <button
               onClick={() => setActiveFilter("certification")}
-              className={`px-6 py-3 rounded-lg text-sm font-semibold transition-all duration-300 ${
-                activeFilter === "certification"
+              className={`px-6 py-3 rounded-lg text-sm font-semibold transition-all duration-300 ${activeFilter === "certification"
                   ? "bg-brand-primary text-skin-primary"
                   : "bg-skin-primary text-skin-text border border-skin-border hover:border-brand-primary"
-              }`}
+                }`}
             >
               <span className="flex items-center gap-2">
                 <BookOpenIcon className="w-4 h-4" />
@@ -642,9 +636,8 @@ const Timeline = () => {
         </div>
 
         <div
-          className={`relative transition-all duration-700 ${
-            isVisible ? "opacity-100" : "opacity-0"
-          }`}
+          className={`relative transition-all duration-700 ${isVisible ? "opacity-100" : "opacity-0"
+            }`}
         >
           {/* Botón Izquierdo */}
           {showLeftButton && (
@@ -682,19 +675,17 @@ const Timeline = () => {
               {filteredItems.map((item, index) => (
                 <div
                   key={`${item.period}-${item.role}-${index}`}
-                  className={`relative flex-shrink-0 w-80 transition-all duration-700 hover:scale-105 ${
-                    isVisible ? "opacity-100" : "opacity-0"
-                  }`}
+                  className={`relative flex-shrink-0 w-80 transition-all duration-700 hover:scale-105 ${isVisible ? "opacity-100" : "opacity-0"
+                    }`}
                   style={{ transitionDelay: `${Math.min(index * 50, 500)}ms` }}
                 >
                   <div className="group bg-skin-primary border border-skin-border p-6 rounded-2xl hover:border-brand-primary transition-all duration-300 h-full">
                     <div className="flex items-start justify-between gap-2 mb-4">
                       <div
-                        className={`p-2.5 rounded-xl ${
-                          item.type === "work"
+                        className={`p-2.5 rounded-xl ${item.type === "work"
                             ? "bg-brand-primary/10 text-brand-primary"
                             : "bg-brand-accent/10 text-brand-accent"
-                        }`}
+                          }`}
                       >
                         {item.type === "work" ? (
                           <BriefcaseIcon className="w-5 h-5" />
@@ -750,18 +741,16 @@ const Timeline = () => {
                   <div className="absolute -top-12 left-1/2 -translate-x-1/2 z-10">
                     <div className="relative">
                       <div
-                        className={`absolute inset-0 w-4 h-4 rounded-full animate-ping opacity-20 ${
-                          item.type === "work"
+                        className={`absolute inset-0 w-4 h-4 rounded-full animate-ping opacity-20 ${item.type === "work"
                             ? "bg-brand-primary"
                             : "bg-brand-accent"
-                        }`}
+                          }`}
                       />
                       <div
-                        className={`relative w-4 h-4 rounded-full border-4 border-skin-secondary ${
-                          item.type === "work"
+                        className={`relative w-4 h-4 rounded-full border-4 border-skin-secondary ${item.type === "work"
                             ? "bg-brand-primary"
                             : "bg-brand-accent"
-                        }`}
+                          }`}
                       />
                     </div>
                   </div>
