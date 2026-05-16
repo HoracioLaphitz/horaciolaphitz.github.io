@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { useScrollAnimation } from "@presentation/hooks/useScrollAnimation";
 import { BriefcaseIcon, BookOpenIcon } from "../ui/Icons";
 
@@ -448,69 +448,82 @@ const Timeline = () => {
   const [selectedCert, setSelectedCert] = useState<TimelineItem | null>(null);
   const [showLeftButton, setShowLeftButton] = useState(false);
   const [showRightButton, setShowRightButton] = useState(true);
-  const scrollContainerRef = useState<HTMLDivElement | null>(null)[0];
+  const [visibleIndex, setVisibleIndex] = useState(1);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const modalTitleId = "cert-modal-title";
 
+  // Credly script — load only once
   useEffect(() => {
+    if (document.querySelector('script[src*="credly.com"]')) return;
     const script = document.createElement("script");
     script.src = "//cdn.credly.com/assets/utilities/embed.js";
     script.async = true;
     document.body.appendChild(script);
-
-    return () => {
-      document.body.removeChild(script);
-    };
   }, []);
 
   const filteredItems = [...TIMELINE_ITEMS]
     .filter((item) => activeFilter === "all" || item.type === activeFilter)
     .sort((a, b) => b.sortDate.getTime() - a.sortDate.getTime());
 
-  const workCount = TIMELINE_ITEMS.filter(
-    (item) => item.type === "work"
-  ).length;
-  const certCount = TIMELINE_ITEMS.filter(
-    (item) => item.type === "certification"
-  ).length;
+  const workCount = TIMELINE_ITEMS.filter((item) => item.type === "work").length;
+  const certCount = TIMELINE_ITEMS.filter((item) => item.type === "certification").length;
 
-  const handleScroll = (direction: "left" | "right") => {
-    const container = document.getElementById("timeline-scroll-container");
+  const handleScroll = useCallback((direction: "left" | "right") => {
+    const container = scrollContainerRef.current;
     if (!container) return;
-
-    const scrollAmount = 400;
-    const targetScroll =
-      direction === "left"
-        ? container.scrollLeft - scrollAmount
-        : container.scrollLeft + scrollAmount;
-
+    const scrollAmount = 340;
     container.scrollTo({
-      left: targetScroll,
+      left: direction === "left"
+        ? container.scrollLeft - scrollAmount
+        : container.scrollLeft + scrollAmount,
       behavior: "smooth",
     });
-  };
+  }, []);
 
-  const updateScrollButtons = () => {
-    const container = document.getElementById("timeline-scroll-container");
+  const updateScrollState = useCallback(() => {
+    const container = scrollContainerRef.current;
     if (!container) return;
-
     setShowLeftButton(container.scrollLeft > 10);
-    setShowRightButton(
-      container.scrollLeft < container.scrollWidth - container.clientWidth - 10
-    );
-  };
+    setShowRightButton(container.scrollLeft < container.scrollWidth - container.clientWidth - 10);
+    // Approximate visible card index (card width ~340px + 24px gap)
+    const cardWidth = 364;
+    setVisibleIndex(Math.min(Math.floor(container.scrollLeft / cardWidth) + 1, filteredItems.length));
+  }, [filteredItems.length]);
 
   useEffect(() => {
-    const container = document.getElementById("timeline-scroll-container");
+    const container = scrollContainerRef.current;
     if (!container) return;
-
-    updateScrollButtons();
-    container.addEventListener("scroll", updateScrollButtons);
-    window.addEventListener("resize", updateScrollButtons);
-
+    updateScrollState();
+    container.addEventListener("scroll", updateScrollState, { passive: true });
+    window.addEventListener("resize", updateScrollState, { passive: true });
     return () => {
-      container.removeEventListener("scroll", updateScrollButtons);
-      window.removeEventListener("resize", updateScrollButtons);
+      container.removeEventListener("scroll", updateScrollState);
+      window.removeEventListener("resize", updateScrollState);
     };
-  }, [filteredItems]);
+  }, [filteredItems, updateScrollState]);
+
+  // Keyboard: ArrowLeft/Right scroll carousel when modal is closed
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (selectedCert) return;
+      if (e.key === "ArrowLeft") handleScroll("left");
+      if (e.key === "ArrowRight") handleScroll("right");
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [selectedCert, handleScroll]);
+
+  // Modal: Escape to close + focus close button on open
+  useEffect(() => {
+    if (!selectedCert) return;
+    closeButtonRef.current?.focus();
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setSelectedCert(null);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [selectedCert]);
 
   return (
     <section
@@ -520,9 +533,8 @@ const Timeline = () => {
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div
-          className={`text-center mb-12 transition-all duration-700 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}
+          className={`text-center mb-12 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            }`}
         >
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-skin-text mb-4">
             Trayectoria Laboral y Académica
@@ -530,9 +542,8 @@ const Timeline = () => {
         </div>
 
         <div
-          className={`mb-12 transition-all duration-700 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}
+          className={`mb-12 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            }`}
           style={{ transitionDelay: "100ms" }}
         >
           <div className="flex items-center justify-center gap-2 mb-6">
@@ -593,19 +604,18 @@ const Timeline = () => {
         </div>
 
         <div
-          className={`mb-8 transition-all duration-700 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}
+          className={`mb-8 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            }`}
           style={{ transitionDelay: "200ms" }}
         >
           <div className="flex flex-wrap justify-center gap-3">
             <button
               onClick={() => setActiveFilter("all")}
-              className={`px-6 py-3 rounded-lg text-sm font-semibold transition-all duration-300 ${
-                activeFilter === "all"
+              aria-pressed={activeFilter === "all"}
+              className={`px-6 py-3 rounded-lg text-sm font-semibold transition-all duration-300 ${activeFilter === "all"
                   ? "bg-brand-primary text-skin-primary"
                   : "bg-skin-primary text-skin-text border border-skin-border hover:border-brand-primary"
-              }`}
+                }`}
             >
               <span className="flex items-center gap-2">
                 <ListBulletIcon className="w-4 h-4" />
@@ -614,11 +624,11 @@ const Timeline = () => {
             </button>
             <button
               onClick={() => setActiveFilter("work")}
-              className={`px-6 py-3 rounded-lg text-sm font-semibold transition-all duration-300 ${
-                activeFilter === "work"
+              aria-pressed={activeFilter === "work"}
+              className={`px-6 py-3 rounded-lg text-sm font-semibold transition-all duration-300 ${activeFilter === "work"
                   ? "bg-brand-primary text-skin-primary"
                   : "bg-skin-primary text-skin-text border border-skin-border hover:border-brand-primary"
-              }`}
+                }`}
             >
               <span className="flex items-center gap-2">
                 <BriefcaseIcon className="w-4 h-4" />
@@ -627,11 +637,11 @@ const Timeline = () => {
             </button>
             <button
               onClick={() => setActiveFilter("certification")}
-              className={`px-6 py-3 rounded-lg text-sm font-semibold transition-all duration-300 ${
-                activeFilter === "certification"
+              aria-pressed={activeFilter === "certification"}
+              className={`px-6 py-3 rounded-lg text-sm font-semibold transition-all duration-300 ${activeFilter === "certification"
                   ? "bg-brand-primary text-skin-primary"
                   : "bg-skin-primary text-skin-text border border-skin-border hover:border-brand-primary"
-              }`}
+                }`}
             >
               <span className="flex items-center gap-2">
                 <BookOpenIcon className="w-4 h-4" />
@@ -642,10 +652,18 @@ const Timeline = () => {
         </div>
 
         <div
-          className={`relative transition-all duration-700 ${
-            isVisible ? "opacity-100" : "opacity-0"
-          }`}
+          className={`relative transition-all duration-700 ${isVisible ? "opacity-100" : "opacity-0"
+            }`}
         >
+          {/* Scroll progress counter */}
+          {filteredItems.length > 0 && (
+            <div className="flex justify-end mb-2 pr-2">
+              <span className="text-xs font-medium text-skin-muted tabular-nums" aria-live="polite" aria-atomic="true">
+                {visibleIndex} / {filteredItems.length}
+              </span>
+            </div>
+          )}
+
           {/* Botón Izquierdo */}
           {showLeftButton && (
             <button
@@ -668,105 +686,107 @@ const Timeline = () => {
             </button>
           )}
 
+          {/* Empty state */}
+          {filteredItems.length === 0 && (
+            <div className="flex flex-col items-center justify-center py-16 text-skin-muted gap-3">
+              <BookOpenIcon className="w-10 h-10 opacity-40" />
+              <p className="text-sm font-medium">No hay elementos para este filtro.</p>
+            </div>
+          )}
+
           <div
-            id="timeline-scroll-container"
+            ref={scrollContainerRef}
             className="overflow-x-auto pb-8 hide-scrollbar"
-            style={{
-              scrollbarWidth: "none",
-              msOverflowStyle: "none",
-            }}
+            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+            aria-label="Carrusel de trayectoria"
           >
             <div className="relative inline-flex gap-6 px-4 min-w-full">
               <div className="absolute top-12 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-brand-primary to-transparent" />
 
-              {filteredItems.map((item, index) => (
-                <div
-                  key={`${item.period}-${item.role}-${index}`}
-                  className={`relative flex-shrink-0 w-80 transition-all duration-700 hover:scale-105 ${
-                    isVisible ? "opacity-100" : "opacity-0"
-                  }`}
-                  style={{ transitionDelay: `${Math.min(index * 50, 500)}ms` }}
-                >
-                  <div className="group bg-skin-primary border border-skin-border p-6 rounded-2xl hover:border-brand-primary transition-all duration-300 h-full">
-                    <div className="flex items-start justify-between gap-2 mb-4">
-                      <div
-                        className={`p-2.5 rounded-xl ${
-                          item.type === "work"
-                            ? "bg-brand-primary/10 text-brand-primary"
-                            : "bg-brand-accent/10 text-brand-accent"
-                        }`}
-                      >
-                        {item.type === "work" ? (
-                          <BriefcaseIcon className="w-5 h-5" />
-                        ) : (
-                          <BookOpenIcon className="w-5 h-5" />
-                        )}
+              {filteredItems.map((item, index) => {
+                const year = item.sortDate.getFullYear();
+                return (
+                  <div
+                    key={`${item.period}-${item.role}-${index}`}
+                    className={`relative flex-shrink-0 w-80 transition-all duration-700 hover:scale-105 ${isVisible ? "opacity-100" : "opacity-0"
+                      }`}
+                    style={{ transitionDelay: `${Math.min(index * 50, 500)}ms` }}
+                  >
+                    <div className="group bg-skin-primary border border-skin-border p-6 rounded-2xl hover:border-brand-primary transition-all duration-300 h-full">
+                      <div className="flex items-start justify-between gap-2 mb-4">
+                        <div
+                          className={`p-2.5 rounded-xl ${item.type === "work"
+                              ? "bg-brand-primary/10 text-brand-primary"
+                              : "bg-brand-accent/10 text-brand-accent"
+                            }`}
+                        >
+                          {item.type === "work" ? (
+                            <BriefcaseIcon className="w-5 h-5" />
+                          ) : (
+                            <BookOpenIcon className="w-5 h-5" />
+                          )}
+                        </div>
+                        <div className="flex items-center gap-2">
+                          {/* Year badge */}
+                          <span className="text-xs font-bold text-skin-muted bg-skin-secondary px-2 py-0.5 rounded-md tabular-nums">
+                            {year}
+                          </span>
+                          <span className="text-xs font-medium text-skin-muted uppercase tracking-wide">
+                            {item.type === "work" ? "Experiencia" : "Certificación"}
+                          </span>
+                        </div>
                       </div>
-                      <span className="text-xs font-medium text-skin-muted uppercase tracking-wide">
-                        {item.type === "work" ? "Experiencia" : "Certificación"}
-                      </span>
+
+                      <div className="mb-4">
+                        <span className="inline-flex items-center gap-1.5 text-xs font-medium text-brand-primary bg-brand-primary/10 px-3 py-1.5 rounded-lg">
+                          <CalendarIcon className="w-3.5 h-3.5" />
+                          {item.period}
+                        </span>
+                      </div>
+
+                      <h3 className="text-lg font-bold text-skin-text mb-3 line-clamp-2 min-h-[3.5rem] group-hover:text-brand-primary transition-colors">
+                        {item.role}
+                      </h3>
+
+                      <p className="text-sm font-semibold text-brand-primary mb-2 flex items-center gap-2">
+                        <BuildingOfficeIcon className="w-4 h-4" />
+                        {item.company}
+                      </p>
+
+                      {item.location && (
+                        <p className="text-xs text-skin-muted mb-3 flex items-center gap-1.5 font-medium">
+                          <MapPinIcon className="w-4 h-4" />
+                          {item.location}
+                        </p>
+                      )}
+
+                      {item.description && (
+                        <p className="text-sm text-skin-muted mt-4 pt-4 border-t border-skin-border/50 line-clamp-3 leading-relaxed">
+                          {item.description}
+                        </p>
+                      )}
+
+                      {item.type === "certification" && item.certificateUrl && (
+                        <button
+                          onClick={() => setSelectedCert(item)}
+                          className="mt-5 w-full inline-flex items-center gap-2 px-4 py-2.5 bg-brand-primary text-skin-primary text-sm font-semibold rounded-lg hover:bg-brand-hover transition-all duration-300 justify-center"
+                        >
+                          <EyeIcon className="w-4 h-4" />
+                          Ver Certificado
+                        </button>
+                      )}
                     </div>
 
-                    <div className="mb-4">
-                      <span className="inline-flex items-center gap-1.5 text-xs font-medium text-brand-primary bg-brand-primary/10 px-3 py-1.5 rounded-lg">
-                        <CalendarIcon className="w-3.5 h-3.5" />
-                        {item.period}
-                      </span>
-                    </div>
-
-                    <h3 className="text-lg font-bold text-skin-text mb-3 line-clamp-2 min-h-[3.5rem] group-hover:text-brand-primary transition-colors">
-                      {item.role}
-                    </h3>
-
-                    <p className="text-sm font-semibold text-brand-primary mb-2 flex items-center gap-2">
-                      <BuildingOfficeIcon className="w-4 h-4" />
-                      {item.company}
-                    </p>
-
-                    {item.location && (
-                      <p className="text-xs text-skin-muted mb-3 flex items-center gap-1.5 font-medium">
-                        <MapPinIcon className="w-4 h-4" />
-                        {item.location}
-                      </p>
-                    )}
-
-                    {item.description && (
-                      <p className="text-sm text-skin-muted mt-4 pt-4 border-t border-skin-border/50 line-clamp-3 leading-relaxed">
-                        {item.description}
-                      </p>
-                    )}
-
-                    {item.type === "certification" && item.certificateUrl && (
-                      <button
-                        onClick={() => setSelectedCert(item)}
-                        className="mt-5 w-full inline-flex items-center gap-2 px-4 py-2.5 bg-brand-primary text-skin-primary text-sm font-semibold rounded-lg hover:bg-brand-hover transition-all duration-300 justify-center"
-                      >
-                        <EyeIcon className="w-4 h-4" />
-                        Ver Certificado
-                      </button>
-                    )}
-                  </div>
-
-                  <div className="absolute -top-12 left-1/2 -translate-x-1/2 z-10">
-                    <div className="relative">
+                    {/* Timeline dot — static, no animate-ping noise */}
+                    <div className="absolute -top-12 left-1/2 -translate-x-1/2 z-10">
                       <div
-                        className={`absolute inset-0 w-4 h-4 rounded-full animate-ping opacity-20 ${
-                          item.type === "work"
-                            ? "bg-brand-primary"
-                            : "bg-brand-accent"
-                        }`}
-                      />
-                      <div
-                        className={`relative w-4 h-4 rounded-full border-4 border-skin-secondary ${
-                          item.type === "work"
-                            ? "bg-brand-primary"
-                            : "bg-brand-accent"
-                        }`}
+                        className={`w-4 h-4 rounded-full border-4 border-skin-secondary ${item.type === "work" ? "bg-brand-primary" : "bg-brand-accent"
+                          }`}
                       />
                     </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>
@@ -776,6 +796,9 @@ const Timeline = () => {
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4"
           onClick={() => setSelectedCert(null)}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby={modalTitleId}
         >
           <div
             className="relative bg-skin-primary rounded-2xl shadow-2xl max-w-6xl w-full max-h-[90vh] overflow-hidden border border-skin-border"
@@ -783,7 +806,7 @@ const Timeline = () => {
           >
             <div className="flex items-center justify-between p-4 border-b border-skin-border bg-skin-secondary">
               <div>
-                <h3 className="text-lg font-bold text-skin-text">
+                <h3 id={modalTitleId} className="text-lg font-bold text-skin-text">
                   {selectedCert.role}
                 </h3>
                 <p className="text-sm text-skin-muted">
@@ -800,7 +823,9 @@ const Timeline = () => {
                   Descargar
                 </a>
                 <button
+                  ref={closeButtonRef}
                   onClick={() => setSelectedCert(null)}
+                  aria-label="Cerrar certificado"
                   className="px-4 py-2 bg-skin-primary text-skin-text border border-skin-border rounded-lg hover:border-brand-primary transition-colors"
                 >
                   <XMarkIcon className="w-5 h-5" />

@@ -59,9 +59,9 @@ const Skills = () => {
     const [selectedCategory, setSelectedCategory] = useState<SkillCategory | 'all'>('all');
 
     const categories = Object.values(SkillCategory);
-    
-    const filteredSkills = selectedCategory === 'all' 
-        ? PROFILE_DATA.skills 
+
+    const _filteredSkills = selectedCategory === 'all'
+        ? PROFILE_DATA.skills
         : PROFILE_DATA.getSkillsByCategory(selectedCategory);
 
     const groupedSkills = categories.reduce((acc, category) => {
@@ -86,11 +86,10 @@ const Skills = () => {
                     <div className="flex flex-wrap justify-center gap-3">
                         <button
                             onClick={() => setSelectedCategory('all')}
-                            className={`px-6 py-3 rounded-lg text-sm font-semibold transition-all duration-300 ${
-                                selectedCategory === 'all'
+                            className={`px-6 py-3 rounded-lg text-sm font-semibold transition-all duration-300 ${selectedCategory === 'all'
                                     ? 'bg-brand-primary text-skin-primary'
                                     : 'bg-skin-primary text-skin-text border border-skin-border hover:border-brand-primary'
-                            }`}
+                                }`}
                         >
                             <span className="flex items-center gap-2">
                                 <ListBulletIcon className="w-4 h-4" />
@@ -103,11 +102,10 @@ const Skills = () => {
                                 <button
                                     key={category}
                                     onClick={() => setSelectedCategory(category)}
-                                    className={`px-6 py-3 rounded-lg text-sm font-semibold transition-all duration-300 flex items-center gap-2 ${
-                                        selectedCategory === category
+                                    className={`px-6 py-3 rounded-lg text-sm font-semibold transition-all duration-300 flex items-center gap-2 ${selectedCategory === category
                                             ? 'bg-brand-primary text-skin-primary'
                                             : 'bg-skin-primary text-skin-text border border-skin-border hover:border-brand-primary'
-                                    }`}
+                                        }`}
                                 >
                                     <Icon className="w-4 h-4" />
                                     {category}
@@ -128,9 +126,8 @@ const Skills = () => {
                         return (
                             <div
                                 key={category}
-                                className={`transition-all duration-700 ${
-                                    isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                                }`}
+                                className={`transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                                    }`}
                                 style={{ transitionDelay: `${(categoryIndex + 2) * 100}ms` }}
                             >
                                 <div className="bg-skin-primary rounded-2xl p-6 border border-skin-border hover:border-brand-primary transition-all duration-300 h-full group">

@@ -116,7 +116,7 @@ export function ProjectHighlight({
     category,
     tags,
     metrics,
-    image,
+
     href,
 }: ProjectHighlightProps) {
     return (
