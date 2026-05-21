@@ -22,3 +22,5 @@ build/
 env.production
 node_modules
 *.ps1
+/docs
+.gitignore
