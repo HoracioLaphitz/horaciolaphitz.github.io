@@ -1,0 +1,35 @@
+---
+import PageLayout from '@presentation/layouts/PageLayout.astro';
+import { Hero } from '@presentation/components/sections/Hero';
+import { Timeline } from '@presentation/components/sections/Timeline';
+import { Services } from '@presentation/components/sections/Services';
+import { ProjectCategories } from '@presentation/components/sections/ProjectCategories';
+import { Contact } from '@presentation/components/sections/Contact';
+import { container } from '@shared/di/Container';
+
+const projectService = container.getProjectService();
+const projects = await projectService.getAllProjects();
+
+const proyectosSerializados = projects.map((p) => ({
+  slug: p.slug,
+  title: p.title,
+  description: p.description,
+  category: p.category,
+  tags: [],
+  publishDate: p.createdAt.toISOString(),
+  author: 'Horacio',
+  githubUrl: p.github_url,
+  dashboardUrl: p.demo_url,
+  status: p.status,
+  featured: p.featured,
+}));
+---
+
+<PageLayout title="Horacio Laphitz" description="Porfolio">
+  <Hero client:load />
+  <ProjectCategories posts={proyectosSerializados} client:load />
+  <Services client:visible />
+  <Timeline client:visible />
+  <Contact client:visible />
+</PageLayout>
+claw-710cc672e5cd45a9b94feb6148915d34@kiloclaw.ai

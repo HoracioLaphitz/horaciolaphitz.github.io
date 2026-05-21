@@ -1,0 +1,52 @@
+---
+import PageLayout from '@presentation/layouts/PageLayout.astro';
+import { Hero } from '@presentation/components/sections/Hero.tsx';
+import { About } from '@presentation/components/sections/About.tsx';
+import { Timeline } from '@presentation/components/sections/Timeline.tsx';
+import { Services } from '@presentation/components/sections/Services.tsx';
+import { ProjectCategories } from '@presentation/components/sections/ProjectCategories.tsx';
+import { Contact } from '@presentation/components/sections/Contact.tsx';
+import { getCollection } from 'astro:content';
+import { ProjectMapper } from '@infrastructure/mappers/ProjectMapper';
+import { PROFILE_DATA } from '@data/profile-data';
+
+// Fetch projects from Astro Content Collection and map to domain entities
+const proyectosRaw = await getCollection('proyectos');
+const proyectos = ProjectMapper.fromAstroCollectionArray(proyectosRaw);
+
+// Serialize for client
+const proyectosSerializados = proyectos.map((p: (typeof proyectos)[number]) => ({
+  slug: p.slug,
+  title: p.title,
+  description: p.description,
+  category: p.category,
+  status: p.status,
+  featured: p.featured,
+  createdAt: p.createdAt.toISOString(),
+  updatedAt: p.updatedAt.toISOString(),
+  githubUrl: p.github_url,
+  demoUrl: p.demo_url,
+  technologies: p.technologies,
+}));
+---
+
+<PageLayout title="Portfolio" description="Data Analyst & Visualization Expert.">
+  <Hero
+    client:load
+    name={PROFILE_DATA.name}
+    role={PROFILE_DATA.role}
+    description={PROFILE_DATA.descriptions[0]}
+    avatar={(PROFILE_DATA as any).avatar || ''}
+  />
+  <About 
+    client:visible 
+    bio={PROFILE_DATA.descriptions?.[1] || PROFILE_DATA.descriptions?.[0]} 
+    skills={(PROFILE_DATA as any).skills?.flatMap((sg: any) => sg.items?.map((i: any) => i.name) || []) || []} 
+    avatar={(PROFILE_DATA as any).avatar || ''} 
+    name={PROFILE_DATA.name} 
+  />
+  <ProjectCategories posts={proyectosSerializados} client:load />
+  <Services client:visible />
+  <Timeline client:visible experiences={PROFILE_DATA.experiences} />
+  <Contact client:visible contactInfo={PROFILE_DATA.contact} />
+</PageLayout>

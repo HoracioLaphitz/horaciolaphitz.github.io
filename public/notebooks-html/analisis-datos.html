@@ -1,0 +1,186 @@
+<div class="nb-notebook"><div class="nb-worksheet"><div class="nb-cell nb-code-cell"><div class="nb-input"><pre class="language-python"><code class="language-python" data-language="python">!pip install seaborn
+!pip install matplotlib<span class="token punctuation">.</span>pyplot
+!pip install numpy
+!pip install pandas
+!pip install pandas_profiling
+
+<span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+<span class="token keyword">import</span> pandas <span class="token keyword">as</span> pd
+<span class="token keyword">import</span> pandas_profiling
+<span class="token keyword">import</span> matplotlib<span class="token punctuation">.</span>pyplot <span class="token keyword">as</span> plt
+<span class="token keyword">import</span> seaborn <span class="token keyword">as</span> sns</code></pre></div></div><div class="nb-cell nb-code-cell"><div class="nb-input" data-prompt-number="12"><pre class="language-python"><code class="language-python" data-language="python"><span class="token comment"># lectura de csv</span>
+datos <span class="token operator">=</span> pd<span class="token punctuation">.</span>read_csv<span class="token punctuation">(</span><span class="token string">"donde-se-gasta.csv"</span><span class="token punctuation">)</span></code></pre></div><div class="nb-output" data-prompt-number="12"><pre class="language-text">[0;31m---------------------------------------------------------------------------[0m
+[0;31mParserError[0m                               Traceback (most recent call last)
+[0;32m&amp;lt;ipython-input-12-a174181822c8&amp;gt;[0m in [0;36m&amp;lt;cell line: 2&amp;gt;[0;34m()[0m
+[1;32m      1[0m [0;31m# lectura de csv[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----&amp;gt; 2[0;31m [0mdatos[0m [0;34m=[0m [0mpd[0m[0;34m.[0m[0mread_csv[0m[0;34m([0m[0;34m"donde-se-gasta.csv"[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m
+[0;32m/usr/local/lib/python3.10/dist-packages/pandas/util/_decorators.py[0m in [0;36mwrapper[0;34m(*args, **kwargs)[0m
+[1;32m    209[0m                 [0;32melse[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    210[0m                     [0mkwargs[0m[0;34m[[0m[0mnew_arg_name[0m[0;34m][0m [0;34m=[0m [0mnew_arg_value[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--&amp;gt; 211[0;31m             [0;32mreturn[0m [0mfunc[0m[0;34m([0m[0;34m*[0m[0margs[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    212[0m [0;34m[0m[0m
+[1;32m    213[0m         [0;32mreturn[0m [0mcast[0m[0;34m([0m[0mF[0m[0;34m,[0m [0mwrapper[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/usr/local/lib/python3.10/dist-packages/pandas/util/_decorators.py[0m in [0;36mwrapper[0;34m(*args, **kwargs)[0m
+[1;32m    329[0m                     [0mstacklevel[0m[0;34m=[0m[0mfind_stack_level[0m[0;34m([0m[0;34m)[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    330[0m                 )
+[0;32m--&amp;gt; 331[0;31m             [0;32mreturn[0m [0mfunc[0m[0;34m([0m[0;34m*[0m[0margs[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    332[0m [0;34m[0m[0m
+[1;32m    333[0m         [0;31m# error: "Callable[[VarArg(Any), KwArg(Any)], Any]" has no[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/usr/local/lib/python3.10/dist-packages/pandas/io/parsers/readers.py[0m in [0;36mread_csv[0;34m(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, squeeze, prefix, mangle_dupe_cols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, error_bad_lines, warn_bad_lines, on_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options)[0m
+[1;32m    948[0m     [0mkwds[0m[0;34m.[0m[0mupdate[0m[0;34m([0m[0mkwds_defaults[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    949[0m [0;34m[0m[0m
+[0;32m--&amp;gt; 950[0;31m     [0;32mreturn[0m [0m_read[0m[0;34m([0m[0mfilepath_or_buffer[0m[0;34m,[0m [0mkwds[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    951[0m [0;34m[0m[0m
+[1;32m    952[0m [0;34m[0m[0m
+
+[0;32m/usr/local/lib/python3.10/dist-packages/pandas/io/parsers/readers.py[0m in [0;36m_read[0;34m(filepath_or_buffer, kwds)[0m
+[1;32m    609[0m [0;34m[0m[0m
+[1;32m    610[0m     [0;32mwith[0m [0mparser[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--&amp;gt; 611[0;31m         [0;32mreturn[0m [0mparser[0m[0;34m.[0m[0mread[0m[0;34m([0m[0mnrows[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    612[0m [0;34m[0m[0m
+[1;32m    613[0m [0;34m[0m[0m
+
+[0;32m/usr/local/lib/python3.10/dist-packages/pandas/io/parsers/readers.py[0m in [0;36mread[0;34m(self, nrows)[0m
+[1;32m   1776[0m                     [0mcolumns[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1777[0m                     [0mcol_dict[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-&amp;gt; 1778[0;31m                 [0;34m)[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0m_engine[0m[0;34m.[0m[0mread[0m[0;34m([0m  [0;31m# type: ignore[attr-defined][0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   1779[0m                     [0mnrows[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   1780[0m                 )
+
+[0;32m/usr/local/lib/python3.10/dist-packages/pandas/io/parsers/c_parser_wrapper.py[0m in [0;36mread[0;34m(self, nrows)[0m
+[1;32m    228[0m         [0;32mtry[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    229[0m             [0;32mif[0m [0mself[0m[0;34m.[0m[0mlow_memory[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--&amp;gt; 230[0;31m                 [0mchunks[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0m_reader[0m[0;34m.[0m[0mread_low_memory[0m[0;34m([0m[0mnrows[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    231[0m                 [0;31m# destructive to chunks[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    232[0m                 [0mdata[0m [0;34m=[0m [0m_concatenate_chunks[0m[0;34m([0m[0mchunks[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/usr/local/lib/python3.10/dist-packages/pandas/_libs/parsers.pyx[0m in [0;36mpandas._libs.parsers.TextReader.read_low_memory[0;34m()[0m
+
+[0;32m/usr/local/lib/python3.10/dist-packages/pandas/_libs/parsers.pyx[0m in [0;36mpandas._libs.parsers.TextReader._read_rows[0;34m()[0m
+
+[0;32m/usr/local/lib/python3.10/dist-packages/pandas/_libs/parsers.pyx[0m in [0;36mpandas._libs.parsers.TextReader._tokenize_rows[0;34m()[0m
+
+[0;32m/usr/local/lib/python3.10/dist-packages/pandas/_libs/parsers.pyx[0m in [0;36mpandas._libs.parsers.raise_parser_error[0;34m()[0m
+
+[0;31mParserError[0m: Error tokenizing data. C error: Expected 15 fields in line 28, saw 16
+</pre></div></div><div class="nb-cell nb-code-cell"><div class="nb-input"><pre class="language-python"><code class="language-python" data-language="python"><span class="token comment"># Limpieza de datos</span>
+data<span class="token punctuation">.</span>drop_duplicates<span class="token punctuation">(</span>inplace<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+data<span class="token punctuation">.</span>dropna<span class="token punctuation">(</span>inplace<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+data<span class="token punctuation">.</span>head<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span>
+<span class="token comment">#data.dropna(subset=['column_name'], inplace=True)</span>
+<span class="token comment">#data = data[data['column_name'].astype(str).str.isdigit()]</span></code></pre></div><div class="nb-output"><div class="nb-html-output">
+  <div id="df-999b86b9-2c92-4057-a4dc-a6a85d7c3087" class="colab-df-container">
+    <div>
+<style>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Gastos por objeto del gasto. Participación de cada objeto del gasto en el total</th>
+      <th>Unnamed: 1</th>
+      <th>Unnamed: 2</th>
+      <th>Unnamed: 3</th>
+      <th>Unnamed: 4</th>
+      <th>Unnamed: 5</th>
+      <th>Unnamed: 6</th>
+      <th>Unnamed: 7</th>
+      <th>Unnamed: 8</th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" title="Convert this dataframe to an interactive table." style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"></path>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    
+  </div>
+
+
+    </div>
+  </div>
+</div></div></div><div class="nb-cell nb-code-cell"><div class="nb-input"><pre class="language-python"><code class="language-python" data-language="python"><span class="token comment"># Graficar grafico de barras</span>
+plt<span class="token punctuation">.</span>figure<span class="token punctuation">(</span>figsize<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+sns<span class="token punctuation">.</span>countplot<span class="token punctuation">(</span>x<span class="token operator">=</span><span class="token string">'column_name'</span><span class="token punctuation">,</span> data<span class="token operator">=</span>data<span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>title<span class="token punctuation">(</span><span class="token string">'Bar Graph'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>xlabel<span class="token punctuation">(</span><span class="token string">'X-axis'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>ylabel<span class="token punctuation">(</span><span class="token string">'Y-axis'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre></div></div><div class="nb-cell nb-code-cell"><div class="nb-input"><pre class="language-python"><code class="language-python" data-language="python"><span class="token comment"># graficar en  scatter plots</span>
+plt<span class="token punctuation">.</span>figure<span class="token punctuation">(</span>figsize<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+sns<span class="token punctuation">.</span>scatterplot<span class="token punctuation">(</span>x<span class="token operator">=</span><span class="token string">'column_name1'</span><span class="token punctuation">,</span> y<span class="token operator">=</span><span class="token string">'column_name2'</span><span class="token punctuation">,</span> data<span class="token operator">=</span>data<span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>title<span class="token punctuation">(</span><span class="token string">'Scatter Plot'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>xlabel<span class="token punctuation">(</span><span class="token string">'X-axis'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>ylabel<span class="token punctuation">(</span><span class="token string">'Y-axis'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre></div></div><div class="nb-cell nb-code-cell"><div class="nb-input"><pre class="language-python"><code class="language-python" data-language="python"><span class="token comment"># graficar en  box plots</span>
+plt<span class="token punctuation">.</span>figure<span class="token punctuation">(</span>figsize<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+sns<span class="token punctuation">.</span>boxplot<span class="token punctuation">(</span>x<span class="token operator">=</span><span class="token string">'column_name'</span><span class="token punctuation">,</span> y<span class="token operator">=</span><span class="token string">'column_name2'</span><span class="token punctuation">,</span> data<span class="token operator">=</span>data<span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>title<span class="token punctuation">(</span><span class="token string">'Box Plot'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>xlabel<span class="token punctuation">(</span><span class="token string">'X-axis'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>ylabel<span class="token punctuation">(</span><span class="token string">'Y-axis'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre></div></div><div class="nb-cell nb-code-cell"><div class="nb-input"><pre class="language-python"><code class="language-python" data-language="python"><span class="token comment"># Pandas Profiling</span>
+profile <span class="token operator">=</span> pandas_profiling<span class="token punctuation">.</span>ProfileReport<span class="token punctuation">(</span>data<span class="token punctuation">)</span>
+profile<span class="token punctuation">.</span>to_file<span class="token punctuation">(</span><span class="token string">'data_profile.html'</span><span class="token punctuation">)</span></code></pre></div></div></div></div>

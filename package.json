@@ -1,0 +1,29 @@
+{
+  "name": "portfolio-profesional-2026",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "pnpm --filter frontend dev",
+    "build": "pnpm --filter frontend build && pnpm --filter backend build",
+    "preview": "pnpm --filter frontend preview",
+    "backend:dev": "pnpm --filter backend dev",
+    "lint": "pnpm --filter frontend lint && pnpm --filter backend lint",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\" && black backend/",
+    "type-check": "pnpm --filter frontend type-check"
+  },
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "devDependencies": {
+    "prettier": "^3.2.5"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=9.0.0"
+  },
+  "dependencies": {
+    "axios": "^1.16.1"
+  }
+}

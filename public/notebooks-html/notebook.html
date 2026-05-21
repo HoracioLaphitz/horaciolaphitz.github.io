@@ -1,0 +1,48 @@
+<div class="nb-notebook"><div class="nb-worksheet"><div class="nb-cell nb-markdown-cell"><h1>Proyecto de Ejemplo - Análisis Interactivo</h1>
+<p>Este notebook demuestra cómo crear análisis interactivos con Mercury.</p>
+<p><strong>Categoría</strong>: Data Analysis<br><strong>Dificultad</strong>: Beginner<br><strong>Tags</strong>: python, pandas, mercury, interactive</p>
+</div><div class="nb-cell nb-code-cell"><div class="nb-input"><pre class="language-python"><code class="language-python" data-language="python"><span class="token keyword">import</span> pandas <span class="token keyword">as</span> pd
+<span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+<span class="token keyword">import</span> matplotlib<span class="token punctuation">.</span>pyplot <span class="token keyword">as</span> plt
+<span class="token keyword">import</span> seaborn <span class="token keyword">as</span> sns
+
+<span class="token comment"># Configuración de estilo</span>
+sns<span class="token punctuation">.</span>set_style<span class="token punctuation">(</span><span class="token string">'whitegrid'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>rcParams<span class="token punctuation">[</span><span class="token string">'figure.figsize'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">)</span></code></pre></div></div><div class="nb-cell nb-markdown-cell"><h2>Widgets Interactivos</h2>
+<p>Usa Mercury para crear controles interactivos:</p>
+</div><div class="nb-cell nb-code-cell"><div class="nb-input"><pre class="language-python"><code class="language-python" data-language="python"><span class="token comment"># Descomentar para usar Mercury</span>
+<span class="token comment"># import mercury as mr</span>
+
+<span class="token comment"># slider = mr.Slider(label="Número de muestras", value=100, min=10, max=1000, step=10)</span>
+<span class="token comment"># select = mr.Select(label="Tipo de gráfico", value="scatter", choices=["scatter", "line", "bar"])</span></code></pre></div></div><div class="nb-cell nb-markdown-cell"><h2>Generación de Datos</h2>
+</div><div class="nb-cell nb-code-cell"><div class="nb-input"><pre class="language-python"><code class="language-python" data-language="python"><span class="token comment"># Generar datos de ejemplo</span>
+np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>seed<span class="token punctuation">(</span><span class="token number">42</span><span class="token punctuation">)</span>
+n_samples <span class="token operator">=</span> <span class="token number">100</span>  <span class="token comment"># Usar slider cuando Mercury esté activo</span>
+
+data <span class="token operator">=</span> pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span><span class="token punctuation">{</span>
+    <span class="token string">'x'</span><span class="token punctuation">:</span> np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>randn<span class="token punctuation">(</span>n_samples<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token string">'y'</span><span class="token punctuation">:</span> np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>randn<span class="token punctuation">(</span>n_samples<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token string">'categoria'</span><span class="token punctuation">:</span> np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>choice<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'A'</span><span class="token punctuation">,</span> <span class="token string">'B'</span><span class="token punctuation">,</span> <span class="token string">'C'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> n_samples<span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"Dataset generado con </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token builtin">len</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">}</span></span><span class="token string"> filas"</span></span><span class="token punctuation">)</span>
+data<span class="token punctuation">.</span>head<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre></div></div><div class="nb-cell nb-markdown-cell"><h2>Visualización</h2>
+</div><div class="nb-cell nb-code-cell"><div class="nb-input"><pre class="language-python"><code class="language-python" data-language="python">plt<span class="token punctuation">.</span>figure<span class="token punctuation">(</span>figsize<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+sns<span class="token punctuation">.</span>scatterplot<span class="token punctuation">(</span>data<span class="token operator">=</span>data<span class="token punctuation">,</span> x<span class="token operator">=</span><span class="token string">'x'</span><span class="token punctuation">,</span> y<span class="token operator">=</span><span class="token string">'y'</span><span class="token punctuation">,</span> hue<span class="token operator">=</span><span class="token string">'categoria'</span><span class="token punctuation">,</span> s<span class="token operator">=</span><span class="token number">100</span><span class="token punctuation">,</span> alpha<span class="token operator">=</span><span class="token number">0.6</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>title<span class="token punctuation">(</span><span class="token string">'Visualización Interactiva de Datos'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>xlabel<span class="token punctuation">(</span><span class="token string">'Variable X'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>ylabel<span class="token punctuation">(</span><span class="token string">'Variable Y'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>legend<span class="token punctuation">(</span>title<span class="token operator">=</span><span class="token string">'Categoría'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>tight_layout<span class="token punctuation">(</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>show<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre></div></div><div class="nb-cell nb-markdown-cell"><h2>Estadísticas Descriptivas</h2>
+</div><div class="nb-cell nb-code-cell"><div class="nb-input"><pre class="language-python"><code class="language-python" data-language="python"><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Estadísticas por categoría:\n"</span><span class="token punctuation">)</span>
+data<span class="token punctuation">.</span>groupby<span class="token punctuation">(</span><span class="token string">'categoria'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>describe<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre></div></div><div class="nb-cell nb-markdown-cell"><h2>Conclusiones</h2>
+<p>Este notebook demuestra:</p>
+<ul>
+<li>Cómo estructurar un proyecto</li>
+<li>Uso de widgets interactivos</li>
+<li>Visualizaciones con matplotlib/seaborn</li>
+<li>Análisis estadístico básico</li>
+</ul>
+<p>Para más información, visita <a href="https://github.com/HoracioLaphitz">GitHub</a></p>
+</div></div></div>

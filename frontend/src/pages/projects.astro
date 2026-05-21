@@ -1,0 +1,18 @@
+---
+import PageLayout from '@presentation/layouts/PageLayout.astro';
+import { ProjectsGrid } from '@presentation/components/sections/ProjectsGrid';
+import { getCollection } from 'astro:content';
+import { ProjectMapper } from '@infrastructure/mappers/project.mapper';
+
+// Fetch projects from Astro Content Collection and map to domain entities
+const proyectosRaw = await getCollection('proyectos');
+const proyectos = ProjectMapper.toDomainArray(proyectosRaw);
+---
+
+<PageLayout
+  title="Proyectos"
+  description="Explora mis proyectos de análisis de datos, machine learning e inteligencia de negocio."
+  currentPath="/projects"
+>
+  <ProjectsGrid posts={proyectos} client:visible showFilters={true} />
+</PageLayout>

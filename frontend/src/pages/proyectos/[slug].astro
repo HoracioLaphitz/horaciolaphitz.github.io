@@ -1,0 +1,37 @@
+---
+import { getCollection } from "astro:content";
+import ArticleLayout from "@presentation/layouts/ArticleLayout.astro";
+import { ResourceDownload } from "@presentation/components/proyectos/ResourceDownload";
+
+export async function getStaticPaths() {
+  const proyectos = await getCollection("proyectos");
+  return proyectos.map((proyecto) => ({
+    params: { slug: proyecto.slug },
+    props: { proyecto },
+  }));
+}
+
+const { proyecto } = Astro.props;
+const { Content } = await proyecto.render();
+---
+
+<ArticleLayout
+  title={proyecto.data.title}
+  description={proyecto.data.description}
+  category={proyecto.data.category}
+  pubDate={proyecto.data.pubDate}
+  tags={proyecto.data.tags}
+  author={proyecto.data.author}
+  github={proyecto.data.github}
+  dashboard={proyecto.data.dashboard}
+  currentPath={`/proyectos/${proyecto.slug}`}
+>
+  <Content />
+
+  <ResourceDownload
+    client:load
+    notebooks={proyecto.data.resources?.notebooks}
+    pdfs={proyecto.data.resources?.pdfs}
+    datasets={proyecto.data.resources?.datasets}
+  />
+</ArticleLayout>

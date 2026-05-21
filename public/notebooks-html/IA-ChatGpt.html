@@ -1,0 +1,58 @@
+<div class="nb-notebook"><div class="nb-worksheet"><div class="nb-cell nb-code-cell"><div class="nb-input" data-prompt-number="4"><pre class="language-python"><code class="language-python" data-language="python"></code></pre></div><div class="nb-output" data-prompt-number="4"><pre class="language-text">Retrieving Grit CLI metadata from https://api.keygen.sh/v1/accounts/custodian-dev/artifacts/marzano-linux-x64
+
+[1m[2mAnalyzing[0m [1m[2m                                                                      [0m
+[2K[2A
+[1m[2mAnalyzing[0m [1m[2m                                                                      [0m
+[2K[2A
+[1m[2mAnalyzing[0m [1m[2m                                                                      [0m
+[2K[2AProcessed 0 files and found 0 matches
+</pre></div></div><div class="nb-cell nb-code-cell"><div class="nb-input" data-prompt-number="5"><pre class="language-python"><code class="language-python" data-language="python"><span class="token keyword">import</span> openai
+
+</code></pre></div></div><div class="nb-cell nb-code-cell"><div class="nb-input" data-prompt-number="6"><pre class="language-python"><code class="language-python" data-language="python"><span class="token comment"># engine -&amp;gt; hace refencia al modelo de gpt -&amp;gt; modelo entrenado text-davinci-003</span>
+<span class="token comment"># promt -&amp;gt; hace refencia a la pregunta que se le va  a hacer</span>
+<span class="token comment"># max_tokens -&amp;gt; hace refencia a la cantidad de caracteres que vamos a introducir</span>
+Completion <span class="token operator">=</span> openai<span class="token punctuation">.</span>Completion<span class="token punctuation">.</span>create<span class="token punctuation">(</span>engine<span class="token operator">=</span><span class="token string">'text-davinci-003'</span><span class="token punctuation">,</span>
+                         prompt<span class="token operator">=</span><span class="token string">'¿Que es ChatGPt?'</span><span class="token punctuation">,</span>
+                         max_tokens<span class="token operator">=</span><span class="token string">"2048"</span><span class="token punctuation">,</span>
+
+
+                                                            <span class="token punctuation">)</span></code></pre></div><div class="nb-output" data-prompt-number="6"><pre class="language-text">[0;31m---------------------------------------------------------------------------[0m
+[0;31mAPIRemovedInV1[0m                            Traceback (most recent call last)
+[0;32m&amp;lt;ipython-input-6-8962a68f3b29&amp;gt;[0m in [0;36m&amp;lt;cell line: 4&amp;gt;[0;34m()[0m
+[1;32m      2[0m [0;31m# promt -&amp;gt; hace refencia a la pregunta que se le va  a hacer[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      3[0m [0;31m# max_tokens -&amp;gt; hace refencia a la cantidad de caracteres que vamos a introducir[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----&amp;gt; 4[0;31m Completion = openai.Completion.create(engine='text-davinci-003', 
+[0m[1;32m      5[0m                          [0mprompt[0m[0;34m=[0m[0;34m'¿Que es ChatGPt?'[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      6[0m                          [0mmax_tokens[0m[0;34m=[0m[0;34m"2048"[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/usr/local/lib/python3.10/dist-packages/openai/_utils/_proxy.py[0m in [0;36m__getattr__[0;34m(self, attr)[0m
+[1;32m     20[0m [0;34m[0m[0m
+[1;32m     21[0m     [0;32mdef[0m [0m__getattr__[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mattr[0m[0;34m:[0m [0mstr[0m[0;34m)[0m [0;34m-&amp;gt;[0m [0mobject[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---&amp;gt; 22[0;31m         [0;32mreturn[0m [0mgetattr[0m[0;34m([0m[0mself[0m[0;34m.[0m[0m__get_proxied__[0m[0;34m([0m[0;34m)[0m[0;34m,[0m [0mattr[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     23[0m [0;34m[0m[0m
+[1;32m     24[0m     [0;34m@[0m[0moverride[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/usr/local/lib/python3.10/dist-packages/openai/_utils/_proxy.py[0m in [0;36m__get_proxied__[0;34m(self)[0m
+[1;32m     41[0m     [0;32mdef[0m [0m__get_proxied__[0m[0;34m([0m[0mself[0m[0;34m)[0m [0;34m-&amp;gt;[0m [0mT[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     42[0m         [0;32mif[0m [0;32mnot[0m [0mself[0m[0;34m.[0m[0mshould_cache[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---&amp;gt; 43[0;31m             [0;32mreturn[0m [0mself[0m[0;34m.[0m[0m__load__[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     44[0m [0;34m[0m[0m
+[1;32m     45[0m         [0mproxied[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0m__proxied[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/usr/local/lib/python3.10/dist-packages/openai/lib/_old_api.py[0m in [0;36m__load__[0;34m(self)[0m
+[1;32m     31[0m     [0;34m@[0m[0moverride[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     32[0m     [0;32mdef[0m [0m__load__[0m[0;34m([0m[0mself[0m[0;34m)[0m [0;34m-&amp;gt;[0m [0;32mNone[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---&amp;gt; 33[0;31m         [0;32mraise[0m [0mAPIRemovedInV1[0m[0;34m([0m[0msymbol[0m[0;34m=[0m[0mself[0m[0;34m.[0m[0m_symbol[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     34[0m [0;34m[0m[0m
+[1;32m     35[0m [0;34m[0m[0m
+
+[0;31mAPIRemovedInV1[0m: 
+
+You tried to access openai.Completion, but this is no longer supported in openai&amp;gt;=1.0.0 - see the README at https://github.com/openai/openai-python for the API.
+
+You can run `openai migrate` to automatically upgrade your codebase to use the 1.0.0 interface. 
+
+Alternatively, you can pin your installation to the old version, e.g. `pip install openai==0.28`
+
+A detailed migration guide is available here: https://github.com/openai/openai-python/discussions/742
+</pre></div></div></div></div>

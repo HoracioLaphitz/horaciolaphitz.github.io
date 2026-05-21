@@ -1,0 +1,65 @@
+---
+import '../styles/global.css';
+import '../styles/animations.css';
+import '../styles/tokens.css';
+import '../styles/themes/light.css';
+import '../styles/themes/dark.css';
+import { Header } from '../components/layout/Header';
+import { Footer } from '../components/layout/Footer';
+import { ScrollProgress } from '../components/ui/ScrollProgress';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'Portfolio profesional de desarrollo web' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      // Initialize theme before page renders to prevent flash
+      const STORAGE_KEY = 'portfolio-theme';
+      const stored = localStorage.getItem(STORAGE_KEY);
+      const theme = stored || 'system';
+
+      let effectiveTheme = theme;
+      if (theme === 'system') {
+        effectiveTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
+          ? 'dark'
+          : 'light';
+      }
+
+      document.documentElement.setAttribute('data-theme', effectiveTheme);
+    </script>
+  </head>
+  <body class="relative min-h-screen bg-[#fafafa] dark:bg-[#0a0a0c] text-text-primary transition-colors duration-300 overflow-x-hidden">
+    <!-- Ambient Ambient Glow Background (macOS 26 Visuals) -->
+    <div class="absolute inset-0 pointer-events-none select-none overflow-hidden z-0" aria-hidden="true">
+      <div class="absolute -top-[10%] -left-[10%] w-[50vw] h-[50vw] rounded-full bg-gradient-to-tr from-[#2997ff]/10 to-[#86868b]/5 dark:from-[#2997ff]/8 dark:to-transparent blur-[120px] animate-float-slow" />
+      <div class="absolute top-[40%] -right-[10%] w-[45vw] h-[45vw] rounded-full bg-gradient-to-br from-[#ff9f0a]/8 to-transparent dark:from-[#ff9f0a]/4 dark:to-transparent blur-[140px] animate-pulse-slow" />
+      <div class="absolute -bottom-[10%] left-[15%] w-[40vw] h-[40vw] rounded-full bg-gradient-to-tr from-[#30d158]/5 to-transparent dark:from-[#30d158]/3 dark:to-transparent blur-[100px] animate-float-slow" />
+    </div>
+
+    <div class="relative z-10 flex flex-col min-h-screen">
+      <ScrollProgress client:load />
+      <Header client:load />
+      <main class="flex-grow">
+        <slot />
+      </main>
+      <Footer />
+    </div>
+  </body>
+</html>

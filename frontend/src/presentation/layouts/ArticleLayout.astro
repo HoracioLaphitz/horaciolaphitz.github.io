@@ -1,0 +1,96 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  category?: string;
+  pubDate?: Date;
+  tags?: string[];
+  author?: string;
+  github?: string;
+  dashboard?: string;
+}
+
+const { title, description, category, pubDate, tags = [], author, github, dashboard } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <article class="container py-4xl">
+    <header class="mb-4xl">
+      <h1 class="text-4xl md:text-5xl font-bold mb-md">{title}</h1>
+      {
+        description && (
+          <p class="text-xl text-light-text-secondary dark:text-dark-text-secondary mb-lg">
+            {description}
+          </p>
+        )
+      }
+
+      <div class="flex flex-wrap gap-md items-center mt-lg">
+        {
+          category && (
+            <span class="px-md py-sm bg-light-surface dark:bg-dark-surface rounded-lg text-sm font-medium">
+              {category}
+            </span>
+          )
+        }
+        {
+          pubDate && (
+            <time class="text-light-text-tertiary dark:text-dark-text-tertiary">
+              {pubDate.toLocaleDateString('es-ES')}
+            </time>
+          )
+        }
+        {
+          author && (
+            <span class="text-light-text-tertiary dark:text-dark-text-tertiary">Por {author}</span>
+          )
+        }
+      </div>
+
+      {
+        tags.length > 0 && (
+          <div class="flex flex-wrap gap-sm mt-lg">
+            {tags.map((tag) => (
+              <span class="px-sm py-xs bg-light-border dark:bg-dark-border rounded text-xs font-medium">
+                {tag}
+              </span>
+            ))}
+          </div>
+        )
+      }
+
+      {
+        (github || dashboard) && (
+          <div class="flex gap-md mt-lg">
+            {github && (
+              <a
+                href={github}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-dark-accent-cyan hover:underline font-medium"
+              >
+                GitHub
+              </a>
+            )}
+            {dashboard && (
+              <a
+                href={dashboard}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-dark-accent-cyan hover:underline font-medium"
+              >
+                Dashboard
+              </a>
+            )}
+          </div>
+        )
+      }
+    </header>
+
+    <div class="prose dark:prose-invert max-w-none">
+      <slot />
+    </div>
+  </article>
+</BaseLayout>

@@ -1,0 +1,94 @@
+<div class="nb-notebook"><div class="nb-worksheet"><div class="nb-cell nb-code-cell"><div class="nb-input" data-prompt-number="9"><pre class="language-python"><code class="language-python" data-language="python"><span class="token comment">################################ ABSTRACCIÓN #################################</span>
+<span class="token comment">################################ ABSTRACCIÓN #################################</span>
+<span class="token keyword">class</span> <span class="token class-name">Personaje</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> nombre<span class="token punctuation">,</span> fuerza<span class="token punctuation">,</span> inteligencia<span class="token punctuation">,</span> defensa<span class="token punctuation">,</span> vida<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>nombre <span class="token operator">=</span> nombre
+        self<span class="token punctuation">.</span>__fuerza <span class="token operator">=</span> fuerza
+        self<span class="token punctuation">.</span>__inteligencia <span class="token operator">=</span> inteligencia
+        self<span class="token punctuation">.</span>__defensa <span class="token operator">=</span> defensa
+        self<span class="token punctuation">.</span>__vida <span class="token operator">=</span> vida
+        self<span class="token punctuation">.</span>__aguante <span class="token operator">=</span> fuerza <span class="token operator">*</span> vida
+        self<span class="token punctuation">.</span>__turno <span class="token operator">=</span> <span class="token boolean">False</span>
+
+    <span class="token keyword">def</span> <span class="token function">atributos</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>nombre<span class="token punctuation">,</span> <span class="token string">":"</span><span class="token punctuation">,</span> sep<span class="token operator">=</span><span class="token string">""</span><span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"-Fuerza : "</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>__fuerza<span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"-Inteligencia : "</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>__inteligencia<span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"-Defensa : "</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>__defensa<span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"-Vida: "</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>__vida<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">subir_nivel</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> fuerza<span class="token punctuation">,</span> inteligencia<span class="token punctuation">,</span> defensa<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>__fuerza <span class="token operator">=</span> self<span class="token punctuation">.</span>__fuerza <span class="token operator">+</span> fuerza
+        self<span class="token punctuation">.</span>__inteligencia <span class="token operator">=</span> self<span class="token punctuation">.</span>__inteligencia <span class="token operator">+</span> inteligencia
+        self<span class="token punctuation">.</span>__defensa <span class="token operator">=</span> self<span class="token punctuation">.</span>__defensa <span class="token operator">+</span> defensa
+
+    <span class="token keyword">def</span> <span class="token function">esta_vivo</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>vida <span class="token operator">&amp;</span>gt<span class="token punctuation">;</span> <span class="token number">0</span>
+
+    <span class="token keyword">def</span> <span class="token function">morir</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>vida <span class="token operator">=</span> <span class="token number">0</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>nombre<span class="token punctuation">,</span> <span class="token string">"ha muerto"</span><span class="token punctuation">)</span>
+
+    <span class="token comment"># mecanismo por el que el personaje hace daño</span>
+
+    <span class="token keyword">def</span> daño<span class="token punctuation">(</span>self<span class="token punctuation">,</span> enemigo<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span>__fuerza <span class="token operator">-</span> enemigo<span class="token punctuation">.</span>defensa
+
+    <span class="token keyword">def</span> <span class="token function">atacar</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> enemigo<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        daño <span class="token operator">=</span> self<span class="token punctuation">.</span>daño<span class="token punctuation">(</span>enemigo<span class="token punctuation">)</span>
+        enemigo<span class="token punctuation">.</span>vida <span class="token operator">=</span> enemigo<span class="token punctuation">.</span>__vida <span class="token operator">-</span> daño
+        <span class="token keyword">print</span><span class="token punctuation">(</span>
+            self<span class="token punctuation">.</span>nombre<span class="token punctuation">,</span>
+            <span class="token string">"hizo la cantida de "</span><span class="token punctuation">,</span>
+            daño<span class="token punctuation">,</span>
+            <span class="token string">"puntos de daño a "</span><span class="token punctuation">,</span>
+            enemigo<span class="token punctuation">.</span>nombre<span class="token punctuation">,</span>
+        <span class="token punctuation">)</span>
+        <span class="token keyword">if</span> enemigo<span class="token punctuation">.</span>esta_vivo<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"La vida de "</span><span class="token punctuation">,</span> enemigo<span class="token punctuation">.</span>nombre<span class="token punctuation">,</span> <span class="token string">"es"</span><span class="token punctuation">,</span> enemigo<span class="token punctuation">.</span>vida<span class="token punctuation">)</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            enemigo<span class="token punctuation">.</span>morir<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+
+
+
+mi_Personaje <span class="token operator">=</span> Personaje<span class="token punctuation">(</span><span class="token string">"MILEI"</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">55</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span>
+<span class="token comment"># mi_Personaje.atributos()</span>
+mi_Personaje<span class="token punctuation">.</span>subir_nivel<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span>
+<span class="token comment"># mi_Personaje.atributos()</span>
+<span class="token comment">#mi_Personaje.morir()</span>
+mi_Personaje<span class="token punctuation">.</span>atributos<span class="token punctuation">(</span><span class="token punctuation">)</span>
+mi_enemigo <span class="token operator">=</span> Personaje<span class="token punctuation">(</span><span class="token string">"LA CASTA"</span><span class="token punctuation">,</span> <span class="token number">250</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">33</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span>
+mi_Personaje<span class="token punctuation">.</span>atacar<span class="token punctuation">(</span>mi_enemigo<span class="token punctuation">)</span>
+mi_enemigo<span class="token punctuation">.</span>atributos<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment"># print(mi_Personaje.daño(mi_enemigo))</span>
+</code></pre></div><div class="nb-output" data-prompt-number="9"><pre class="language-text">MILEI:
+-Fuerza :  1001
+-Inteligencia :  102
+-Defensa :  55
+-Vida:  100
+</pre></div><div class="nb-output" data-prompt-number="9"><pre class="language-text">[0;31m---------------------------------------------------------------------------[0m
+[0;31mAttributeError[0m                            Traceback (most recent call last)
+[0;32m&amp;lt;ipython-input-9-e634c5327466&amp;gt;[0m in [0;36m&amp;lt;cell line: 62&amp;gt;[0;34m()[0m
+[1;32m     60[0m [0mmi_Personaje[0m[0;34m.[0m[0matributos[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     61[0m [0mmi_enemigo[0m [0;34m=[0m [0mPersonaje[0m[0;34m([0m[0;34m"LA CASTA"[0m[0;34m,[0m [0;36m250[0m[0;34m,[0m [0;36m0[0m[0;34m,[0m [0;36m33[0m[0;34m,[0m [0;36m100[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---&amp;gt; 62[0;31m [0mmi_Personaje[0m[0;34m.[0m[0matacar[0m[0;34m([0m[0mmi_enemigo[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     63[0m [0mmi_enemigo[0m[0;34m.[0m[0matributos[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     64[0m [0;34m[0m[0m
+
+[0;32m&amp;lt;ipython-input-9-e634c5327466&amp;gt;[0m in [0;36matacar[0;34m(self, enemigo)[0m
+[1;32m     36[0m [0;34m[0m[0m
+[1;32m     37[0m     [0;32mdef[0m [0matacar[0m[0;34m([0m[0mself[0m[0;34m,[0m [0menemigo[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---&amp;gt; 38[0;31m         [0mdaño[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0mdaño[0m[0;34m([0m[0menemigo[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     39[0m         [0menemigo[0m[0;34m.[0m[0mvida[0m [0;34m=[0m [0menemigo[0m[0;34m.[0m[0m__vida[0m [0;34m-[0m [0mdaño[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     40[0m         print(
+
+[0;32m&amp;lt;ipython-input-9-e634c5327466&amp;gt;[0m in [0;36mdaño[0;34m(self, enemigo)[0m
+[1;32m     33[0m [0;34m[0m[0m
+[1;32m     34[0m     [0;32mdef[0m [0mdaño[0m[0;34m([0m[0mself[0m[0;34m,[0m [0menemigo[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---&amp;gt; 35[0;31m         [0;32mreturn[0m [0mself[0m[0;34m.[0m[0m__fuerza[0m [0;34m-[0m [0menemigo[0m[0;34m.[0m[0mdefensa[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     36[0m [0;34m[0m[0m
+[1;32m     37[0m     [0;32mdef[0m [0matacar[0m[0;34m([0m[0mself[0m[0;34m,[0m [0menemigo[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mAttributeError[0m: 'Personaje' object has no attribute 'defensa'</pre></div></div><div class="nb-cell nb-code-cell"><div class="nb-input"><pre class="language-python"><code class="language-python" data-language="python"></code></pre></div></div></div></div>

@@ -1,0 +1,25 @@
+---
+import PageLayout from '@presentation/layouts/PageLayout.astro';
+import { NotebooksGrid } from '@presentation/components/sections/NotebooksGrid';
+
+// Fetch notebooks from the backend API
+let notebooks = [];
+try {
+  const response = await fetch('http://localhost:8000/api/v1/notebooks');
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
+  }
+  notebooks = await response.json();
+} catch (error) {
+  console.error('Error fetching notebooks:', error);
+  // Fallback to empty array if API is not available
+  notebooks = [];
+}
+---
+<PageLayout
+  title="Notebooks Interactivos"
+  description="Explora mis notebooks interactivos de análisis de datos y machine learning"
+  currentPath="/notebooks"
+>
+  <NotebooksGrid projects={notebooks} client:visible showFilters={false} />
+</PageLayout>
