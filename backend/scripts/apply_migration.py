@@ -7,7 +7,9 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from api.core.database import supabase
+from api.core.database import create_supabase_client
+
+supabase = create_supabase_client()
 
 
 def read_migration_file():

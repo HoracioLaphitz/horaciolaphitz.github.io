@@ -2,23 +2,22 @@ export function Footer() {
     const currentYear = new Date().getFullYear();
 
     return (
-        <footer className="border-t border-light-border dark:border-dark-border bg-light-surface dark:bg-dark-surface">
+        <footer className="border-t border-border" style={{ backgroundColor: 'var(--color-surface)' }}>
             <div className="container py-4xl">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-xl mb-3xl">
-                    {/* Brand */}
                     <div className="md:col-span-2">
-                        <h3 className="text-2xl font-bold mb-md bg-gradient-to-r from-light-text-primary to-light-text-secondary dark:from-dark-text-primary dark:to-dark-accent-cyan bg-clip-text text-transparent">
+                        <h3 className="text-2xl font-bold mb-md tracking-tight text-text-primary">
                             Horacio Laphitz
                         </h3>
-                        <p className="text-light-text-secondary dark:text-dark-text-secondary text-base leading-relaxed max-w-md">
-                            Analista de datos orientado a la resolucion de problemas.
+                        <p className="text-text-secondary text-base leading-relaxed max-w-md">
+                            Analista de datos orientado a la resolución de problemas.
                         </p>
-                        <div className="flex gap-md mt-lg">
+                        <div className="flex gap-3 mt-lg">
                             <a
                                 href="https://github.com"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="p-sm bg-light-bg dark:bg-dark-bg rounded-lg hover:bg-light-border dark:hover:bg-dark-border transition-colors"
+                                className="p-2.5 rounded-lg text-text-secondary hover:text-text-primary hover:bg-accent-muted transition-all duration-200"
                                 aria-label="GitHub"
                             >
                                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -29,7 +28,7 @@ export function Footer() {
                                 href="https://linkedin.com"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="p-sm bg-light-bg dark:bg-dark-bg rounded-lg hover:bg-light-border dark:hover:bg-dark-border transition-colors"
+                                className="p-2.5 rounded-lg text-text-secondary hover:text-text-primary hover:bg-accent-muted transition-all duration-200"
                                 aria-label="LinkedIn"
                             >
                                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -38,7 +37,7 @@ export function Footer() {
                             </a>
                             <a
                                 href="mailto:horaciolaphitz99@gmail.com"
-                                className="p-sm bg-light-bg dark:bg-dark-bg rounded-lg hover:bg-light-border dark:hover:bg-dark-border transition-colors"
+                                className="p-2.5 rounded-lg text-text-secondary hover:text-text-primary hover:bg-accent-muted transition-all duration-200"
                                 aria-label="Email"
                             >
                                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -47,58 +46,43 @@ export function Footer() {
                             </a>
                         </div>
                     </div>
-
-                    {/* Navigation */}
                     <div>
-                        <h4 className="font-semibold mb-md text-light-text-primary dark:text-dark-text-primary">Navegación</h4>
-                        <ul className="space-y-sm text-base">
-                            <li>
-                                <a href="/" className="text-light-text-secondary dark:text-dark-text-secondary hover:text-light-text-primary dark:hover:text-dark-accent-cyan transition-colors">
-                                    Inicio
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/projects" className="text-light-text-secondary dark:text-dark-text-secondary hover:text-light-text-primary dark:hover:text-dark-accent-cyan transition-colors">
-                                    Proyectos
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/experience" className="text-light-text-secondary dark:text-dark-text-secondary hover:text-light-text-primary dark:hover:text-dark-accent-cyan transition-colors">
-                                    Experiencia
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/contact" className="text-light-text-secondary dark:text-dark-text-secondary hover:text-light-text-primary dark:hover:text-dark-accent-cyan transition-colors">
-                                    Contacto
-                                </a>
-                            </li>
+                        <h4 className="font-semibold mb-3 text-text-primary">Navegación</h4>
+                        <ul className="space-y-2 text-base">
+                            {[
+                                { href: '/', label: 'Inicio' },
+                                { href: '/projects', label: 'Proyectos' },
+                                { href: '/experience', label: 'Experiencia' },
+                                { href: '/contact', label: 'Contacto' },
+                            ].map((link) => (
+                                <li key={link.label}>
+                                    <a href={link.href} className="text-text-secondary hover:text-text-primary transition-colors">
+                                        {link.label}
+                                    </a>
+                                </li>
+                            ))}
                         </ul>
                     </div>
-
-                    {/* Contact */}
                     <div>
-                        <h4 className="font-semibold mb-md text-light-text-primary dark:text-dark-text-primary">Contacto</h4>
-                        <ul className="space-y-sm text-base">
-                            <li className="text-light-text-secondary dark:text-dark-text-secondary">
-                                <a href="mailto:contact@example.com" className="hover:text-light-text-primary dark:hover:text-dark-accent-cyan transition-colors">
+                        <h4 className="font-semibold mb-3 text-text-primary">Contacto</h4>
+                        <ul className="space-y-2 text-base">
+                            <li>
+                                <a href="mailto:horaciolaphitz99@gmail.com" className="text-text-secondary hover:text-text-primary transition-colors">
                                     horaciolaphitz99@gmail.com
                                 </a>
                             </li>
-
                         </ul>
                     </div>
                 </div>
-
-                {/* Bottom Bar */}
-                <div className="pt-lg border-t border-light-border dark:border-dark-border flex flex-col md:flex-row justify-between items-center gap-md">
-                    <p className="text-sm text-light-text-secondary dark:text-dark-text-secondary">
-                        © {currentYear}
+                <div className="pt-lg border-t border-border flex flex-col md:flex-row justify-between items-center gap-md">
+                    <p className="text-sm text-text-secondary">
+                        © {currentYear} Horacio Laphitz
                     </p>
                     <div className="flex gap-lg text-sm">
-                        <a href="/privacy" className="text-light-text-secondary dark:text-dark-text-secondary hover:text-light-text-primary dark:hover:text-dark-accent-cyan transition-colors">
+                        <a href="/privacy" className="text-text-secondary hover:text-text-primary transition-colors">
                             Privacidad
                         </a>
-                        <a href="/terms" className="text-light-text-secondary dark:text-dark-text-secondary hover:text-light-text-primary dark:hover:text-dark-accent-cyan transition-colors">
+                        <a href="/terms" className="text-text-secondary hover:text-text-primary transition-colors">
                             Términos
                         </a>
                     </div>

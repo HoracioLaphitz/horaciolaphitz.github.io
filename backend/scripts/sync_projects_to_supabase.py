@@ -11,7 +11,9 @@ from datetime import datetime
 # Add parent directory to path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from api.core.database import supabase
+from api.core.database import create_supabase_client
+
+supabase = create_supabase_client()
 from api.core.logging import setup_logging, get_logger
 
 setup_logging()

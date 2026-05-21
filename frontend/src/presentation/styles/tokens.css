@@ -4,6 +4,7 @@
  */
 
 :root {
+  color-scheme: light dark;
   /* Color Tokens - Will be overridden by theme files */
   --color-surface: #ffffff;
   --color-surface-elevated: #f8f9fa;
@@ -116,6 +117,10 @@
   --z-modal: 1300;
   --z-popover: 1400;
   --z-tooltip: 1500;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
 }
 
 /* Smooth theme transitions */

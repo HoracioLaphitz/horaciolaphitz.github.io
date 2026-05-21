@@ -10,55 +10,39 @@ import { PROFILE_DATA } from '@data/profile-data';
 >
   <div class="container py-5xl">
     <div class="max-w-4xl mx-auto">
-      <!-- Header Section -->
       <div class="text-center mb-4xl opacity-0 animate-fade-in-down">
-        <h1
-          class="text-5xl md:text-6xl font-bold mb-lg bg-gradient-to-r from-light-text-primary to-light-text-secondary dark:from-dark-text-primary dark:to-dark-accent-cyan bg-clip-text text-transparent"
-        >
+        <h1 class="text-5xl md:text-6xl font-bold mb-lg text-text-primary">
           Hablemos
         </h1>
-        <p
-          class="text-xl text-light-text-secondary dark:text-dark-text-secondary max-w-2xl mx-auto"
-        >
+        <p class="text-xl text-text-secondary max-w-2xl mx-auto">
           Estoy disponible para proyectos freelance, colaboraciones y oportunidades profesionales
         </p>
       </div>
 
-      <!-- Contact Component -->
       <div class="opacity-0 animate-fade-in-up animate-delay-200">
         <Contact client:visible contactInfo={PROFILE_DATA.contact} />
       </div>
 
-      <!-- Additional Contact Info -->
       <div class="mt-4xl grid grid-cols-1 md:grid-cols-2 gap-xl">
         <div
-          class="p-xl rounded-lg bg-light-surface dark:bg-dark-surface border border-light-border dark:border-dark-border opacity-0 animate-slide-in-left animate-delay-400 hover-lift"
+          class="p-xl rounded-xl border border-border transition-all duration-300 hover:shadow-md opacity-0 animate-slide-in-left animate-delay-400"
+          style="background-color: var(--color-surface)"
         >
-          <h3 class="text-2xl font-bold mb-md text-light-text-primary dark:text-dark-text-primary">
-            Ubicación
-          </h3>
-          <p class="text-lg text-light-text-secondary dark:text-dark-text-secondary">
-            {PROFILE_DATA.location || 'Argentina'}
-          </p>
+          <h3 class="text-2xl font-bold mb-md text-text-primary">Ubicación</h3>
+          <p class="text-lg text-text-secondary">{PROFILE_DATA.location || 'Argentina'}</p>
         </div>
 
         <div
-          class="p-xl rounded-lg bg-light-surface dark:bg-dark-surface border border-light-border dark:border-dark-border opacity-0 animate-slide-in-right animate-delay-400 hover-lift"
+          class="p-xl rounded-xl border border-border transition-all duration-300 hover:shadow-md opacity-0 animate-slide-in-right animate-delay-400"
+          style="background-color: var(--color-surface)"
         >
-          <h3 class="text-2xl font-bold mb-md text-light-text-primary dark:text-dark-text-primary">
-            Disponibilidad
-          </h3>
-          <p class="text-lg text-light-text-secondary dark:text-dark-text-secondary">
-            Disponible para proyectos freelance y oportunidades full-time
-          </p>
+          <h3 class="text-2xl font-bold mb-md text-text-primary">Disponibilidad</h3>
+          <p class="text-lg text-text-secondary">Disponible para proyectos freelance y oportunidades full-time</p>
         </div>
       </div>
 
-      <!-- Social Links -->
       <div class="mt-xl text-center opacity-0 animate-fade-in-up animate-delay-600">
-        <h3 class="text-2xl font-bold mb-lg text-light-text-primary dark:text-dark-text-primary">
-          Sígueme en redes
-        </h3>
+        <h3 class="text-2xl font-bold mb-lg text-text-primary">Sígueme en redes</h3>
         <div class="flex justify-center gap-lg flex-wrap">
           {
             PROFILE_DATA.contact.github && (
@@ -66,7 +50,8 @@ import { PROFILE_DATA } from '@data/profile-data';
                 href={PROFILE_DATA.contact.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="p-md rounded-lg bg-light-surface dark:bg-dark-surface border border-light-border dark:border-dark-border hover:border-dark-accent-cyan dark:hover:border-dark-accent-cyan transition-all duration-300 hover-scale hover-glow"
+                class="p-3 rounded-xl border border-border transition-all duration-200 hover:border-accent/50 hover:shadow-md text-text-secondary hover:text-text-primary"
+                style="background-color: var(--color-surface)"
                 aria-label="GitHub"
               >
                 <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
@@ -81,7 +66,8 @@ import { PROFILE_DATA } from '@data/profile-data';
                 href={PROFILE_DATA.contact.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="p-md rounded-lg bg-light-surface dark:bg-dark-surface border border-light-border dark:border-dark-border hover:border-dark-accent-cyan dark:hover:border-dark-accent-cyan transition-all duration-300 hover-scale hover-glow"
+                class="p-3 rounded-xl border border-border transition-all duration-200 hover:border-accent/50 hover:shadow-md text-text-secondary hover:text-text-primary"
+                style="background-color: var(--color-surface)"
                 aria-label="LinkedIn"
               >
                 <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
@@ -94,7 +80,8 @@ import { PROFILE_DATA } from '@data/profile-data';
             PROFILE_DATA.contact.email && (
               <a
                 href={`mailto:${PROFILE_DATA.contact.email}`}
-                class="p-md rounded-lg bg-light-surface dark:bg-dark-surface border border-light-border dark:border-dark-border hover:border-dark-accent-cyan dark:hover:border-dark-accent-cyan transition-all duration-300 hover-scale hover-glow"
+                class="p-3 rounded-xl border border-border transition-all duration-200 hover:border-accent/50 hover:shadow-md text-text-secondary hover:text-text-primary"
+                style="background-color: var(--color-surface)"
                 aria-label="Email"
               >
                 <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">

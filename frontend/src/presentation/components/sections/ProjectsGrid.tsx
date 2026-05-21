@@ -56,15 +56,9 @@ export function ProjectsGrid({ projects, showFilters = true }: ProjectsGridProps
 
     return (
         <section className="py-4xl px-4 relative overflow-hidden">
-            <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute top-1/3 -left-20 w-80 h-80 bg-accent/3 rounded-full blur-[140px]" />
-                <div className="absolute bottom-1/3 -right-20 w-96 h-96 bg-accent/2 rounded-full blur-[160px]" />
-            </div>
             <div className="container relative">
                 <div className="mb-4xl">
-                    <h2 className="text-4xl font-bold mb-lg">
-                        <span className="bg-gradient-to-r from-accent to-accent/60 bg-clip-text text-transparent">Mis Proyectos</span>
-                    </h2>
+                    <h2 className="text-4xl font-bold mb-lg text-text-primary">Mis Proyectos</h2>
                     <p className="text-text-secondary text-sm">
                         {filteredProjects.length} proyecto{filteredProjects.length !== 1 ? 's' : ''} encontrado{filteredProjects.length !== 1 ? 's' : ''}
                     </p>
@@ -88,7 +82,7 @@ export function ProjectsGrid({ projects, showFilters = true }: ProjectsGridProps
                     sortedCategories.map(category => (
                         <div key={category} className="mb-4xl last:mb-0">
                             <div className="flex items-center gap-3 mb-lg">
-                                <h3 className="text-lg font-semibold capitalize">{category}</h3>
+                                <h3 className="text-lg font-semibold capitalize text-text-primary">{category}</h3>
                                 <span className="text-xs text-text-tertiary bg-border/30 px-2 py-0.5 rounded-full">
                                     {projectsByCategory[category].length}
                                 </span>

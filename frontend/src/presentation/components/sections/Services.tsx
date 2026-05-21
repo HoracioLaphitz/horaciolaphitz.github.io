@@ -12,34 +12,33 @@ const SERVICES: Service[] = [
     {
         title: 'Análisis de Datos',
         description: 'Análisis profundo y estadístico de grandes volúmenes de datos para extraer insights accionables.',
-        icon: <IconChartBar size={28} strokeWidth={1.5} />,
+        icon: <IconChartBar size={24} strokeWidth={1.5} aria-hidden="true" />,
     },
     {
         title: 'Visualización',
         description: 'Dashboards interactivos y visualizaciones que convierten datos complejos en historias claras.',
-        icon: <IconChartDots3 size={28} strokeWidth={1.5} />,
+        icon: <IconChartDots3 size={24} strokeWidth={1.5} aria-hidden="true" />,
     },
     {
         title: 'Machine Learning',
         description: 'Modelos predictivos y de clasificación para resolver problemas de negocio con IA.',
-        icon: <IconBrain size={28} strokeWidth={1.5} />,
+        icon: <IconBrain size={24} strokeWidth={1.5} aria-hidden="true" />,
     },
 ];
 
 const container = { hidden: {}, show: { transition: { staggerChildren: 0.1 } } };
 const card = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
+    hidden: { opacity: 0, y: 16 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] as const } },
 };
 
 export function Services() {
     return (
-        <section className="py-4xl px-4 bg-light-bg dark:bg-dark-bg">
+        <section className="py-4xl px-4" style={{ backgroundColor: 'var(--color-surface-elevated)' }}>
             <div className="container">
                 <div className="text-center mb-4xl">
-                    <span className="section-label mb-lg inline-block">Lo que hago</span>
-                    <h2 className="text-4xl md:text-5xl font-bold">Servicios</h2>
-                    <p className="mt-lg text-light-text-secondary dark:text-dark-text-secondary max-w-xl mx-auto">
+                    <h2 className="text-4xl md:text-5xl font-bold mb-4 text-text-primary">Servicios</h2>
+                    <p className="text-text-secondary max-w-xl mx-auto">
                         Combino análisis riguroso con visualizaciones impactantes para decisiones basadas en datos.
                     </p>
                 </div>
@@ -55,14 +54,15 @@ export function Services() {
                         <motion.div
                             key={index}
                             variants={card}
-                            className="group relative p-xl bg-light-surface dark:bg-dark-surface rounded-xl border border-light-border dark:border-dark-border hover:border-dark-accent-cyan/40 transition-all duration-300 hover:shadow-lg"
+                            className="group relative p-xl rounded-2xl border border-border transition-all duration-300 hover:shadow-lg"
+                            style={{ backgroundColor: 'var(--color-surface)' }}
                         >
-                            <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-dark-accent-cyan/0 group-hover:from-dark-accent-cyan/5 to-transparent transition-all duration-500 pointer-events-none" />
-                            <div className="relative w-14 h-14 rounded-xl bg-dark-accent-cyan/10 border border-dark-accent-cyan/20 flex items-center justify-center mb-lg text-dark-accent-cyan">
+                            <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 text-accent"
+                                style={{ backgroundColor: 'var(--color-accent-muted)' }}>
                                 {service.icon}
                             </div>
-                            <h3 className="text-xl font-semibold mb-sm relative">{service.title}</h3>
-                            <p className="text-light-text-secondary dark:text-dark-text-secondary leading-relaxed text-sm md:text-base relative">
+                            <h3 className="text-xl font-semibold mb-2 text-text-primary">{service.title}</h3>
+                            <p className="text-text-secondary leading-relaxed text-sm md:text-base">
                                 {service.description}
                             </p>
                         </motion.div>

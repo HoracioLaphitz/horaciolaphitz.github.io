@@ -4,76 +4,59 @@ Run: python -m scripts.test_api
 """
 import sys
 from pathlib import Path
-import asyncio
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from api.services.project_service import ProjectService
-from api.services.technology_service import TechnologyService
-from api.services.experience_service import ExperienceService
+from api.core.database import create_supabase_client
+from api.infrastructure.repositories import (
+    SupabaseProjectRepository,
+    SupabaseTechnologyRepository,
+    SupabaseExperienceRepository,
+)
+from api.application.services import (
+    ProjectService,
+    TechnologyService,
+    ExperienceService,
+)
 
 
-async def test_projects():
-    """Test project endpoints"""
-    print("📦 Testing Projects...")
-    
-    # Get all projects
-    projects = await ProjectService.get_all_projects()
-    print(f"  ✅ Found {len(projects)} projects")
-    
-    # Get featured projects
-    featured = await ProjectService.get_featured_projects()
-    print(f"  ✅ Found {len(featured)} featured projects")
-    
-    # Get project by slug
+def test_projects(service: ProjectService):
+    print("Projects...")
+    projects = service.get_all()
+    print(f"  Found {len(projects)} projects")
+    featured = service.get_featured()
+    print(f"  Featured: {len(featured)}")
     if projects:
-        slug = projects[0].slug
-        project = await ProjectService.get_project_by_slug(slug)
-        if project:
-            print(f"  ✅ Retrieved project: {project.title}")
-            print(f"     Technologies: {len(project.technologies)}")
+        p = service.get_by_slug(projects[0].slug)
+        if p:
+            print(f"  Slug OK: {p.title}")
 
 
-async def test_technologies():
-    """Test technology endpoints"""
-    print("\n🔧 Testing Technologies...")
-    
-    # Get all technologies
-    technologies = await TechnologyService.get_all_technologies()
-    print(f"  ✅ Found {len(technologies)} technologies")
-    
-    # Get technology by slug
-    if technologies:
-        slug = technologies[0].slug
-        tech = await TechnologyService.get_technology_by_slug(slug)
-        if tech:
-            print(f"  ✅ Retrieved technology: {tech.name}")
-            print(f"     Project count: {tech.project_count}")
+def test_technologies(service: TechnologyService):
+    print("\nTechnologies...")
+    techs = service.get_all()
+    print(f"  Found {len(techs)} technologies")
+    if techs:
+        t = service.get_by_slug(techs[0].slug)
+        if t:
+            print(f"  Slug OK: {t.name} ({t.project_count} projects)")
 
 
-async def test_experience():
-    """Test experience endpoints"""
-    print("\n💼 Testing Experience...")
-    
-    # Get all experience
-    experiences = await ExperienceService.get_all_experience()
-    print(f"  ✅ Found {len(experiences)} experience entries")
-    
-    if experiences:
-        exp = experiences[0]
-        print(f"  ✅ Latest: {exp.role} at {exp.company}")
+def test_experience(service: ExperienceService):
+    print("\nExperience...")
+    exp = service.get_all()
+    print(f"  Found {len(exp)} entries")
+    if exp:
+        print(f"  Latest: {exp[0].role} at {exp[0].company}")
 
 
-async def main():
-    """Run all tests"""
-    print("🧪 Testing API Services\n")
-    
-    await test_projects()
-    await test_technologies()
-    await test_experience()
-    
-    print("\n✅ All tests passed!")
+def main():
+    client = create_supabase_client()
+    test_projects(ProjectService(SupabaseProjectRepository(client)))
+    test_technologies(TechnologyService(SupabaseTechnologyRepository(client)))
+    test_experience(ExperienceService(SupabaseExperienceRepository(client)))
+    print("\nAll tests passed!")
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    main()

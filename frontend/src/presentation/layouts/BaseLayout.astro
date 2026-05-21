@@ -22,6 +22,8 @@ const { title, description = 'Portfolio profesional de desarrollo web' } = Astro
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+    <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0a0a0c" media="(prefers-color-scheme: dark)" />
     <title>{title}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -30,7 +32,6 @@ const { title, description = 'Portfolio profesional de desarrollo web' } = Astro
       rel="stylesheet"
     />
     <script>
-      // Initialize theme before page renders to prevent flash
       const STORAGE_KEY = 'portfolio-theme';
       const stored = localStorage.getItem(STORAGE_KEY);
       const theme = stored || 'system';
@@ -45,12 +46,14 @@ const { title, description = 'Portfolio profesional de desarrollo web' } = Astro
       document.documentElement.setAttribute('data-theme', effectiveTheme);
     </script>
   </head>
-  <body class="relative min-h-screen bg-[#fafafa] dark:bg-[#0a0a0c] text-text-primary transition-colors duration-300 overflow-x-hidden">
-    <!-- Ambient Ambient Glow Background (macOS 26 Visuals) -->
+  <body class="relative min-h-screen text-text-primary transition-colors duration-300 overflow-x-hidden">
     <div class="absolute inset-0 pointer-events-none select-none overflow-hidden z-0" aria-hidden="true">
-      <div class="absolute -top-[10%] -left-[10%] w-[50vw] h-[50vw] rounded-full bg-gradient-to-tr from-[#2997ff]/10 to-[#86868b]/5 dark:from-[#2997ff]/8 dark:to-transparent blur-[120px] animate-float-slow" />
-      <div class="absolute top-[40%] -right-[10%] w-[45vw] h-[45vw] rounded-full bg-gradient-to-br from-[#ff9f0a]/8 to-transparent dark:from-[#ff9f0a]/4 dark:to-transparent blur-[140px] animate-pulse-slow" />
-      <div class="absolute -bottom-[10%] left-[15%] w-[40vw] h-[40vw] rounded-full bg-gradient-to-tr from-[#30d158]/5 to-transparent dark:from-[#30d158]/3 dark:to-transparent blur-[100px] animate-float-slow" />
+      <div class="absolute -top-[10%] -left-[10%] w-[50vw] h-[50vw] rounded-full opacity-[0.08] dark:opacity-[0.04] blur-[120px] animate-float-slow"
+        style="background: radial-gradient(circle, var(--color-accent), transparent)" />
+      <div class="absolute top-[40%] -right-[10%] w-[45vw] h-[45vw] rounded-full opacity-[0.06] dark:opacity-[0.03] blur-[140px] animate-pulse-slow"
+        style="background: radial-gradient(circle, var(--color-warning), transparent)" />
+      <div class="absolute -bottom-[10%] left-[15%] w-[40vw] h-[40vw] rounded-full opacity-[0.04] dark:opacity-[0.02] blur-[100px] animate-float-slow"
+        style="background: radial-gradient(circle, var(--color-success), transparent)" />
     </div>
 
     <div class="relative z-10 flex flex-col min-h-screen">

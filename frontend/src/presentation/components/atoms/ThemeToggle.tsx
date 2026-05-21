@@ -1,9 +1,3 @@
-/**
- * ThemeToggle Component
- * Presentation layer - UI for theme switching
- * Following Single Responsibility Principle (SRP)
- */
-
 import { motion } from 'framer-motion';
 import { useTheme } from '@presentation/hooks/useTheme';
 import { LocalStorageThemeRepository } from '@infrastructure/repositories/localStorage-theme.repository';
@@ -20,27 +14,20 @@ export function ThemeToggle({ variant = 'floating' }: ThemeToggleProps) {
     const isDark = effectiveTheme === 'dark';
 
     const buttonClass = variant === 'navbar'
-        ? 'p-sm rounded-lg bg-light-surface dark:bg-dark-surface border border-light-border dark:border-dark-border hover:bg-light-border dark:hover:bg-dark-border transition-colors transition-transform duration-200 hover:scale-105 active:scale-95'
+        ? 'p-2 rounded-lg text-text-secondary hover:text-text-primary hover:bg-accent-muted transition-all duration-200'
         : 'fixed bottom-6 right-6 z-50 p-3 rounded-full bg-surface-elevated border border-border shadow-lg hover:shadow-xl transition-shadow';
 
     return (
         <motion.button
             onClick={toggleTheme}
             className={buttonClass}
-            whileHover={{ scale: variant === 'navbar' ? 1 : 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            aria-label={`Switch to ${isDark ? 'light' : 'dark'} theme`}
-            title={`Switch to ${isDark ? 'light' : 'dark'} theme`}
+            whileTap={{ scale: 0.92 }}
+            aria-label={`Cambiar a tema ${isDark ? 'claro' : 'oscuro'}`}
         >
             <motion.div
                 initial={false}
-                animate={{
-                    rotate: isDark ? 180 : 0,
-                }}
-                transition={{
-                    duration: 0.3,
-                    ease: [0.4, 0, 0.2, 1],
-                }}
+                animate={{ rotate: isDark ? 180 : 0 }}
+                transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
             >
                 {isDark ? <MoonIcon /> : <SunIcon />}
             </motion.div>
@@ -52,15 +39,14 @@ function SunIcon() {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
+            width="20"
+            height="20"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className="text-text-primary"
             aria-hidden="true"
         >
             <circle cx="12" cy="12" r="4" />
@@ -80,15 +66,14 @@ function MoonIcon() {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
+            width="20"
+            height="20"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className="text-text-primary"
             aria-hidden="true"
         >
             <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
