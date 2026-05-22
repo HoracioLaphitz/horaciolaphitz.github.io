@@ -1,7 +1,8 @@
 .agent/
 .agents/
 .env
-.env.local
+.env.example
+
 .vercel
 .astro/
 __pycache__/
