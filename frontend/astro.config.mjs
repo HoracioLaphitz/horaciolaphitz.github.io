@@ -18,6 +18,12 @@ export default defineConfig({
       fs: {
         allow: ['..'],
       },
+      proxy: {
+        '/api': {
+          target: 'http://localhost:8000',
+          changeOrigin: true,
+        },
+      },
     },
     ssr: {
       noExternal: ['@tabler/icons-react', 'framer-motion'],
@@ -28,10 +34,10 @@ export default defineConfig({
     resolve: {
       alias: {
         '@domain': resolve(__dirname, 'src/domain'),
-        '@application': resolve(__dirname, 'src/application'),
         '@infrastructure': resolve(__dirname, 'src/infrastructure'),
         '@presentation': resolve(__dirname, 'src/presentation'),
         '@shared': resolve(__dirname, 'src/shared'),
+        '@data': resolve(__dirname, 'src/data'),
       },
     },
   },

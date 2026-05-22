@@ -1,0 +1,35 @@
+{
+  "name": "Horacio Laphitz",
+  "role": "Analista de Datos",
+  "descriptions": [
+    "Analista de Datos orientado a la resolución de problemas, con experiencia en sistemas de gestión, administración y soporte al usuario."
+  ],
+  "contact": {
+    "email": "horaciolaphitz99@gmail.com",
+    "location": "Posadas, Misiones, Argentina",
+    "linkedin": "https://www.linkedin.com/in/horacio-laphitz/",
+    "github": "https://github.com/horaciolaphitz",
+    "credly": "https://www.credly.com/users/horacio-laphitz"
+  },
+  "skills": [
+    "Python",
+    "SQL",
+    "R",
+    "JavaScript",
+    "TypeScript",
+    "Power BI",
+    "Tableau",
+    "Excel Avanzado",
+    "Pandas",
+    "NumPy",
+    "Scikit-learn",
+    "TensorFlow",
+    "PostgreSQL",
+    "MySQL",
+    "MongoDB",
+    "Databricks",
+    "Git",
+    "Docker",
+    "Tango Gestión"
+  ]
+}

@@ -1,37 +1,30 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection, render } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
 import ArticleLayout from "@presentation/layouts/ArticleLayout.astro";
-import { ResourceDownload } from "@presentation/components/proyectos/ResourceDownload";
 
 export async function getStaticPaths() {
-  const proyectos = await getCollection("proyectos");
-  return proyectos.map((proyecto) => ({
-    params: { slug: proyecto.slug },
-    props: { proyecto },
+  const proyectos = await getCollection('proyectos');
+  return proyectos.map((entry: CollectionEntry<'proyectos'>) => ({
+    params: { slug: entry.id.replace(/\.\w+$/, '') },
+    props: { entry },
   }));
 }
 
-const { proyecto } = Astro.props;
-const { Content } = await proyecto.render();
+const { entry } = Astro.props as { entry: CollectionEntry<'proyectos'> };
+const { Content } = await render(entry);
+
+const tags = entry.data.technologies;
 ---
 
 <ArticleLayout
-  title={proyecto.data.title}
-  description={proyecto.data.description}
-  category={proyecto.data.category}
-  pubDate={proyecto.data.pubDate}
-  tags={proyecto.data.tags}
-  author={proyecto.data.author}
-  github={proyecto.data.github}
-  dashboard={proyecto.data.dashboard}
-  currentPath={`/proyectos/${proyecto.slug}`}
+  title={entry.data.title}
+  description={entry.data.description}
+  category={entry.data.category}
+  pubDate={entry.data.createdAt}
+  tags={tags}
+  github={entry.data.githubUrl}
+  dashboard={entry.data.demoUrl}
 >
   <Content />
-
-  <ResourceDownload
-    client:load
-    notebooks={proyecto.data.resources?.notebooks}
-    pdfs={proyecto.data.resources?.pdfs}
-    datasets={proyecto.data.resources?.datasets}
-  />
 </ArticleLayout>

@@ -1,0 +1,458 @@
+[
+  {
+    "slug": "eda-procesos",
+    "title": "EDA Procesos",
+    "description": "Script creado en python para automatizar el proceso de analisis de datos",
+    "category": "Análisis de Datos",
+    "featured": true,
+    "status": "completed",
+    "technologies": [
+      {
+        "name": "Python"
+      },
+      {
+        "name": "Jupyter"
+      },
+      {
+        "name": "R"
+      },
+      {
+        "name": "Jupyter Notebook"
+      }
+    ],
+    "githubUrl": "https://github.com/HoracioLaphitz/EDA-Procesos",
+    "demoUrl": null
+  },
+  {
+    "slug": "prediceprecioacciones",
+    "title": "PredicePrecioAcciones",
+    "description": "Modelo de aprendizaje automatico para realizar predicciones de acciones dentro de la bolsa de Nueva York",
+    "category": "Machine Learning",
+    "featured": true,
+    "status": "completed",
+    "technologies": [
+      {
+        "name": "Jupyter"
+      },
+      {
+        "name": "R"
+      },
+      {
+        "name": "Jupyter Notebook"
+      }
+    ],
+    "githubUrl": "https://github.com/HoracioLaphitz/PredicePrecioAcciones",
+    "demoUrl": null
+  },
+  {
+    "slug": "clustering",
+    "title": "Clustering",
+    "description": "Proceso de Clusterizacion de Casas de la Ciudad de California",
+    "category": "Otros",
+    "featured": true,
+    "status": "completed",
+    "technologies": [
+      {
+        "name": "Python"
+      },
+      {
+        "name": "Jupyter"
+      },
+      {
+        "name": "R"
+      },
+      {
+        "name": "Jupyter Notebook"
+      }
+    ],
+    "githubUrl": "https://github.com/HoracioLaphitz/Clustering",
+    "demoUrl": null
+  },
+  {
+    "slug": "analisis-datos-2",
+    "title": "Analisis Datos 2",
+    "description": "Este Script de python es utilizado para analisis de datos(general), el mismo permite poder automatizar el proceso de analisis de los datos, se debe reemplazar la linea data.csv por el nombre del archivo de datos a analizar",
+    "category": "Análisis de Datos",
+    "featured": true,
+    "status": "completed",
+    "technologies": [
+      {
+        "name": "Python"
+      },
+      {
+        "name": "Jupyter"
+      },
+      {
+        "name": "R"
+      },
+      {
+        "name": "Jupyter Notebook"
+      }
+    ],
+    "githubUrl": "https://github.com/HoracioLaphitz/Analisis-Datos-2",
+    "demoUrl": null
+  },
+  {
+    "slug": "etl",
+    "title": "ETL",
+    "description": "Ejercicio de Ingeniería de Datos. Extraer , Transformar y Cargar",
+    "category": "Ingeniería de Datos",
+    "featured": true,
+    "status": "completed",
+    "technologies": [
+      {
+        "name": "Python"
+      },
+      {
+        "name": "R"
+      }
+    ],
+    "githubUrl": "https://github.com/HoracioLaphitz/ETL",
+    "demoUrl": null
+  },
+  {
+    "slug": "extraer-transformar-cargar",
+    "title": "Extraer Transformar Cargar",
+    "description": "Este script de python es una automatizacion para : carga , transformacion y extraccion de datos de formatos como : XML , CSV y JSON , para posteriormente ser utilizados para ser analizados o entrenamiento de modelo de aprendizaje automático",
+    "category": "Machine Learning",
+    "featured": true,
+    "status": "completed",
+    "technologies": [
+      {
+        "name": "Python"
+      },
+      {
+        "name": "Jupyter"
+      },
+      {
+        "name": "R"
+      },
+      {
+        "name": "Jupyter Notebook"
+      }
+    ],
+    "githubUrl": "https://github.com/HoracioLaphitz/Extraer-Transformar-Cargar",
+    "demoUrl": null
+  },
+  {
+    "slug": "prediccionimagenes",
+    "title": "PrediccionImagenes",
+    "description": "Este Proyecto de Aprendizaje automatico realiza una prediccion basado en imagenes utilizadas dentro del entrenamiento, previamente convirtiendo estas imagenes a pixeles para que el script entienda de que imagen se trata.",
+    "category": "Machine Learning",
+    "featured": true,
+    "status": "completed",
+    "technologies": [
+      {
+        "name": "Python"
+      },
+      {
+        "name": "Jupyter"
+      },
+      {
+        "name": "R"
+      },
+      {
+        "name": "Jupyter Notebook"
+      }
+    ],
+    "githubUrl": "https://github.com/HoracioLaphitz/PrediccionImagenes",
+    "demoUrl": null
+  },
+  {
+    "slug": "redes-convolucionales",
+    "title": "Redes Convolucionales",
+    "description": "Este Script en Python muestra 2 tipos de redes neuronales , la primera realiza una prediccion de que numero se trata(tener en cuenta que el set de datos utilizados es sobre numeros escritos a mano) y la segunda red Convolucional trata sobre un clasificador de perros y gatos(también utilizando un set de datos proveniente de la libreria Tensorflow)",
+    "category": "Deep Learning",
+    "featured": true,
+    "status": "completed",
+    "technologies": [
+      {
+        "name": "Python"
+      },
+      {
+        "name": "TensorFlow"
+      },
+      {
+        "name": "Jupyter"
+      },
+      {
+        "name": "R"
+      },
+      {
+        "name": "Jupyter Notebook"
+      }
+    ],
+    "githubUrl": "https://github.com/HoracioLaphitz/Redes-Convolucionales",
+    "demoUrl": null
+  },
+  {
+    "slug": "warriors-games",
+    "title": "Warriors Games",
+    "description": "Este script de python lo que hace es comparar los juegos de visitante y de local del equipo de baloncesto Golden State Warriors",
+    "category": "Análisis de Datos",
+    "featured": true,
+    "status": "completed",
+    "technologies": [
+      {
+        "name": "Python"
+      },
+      {
+        "name": "Jupyter"
+      },
+      {
+        "name": "R"
+      },
+      {
+        "name": "Jupyter Notebook"
+      }
+    ],
+    "githubUrl": "https://github.com/HoracioLaphitz/Warriors-Games",
+    "demoUrl": null
+  },
+  {
+    "slug": "regresion-lineal",
+    "title": "Regresion_Lineal",
+    "description": "Modelo de Regresion Lineal el cual Toma datos en grados Celcius y los transforma de manera automatica a grados Fahrenheit",
+    "category": "Machine Learning",
+    "featured": true,
+    "status": "completed",
+    "technologies": [
+      {
+        "name": "Python"
+      },
+      {
+        "name": "Jupyter"
+      },
+      {
+        "name": "R"
+      },
+      {
+        "name": "Jupyter Notebook"
+      }
+    ],
+    "githubUrl": "https://github.com/HoracioLaphitz/Regresion_Lineal",
+    "demoUrl": null
+  },
+  {
+    "slug": "titanic-arbol-de-decision",
+    "title": "TITANIC Arbol_de_Decision",
+    "description": "Este script de python analiza a las personas que asistieron al hundimiento del Titanic, además realiza una predicción si una nueva persona que no haya estado en el barco tendría la posibilidad de sobrevivir o no.",
+    "category": "Análisis de Datos",
+    "featured": true,
+    "status": "completed",
+    "technologies": [
+      {
+        "name": "Python"
+      },
+      {
+        "name": "Jupyter"
+      },
+      {
+        "name": "R"
+      },
+      {
+        "name": "Jupyter Notebook"
+      }
+    ],
+    "githubUrl": "https://github.com/HoracioLaphitz/TITANIC-Arbol_de_Decision",
+    "demoUrl": null
+  },
+  {
+    "slug": "autoencoder",
+    "title": "Autoencoder",
+    "description": "Este script de python es una Red Nueronal capaz de reconocer images borrosas y predecir a que numero corresponde.",
+    "category": "Deep Learning",
+    "featured": true,
+    "status": "completed",
+    "technologies": [
+      {
+        "name": "Python"
+      },
+      {
+        "name": "Jupyter"
+      },
+      {
+        "name": "R"
+      },
+      {
+        "name": "Jupyter Notebook"
+      }
+    ],
+    "githubUrl": "https://github.com/HoracioLaphitz/Autoencoder",
+    "demoUrl": null
+  },
+  {
+    "slug": "deepdreams",
+    "title": "DeepDreams",
+    "description": "Modelo de Aprendizaje automático creado para el estudio del entrenamiento de las Redes Neuronales",
+    "category": "Deep Learning",
+    "featured": true,
+    "status": "completed",
+    "technologies": [
+      {
+        "name": "Python"
+      },
+      {
+        "name": "Jupyter"
+      },
+      {
+        "name": "R"
+      },
+      {
+        "name": "Jupyter Notebook"
+      }
+    ],
+    "githubUrl": "https://github.com/HoracioLaphitz/DeepDreams",
+    "demoUrl": null
+  },
+  {
+    "slug": "redes-generativas-adversariales",
+    "title": "Redes Generativas Adversariales",
+    "description": "Algoritmo de Aprendizaje no supervisado, capaz de competir con otro para poder entrenarse.",
+    "category": "Otros",
+    "featured": true,
+    "status": "completed",
+    "technologies": [
+      {
+        "name": "Python"
+      },
+      {
+        "name": "Jupyter"
+      },
+      {
+        "name": "R"
+      },
+      {
+        "name": "Jupyter Notebook"
+      }
+    ],
+    "githubUrl": "https://github.com/HoracioLaphitz/Redes-Generativas-Adversariales",
+    "demoUrl": null
+  },
+  {
+    "slug": "capitalizacion-del-mercado-de-los-bancos-mas-grandes",
+    "title": "Capitalizacion Del Mercado De Los Bancos Mas Grandes",
+    "description": "Este Script de pyton se encarga de utilizar la tecnica de Webscrapping para obtener datos de una pagina web, en especifico de una tabla dentro de la misma y pasarlos por el proceso ETL para hacer estos datos mas útiles",
+    "category": "Ingeniería de Datos",
+    "featured": true,
+    "status": "completed",
+    "technologies": [
+      {
+        "name": "Python"
+      },
+      {
+        "name": "Jupyter"
+      },
+      {
+        "name": "SQL"
+      },
+      {
+        "name": "R"
+      },
+      {
+        "name": "Jupyter Notebook"
+      }
+    ],
+    "githubUrl": "https://github.com/HoracioLaphitz/Capitalizacion-del-Mercado-de-los-Bancos-mas-Grandes",
+    "demoUrl": null
+  },
+  {
+    "slug": "django-crud-react",
+    "title": "Django Crud React",
+    "description": "Proyecto que crea una API enpoint para enviar Datos",
+    "category": "Desarrollo Web",
+    "featured": true,
+    "status": "completed",
+    "technologies": [
+      {
+        "name": "Python"
+      },
+      {
+        "name": "R"
+      }
+    ],
+    "githubUrl": "https://github.com/HoracioLaphitz/django-crud-react",
+    "demoUrl": null
+  },
+  {
+    "slug": "cancer-issue",
+    "title": "Cancer_issue",
+    "description": "Documento que Describe las posibilidades de pacientes para sobrevivir al cancer (En Proceso)",
+    "category": "Otros",
+    "featured": false,
+    "status": "completed",
+    "technologies": [
+      {
+        "name": "Python"
+      },
+      {
+        "name": "Jupyter"
+      },
+      {
+        "name": "R"
+      },
+      {
+        "name": "Jupyter Notebook"
+      }
+    ],
+    "githubUrl": "https://github.com/HoracioLaphitz/cancer_issue",
+    "demoUrl": null
+  },
+  {
+    "slug": "marketbasketanalytics",
+    "title": "MarketBasketAnalytics",
+    "description": "técnica de minería de datos que busca descubrir patrones de compra entre productos que suelen adquirirse juntos",
+    "category": "Análisis de Datos",
+    "featured": false,
+    "status": "completed",
+    "technologies": [
+      {
+        "name": "Jupyter"
+      },
+      {
+        "name": "R"
+      },
+      {
+        "name": "Jupyter Notebook"
+      }
+    ],
+    "githubUrl": "https://github.com/HoracioLaphitz/MarketBasketAnalytics",
+    "demoUrl": null
+  },
+  {
+    "slug": "eda-ibm",
+    "title": "EDA_IBM",
+    "description": "Analisis exploratorio de datos, set IBM HR Analytics Attrition",
+    "category": "Análisis de Datos",
+    "featured": false,
+    "status": "completed",
+    "technologies": [
+      {
+        "name": "Jupyter"
+      },
+      {
+        "name": "R"
+      },
+      {
+        "name": "Jupyter Notebook"
+      }
+    ],
+    "githubUrl": "https://github.com/HoracioLaphitz/EDA_IBM",
+    "demoUrl": null
+  },
+  {
+    "slug": "proyecto-sanoyfresco",
+    "title": "Proyecto SanoYFresco",
+    "description": "Proyecto: Proyecto SanoYFresco",
+    "category": "Otros",
+    "featured": false,
+    "status": "completed",
+    "technologies": [
+      {
+        "name": "R"
+      }
+    ],
+    "githubUrl": null,
+    "demoUrl": null
+  }
+]

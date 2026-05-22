@@ -150,8 +150,8 @@ export function Contact({ contactInfo = {} }: Props) {
                             aria-live="polite"
                             className={`p-3 sm:p-md rounded-lg text-sm sm:text-base ${
                                 submitMessage.type === 'success'
-                                    ? 'bg-[#34c759]/10 text-[#34c759]'
-                                    : 'bg-[#ff3b30]/10 text-[#ff3b30]'
+                                    ? 'bg-success/10 text-success'
+                                    : 'bg-error/10 text-error'
                             }`}
                         >
                             {submitMessage.text}

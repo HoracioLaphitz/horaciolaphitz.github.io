@@ -203,7 +203,7 @@ async function processGitHubRepos() {
 
       // Check if it's the portfolio repo (demo URL)
       if (repo.name === 'HoracioLaphitz.github.io') {
-        projectData.demoUrl = 'https://horaciolaphitz.github.io';
+        projectData.demoUrl = 'https://horaciolaphitz.vercel.app';
         projectData.featured = true;
       }
 

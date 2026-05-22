@@ -1,0 +1,123 @@
+---
+export interface Props {
+  name?: string;
+  role?: string;
+  description?: string;
+  avatar?: string;
+  yearsExperience?: number;
+  projectsCount?: number;
+  certificationsCount?: number;
+}
+
+const {
+  name = 'Horacio Laphitz',
+  role = 'Analista de Datos',
+  description,
+  avatar,
+  yearsExperience,
+  projectsCount,
+  certificationsCount,
+} = Astro.props;
+
+const hasStats = yearsExperience !== undefined || projectsCount !== undefined || certificationsCount !== undefined;
+---
+
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+  <div class="relative z-10 text-center max-w-3xl mx-auto px-6 py-4xl">
+    {avatar && (
+      <div class="mb-8 flex justify-center animate-fade-in-up">
+        <div class="relative">
+          <div class="absolute inset-0 rounded-full bg-accent/20 blur-xl scale-110" />
+          <img
+            src={avatar}
+            alt={name}
+            width={112}
+            height={112}
+            loading="eager"
+            decoding="async"
+            class="relative w-28 h-28 rounded-full object-cover border border-border shadow-lg"
+          />
+        </div>
+      </div>
+    )}
+
+    <div class="mb-5 animate-fade-in-up animate-delay-100">
+      <span class="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-medium rounded-full border" style="border-color: var(--color-border); color: #34c759; background-color: var(--color-surface); opacity: 0.6;">
+        <span class="w-1.5 h-1.5 rounded-full bg-[#34c759]" />
+        Disponible para proyectos
+      </span>
+    </div>
+
+    <div class="animate-fade-in-up animate-delay-200">
+      <h1 class="text-5xl md:text-7xl font-bold mb-4 tracking-tight leading-[1.05]" style="color: var(--color-text-primary);">
+        {name}
+      </h1>
+    </div>
+
+    <div class="animate-fade-in-up animate-delay-300">
+      <p class="text-xl md:text-2xl font-medium mb-6" style="color: var(--color-text-secondary);">
+        {role}
+      </p>
+    </div>
+
+    {description && (
+      <div class="animate-fade-in-up animate-delay-400">
+        <p class="text-base md:text-lg mb-10 max-w-xl mx-auto leading-relaxed" style="color: var(--color-text-secondary);">
+          {description}
+        </p>
+      </div>
+    )}
+
+    <div class="animate-fade-in-up animate-delay-500 flex gap-4 justify-center flex-wrap mb-10">
+      <a
+        href="#proyectos"
+        class="inline-flex items-center justify-center font-semibold rounded-full px-8 py-3 text-base text-text-inverse transition-all duration-300"
+        style="background-color: var(--color-accent);"
+      >
+        Ver Proyectos
+      </a>
+      <a
+        href="#contacto"
+        class="inline-flex items-center justify-center font-semibold rounded-full px-8 py-3 text-base transition-all duration-300 border"
+        style="color: var(--color-text-primary); background-color: var(--color-surface); border-color: var(--color-border);"
+      >
+        Contacto
+      </a>
+    </div>
+
+    {hasStats && (
+      <div class="animate-fade-in-up animate-delay-600 flex items-center justify-center gap-8 pt-8 border-t border-border">
+        {yearsExperience !== undefined && (
+          <div class="flex flex-col items-center gap-1">
+            <span class="text-3xl font-bold text-accent tabular-nums">{yearsExperience}+</span>
+            <span class="text-xs font-medium uppercase tracking-widest" style="color: var(--color-text-tertiary);">Años exp.</span>
+          </div>
+        )}
+        {yearsExperience !== undefined && (projectsCount !== undefined || certificationsCount !== undefined) && (
+          <span class="h-8 w-px bg-border" aria-hidden />
+        )}
+        {projectsCount !== undefined && (
+          <div class="flex flex-col items-center gap-1">
+            <span class="text-3xl font-bold text-accent tabular-nums">{projectsCount}+</span>
+            <span class="text-xs font-medium uppercase tracking-widest" style="color: var(--color-text-tertiary);">Proyectos</span>
+          </div>
+        )}
+        {projectsCount !== undefined && certificationsCount !== undefined && (
+          <span class="h-8 w-px bg-border" aria-hidden />
+        )}
+        {certificationsCount !== undefined && (
+          <div class="flex flex-col items-center gap-1">
+            <span class="text-3xl font-bold text-accent tabular-nums">{certificationsCount}</span>
+            <span class="text-xs font-medium uppercase tracking-widest" style="color: var(--color-text-tertiary);">Certs.</span>
+          </div>
+        )}
+      </div>
+    )}
+  </div>
+
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-fade-in-up animate-delay-700" aria-hidden>
+    <div class="animate-float w-5 h-8 border-2 rounded-full flex items-start justify-center pt-1.5" style="border-color: var(--color-text-tertiary); opacity: 0.3;">
+      <div class="w-1 h-2 bg-accent rounded-full" />
+    </div>
+  </div>
+</section>

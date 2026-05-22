@@ -1,7 +1,8 @@
 ---
 import PageLayout from '@presentation/layouts/PageLayout.astro';
-import { Timeline } from '@presentation/components/sections/Timeline.tsx';
-import { PROFILE_DATA } from '@data/profile-data';
+import Timeline from '@presentation/components/sections/Timeline.astro';
+import { getExperiences } from '../lib/data/getExperience';
+import { getSkills } from '../lib/data/getProfile';
 ---
 
 <PageLayout
@@ -20,14 +21,14 @@ import { PROFILE_DATA } from '@data/profile-data';
       </div>
 
       <div class="opacity-0 animate-fade-in-up animate-delay-200">
-        <Timeline client:visible experiences={PROFILE_DATA.experiences} />
+        <Timeline experiences={getExperiences()} />
       </div>
 
       <div class="mt-5xl opacity-0 animate-fade-in-up animate-delay-400">
         <h2 class="text-3xl font-bold mb-xl text-center text-text-primary">Habilidades Técnicas</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-lg">
           {
-            PROFILE_DATA.skills?.map((skill: string, index: number) => (
+            getSkills().map((skill: string, index: number) => (
               <div
                 class="p-lg rounded-xl border border-border transition-all duration-300 hover:shadow-md opacity-0 animate-fade-in-up"
                 style={`animation-delay: ${Math.min(600 + index * 50, 800)}ms; background-color: var(--color-surface)`}

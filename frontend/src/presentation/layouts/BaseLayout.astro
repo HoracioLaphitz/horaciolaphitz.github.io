@@ -5,7 +5,7 @@ import '../styles/tokens.css';
 import '../styles/themes/light.css';
 import '../styles/themes/dark.css';
 import { Header } from '../components/layout/Header';
-import { Footer } from '../components/layout/Footer';
+import Footer from '../components/layout/Footer.astro';
 import { ScrollProgress } from '../components/ui/ScrollProgress';
 
 interface Props {
@@ -24,6 +24,14 @@ const { title, description = 'Portfolio profesional de desarrollo web' } = Astro
     <meta name="description" content={description} />
     <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0a0a0c" media="(prefers-color-scheme: dark)" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://horaciolaphitz.vercel.app" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <link rel="canonical" href={`https://horaciolaphitz.vercel.app${Astro.url.pathname}`} />
     <title>{title}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

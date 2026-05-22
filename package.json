@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "pnpm --filter frontend dev",
+    "dev:all": "pnpm --filter backend dev & pnpm --filter frontend dev",
     "build": "pnpm --filter frontend build && pnpm --filter backend build",
     "preview": "pnpm --filter frontend preview",
     "backend:dev": "pnpm --filter backend dev",

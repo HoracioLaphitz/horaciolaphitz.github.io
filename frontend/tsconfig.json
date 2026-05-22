@@ -1,7 +1,6 @@
 {
   "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
-    "ignoreDeprecations": "6.0",
     "target": "ES2022",
     "module": "ESNext",
     "moduleResolution": "bundler",
@@ -27,9 +26,6 @@
     "paths": {
       "@domain/*": [
         "src/domain/*"
-      ],
-      "@application/*": [
-        "src/application/*"
       ],
       "@infrastructure/*": [
         "src/infrastructure/*"

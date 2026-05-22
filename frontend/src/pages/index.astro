@@ -1,43 +1,35 @@
 ---
-import { getCollection } from 'astro:content';
 import PageLayout from '@presentation/layouts/PageLayout.astro';
-import { Hero } from '@presentation/components/sections/Hero.tsx';
-import { About } from '@presentation/components/sections/About.tsx';
-import { Timeline } from '@presentation/components/sections/Timeline.tsx';
-import { Services } from '@presentation/components/sections/Services.tsx';
-import { ProjectCategories } from '@presentation/components/sections/ProjectCategories.tsx';
+import Hero from '@presentation/components/sections/Hero.astro';
+import About from '@presentation/components/sections/About.astro';
+import Timeline from '@presentation/components/sections/Timeline.astro';
+import Services from '@presentation/components/sections/Services.astro';
+import { ProjectsGrid } from '@presentation/components/sections/ProjectsGrid';
 import { Contact } from '@presentation/components/sections/Contact.tsx';
-import { PROFILE_DATA } from '@data/profile-data';
+import { getProjects } from '../lib/data/getProjects';
+import { getProfile, getSkills, getContactInfo } from '../lib/data/getProfile';
+import { getExperiences } from '../lib/data/getExperience';
 
-const entries = await getCollection('proyectos');
-const proyectos = entries.map((entry) => ({
-  slug: entry.slug,
-  title: entry.data.title,
-  description: entry.data.description,
-  category: entry.data.category,
-  featured: entry.data.featured,
-  status: entry.data.status,
-  technologies: entry.data.technologies.map((t: string) => ({ name: t })),
-}));
+const projects = getProjects();
+const profile = getProfile();
+const skills = getSkills();
+const experiences = getExperiences();
+const contactInfo = getContactInfo();
 ---
 
 <PageLayout title="Portfolio" description="Data Analyst & Visualization Expert.">
   <Hero
-    client:load
-    name={PROFILE_DATA.name}
-    role={PROFILE_DATA.role}
-    description={PROFILE_DATA.descriptions[0]}
-    avatar={(PROFILE_DATA as any).avatar || ''}
+    name={profile.name}
+    role={profile.role}
+    description={profile.descriptions[0]}
   />
-  <About 
-    client:visible 
-    bio={PROFILE_DATA.descriptions?.[1] || PROFILE_DATA.descriptions?.[0]} 
-    skills={(PROFILE_DATA as any).skills?.flatMap((sg: any) => sg.items?.map((i: any) => i.name) || []) || []} 
-    avatar={(PROFILE_DATA as any).avatar || ''} 
-    name={PROFILE_DATA.name} 
+  <About
+    bio={profile.descriptions[0]}
+    skills={skills}
+    name={profile.name}
   />
-  <ProjectCategories posts={proyectos} client:load />
-  <Services client:visible />
-  <Timeline client:visible experiences={PROFILE_DATA.experiences} />
-  <Contact client:visible contactInfo={PROFILE_DATA.contact} />
+  <ProjectsGrid projects={projects} client:visible compact />
+  <Services />
+  <Timeline experiences={experiences} />
+  <Contact client:visible contactInfo={contactInfo} />
 </PageLayout>

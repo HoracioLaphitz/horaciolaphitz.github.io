@@ -1,0 +1,101 @@
+---
+export interface NotebookAsset {
+  name: string;
+  url: string;
+}
+
+export interface Props {
+  title: string;
+  description: string;
+  has_notebook: boolean;
+  notebook_url?: string;
+  html_url?: string;
+  assets?: NotebookAsset[];
+}
+
+const { title, description, has_notebook, notebook_url, html_url, assets = [] } = Astro.props;
+---
+
+<div
+  class="rounded-xl border border-border overflow-hidden transition-all duration-300 hover:shadow-md"
+  style="background-color: var(--color-surface)"
+>
+  <div class="p-lg">
+    <h3 class="text-xl font-bold mb-2 text-text-primary">{title}</h3>
+
+    {description && (
+      <p class="text-text-secondary text-sm mb-4">{description}</p>
+    )}
+
+    {has_notebook && (
+      <div class="mb-4 flex flex-wrap gap-2">
+        {notebook_url && (
+          <a
+            href={notebook_url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center px-4 py-2 rounded-xl text-sm font-medium text-text-inverse transition-all duration-200"
+            style="background-color: var(--color-accent)"
+          >
+            View Notebook
+          </a>
+        )}
+        {html_url && (
+          <a
+            href={html_url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center px-4 py-2 rounded-xl text-sm font-medium border border-border text-text-primary hover:bg-accent-muted transition-all duration-200"
+          >
+            View HTML Export
+          </a>
+        )}
+      </div>
+    )}
+
+    {assets.length > 0 && (
+      <details class="group">
+        <summary
+          class="text-sm font-medium text-accent hover:opacity-80 transition-opacity cursor-pointer list-none flex items-center gap-1.5"
+        >
+          <svg
+            class="w-4 h-4 transition-transform duration-200 group-open:rotate-90"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+          Assets ({assets.length})
+        </summary>
+        <div class="mt-2 space-y-1">
+          {assets.map((asset) => (
+            <div class="flex items-start gap-2 text-sm">
+              <svg
+                class="h-4 w-4 mt-0.5 shrink-0 text-text-tertiary"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 6.5a2.5 2.5 0 110 5 2.5 2.5 0 010-5zM12 2a10 10 0 100 20 10 10 0 000-20zm6.5 8.5a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"
+                />
+              </svg>
+              <a
+                href={asset.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="underline text-text-secondary hover:text-text-primary"
+              >
+                {asset.name}
+              </a>
+            </div>
+          ))}
+        </div>
+      </details>
+    )}
+  </div>
+</div>

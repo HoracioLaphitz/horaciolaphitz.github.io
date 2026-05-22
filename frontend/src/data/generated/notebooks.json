@@ -1,0 +1,302 @@
+[
+  {
+    "slug": "proyecto-final",
+    "title": "PROYECTO FINAL",
+    "description": "",
+    "has_notebook": true,
+    "notebook_url": "/Proyectos/Notebooks/PROYECTO-FINAL/Copia de PROYECTO-FINAL.ipynb",
+    "html_url": "/notebooks-html/proyecto-final.html",
+    "assets": []
+  },
+  {
+    "slug": "pandas-profiling",
+    "title": "Pandas Profiling",
+    "description": "",
+    "has_notebook": true,
+    "notebook_url": "/Proyectos/Notebooks/Pandas_Profiling/Pandas_Profiling.ipynb",
+    "html_url": "/notebooks-html/Pandas_Profiling.html",
+    "assets": []
+  },
+  {
+    "slug": "predice-precios-casas",
+    "title": "Predice Precios Casas",
+    "description": "",
+    "has_notebook": true,
+    "notebook_url": "/Proyectos/Notebooks/Predice-Precios-Casas/Predice-Precios-Casas.ipynb",
+    "html_url": "/notebooks-html/Predice-Precios-Casas.html",
+    "assets": []
+  },
+  {
+    "slug": "prediceprecioacciones",
+    "title": "PredicePrecioAcciones",
+    "description": "",
+    "has_notebook": true,
+    "notebook_url": "/Proyectos/Notebooks/PredicePrecioAcciones/PredicePrecioAcciones.ipynb",
+    "html_url": "/notebooks-html/PredicePrecioAcciones.html",
+    "assets": []
+  },
+  {
+    "slug": "primermodeloregresionlineal",
+    "title": "PrimerModeloRegresionLineal",
+    "description": "",
+    "has_notebook": true,
+    "notebook_url": "/Proyectos/Notebooks/PrimerModeloRegresionLineal/PrimerModeloRegresionLineal.ipynb",
+    "html_url": "/notebooks-html/PrimerModeloRegresionLineal.html",
+    "assets": []
+  },
+  {
+    "slug": "programacion-orientada-a-objetos",
+    "title": "Programacion Orientada a Objetos",
+    "description": "",
+    "has_notebook": true,
+    "notebook_url": "/Proyectos/Notebooks/Programacion_Orientada_a_Objetos/Programacion_Orientada_a_Objetos.ipynb",
+    "html_url": "/notebooks-html/Programacion_Orientada_a_Objetos.html",
+    "assets": []
+  },
+  {
+    "slug": "red-neuronal-convolucional",
+    "title": "Red Neuronal Convolucional - Proyecto Profesional",
+    "description": "**Proyecto de Ingeniería de Datos** - Redes Neuronales Convolucionales para clasificación de imágenes MNIST y Cats vs Dogs.",
+    "has_notebook": true,
+    "notebook_url": "/Proyectos/Notebooks/Red-Neuronal-Convolucional/Red Neuronal Convolucional.ipynb",
+    "html_url": "/notebooks-html/Red Neuronal Convolucional.html",
+    "assets": []
+  },
+  {
+    "slug": "red-de-clasificacion",
+    "title": "Red de Clasificacion",
+    "description": "",
+    "has_notebook": true,
+    "notebook_url": "/Proyectos/Notebooks/Red-de-Clasificacion/Red de Clasificacion.ipynb",
+    "html_url": "/notebooks-html/Red de Clasificacion.html",
+    "assets": []
+  },
+  {
+    "slug": "reddeclasificacion",
+    "title": "RedDeClasificacion",
+    "description": "",
+    "has_notebook": true,
+    "notebook_url": "/Proyectos/Notebooks/RedDeClasificacion/RedDeClasificacion.ipynb",
+    "html_url": "/notebooks-html/RedDeClasificacion2.html",
+    "assets": []
+  },
+  {
+    "slug": "reddeclasificacion2",
+    "title": "RedDeClasificacion2",
+    "description": "",
+    "has_notebook": true,
+    "notebook_url": "/Proyectos/Notebooks/RedDeClasificacion2/RedDeClasificacion2.ipynb",
+    "html_url": null,
+    "assets": []
+  },
+  {
+    "slug": "reddeclasificacion2-copia",
+    "title": "RedDeClasificacion2 Copia",
+    "description": "",
+    "has_notebook": true,
+    "notebook_url": "/Proyectos/Notebooks/RedDeClasificacion2-Copia/Copia de RedDeClasificacion2.ipynb",
+    "html_url": "/notebooks-html/Ia.html",
+    "assets": []
+  },
+  {
+    "slug": "redneuronalterremotos",
+    "title": "RedNeuronalTerremotos",
+    "description": "",
+    "has_notebook": true,
+    "notebook_url": "/Proyectos/Notebooks/RedNeuronalTerremotos/RedNeuronalTerremotos.ipynb",
+    "html_url": "/notebooks-html/RedNeuronalTerremotos.html",
+    "assets": []
+  },
+  {
+    "slug": "red-clasificacion-optimizado",
+    "title": "Red Clasificacion Optimizado",
+    "description": "",
+    "has_notebook": true,
+    "notebook_url": "/Proyectos/Notebooks/Red_Clasificacion_Optimizado/Red_Clasificacion_Optimizado.ipynb",
+    "html_url": "/notebooks-html/Red_Clasificacion_Optimizado.html",
+    "assets": []
+  },
+  {
+    "slug": "regresion-logistica",
+    "title": "Regresion Logistica",
+    "description": "",
+    "has_notebook": true,
+    "notebook_url": "/Proyectos/Notebooks/Regresion-Logistica/Regresion Logistica.ipynb",
+    "html_url": "/notebooks-html/Regresion Logistica.html",
+    "assets": []
+  },
+  {
+    "slug": "text-ia",
+    "title": "Text IA",
+    "description": "",
+    "has_notebook": true,
+    "notebook_url": "/Proyectos/Notebooks/Text-IA/Text-IA.ipynb",
+    "html_url": "/notebooks-html/Text-IA.html",
+    "assets": []
+  },
+  {
+    "slug": "transferenciaaprendizaje",
+    "title": "TransferenciaAprendizaje",
+    "description": "",
+    "has_notebook": true,
+    "notebook_url": "/Proyectos/Notebooks/TransferenciaAprendizaje/TransferenciaAprendizaje.ipynb",
+    "html_url": "/notebooks-html/TransferenciaAprendizaje.html",
+    "assets": []
+  },
+  {
+    "slug": "transferenciaaprendizaje-copia",
+    "title": "TransferenciaAprendizaje Copia",
+    "description": "",
+    "has_notebook": true,
+    "notebook_url": "/Proyectos/Notebooks/TransferenciaAprendizaje-Copia/Copia de TransferenciaAprendizaje.ipynb",
+    "html_url": null,
+    "assets": []
+  },
+  {
+    "slug": "sd-w-colab-drive",
+    "title": "sd w colab drive",
+    "description": "",
+    "has_notebook": true,
+    "notebook_url": "/Proyectos/Notebooks/sd_w_colab_drive/Copia de sd_w_colab_drive.ipynb",
+    "html_url": "/notebooks-html/Copia de sd_w_colab_drive.html",
+    "assets": []
+  },
+  {
+    "slug": "prediccionimagenes",
+    "title": "PrediccionImagenes",
+    "description": "",
+    "has_notebook": true,
+    "notebook_url": null,
+    "html_url": null,
+    "assets": []
+  },
+  {
+    "slug": "proyecto-sanoyfresco",
+    "title": "SanoYFresco - Análisis de Retail y Market Basket Analysis",
+    "description": "SanoYFresco es un retailer de productos orgánicos que necesitaba optimizar su estrategia de merchandising y aumentar el valor promedio de compra. El negocio enfrentaba dos desafíos principales:",
+    "has_notebook": true,
+    "notebook_url": null,
+    "html_url": null,
+    "assets": [
+      {
+        "name": "dump.sqlite.sql",
+        "url": "/Proyectos/Proyecto SanoYFresco/DB/dump.sqlite.sql"
+      },
+      {
+        "name": "Colores.txt",
+        "url": "/Proyectos/Proyecto SanoYFresco/Media/Colores.txt"
+      },
+      {
+        "name": "Logo.jpg",
+        "url": "/Proyectos/Proyecto SanoYFresco/Media/Logo.jpg"
+      },
+      {
+        "name": "flecha-hacia-arriba.png",
+        "url": "/Proyectos/Proyecto SanoYFresco/Media/flecha-hacia-arriba.png"
+      },
+      {
+        "name": "icono cesta.png",
+        "url": "/Proyectos/Proyecto SanoYFresco/Media/icono cesta.png"
+      },
+      {
+        "name": "icono euro.png",
+        "url": "/Proyectos/Proyecto SanoYFresco/Media/icono euro.png"
+      },
+      {
+        "name": "icono hash.png",
+        "url": "/Proyectos/Proyecto SanoYFresco/Media/icono hash.png"
+      },
+      {
+        "name": "icono media.png",
+        "url": "/Proyectos/Proyecto SanoYFresco/Media/icono media.png"
+      },
+      {
+        "name": "icono ventas.png",
+        "url": "/Proyectos/Proyecto SanoYFresco/Media/icono ventas.png"
+      },
+      {
+        "name": "imagenes secciones",
+        "url": "/Proyectos/Proyecto SanoYFresco/Media/imagenes secciones"
+      },
+      {
+        "name": "secciones.xlsx",
+        "url": "/Proyectos/Proyecto SanoYFresco/Media/secciones.xlsx"
+      },
+      {
+        "name": "web.jpg",
+        "url": "/Proyectos/Proyecto SanoYFresco/Media/web.jpg"
+      },
+      {
+        "name": "TPE_MarketBasketAnalysis_colab.ipynb",
+        "url": "/Proyectos/Proyecto SanoYFresco/Notebooks/TPE_MarketBasketAnalysis_colab.ipynb"
+      },
+      {
+        "name": "reglas.csv",
+        "url": "/Proyectos/Proyecto SanoYFresco/reglas/reglas.csv"
+      }
+    ]
+  },
+  {
+    "slug": "redes-convolucionales",
+    "title": "Redes Convolucionales",
+    "description": "",
+    "has_notebook": true,
+    "notebook_url": null,
+    "html_url": null,
+    "assets": []
+  },
+  {
+    "slug": "redes-generativas-adversariales",
+    "title": "Redes Generativas Adversariales",
+    "description": "",
+    "has_notebook": true,
+    "notebook_url": null,
+    "html_url": null,
+    "assets": []
+  },
+  {
+    "slug": "regresion-lineal",
+    "title": "Regresion Lineal",
+    "description": "",
+    "has_notebook": true,
+    "notebook_url": null,
+    "html_url": null,
+    "assets": []
+  },
+  {
+    "slug": "titanic-arbol-de-decision",
+    "title": "TITANIC Arbol de Decision",
+    "description": "",
+    "has_notebook": true,
+    "notebook_url": null,
+    "html_url": null,
+    "assets": []
+  },
+  {
+    "slug": "warriors-games",
+    "title": "Warriors Games",
+    "description": "",
+    "has_notebook": true,
+    "notebook_url": null,
+    "html_url": null,
+    "assets": []
+  },
+  {
+    "slug": "analisis",
+    "title": "analisis",
+    "description": "",
+    "has_notebook": true,
+    "notebook_url": null,
+    "html_url": "/notebooks-html/analisis-datos.html",
+    "assets": []
+  },
+  {
+    "slug": "dashboards",
+    "title": "dashboards",
+    "description": "",
+    "has_notebook": true,
+    "notebook_url": null,
+    "html_url": null,
+    "assets": []
+  }
+]

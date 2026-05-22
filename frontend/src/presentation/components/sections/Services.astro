@@ -1,0 +1,64 @@
+---
+const services = [
+  {
+    title: 'Análisis de Datos',
+    description: 'Análisis profundo y estadístico de grandes volúmenes de datos para extraer insights accionables.',
+    icon: 'chart-bar',
+  },
+  {
+    title: 'Visualización',
+    description: 'Dashboards interactivos y visualizaciones que convierten datos complejos en historias claras.',
+    icon: 'chart-dots',
+  },
+  {
+    title: 'Machine Learning',
+    description: 'Modelos predictivos y de clasificación para resolver problemas de negocio con IA.',
+    icon: 'brain',
+  },
+];
+---
+
+<section class="py-4xl px-4" style="background-color: var(--color-surface-elevated);">
+  <div class="container">
+    <div class="text-center mb-4xl">
+      <h2 class="text-4xl md:text-5xl font-bold mb-4" style="color: var(--color-text-primary);">Servicios</h2>
+      <p class="max-w-xl mx-auto" style="color: var(--color-text-secondary);">
+        Combino análisis riguroso con visualizaciones impactantes para decisiones basadas en datos.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+      {services.map((service, index) => (
+        <div
+          class="group relative p-xl rounded-2xl border border-border transition-all duration-300 hover:shadow-lg animate-fade-in-up"
+          style={`background-color: var(--color-surface); animation-delay: ${index * 150}ms`}
+        >
+          <div
+            class="w-12 h-12 rounded-xl flex items-center justify-center mb-4 text-accent"
+            style="background-color: var(--color-accent-muted);"
+          >
+            {service.icon === 'chart-bar' && (
+              <svg class="w-6 h-6" stroke="currentColor" fill="none" viewBox="0 0 24 24" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
+              </svg>
+            )}
+            {service.icon === 'chart-dots' && (
+              <svg class="w-6 h-6" stroke="currentColor" fill="none" viewBox="0 0 24 24" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5m.75-9l3-3 2.148 2.148A12.061 12.061 0 0116.5 7.605" />
+              </svg>
+            )}
+            {service.icon === 'brain' && (
+              <svg class="w-6 h-6" stroke="currentColor" fill="none" viewBox="0 0 24 24" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5" />
+              </svg>
+            )}
+          </div>
+          <h3 class="text-xl font-semibold mb-2" style="color: var(--color-text-primary);">{service.title}</h3>
+          <p class="leading-relaxed text-sm md:text-base" style="color: var(--color-text-secondary);">
+            {service.description}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

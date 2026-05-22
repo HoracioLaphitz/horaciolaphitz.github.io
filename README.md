@@ -1,11 +1,11 @@
 # Portfolio Profesional 2026
 
-Portfolio Full Stack con arquitectura híbrida Astro + FastAPI, diseño dual-theme y backend serverless.
+Portfolio Full Stack con arquitectura híbrida Astro + Django REST Framework, diseño dual-theme y backend serverless.
 
 ## Stack Tecnológico
 
 - **Frontend**: Astro 5.x + React 18 + TypeScript + Tailwind CSS
-- **Backend**: FastAPI (Python 3.11+) + Pydantic
+- **Backend**: Django 5.2 + Django REST Framework (Python 3.11+)
 - **Database**: Supabase PostgreSQL + Row Level Security
 - **Storage**: Supabase Storage + CDN
 - **Deploy**: Vercel (Edge Functions + Static)
@@ -15,7 +15,7 @@ Portfolio Full Stack con arquitectura híbrida Astro + FastAPI, diseño dual-the
 ```
 portfolio-profesional-2026/
 ├── frontend/          # Astro + React application
-├── backend/           # FastAPI application
+├── backend/           # Django REST Framework application
 ├── shared/            # Shared types and utilities
 └── scripts/           # Automation scripts
 ```

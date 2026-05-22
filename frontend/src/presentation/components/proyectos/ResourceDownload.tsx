@@ -6,6 +6,23 @@ interface Props {
     datasets?: string[];
 }
 
+function ResourceList({ items, label }: { items: string[]; label: string }) {
+    return (
+        <div>
+            <h4 className="font-semibold mb-md">{label}</h4>
+            <div className="space-y-sm">
+                {items.map((url, i) => (
+                    <a key={i} href={url} target="_blank" rel="noopener noreferrer" download>
+                        <Button variant="secondary" size="sm" className="w-full">
+                            Descargar
+                        </Button>
+                    </a>
+                ))}
+            </div>
+        </div>
+    );
+}
+
 export function ResourceDownload({ notebooks, pdfs, datasets }: Props) {
     const hasResources = (notebooks?.length || 0) + (pdfs?.length || 0) + (datasets?.length || 0) > 0;
 
@@ -14,47 +31,20 @@ export function ResourceDownload({ notebooks, pdfs, datasets }: Props) {
     }
 
     return (
-        <section className="mt-4xl pt-4xl border-t border-light-border dark:border-dark-border">
+        <section className="mt-4xl pt-4xl border-t border-border">
             <h3 className="text-2xl font-bold mb-lg">Recursos</h3>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-lg">
                 {notebooks && notebooks.length > 0 && (
-                    <div>
-                        <h4 className="font-semibold mb-md">Notebooks</h4>
-                        <div className="space-y-sm">
-                            {notebooks.map((url, i) => (
-                                <Button key={i} variant="secondary" size="sm" className="w-full">
-                                    Descargar
-                                </Button>
-                            ))}
-                        </div>
-                    </div>
+                    <ResourceList items={notebooks} label="Notebooks" />
                 )}
 
                 {pdfs && pdfs.length > 0 && (
-                    <div>
-                        <h4 className="font-semibold mb-md">PDFs</h4>
-                        <div className="space-y-sm">
-                            {pdfs.map((url, i) => (
-                                <Button key={i} variant="secondary" size="sm" className="w-full">
-                                    Descargar
-                                </Button>
-                            ))}
-                        </div>
-                    </div>
+                    <ResourceList items={pdfs} label="PDFs" />
                 )}
 
                 {datasets && datasets.length > 0 && (
-                    <div>
-                        <h4 className="font-semibold mb-md">Datasets</h4>
-                        <div className="space-y-sm">
-                            {datasets.map((url, i) => (
-                                <Button key={i} variant="secondary" size="sm" className="w-full">
-                                    Descargar
-                                </Button>
-                            ))}
-                        </div>
-                    </div>
+                    <ResourceList items={datasets} label="Datasets" />
                 )}
             </div>
         </section>

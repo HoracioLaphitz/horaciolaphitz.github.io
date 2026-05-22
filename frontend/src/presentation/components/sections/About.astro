@@ -1,0 +1,54 @@
+---
+export interface Props {
+  bio?: string;
+  skills?: string[];
+  avatar?: string;
+  name?: string;
+}
+
+const { bio, skills = [], avatar, name } = Astro.props;
+---
+
+<section class="py-4xl px-4" style="background-color: var(--color-surface);">
+  <div class="container grid grid-cols-1 md:grid-cols-2 gap-2xl items-center animate-fade-in-up">
+    {avatar && (
+      <div class="flex justify-center md:justify-start order-2 md:order-1">
+        <div class="relative w-72 h-72 flex-shrink-0">
+          <div class="absolute -inset-1 rounded-2xl bg-accent/10 blur-sm" />
+          <img
+            src={avatar}
+            alt={name || 'Foto de perfil'}
+            width={288}
+            height={288}
+            loading="lazy"
+            decoding="async"
+            class="relative w-full h-full rounded-2xl object-cover border border-border shadow-lg"
+          />
+        </div>
+      </div>
+    )}
+
+    <div class={`order-1 ${avatar ? 'md:order-2' : ''}`}>
+      <h2 class="text-4xl md:text-5xl font-bold mb-lg leading-tight" style="color: var(--color-text-primary);">
+        Datos, código y visualización.
+      </h2>
+      {bio && (
+        <p class="mb-xl leading-relaxed text-base md:text-lg" style="color: var(--color-text-secondary);">
+          {bio}
+        </p>
+      )}
+      {skills.length > 0 && (
+        <div class="flex flex-wrap gap-2">
+          {skills.map((skill) => (
+            <span
+              class="px-4 py-1.5 text-sm font-medium border border-border rounded-full transition-colors duration-200"
+              style="color: var(--color-text-secondary); background-color: var(--color-surface-elevated);"
+            >
+              {skill}
+            </span>
+          ))}
+        </div>
+      )}
+    </div>
+  </div>
+</section>

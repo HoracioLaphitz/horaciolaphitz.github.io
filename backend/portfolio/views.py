@@ -1,6 +1,5 @@
 from django.db.models import Count
-from django.utils.decorators import method_decorator
-from django.views.decorators.cache import cache_page
+
 from rest_framework import status, viewsets
 from rest_framework.decorators import action, api_view
 from rest_framework.response import Response
@@ -38,7 +37,6 @@ class ProjectViewSet(viewsets.ReadOnlyModelViewSet):
             return ProjectDetailSerializer
         return ProjectListSerializer
 
-    @method_decorator(cache_page(300))
     def list(self, request, *args, **kwargs):
         queryset = self.filter_queryset(self.get_queryset())
         category = request.query_params.get('category')
@@ -54,13 +52,11 @@ class ProjectViewSet(viewsets.ReadOnlyModelViewSet):
         serializer = self.get_serializer(queryset, many=True)
         return Response(serializer.data)
 
-    @method_decorator(cache_page(300))
     def retrieve(self, request, *args, **kwargs):
         instance = self.get_object()
         serializer = self.get_serializer(instance)
         return Response(serializer.data)
 
-    @method_decorator(cache_page(300))
     @action(detail=False)
     def featured(self, request):
         queryset = self.get_queryset().filter(featured=True)
@@ -79,11 +75,9 @@ class TechnologyViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = TechnologySerializer
     lookup_field = 'slug'
 
-    @method_decorator(cache_page(300))
     def list(self, request, *args, **kwargs):
         return super().list(request, *args, **kwargs)
 
-    @method_decorator(cache_page(300))
     def retrieve(self, request, *args, **kwargs):
         return super().retrieve(request, *args, **kwargs)
 
@@ -92,7 +86,6 @@ class ExperienceViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Experience.objects.all()
     serializer_class = ExperienceSerializer
 
-    @method_decorator(cache_page(300))
     def list(self, request, *args, **kwargs):
         return super().list(request, *args, **kwargs)
 
@@ -101,7 +94,6 @@ class EducationViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Education.objects.all()
     serializer_class = EducationSerializer
 
-    @method_decorator(cache_page(300))
     def list(self, request, *args, **kwargs):
         return super().list(request, *args, **kwargs)
 
@@ -110,13 +102,11 @@ class CertificationViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Certification.objects.all()
     serializer_class = CertificationSerializer
 
-    @method_decorator(cache_page(300))
     def list(self, request, *args, **kwargs):
         return super().list(request, *args, **kwargs)
 
 
 @api_view(['GET'])
-@cache_page(300)
 def notebooks_list(request):
     return Response(get_all_notebooks())
 
