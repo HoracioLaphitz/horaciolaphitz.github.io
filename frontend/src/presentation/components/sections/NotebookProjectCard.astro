@@ -17,15 +17,14 @@ const { title, description, has_notebook, notebook_url, html_url, assets = [] } 
 ---
 
 <div
-  class="rounded-xl border border-border overflow-hidden transition-all duration-300 hover:shadow-md"
-  style="background-color: var(--color-surface)"
->
+   class="rounded-xl border border-[#1b2838] overflow-hidden transition-all duration-300 hover:shadow-md"
+   style="background-color: var(--color-surface)"
   <div class="p-lg">
-    <h3 class="text-xl font-bold mb-2 text-text-primary">{title}</h3>
+<h3 class="text-xl font-bold mb-2 text-[#eeffd2]">{title}</h3>
 
-    {description && (
-      <p class="text-text-secondary text-sm mb-4">{description}</p>
-    )}
+      {description && (
+        <p class="text-[#c8ffb8] text-sm mb-4">{description}</p>
+      )}
 
     {has_notebook && (
       <div class="mb-4 flex flex-wrap gap-2">
@@ -34,7 +33,7 @@ const { title, description, has_notebook, notebook_url, html_url, assets = [] } 
             href={notebook_url}
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center justify-center px-4 py-2 rounded-xl text-sm font-medium text-text-inverse transition-all duration-200"
+            class="inline-flex items-center justify-center px-4 py-2 rounded-xl text-sm font-medium text-[#050b11] transition-all duration-200"
             style="background-color: var(--color-accent)"
           >
             View Notebook
@@ -45,7 +44,7 @@ const { title, description, has_notebook, notebook_url, html_url, assets = [] } 
             href={html_url}
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center justify-center px-4 py-2 rounded-xl text-sm font-medium border border-border text-text-primary hover:bg-accent-muted transition-all duration-200"
+            class="inline-flex items-center justify-center px-4 py-2 rounded-xl text-sm font-medium border border-[#1b2838] text-[#eeffd2] hover:bg-[#7ef9b4]/5 transition-all duration-200"
           >
             View HTML Export
           </a>
@@ -56,7 +55,7 @@ const { title, description, has_notebook, notebook_url, html_url, assets = [] } 
     {assets.length > 0 && (
       <details class="group">
         <summary
-          class="text-sm font-medium text-accent hover:opacity-80 transition-opacity cursor-pointer list-none flex items-center gap-1.5"
+          class="text-sm font-medium text-[#7ef9b4] hover:opacity-80 transition-opacity cursor-pointer list-none flex items-center gap-1.5"
         >
           <svg
             class="w-4 h-4 transition-transform duration-200 group-open:rotate-90"
@@ -72,7 +71,7 @@ const { title, description, has_notebook, notebook_url, html_url, assets = [] } 
           {assets.map((asset) => (
             <div class="flex items-start gap-2 text-sm">
               <svg
-                class="h-4 w-4 mt-0.5 shrink-0 text-text-tertiary"
+                class="h-4 w-4 mt-0.5 shrink-0 text-[#74f1a4]"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -88,7 +87,7 @@ const { title, description, has_notebook, notebook_url, html_url, assets = [] } 
                 href={asset.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="underline text-text-secondary hover:text-text-primary"
+                class="underline text-[#c8ffb8] hover:text-[#eeffd2]"
               >
                 {asset.name}
               </a>

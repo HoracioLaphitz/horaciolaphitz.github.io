@@ -18,13 +18,17 @@ const contactInfo = getContactInfo();
 ---
 
 <PageLayout title="Portfolio" description="Data Analyst & Visualization Expert.">
-  <Hero
-    name={profile.name}
-    role={profile.role}
-    description={profile.descriptions[0]}
-  />
+  <Hero name={profile.name} role={profile.role} description={profile.descriptions[0]} />
   <About
-    bio={profile.descriptions[0]}
+    avatar="/img/profile.png"
+    aboutDescription={profile.descriptions_about?.[0]}
+    badges={[
+      { src: '/img/PythonForDataScienceAndAI.png', alt: 'Insignia Python Data Science' },
+      {
+        src: '/img/PythonProjectForDataEngineering.png',
+        alt: 'Insignia Proyecto Python Data Engineering',
+      },
+    ]}
     skills={skills}
     name={profile.name}
   />

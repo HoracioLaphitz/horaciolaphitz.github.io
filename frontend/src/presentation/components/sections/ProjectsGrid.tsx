@@ -56,14 +56,14 @@ export function ProjectsGrid({ projects, compact = false }: ProjectsGridProps) {
     }, [projects, searchQuery, selectedCategory]);
 
     return (
-        <section id="proyectos" className={`relative ${compact ? 'py-2xl px-4' : 'py-4xl px-4'}`} style={{ backgroundColor: compact ? 'var(--color-surface-elevated)' : undefined }}>
+        <section id="proyectos" className={`relative ${compact ? 'py-2xl px-4' : 'py-4xl px-4'}`} style={{ backgroundColor: compact ? '#08101a/95' : undefined }}>
             <div className="container relative">
                 <div className="mb-lg">
-                    <h2 className={`font-bold mb-1 ${compact ? 'text-2xl' : 'text-4xl'}`} style={{ color: 'var(--color-text-primary)' }}>
+                    <h2 className={`font-bold mb-1 ${compact ? 'text-2xl' : 'text-4xl'}`} style={{ color: '#eeffd2' }}>
                         Proyectos
                     </h2>
                     {!compact && (
-                        <p className="text-sm" style={{ color: 'var(--color-text-secondary)' }}>
+                        <p className="text-sm" style={{ color: '#c8ffb8' }}>
                             Una selección de proyectos que reflejan mi experiencia en datos, desarrollo y diseño.
                         </p>
                     )}
@@ -83,8 +83,8 @@ export function ProjectsGrid({ projects, compact = false }: ProjectsGridProps) {
                             className="w-full pl-9 pr-3 py-2 text-sm rounded-xl border transition-all duration-200 focus-visible:outline-none focus-visible:ring-2"
                             style={{
                                 backgroundColor: 'var(--color-surface)',
-                                color: 'var(--color-text-primary)',
-                                borderColor: 'var(--color-border)',
+                                color: '#eeffd2',
+                                borderColor: '#1b2838',
                             }}
                         />
                     </div>
@@ -104,28 +104,28 @@ export function ProjectsGrid({ projects, compact = false }: ProjectsGridProps) {
                         }}
                     >
                         Todos
-                    </button>
-                    {categories.map(category => (
-                        <button
-                            key={category}
-                            onClick={() => setSelectedCategory(category)}
-                            className={`px-2.5 py-1 rounded-lg text-[11px] font-medium capitalize transition-all duration-200 ${
-                                selectedCategory === category
-                                    ? 'text-white shadow-sm'
-                                    : 'hover:opacity-80'
-                            }`}
-                            style={{
-                                backgroundColor: selectedCategory === category ? 'var(--color-accent)' : 'var(--color-border)',
-                                color: selectedCategory === category ? '#fff' : 'var(--color-text-secondary)',
-                            }}
-                        >
-                            {category}
-                        </button>
-                    ))}
+</button>
+                        {categories.map(category => (
+                            <button
+                                key={category}
+                                onClick={() => setSelectedCategory(category)}
+                                className={`px-2.5 py-1 rounded-lg text-[11px] font-medium capitalize transition-all duration-200 ${
+                                    selectedCategory === category
+                                        ? 'text-white shadow-sm'
+                                        : 'hover:opacity-80'
+                                }`}
+                                style={{
+                                    backgroundColor: selectedCategory === category ? 'var(--color-accent)' : '#1b2838',
+                                    color: selectedCategory === category ? '#fff' : '#c8ffb8',
+                                }}
+                            >
+                                {category}
+                            </button>
+                        ))}
                 </div>
 
                 <div className="mb-3">
-                    <p className="text-xs" style={{ color: 'var(--color-text-tertiary)' }}>
+                    <p className="text-xs" style={{ color: '#74f1a4' }}>
                         {filteredProjects.length} proyecto{filteredProjects.length !== 1 ? 's' : ''}
                         {searchQuery && <> para &ldquo;{searchQuery}&rdquo;</>}
                     </p>

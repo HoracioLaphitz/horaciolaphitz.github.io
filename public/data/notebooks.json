@@ -183,48 +183,8 @@
         "url": "/Proyectos/Proyecto SanoYFresco/DB/dump.sqlite.sql"
       },
       {
-        "name": "Colores.txt",
-        "url": "/Proyectos/Proyecto SanoYFresco/Media/Colores.txt"
-      },
-      {
-        "name": "Logo.jpg",
-        "url": "/Proyectos/Proyecto SanoYFresco/Media/Logo.jpg"
-      },
-      {
-        "name": "flecha-hacia-arriba.png",
-        "url": "/Proyectos/Proyecto SanoYFresco/Media/flecha-hacia-arriba.png"
-      },
-      {
-        "name": "icono cesta.png",
-        "url": "/Proyectos/Proyecto SanoYFresco/Media/icono cesta.png"
-      },
-      {
-        "name": "icono euro.png",
-        "url": "/Proyectos/Proyecto SanoYFresco/Media/icono euro.png"
-      },
-      {
-        "name": "icono hash.png",
-        "url": "/Proyectos/Proyecto SanoYFresco/Media/icono hash.png"
-      },
-      {
-        "name": "icono media.png",
-        "url": "/Proyectos/Proyecto SanoYFresco/Media/icono media.png"
-      },
-      {
-        "name": "icono ventas.png",
-        "url": "/Proyectos/Proyecto SanoYFresco/Media/icono ventas.png"
-      },
-      {
-        "name": "imagenes secciones",
-        "url": "/Proyectos/Proyecto SanoYFresco/Media/imagenes secciones"
-      },
-      {
         "name": "secciones.xlsx",
         "url": "/Proyectos/Proyecto SanoYFresco/Media/secciones.xlsx"
-      },
-      {
-        "name": "web.jpg",
-        "url": "/Proyectos/Proyecto SanoYFresco/Media/web.jpg"
       },
       {
         "name": "TPE_MarketBasketAnalysis_colab.ipynb",

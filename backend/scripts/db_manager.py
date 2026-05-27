@@ -71,7 +71,7 @@ def seed_cv_data():
     """Seed experience, education, and certifications data"""
     print("[SEED] Seeding CV profile data...")
     
-    # 1. Experience Data
+     
     experience_data = [
         (
             "Ucrop.it",
@@ -86,8 +86,8 @@ def seed_cv_data():
         (
             "PcService Posadas",
             "Técnico en Sistemas",
-            date(2021, 1, 1),
-            date(2025, 11, 30),
+            date(2020, 1, 1),
+            date(2024, 3, 30),
             "Mantenimiento de hardware en PCs y servidores, reparación de equipos, configuración y optimización de sistemas en red, y diagnóstico de fallas técnicas.",
             "[]",
             "Posadas",

@@ -5,21 +5,9 @@ import { getExperiences } from '../lib/data/getExperience';
 import { getSkills } from '../lib/data/getProfile';
 ---
 
-<PageLayout
-  title="Experiencia Profesional"
-  description="Mi trayectoria profesional como Data Analyst y desarrollador."
->
+<PageLayout title="Experiencia Profesional" description="Mi trayectoria.">
   <div class="container py-5xl">
     <div class="max-w-4xl mx-auto">
-      <div class="text-center mb-4xl opacity-0 animate-fade-in-down">
-        <h1 class="text-5xl md:text-6xl font-bold mb-lg text-text-primary">
-          Experiencia Profesional
-        </h1>
-        <p class="text-xl text-text-secondary max-w-2xl mx-auto">
-          Mi trayectoria en análisis de datos, desarrollo y visualización
-        </p>
-      </div>
-
       <div class="opacity-0 animate-fade-in-up animate-delay-200">
         <Timeline experiences={getExperiences()} />
       </div>
@@ -33,9 +21,7 @@ import { getSkills } from '../lib/data/getProfile';
                 class="p-lg rounded-xl border border-border transition-all duration-300 hover:shadow-md opacity-0 animate-fade-in-up"
                 style={`animation-delay: ${Math.min(600 + index * 50, 800)}ms; background-color: var(--color-surface)`}
               >
-                <p class="text-base font-medium text-text-primary">
-                  {skill}
-                </p>
+                <p class="text-base font-medium text-text-primary">{skill}</p>
               </div>
             ))
           }

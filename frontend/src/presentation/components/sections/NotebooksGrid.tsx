@@ -22,15 +22,15 @@ export function NotebooksGrid({ projects }: NotebooksGridProps) {
     <section className="py-4xl px-4">
       <div className="container">
         <div className="mb-4xl">
-          <h2 className="text-4xl font-bold mb-lg text-text-primary">Notebooks Interactivos</h2>
-          <p className="text-text-secondary text-base">
+          <h2 className="text-4xl font-bold mb-lg text-[#eeffd2]">Notebooks Interactivos</h2>
+          <p className="text-[#c8ffb8] text-base">
             {filteredProjects.length} proyecto{filteredProjects.length !== 1 ? 's' : ''} encontrado{filteredProjects.length !== 1 ? 's' : ''}
           </p>
         </div>
 
         {filteredProjects.length === 0 ? (
           <div className="text-center py-4xl">
-            <p className="text-text-secondary text-base">No se encontraron proyectos.</p>
+            <p className="text-[#c8ffb8] text-base">No se encontraron proyectos.</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-lg">

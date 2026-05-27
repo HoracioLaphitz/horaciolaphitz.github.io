@@ -1,54 +1,86 @@
 ---
+export interface Badge {
+  src: string;
+  alt: string;
+}
+
 export interface Props {
-  bio?: string;
+  aboutDescription?: string;
   skills?: string[];
   avatar?: string;
+  badges?: Badge[];
   name?: string;
 }
 
-const { bio, skills = [], avatar, name } = Astro.props;
+const { aboutDescription, skills = [], avatar, badges = [], name } = Astro.props;
 ---
 
-<section class="py-4xl px-4" style="background-color: var(--color-surface);">
-  <div class="container grid grid-cols-1 md:grid-cols-2 gap-2xl items-center animate-fade-in-up">
-    {avatar && (
-      <div class="flex justify-center md:justify-start order-2 md:order-1">
-        <div class="relative w-72 h-72 flex-shrink-0">
-          <div class="absolute -inset-1 rounded-2xl bg-accent/10 blur-sm" />
-          <img
-            src={avatar}
-            alt={name || 'Foto de perfil'}
-            width={288}
-            height={288}
-            loading="lazy"
-            decoding="async"
-            class="relative w-full h-full rounded-2xl object-cover border border-border shadow-lg"
-          />
-        </div>
-      </div>
-    )}
+<section class="py-4xl px-4"  style="background-color: #050b11;">
+  <div
+    class="container grid gap-2xl lg:grid-cols-[360px_minmax(0,1fr)] items-start animate-fade-in-up"
+  >
+    {
+      avatar && (
+        <div class="space-y-6">
+          <div class="relative overflow-hidden rounded-[2rem] border border-[#1b2838] bg-[#050b11] p-6 shadow-lg">
+            <div class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-accent via-transparent to-accent/30" />
+            <img
+              src={avatar}
+              alt={name || 'Avatar de perfil'}
+              width={320}
+              height={320}
+              loading="lazy"
+              decoding="async"
+              class="relative mx-auto h-72 w-72 rounded-[1.75rem] object-cover border-2 border-[#4ade80]/50 shadow-2xl"
+            />
+          </div>
 
-    <div class={`order-1 ${avatar ? 'md:order-2' : ''}`}>
-      <h2 class="text-4xl md:text-5xl font-bold mb-lg leading-tight" style="color: var(--color-text-primary);">
-        Datos, código y visualización.
-      </h2>
-      {bio && (
-        <p class="mb-xl leading-relaxed text-base md:text-lg" style="color: var(--color-text-secondary);">
-          {bio}
-        </p>
-      )}
-      {skills.length > 0 && (
-        <div class="flex flex-wrap gap-2">
-          {skills.map((skill) => (
-            <span
-              class="px-4 py-1.5 text-sm font-medium border border-border rounded-full transition-colors duration-200"
-              style="color: var(--color-text-secondary); background-color: var(--color-surface-elevated);"
-            >
-              {skill}
-            </span>
-          ))}
+          {badges.length > 0 && (
+            <div class="grid gap-3 sm:grid-cols-2">
+              {badges.map((badge) => (
+                <div class="overflow-hidden rounded-3xl border border-[#1b2838] bg-[#050b11] p-3 shadow-inner">
+                  <img
+                    src={badge.src}
+                    alt={badge.alt}
+                    class="h-40 w-full object-contain"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              ))}
+            </div>
+          )}
         </div>
-      )}
+      )
+    }
+
+    <div class="space-y-8">
+      <div>
+        <span class="text-xs uppercase tracking-[0.35em] text-[#7ef9b4]">Sobre mí</span>
+      </div>
+
+      {
+        aboutDescription && (
+          <div class="rounded-[2rem] border border-[#1b2838] bg-[#08101a]/95 p-8 text-base leading-8 text-[#c8ffb8] shadow-lg">
+            <p class="whitespace-pre-line">{aboutDescription}</p>
+          </div>
+        )
+      }
+
+      {
+        skills.length > 0 && (
+          <div>
+            <h3 class="mb-4 text-lg font-semibold text-[#eeffd2]">Habilidades destacadas</h3>
+            <div class="flex flex-wrap gap-3">
+              {skills.map((skill) => (
+                <span class="rounded-full border border-[#1b2838] bg-[#08101a]/95 px-4 py-2 text-sm font-medium text-[#c8ffb8] shadow-sm">
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
+        )
+      }
     </div>
   </div>
 </section>
