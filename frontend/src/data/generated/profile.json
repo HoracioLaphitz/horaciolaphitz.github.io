@@ -2,10 +2,12 @@
   "name": "Horacio Laphitz",
   "role": "Analista de Datos",
   "descriptions": [
-    "Analista de Datos orientado a la resolución de problemas, con experiencia en sistemas de gestión, administración y soporte al usuario."
+    "Analista de Datos"
   ],
   "descriptions_about": [
-    "Soy técnico informático, con basta experiencia en hardware y sistemas.\nEn los últimos años me fui especializando en el trabajo con datos desde validación, análisis hasta armado de reportes para entornos operativos.\nOrientado a posiciones en el área Data, Analisis funcional, áreas administrativas y/o gestión.\nFormación en análisis de datos, Machine Learning y gestión moderna de información."
+    "Orientación a posiciones de Analista de Datos Jr., Analista Funcional y áreas administrativas. Formación en análisis de datos, programación y gestión de información.",
+    "Experiencia en procesamiento de datos, soporte técnico y tareas administrativas, con foco en Python, SQL, Power BI, Looker Studio, machine learning y gestión de información.",
+    "Disponibilidad Full-Time."
   ],
   "contact": {
     "email": "horaciolaphitz99@gmail.com",
@@ -21,6 +23,7 @@
     "JavaScript",
     "TypeScript",
     "Power BI",
+    "Looker Studio",
     "Tableau",
     "Excel Avanzado",
     "Pandas",
@@ -31,6 +34,11 @@
     "MySQL",
     "MongoDB",
     "Databricks",
+    "Bash",
+    "Windows",
+    "Linux",
+    "Word",
+    "PowerPoint",
     "Git",
     "Docker",
     "Tango Gestión"

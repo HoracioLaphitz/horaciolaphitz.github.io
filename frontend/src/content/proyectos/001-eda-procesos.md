@@ -1,6 +1,6 @@
 ---
 title: "EDA Procesos"
-description: "Script creado en python para automatizar el proceso de analisis de datos"
+description: "Pipeline automatizado de Análisis Exploratorio de Datos (EDA) con generación de reportes estadísticos, detección de outliers, análisis de correlaciones y visualizaciones avanzadas."
 category: "Análisis de Datos"
 featured: true
 status: "completed"
@@ -10,7 +10,7 @@ githubUrl: "https://github.com/HoracioLaphitz/EDA-Procesos"
 
 ## Descripción del Proyecto
 
-Script creado en python para automatizar el proceso de analisis de datos
+Pipeline automatizado de Análisis Exploratorio de Datos (EDA) con generación de reportes estadísticos, detección de outliers, análisis de correlaciones y visualizaciones avanzadas.
 
 # Eda-Automatizado
 Script creado en python para automatizar el proceso de analisis de datos

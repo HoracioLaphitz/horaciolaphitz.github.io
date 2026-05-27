@@ -1,6 +1,6 @@
 ---
 title: "Autoencoder"
-description: "Este script de python es una Red Nueronal capaz de reconocer images borrosas y predecir a que numero corresponde."
+description: "Autoencoder convolutional para reducción de dimensionalidad y denoising de imágenes del dataset MNIST, con visualización de espacio latente y reconstrucción."
 category: "Deep Learning"
 featured: true
 status: "completed"
@@ -10,7 +10,7 @@ githubUrl: "https://github.com/HoracioLaphitz/Autoencoder"
 
 ## Descripción del Proyecto
 
-Este script de python es una Red Nueronal capaz de reconocer images borrosas y predecir a que numero corresponde.
+Autoencoder convolutional para reducción de dimensionalidad y denoising de imágenes del dataset MNIST, con visualización de espacio latente y reconstrucción.
 
 # Autoencoder
 - Este script en python crea una Red Neuronal Convolucional para reconocimiento de imagenes.

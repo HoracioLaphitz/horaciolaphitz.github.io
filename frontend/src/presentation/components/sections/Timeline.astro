@@ -13,30 +13,6 @@ export interface Props {
 
 const { experiences = [] } = Astro.props;
 
-const fallbackEvents = [
-  {
-    period: '2020',
-    title: 'Inicio en Data Analytics',
-    company: '',
-    description: 'Comenzó mi carrera en análisis de datos',
-    location: '',
-  },
-  {
-    period: '2022',
-    title: 'Especialización en Visualización',
-    company: '',
-    description: 'Profundizó en técnicas de visualización avanzada',
-    location: '',
-  },
-  {
-    period: '2024',
-    title: 'Full Stack Development',
-    company: '',
-    description: 'Expandió habilidades hacia desarrollo web completo',
-    location: '',
-  },
-];
-
 const displayEvents =
   experiences.length > 0
     ? experiences.map((e) => ({
@@ -46,41 +22,49 @@ const displayEvents =
         description: e.description,
         location: e.location,
       }))
-    : fallbackEvents;
+    : [];
 ---
 
-<section id="experiencia" class="py-4xl px-4" style="background-color: #050b11;">
-  <div class="container grid gap-2xl">
-    <div class="rounded-[2rem] border border-[#1b2838] bg-[#050b11] p-8 shadow-lg">
-      <span class="text-xs uppercase tracking-[0.35em] text-[#7ef9b4]">Experiencia</span>
-      <h2 class="mt-3 text-4xl font-bold tracking-tight text-[#eeffd2]">Mi trayectoria Laboral</h2>
-      <p class="mt-4 text-base leading-7 text-[#c8ffb8] max-w-2xl">
-        Proyectos y roles que muestran la evolución de mi trabajo con datos, visualización y
-        desarrollo.
-      </p>
+<section id="experiencia" class="py-4xl md:py-5xl px-4">
+  <div class="container">
+    <div class="section-header animate-fade-in-up">
+      <h2>Experiencia Laboral</h2>
     </div>
 
-    <div class="grid gap-4">
+    <div class="max-w-3xl mx-auto space-y-md animate-fade-in-up animate-delay-200">
       {
-        displayEvents.map((event, index) => (
-          <div
-            class="rounded-[2rem] border border-[#1b2838] bg-[#050b11] p-6 shadow-lg animate-fade-in-up"
-            style={`animation-delay: ${index * 150}ms`}
-          >
-            <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
-              <span class="inline-flex items-center gap-2 rounded-full border border-[#7ef9b4]/20 bg-[#08101a]/95 px-3 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-[#7ef9b4]">
-                <span class="h-2.5 w-2.5 rounded-full bg-[#7ef9b4]" />
-                {event.period}
-              </span>
-              {event.location && <span class="text-xs text-[#74f1a4]">{event.location}</span>}
-            </div>
-            <h3 class="text-2xl font-semibold mb-2 text-[#eeffd2]">{event.title}</h3>
-            {event.company && (
-              <p class="text-sm font-medium text-[#7ef9b4] mb-3">{event.company}</p>
-            )}
-            <p class="text-sm leading-7 text-[#c8ffb8]">{event.description}</p>
+        displayEvents.length === 0 ? (
+          <div class="text-center py-4xl glass rounded-2xl">
+            <p style="color: var(--color-text-secondary);">No hay experiencias registradas.</p>
           </div>
-        ))
+        ) : (
+          displayEvents.map((event, index) => (
+            <div
+              class="glass rounded-xl p-xl glass-hover animate-fade-in-up"
+              style={`animation-delay: ${200 + index * 100}ms`}
+            >
+              <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+                <span class="chip">{event.period}</span>
+                {event.location && (
+                  <span class="text-xs font-medium" style="color: var(--color-text-tertiary);">
+                    {event.location}
+                  </span>
+                )}
+              </div>
+              <h3 class="text-xl font-semibold mb-1" style="color: var(--color-text-primary);">
+                {event.title}
+              </h3>
+              {event.company && (
+                <p class="text-sm font-medium mb-2" style="color: var(--color-accent);">
+                  {event.company}
+                </p>
+              )}
+              <p class="text-sm leading-relaxed" style="color: var(--color-text-secondary);">
+                {event.description}
+              </p>
+            </div>
+          ))
+        )
       }
     </div>
   </div>

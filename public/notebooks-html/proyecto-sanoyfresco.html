@@ -1,0 +1,3190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SanoYFresco — Market Basket Analysis — Caso de Estudio</title>
+  <link rel="stylesheet" href="notebook-style.css">
+</head>
+<body>
+  <div class="nb-container">
+    <div class="nb-header">
+      <a href="/notebooks">← Volver a Casos de Estudio</a>
+      <h1>SanoYFresco — Market Basket Analysis</h1>
+    </div>
+    <div class="nb-cell nb-code-cell">
+        <div class="nb-input"><pre><code class="language-python">import sqlite3
+import pandas as pd</code></pre></div>
+        
+      </div><div class="nb-cell nb-code-cell">
+        <div class="nb-input"><pre><code class="language-python"># Conectar a la base de datos SQLite
+conexion = sqlite3.connect(&#039;sanoyfresco.db&#039;)</code></pre></div>
+        
+      </div><div class="nb-cell nb-markdown-cell">Nota: si la carga de la bbdd da un error de que está corrupta asegurarse de que ha terminado de cargarse, y luego hacer click en los 3 puntitos del nombre la bbdd y en actualizar</div><div class="nb-cell nb-code-cell">
+        <div class="nb-input"><pre><code class="language-python"># Cargar una tabla completa en un DataFrame
+df = pd.read_sql_query(&quot;SELECT * FROM tickets&quot;, conexion)
+
+# Mostrar los primeros registros del DataFrame
+df</code></pre></div>
+        <div class="nb-output"><div class="nb-rendered-html">
+  <div id="df-8d324b8a-0bd7-427b-8615-14be982ae772" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id_pedido</th>
+      <th>id_cliente</th>
+      <th>fecha</th>
+      <th>hora</th>
+      <th>id_departamento</th>
+      <th>id_seccion</th>
+      <th>id_producto</th>
+      <th>nombre_producto</th>
+      <th>precio_unitario</th>
+      <th>cantidad</th>
+      <th>precio_total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>112108</td>
+      <td>2023-02-02 00:00:00</td>
+      <td>10</td>
+      <td>4</td>
+      <td>83</td>
+      <td>49683</td>
+      <td>Pepino Kirby</td>
+      <td>0.99</td>
+      <td>4</td>
+      <td>3.96</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>112108</td>
+      <td>2023-02-02 00:00:00</td>
+      <td>10</td>
+      <td>4</td>
+      <td>24</td>
+      <td>13176</td>
+      <td>Bolsa de Bananas Orgánicas</td>
+      <td>2.45</td>
+      <td>4</td>
+      <td>9.80</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>112108</td>
+      <td>2023-02-02 00:00:00</td>
+      <td>10</td>
+      <td>4</td>
+      <td>24</td>
+      <td>47209</td>
+      <td>Aguacate Hass Orgánico</td>
+      <td>1.79</td>
+      <td>2</td>
+      <td>3.58</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2</td>
+      <td>202279</td>
+      <td>2023-02-03 00:00:00</td>
+      <td>9</td>
+      <td>4</td>
+      <td>83</td>
+      <td>28985</td>
+      <td>Col Rizada Orgánica de Michigan</td>
+      <td>2.55</td>
+      <td>2</td>
+      <td>5.10</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2</td>
+      <td>202279</td>
+      <td>2023-02-03 00:00:00</td>
+      <td>9</td>
+      <td>4</td>
+      <td>83</td>
+      <td>17794</td>
+      <td>Zanahorias</td>
+      <td>0.95</td>
+      <td>5</td>
+      <td>4.75</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>4975713</th>
+      <td>3421080</td>
+      <td>52726</td>
+      <td>2023-01-09 00:00:00</td>
+      <td>11</td>
+      <td>16</td>
+      <td>84</td>
+      <td>27845</td>
+      <td>Leche Entera Orgánica</td>
+      <td>0.99</td>
+      <td>3</td>
+      <td>2.97</td>
+    </tr>
+    <tr>
+      <th>4975714</th>
+      <td>3421080</td>
+      <td>52726</td>
+      <td>2023-01-09 00:00:00</td>
+      <td>11</td>
+      <td>4</td>
+      <td>83</td>
+      <td>41950</td>
+      <td>Racimo de Tomates Orgánicos</td>
+      <td>2.25</td>
+      <td>7</td>
+      <td>15.75</td>
+    </tr>
+    <tr>
+      <th>4975715</th>
+      <td>3421080</td>
+      <td>52726</td>
+      <td>2023-01-09 00:00:00</td>
+      <td>11</td>
+      <td>4</td>
+      <td>16</td>
+      <td>31717</td>
+      <td>Cilantro Orgánico</td>
+      <td>0.69</td>
+      <td>5</td>
+      <td>3.45</td>
+    </tr>
+    <tr>
+      <th>4975716</th>
+      <td>3421082</td>
+      <td>175185</td>
+      <td>2023-08-22 00:00:00</td>
+      <td>18</td>
+      <td>4</td>
+      <td>24</td>
+      <td>16797</td>
+      <td>Fresas</td>
+      <td>2.05</td>
+      <td>4</td>
+      <td>8.20</td>
+    </tr>
+    <tr>
+      <th>4975717</th>
+      <td>3421083</td>
+      <td>25247</td>
+      <td>2023-06-27 00:00:00</td>
+      <td>6</td>
+      <td>4</td>
+      <td>24</td>
+      <td>24852</td>
+      <td>Banana</td>
+      <td>1.05</td>
+      <td>2</td>
+      <td>2.10</td>
+    </tr>
+  </tbody>
+</table>
+<p>4975718 rows × 11 columns</p>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-8d324b8a-0bd7-427b-8615-14be982ae772')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-8d324b8a-0bd7-427b-8615-14be982ae772 button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-8d324b8a-0bd7-427b-8615-14be982ae772');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+<div id="df-8cd77e06-69ed-44d0-96d3-fe263f725c66">
+  <button class="colab-df-quickchart" onclick="quickchart('df-8cd77e06-69ed-44d0-96d3-fe263f725c66')"
+            title="Suggest charts"
+            style="display:none;">
+
+<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+     width="24px">
+    <g>
+        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+    </g>
+</svg>
+  </button>
+
+<style>
+  .colab-df-quickchart {
+      --bg-color: #E8F0FE;
+      --fill-color: #1967D2;
+      --hover-bg-color: #E2EBFA;
+      --hover-fill-color: #174EA6;
+      --disabled-fill-color: #AAA;
+      --disabled-bg-color: #DDD;
+  }
+
+  [theme=dark] .colab-df-quickchart {
+      --bg-color: #3B4455;
+      --fill-color: #D2E3FC;
+      --hover-bg-color: #434B5C;
+      --hover-fill-color: #FFFFFF;
+      --disabled-bg-color: #3B4455;
+      --disabled-fill-color: #666;
+  }
+
+  .colab-df-quickchart {
+    background-color: var(--bg-color);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    fill: var(--fill-color);
+    height: 32px;
+    padding: 0;
+    width: 32px;
+  }
+
+  .colab-df-quickchart:hover {
+    background-color: var(--hover-bg-color);
+    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+    fill: var(--button-hover-fill-color);
+  }
+
+  .colab-df-quickchart-complete:disabled,
+  .colab-df-quickchart-complete:disabled:hover {
+    background-color: var(--disabled-bg-color);
+    fill: var(--disabled-fill-color);
+    box-shadow: none;
+  }
+
+  .colab-df-spinner {
+    border: 2px solid var(--fill-color);
+    border-color: transparent;
+    border-bottom-color: var(--fill-color);
+    animation:
+      spin 1s steps(1) infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+      border-left-color: var(--fill-color);
+    }
+    20% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    30% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+      border-right-color: var(--fill-color);
+    }
+    40% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    60% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+    }
+    80% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-bottom-color: var(--fill-color);
+    }
+    90% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+    }
+  }
+</style>
+
+  <script>
+    async function quickchart(key) {
+      const quickchartButtonEl =
+        document.querySelector('#' + key + ' button');
+      quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
+      quickchartButtonEl.classList.add('colab-df-spinner');
+      try {
+        const charts = await google.colab.kernel.invokeFunction(
+            'suggestCharts', [key], {});
+      } catch (error) {
+        console.error('Error during call to suggestCharts:', error);
+      }
+      quickchartButtonEl.classList.remove('colab-df-spinner');
+      quickchartButtonEl.classList.add('colab-df-quickchart-complete');
+    }
+    (() => {
+      let quickchartButtonEl =
+        document.querySelector('#df-8cd77e06-69ed-44d0-96d3-fe263f725c66 button');
+      quickchartButtonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+    })();
+  </script>
+</div>
+
+  <div id="id_a734c2b5-efd1-4a4f-aafc-2dbdd9820781">
+    <style>
+      .colab-df-generate {
+        background-color: #E8F0FE;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        display: none;
+        fill: #1967D2;
+        height: 32px;
+        padding: 0 0 0 0;
+        width: 32px;
+      }
+
+      .colab-df-generate:hover {
+        background-color: #E2EBFA;
+        box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+        fill: #174EA6;
+      }
+
+      [theme=dark] .colab-df-generate {
+        background-color: #3B4455;
+        fill: #D2E3FC;
+      }
+
+      [theme=dark] .colab-df-generate:hover {
+        background-color: #434B5C;
+        box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+        filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+        fill: #FFFFFF;
+      }
+    </style>
+    <button class="colab-df-generate" onclick="generateWithVariable('df')"
+            title="Generate code using this dataframe."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M7,19H8.4L18.45,9,17,7.55,7,17.6ZM5,21V16.75L18.45,3.32a2,2,0,0,1,2.83,0l1.4,1.43a1.91,1.91,0,0,1,.58,1.4,1.91,1.91,0,0,1-.58,1.4L9.25,21ZM18.45,9,17,7.55Zm-12,3A5.31,5.31,0,0,0,4.9,8.1,5.31,5.31,0,0,0,1,6.5,5.31,5.31,0,0,0,4.9,4.9,5.31,5.31,0,0,0,6.5,1,5.31,5.31,0,0,0,8.1,4.9,5.31,5.31,0,0,0,12,6.5,5.46,5.46,0,0,0,6.5,12Z"/>
+  </svg>
+    </button>
+    <script>
+      (() => {
+      const buttonEl =
+        document.querySelector('#id_a734c2b5-efd1-4a4f-aafc-2dbdd9820781 button.colab-df-generate');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      buttonEl.onclick = () => {
+        google.colab.notebook.generateWithVariable('df');
+      }
+      })();
+    </script>
+  </div>
+
+    </div>
+  </div>
+</div></div>
+      </div><div class="nb-cell nb-code-cell">
+        <div class="nb-input"><pre><code class="language-python"># Cerrar la conexión a la base de datos
+conexion.close()</code></pre></div>
+        
+      </div><div class="nb-cell nb-code-cell">
+        <div class="nb-input"><pre><code class="language-python">df.info()</code></pre></div>
+        <div class="nb-output"><pre class="text-plain">&lt;class &#039;pandas.core.frame.DataFrame&#039;&gt;
+RangeIndex: 4975718 entries, 0 to 4975717
+Data columns (total 11 columns):
+ #   Column           Dtype  
+---  ------           -----  
+ 0   id_pedido        int64  
+ 1   id_cliente       int64  
+ 2   fecha            object 
+ 3   hora             int64  
+ 4   id_departamento  int64  
+ 5   id_seccion       int64  
+ 6   id_producto      int64  
+ 7   nombre_producto  object 
+ 8   precio_unitario  float64
+ 9   cantidad         int64  
+ 10  precio_total     float64
+dtypes: float64(2), int64(7), object(2)
+memory usage: 417.6+ MB
+</pre></div>
+      </div><div class="nb-cell nb-code-cell">
+        <div class="nb-input"><pre><code class="language-python">df[&#039;fecha&#039;] = pd.to_datetime(df[&#039;fecha&#039;])</code></pre></div>
+        
+      </div><div class="nb-cell nb-code-cell">
+        <div class="nb-input"><pre><code class="language-python">df_cesta = df[[&#039;id_pedido&#039;,&#039;nombre_producto&#039;]]
+df_cesta</code></pre></div>
+        <div class="nb-output"><div class="nb-rendered-html">
+  <div id="df-6b58aa0a-1ce2-4ea0-bcdd-0f8e94c75e2f" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id_pedido</th>
+      <th>nombre_producto</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>Pepino Kirby</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>Bolsa de Bananas Orgánicas</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>Aguacate Hass Orgánico</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2</td>
+      <td>Col Rizada Orgánica de Michigan</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2</td>
+      <td>Zanahorias</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>4975713</th>
+      <td>3421080</td>
+      <td>Leche Entera Orgánica</td>
+    </tr>
+    <tr>
+      <th>4975714</th>
+      <td>3421080</td>
+      <td>Racimo de Tomates Orgánicos</td>
+    </tr>
+    <tr>
+      <th>4975715</th>
+      <td>3421080</td>
+      <td>Cilantro Orgánico</td>
+    </tr>
+    <tr>
+      <th>4975716</th>
+      <td>3421082</td>
+      <td>Fresas</td>
+    </tr>
+    <tr>
+      <th>4975717</th>
+      <td>3421083</td>
+      <td>Banana</td>
+    </tr>
+  </tbody>
+</table>
+<p>4975718 rows × 2 columns</p>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-6b58aa0a-1ce2-4ea0-bcdd-0f8e94c75e2f')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-6b58aa0a-1ce2-4ea0-bcdd-0f8e94c75e2f button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-6b58aa0a-1ce2-4ea0-bcdd-0f8e94c75e2f');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+<div id="df-2945c952-a4fa-47a4-bcfc-8814305b9086">
+  <button class="colab-df-quickchart" onclick="quickchart('df-2945c952-a4fa-47a4-bcfc-8814305b9086')"
+            title="Suggest charts"
+            style="display:none;">
+
+<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+     width="24px">
+    <g>
+        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+    </g>
+</svg>
+  </button>
+
+<style>
+  .colab-df-quickchart {
+      --bg-color: #E8F0FE;
+      --fill-color: #1967D2;
+      --hover-bg-color: #E2EBFA;
+      --hover-fill-color: #174EA6;
+      --disabled-fill-color: #AAA;
+      --disabled-bg-color: #DDD;
+  }
+
+  [theme=dark] .colab-df-quickchart {
+      --bg-color: #3B4455;
+      --fill-color: #D2E3FC;
+      --hover-bg-color: #434B5C;
+      --hover-fill-color: #FFFFFF;
+      --disabled-bg-color: #3B4455;
+      --disabled-fill-color: #666;
+  }
+
+  .colab-df-quickchart {
+    background-color: var(--bg-color);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    fill: var(--fill-color);
+    height: 32px;
+    padding: 0;
+    width: 32px;
+  }
+
+  .colab-df-quickchart:hover {
+    background-color: var(--hover-bg-color);
+    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+    fill: var(--button-hover-fill-color);
+  }
+
+  .colab-df-quickchart-complete:disabled,
+  .colab-df-quickchart-complete:disabled:hover {
+    background-color: var(--disabled-bg-color);
+    fill: var(--disabled-fill-color);
+    box-shadow: none;
+  }
+
+  .colab-df-spinner {
+    border: 2px solid var(--fill-color);
+    border-color: transparent;
+    border-bottom-color: var(--fill-color);
+    animation:
+      spin 1s steps(1) infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+      border-left-color: var(--fill-color);
+    }
+    20% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    30% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+      border-right-color: var(--fill-color);
+    }
+    40% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    60% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+    }
+    80% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-bottom-color: var(--fill-color);
+    }
+    90% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+    }
+  }
+</style>
+
+  <script>
+    async function quickchart(key) {
+      const quickchartButtonEl =
+        document.querySelector('#' + key + ' button');
+      quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
+      quickchartButtonEl.classList.add('colab-df-spinner');
+      try {
+        const charts = await google.colab.kernel.invokeFunction(
+            'suggestCharts', [key], {});
+      } catch (error) {
+        console.error('Error during call to suggestCharts:', error);
+      }
+      quickchartButtonEl.classList.remove('colab-df-spinner');
+      quickchartButtonEl.classList.add('colab-df-quickchart-complete');
+    }
+    (() => {
+      let quickchartButtonEl =
+        document.querySelector('#df-2945c952-a4fa-47a4-bcfc-8814305b9086 button');
+      quickchartButtonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+    })();
+  </script>
+</div>
+
+  <div id="id_e8febd2e-f814-46a3-962d-24f031fa8f8a">
+    <style>
+      .colab-df-generate {
+        background-color: #E8F0FE;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        display: none;
+        fill: #1967D2;
+        height: 32px;
+        padding: 0 0 0 0;
+        width: 32px;
+      }
+
+      .colab-df-generate:hover {
+        background-color: #E2EBFA;
+        box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+        fill: #174EA6;
+      }
+
+      [theme=dark] .colab-df-generate {
+        background-color: #3B4455;
+        fill: #D2E3FC;
+      }
+
+      [theme=dark] .colab-df-generate:hover {
+        background-color: #434B5C;
+        box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+        filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+        fill: #FFFFFF;
+      }
+    </style>
+    <button class="colab-df-generate" onclick="generateWithVariable('df_cesta')"
+            title="Generate code using this dataframe."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M7,19H8.4L18.45,9,17,7.55,7,17.6ZM5,21V16.75L18.45,3.32a2,2,0,0,1,2.83,0l1.4,1.43a1.91,1.91,0,0,1,.58,1.4,1.91,1.91,0,0,1-.58,1.4L9.25,21ZM18.45,9,17,7.55Zm-12,3A5.31,5.31,0,0,0,4.9,8.1,5.31,5.31,0,0,0,1,6.5,5.31,5.31,0,0,0,4.9,4.9,5.31,5.31,0,0,0,6.5,1,5.31,5.31,0,0,0,8.1,4.9,5.31,5.31,0,0,0,12,6.5,5.46,5.46,0,0,0,6.5,12Z"/>
+  </svg>
+    </button>
+    <script>
+      (() => {
+      const buttonEl =
+        document.querySelector('#id_e8febd2e-f814-46a3-962d-24f031fa8f8a button.colab-df-generate');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      buttonEl.onclick = () => {
+        google.colab.notebook.generateWithVariable('df_cesta');
+      }
+      })();
+    </script>
+  </div>
+
+    </div>
+  </div>
+</div></div>
+      </div><div class="nb-cell nb-code-cell">
+        <div class="nb-input"><pre><code class="language-python"># Agrupar los productos por id_pedido
+df_agrupado = df_cesta.groupby(&#039;id_pedido&#039;)[&#039;nombre_producto&#039;].apply(lambda producto: &#039;,&#039;.join(producto))
+df_agrupado</code></pre></div>
+        <div class="nb-output"><div class="nb-rendered-html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>nombre_producto</th>
+    </tr>
+    <tr>
+      <th>id_pedido</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>Pepino Kirby,Bolsa de Bananas Orgánicas,Aguaca...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Col Rizada Orgánica de Michigan,Zanahorias</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Espinacas Baby Orgánicas</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Bolsa de Bananas Orgánicas,Frambuesas Orgánica...</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Banana,Cilantro Orgánico,Aguacate Orgánico,Ceb...</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>3421077</th>
+      <td>Frambuesas Orgánicas,Calabacín Orgánico,Leche ...</td>
+    </tr>
+    <tr>
+      <th>3421078</th>
+      <td>Manzanas Gala Orgánicas,Banana</td>
+    </tr>
+    <tr>
+      <th>3421080</th>
+      <td>Leche Entera Orgánica,Racimo de Tomates Orgáni...</td>
+    </tr>
+    <tr>
+      <th>3421082</th>
+      <td>Fresas</td>
+    </tr>
+    <tr>
+      <th>3421083</th>
+      <td>Banana</td>
+    </tr>
+  </tbody>
+</table>
+<p>2060188 rows × 1 columns</p>
+</div><br><label><b>dtype:</b> object</label></div></div>
+      </div><div class="nb-cell nb-code-cell">
+        <div class="nb-input"><pre><code class="language-python"># Aplicar pd.get_dummies() para transformar los productos en columnas con 0/1
+df_transacciones = df_agrupado.str.get_dummies(sep=&#039;,&#039;)
+df_transacciones</code></pre></div>
+        <div class="nb-output"><div class="nb-rendered-html">
+  <div id="df-4435e709-7bc0-4da4-a90c-92ae4813939d" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Agua con Gas de Pomelo</th>
+      <th>Aguacate Hass Orgánico</th>
+      <th>Aguacate Orgánico</th>
+      <th>Ajo Orgánico</th>
+      <th>Apio Orgánico en Ramillete Pequeño</th>
+      <th>Arándanos Orgánicos</th>
+      <th>Banana</th>
+      <th>Bolsa de Bananas Orgánicas</th>
+      <th>Calabacín Orgánico</th>
+      <th>Cebolla Amarilla Orgánica</th>
+      <th>...</th>
+      <th>Manzana Honeycrisp Orgánica</th>
+      <th>Manzanas Gala Orgánicas</th>
+      <th>Pepino Kirby</th>
+      <th>Pepino Orgánico</th>
+      <th>Racimo de Tomates Orgánicos</th>
+      <th>Rúcula Baby Orgánica</th>
+      <th>Tomates Cherry Orgánicos</th>
+      <th>Uvas Rojas sin Semillas</th>
+      <th>Zanahorias</th>
+      <th>Zanahorias Baby Orgánicas</th>
+    </tr>
+    <tr>
+      <th>id_pedido</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>3421077</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3421078</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3421080</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3421082</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3421083</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>2060188 rows × 40 columns</p>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-4435e709-7bc0-4da4-a90c-92ae4813939d')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-4435e709-7bc0-4da4-a90c-92ae4813939d button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-4435e709-7bc0-4da4-a90c-92ae4813939d');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+<div id="df-d94a050b-dee6-4fda-bea2-84fa27d61fcc">
+  <button class="colab-df-quickchart" onclick="quickchart('df-d94a050b-dee6-4fda-bea2-84fa27d61fcc')"
+            title="Suggest charts"
+            style="display:none;">
+
+<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+     width="24px">
+    <g>
+        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+    </g>
+</svg>
+  </button>
+
+<style>
+  .colab-df-quickchart {
+      --bg-color: #E8F0FE;
+      --fill-color: #1967D2;
+      --hover-bg-color: #E2EBFA;
+      --hover-fill-color: #174EA6;
+      --disabled-fill-color: #AAA;
+      --disabled-bg-color: #DDD;
+  }
+
+  [theme=dark] .colab-df-quickchart {
+      --bg-color: #3B4455;
+      --fill-color: #D2E3FC;
+      --hover-bg-color: #434B5C;
+      --hover-fill-color: #FFFFFF;
+      --disabled-bg-color: #3B4455;
+      --disabled-fill-color: #666;
+  }
+
+  .colab-df-quickchart {
+    background-color: var(--bg-color);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    fill: var(--fill-color);
+    height: 32px;
+    padding: 0;
+    width: 32px;
+  }
+
+  .colab-df-quickchart:hover {
+    background-color: var(--hover-bg-color);
+    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+    fill: var(--button-hover-fill-color);
+  }
+
+  .colab-df-quickchart-complete:disabled,
+  .colab-df-quickchart-complete:disabled:hover {
+    background-color: var(--disabled-bg-color);
+    fill: var(--disabled-fill-color);
+    box-shadow: none;
+  }
+
+  .colab-df-spinner {
+    border: 2px solid var(--fill-color);
+    border-color: transparent;
+    border-bottom-color: var(--fill-color);
+    animation:
+      spin 1s steps(1) infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+      border-left-color: var(--fill-color);
+    }
+    20% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    30% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+      border-right-color: var(--fill-color);
+    }
+    40% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    60% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+    }
+    80% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-bottom-color: var(--fill-color);
+    }
+    90% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+    }
+  }
+</style>
+
+  <script>
+    async function quickchart(key) {
+      const quickchartButtonEl =
+        document.querySelector('#' + key + ' button');
+      quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
+      quickchartButtonEl.classList.add('colab-df-spinner');
+      try {
+        const charts = await google.colab.kernel.invokeFunction(
+            'suggestCharts', [key], {});
+      } catch (error) {
+        console.error('Error during call to suggestCharts:', error);
+      }
+      quickchartButtonEl.classList.remove('colab-df-spinner');
+      quickchartButtonEl.classList.add('colab-df-quickchart-complete');
+    }
+    (() => {
+      let quickchartButtonEl =
+        document.querySelector('#df-d94a050b-dee6-4fda-bea2-84fa27d61fcc button');
+      quickchartButtonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+    })();
+  </script>
+</div>
+
+  <div id="id_49a63c7d-676f-44c6-9900-9fb117a476a8">
+    <style>
+      .colab-df-generate {
+        background-color: #E8F0FE;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        display: none;
+        fill: #1967D2;
+        height: 32px;
+        padding: 0 0 0 0;
+        width: 32px;
+      }
+
+      .colab-df-generate:hover {
+        background-color: #E2EBFA;
+        box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+        fill: #174EA6;
+      }
+
+      [theme=dark] .colab-df-generate {
+        background-color: #3B4455;
+        fill: #D2E3FC;
+      }
+
+      [theme=dark] .colab-df-generate:hover {
+        background-color: #434B5C;
+        box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+        filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+        fill: #FFFFFF;
+      }
+    </style>
+    <button class="colab-df-generate" onclick="generateWithVariable('df_transacciones')"
+            title="Generate code using this dataframe."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M7,19H8.4L18.45,9,17,7.55,7,17.6ZM5,21V16.75L18.45,3.32a2,2,0,0,1,2.83,0l1.4,1.43a1.91,1.91,0,0,1,.58,1.4,1.91,1.91,0,0,1-.58,1.4L9.25,21ZM18.45,9,17,7.55Zm-12,3A5.31,5.31,0,0,0,4.9,8.1,5.31,5.31,0,0,0,1,6.5,5.31,5.31,0,0,0,4.9,4.9,5.31,5.31,0,0,0,6.5,1,5.31,5.31,0,0,0,8.1,4.9,5.31,5.31,0,0,0,12,6.5,5.46,5.46,0,0,0,6.5,12Z"/>
+  </svg>
+    </button>
+    <script>
+      (() => {
+      const buttonEl =
+        document.querySelector('#id_49a63c7d-676f-44c6-9900-9fb117a476a8 button.colab-df-generate');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      buttonEl.onclick = () => {
+        google.colab.notebook.generateWithVariable('df_transacciones');
+      }
+      })();
+    </script>
+  </div>
+
+    </div>
+  </div>
+</div></div>
+      </div><div class="nb-cell nb-code-cell">
+        <div class="nb-input"><pre><code class="language-python"># Soporte para cada producto
+soporte = df_transacciones.mean() * 100
+soporte.sort_values(ascending=False)</code></pre></div>
+        <div class="nb-output"><div class="nb-rendered-html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Banana</th>
+      <td>23.809381</td>
+    </tr>
+    <tr>
+      <th>Bolsa de Bananas Orgánicas</th>
+      <td>19.129710</td>
+    </tr>
+    <tr>
+      <th>Fresas Orgánicas</th>
+      <td>13.349170</td>
+    </tr>
+    <tr>
+      <th>Espinacas Baby Orgánicas</th>
+      <td>12.198935</td>
+    </tr>
+    <tr>
+      <th>Aguacate Hass Orgánico</th>
+      <td>10.703004</td>
+    </tr>
+    <tr>
+      <th>Aguacate Orgánico</th>
+      <td>8.929331</td>
+    </tr>
+    <tr>
+      <th>Limón Grande</th>
+      <td>7.791279</td>
+    </tr>
+    <tr>
+      <th>Fresas</th>
+      <td>7.241960</td>
+    </tr>
+    <tr>
+      <th>Limones</th>
+      <td>7.107944</td>
+    </tr>
+    <tr>
+      <th>Leche Entera Orgánica</th>
+      <td>6.918301</td>
+    </tr>
+    <tr>
+      <th>Frambuesas Orgánicas</th>
+      <td>6.906797</td>
+    </tr>
+    <tr>
+      <th>Cebolla Amarilla Orgánica</th>
+      <td>5.706324</td>
+    </tr>
+    <tr>
+      <th>Ajo Orgánico</th>
+      <td>5.521778</td>
+    </tr>
+    <tr>
+      <th>Calabacín Orgánico</th>
+      <td>5.302429</td>
+    </tr>
+    <tr>
+      <th>Arándanos Orgánicos</th>
+      <td>5.086138</td>
+    </tr>
+    <tr>
+      <th>Pepino Kirby</th>
+      <td>4.840044</td>
+    </tr>
+    <tr>
+      <th>Manzana Fuji Orgánica</th>
+      <td>4.502841</td>
+    </tr>
+    <tr>
+      <th>Limón Orgánico</th>
+      <td>4.422266</td>
+    </tr>
+    <tr>
+      <th>Tomates Cherry Orgánicos</th>
+      <td>4.266795</td>
+    </tr>
+    <tr>
+      <th>Manzana Honeycrisp Orgánica</th>
+      <td>4.231216</td>
+    </tr>
+    <tr>
+      <th>Uvas Rojas sin Semillas</th>
+      <td>4.200733</td>
+    </tr>
+    <tr>
+      <th>Pepino Orgánico</th>
+      <td>4.114091</td>
+    </tr>
+    <tr>
+      <th>Manzana Honeycrisp</th>
+      <td>4.036476</td>
+    </tr>
+    <tr>
+      <th>Zanahorias Baby Orgánicas</th>
+      <td>3.898528</td>
+    </tr>
+    <tr>
+      <th>Agua con Gas de Pomelo</th>
+      <td>3.839504</td>
+    </tr>
+    <tr>
+      <th>Crema Orgánica</th>
+      <td>3.827855</td>
+    </tr>
+    <tr>
+      <th>Manzana Fuji Extra Grande Orgánica</th>
+      <td>3.780189</td>
+    </tr>
+    <tr>
+      <th>Cebollas Amarillas</th>
+      <td>3.728592</td>
+    </tr>
+    <tr>
+      <th>Rúcula Baby Orgánica</th>
+      <td>3.671849</td>
+    </tr>
+    <tr>
+      <th>Manzanas Gala Orgánicas</th>
+      <td>3.665442</td>
+    </tr>
+    <tr>
+      <th>Zanahorias</th>
+      <td>3.647386</td>
+    </tr>
+    <tr>
+      <th>Coliflor Fresca</th>
+      <td>3.597876</td>
+    </tr>
+    <tr>
+      <th>Hummus Original</th>
+      <td>3.593798</td>
+    </tr>
+    <tr>
+      <th>Cilantro Orgánico</th>
+      <td>3.538900</td>
+    </tr>
+    <tr>
+      <th>Crema</th>
+      <td>3.470606</td>
+    </tr>
+    <tr>
+      <th>Espárragos</th>
+      <td>3.446724</td>
+    </tr>
+    <tr>
+      <th>Cebolla Roja Orgánica</th>
+      <td>3.429687</td>
+    </tr>
+    <tr>
+      <th>Apio Orgánico en Ramillete Pequeño</th>
+      <td>3.427891</td>
+    </tr>
+    <tr>
+      <th>Col Rizada Orgánica de Michigan</th>
+      <td>3.396632</td>
+    </tr>
+    <tr>
+      <th>Racimo de Tomates Orgánicos</th>
+      <td>3.239267</td>
+    </tr>
+  </tbody>
+</table>
+</div><br><label><b>dtype:</b> float64</label></div></div>
+      </div><div class="nb-cell nb-code-cell">
+        <div class="nb-input"><pre><code class="language-python"># Función para calcular la confianza entre dos productos en la muestra
+def confianza(antecedente, consecuente):
+    # Casos donde se compraron ambos productos
+    conjunto_ac = df_transacciones[(df_transacciones[antecedente] == 1) &amp;
+                                   (df_transacciones[consecuente] == 1)]
+    # Confianza = compras conjuntas / compras de producto A
+    return len(conjunto_ac) / df_transacciones[antecedente].sum()
+</code></pre></div>
+        
+      </div><div class="nb-cell nb-code-cell">
+        <div class="nb-input"><pre><code class="language-python"># Función para calcular el lift entre dos productos en la muestra
+def lift(antecedente, consecuente):
+    soporte_a = df_transacciones[antecedente].mean()
+    soporte_c = df_transacciones[consecuente].mean()
+    conteo_ac = len(df_transacciones[(df_transacciones[antecedente] == 1) &amp;
+                                   (df_transacciones[consecuente] == 1)])
+    soporte_ac = conteo_ac / len(df_transacciones)
+    return soporte_ac / (soporte_a * soporte_c)</code></pre></div>
+        
+      </div><div class="nb-cell nb-code-cell">
+        <div class="nb-input"><pre><code class="language-python">from itertools import combinations
+
+# Definir un umbral para la confianza mínima
+umbral_confianza = 0.05
+asociaciones = []
+
+# Generar combinaciones de productos y calcular confianza y lift
+for antecedente, consecuente in combinations(df_transacciones.columns, 2):
+
+    # Soporte del antecedente
+    soporte_a = df_transacciones[antecedente].mean()
+
+    # Calcular confianza
+    conf = confianza(antecedente, consecuente)
+    if conf &gt; umbral_confianza:
+        asociaciones.append({
+            &#039;antecedente&#039;: antecedente,
+            &#039;consecuente&#039;: consecuente,
+            &#039;soporte_a&#039;: round(soporte_a * 100,1),
+            &#039;confianza&#039;: round(conf * 100,1),
+            &#039;lift&#039;: round(lift(antecedente, consecuente),1)
+        })
+
+
+# Convertir las asociaciones en un DataFrame
+df_asociaciones = pd.DataFrame(asociaciones)
+
+# Ordenar las asociaciones por confianza de mayor a menor
+df_asociaciones.sort_values(by=&#039;lift&#039;, ascending=False, inplace=True)
+
+df_asociaciones</code></pre></div>
+        <div class="nb-output"><div class="nb-rendered-html">
+  <div id="df-a4769f9c-700f-4384-8759-05f4474bb1eb" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>antecedente</th>
+      <th>consecuente</th>
+      <th>soporte_a</th>
+      <th>confianza</th>
+      <th>lift</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>224</th>
+      <td>Cilantro Orgánico</td>
+      <td>Limones</td>
+      <td>3.5</td>
+      <td>25.4</td>
+      <td>3.6</td>
+    </tr>
+    <tr>
+      <th>185</th>
+      <td>Cebolla Roja Orgánica</td>
+      <td>Cilantro Orgánico</td>
+      <td>3.4</td>
+      <td>12.8</td>
+      <td>3.6</td>
+    </tr>
+    <tr>
+      <th>61</th>
+      <td>Ajo Orgánico</td>
+      <td>Cebolla Amarilla Orgánica</td>
+      <td>5.5</td>
+      <td>20.1</td>
+      <td>3.5</td>
+    </tr>
+    <tr>
+      <th>106</th>
+      <td>Apio Orgánico en Ramillete Pequeño</td>
+      <td>Zanahorias</td>
+      <td>3.4</td>
+      <td>12.0</td>
+      <td>3.3</td>
+    </tr>
+    <tr>
+      <th>102</th>
+      <td>Apio Orgánico en Ramillete Pequeño</td>
+      <td>Pepino Orgánico</td>
+      <td>3.4</td>
+      <td>12.7</td>
+      <td>3.1</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>274</th>
+      <td>Crema Orgánica</td>
+      <td>Espinacas Baby Orgánicas</td>
+      <td>3.8</td>
+      <td>8.7</td>
+      <td>0.7</td>
+    </tr>
+    <tr>
+      <th>304</th>
+      <td>Frambuesas Orgánicas</td>
+      <td>Fresas</td>
+      <td>6.9</td>
+      <td>5.3</td>
+      <td>0.7</td>
+    </tr>
+    <tr>
+      <th>38</th>
+      <td>Aguacate Orgánico</td>
+      <td>Bolsa de Bananas Orgánicas</td>
+      <td>8.9</td>
+      <td>13.0</td>
+      <td>0.7</td>
+    </tr>
+    <tr>
+      <th>309</th>
+      <td>Frambuesas Orgánicas</td>
+      <td>Limón Grande</td>
+      <td>6.9</td>
+      <td>5.8</td>
+      <td>0.7</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Aguacate Hass Orgánico</td>
+      <td>Banana</td>
+      <td>10.7</td>
+      <td>14.6</td>
+      <td>0.6</td>
+    </tr>
+  </tbody>
+</table>
+<p>399 rows × 5 columns</p>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-a4769f9c-700f-4384-8759-05f4474bb1eb')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-a4769f9c-700f-4384-8759-05f4474bb1eb button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-a4769f9c-700f-4384-8759-05f4474bb1eb');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+<div id="df-4659a076-e7fc-4ac4-9251-de42cc611954">
+  <button class="colab-df-quickchart" onclick="quickchart('df-4659a076-e7fc-4ac4-9251-de42cc611954')"
+            title="Suggest charts"
+            style="display:none;">
+
+<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+     width="24px">
+    <g>
+        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+    </g>
+</svg>
+  </button>
+
+<style>
+  .colab-df-quickchart {
+      --bg-color: #E8F0FE;
+      --fill-color: #1967D2;
+      --hover-bg-color: #E2EBFA;
+      --hover-fill-color: #174EA6;
+      --disabled-fill-color: #AAA;
+      --disabled-bg-color: #DDD;
+  }
+
+  [theme=dark] .colab-df-quickchart {
+      --bg-color: #3B4455;
+      --fill-color: #D2E3FC;
+      --hover-bg-color: #434B5C;
+      --hover-fill-color: #FFFFFF;
+      --disabled-bg-color: #3B4455;
+      --disabled-fill-color: #666;
+  }
+
+  .colab-df-quickchart {
+    background-color: var(--bg-color);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    fill: var(--fill-color);
+    height: 32px;
+    padding: 0;
+    width: 32px;
+  }
+
+  .colab-df-quickchart:hover {
+    background-color: var(--hover-bg-color);
+    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+    fill: var(--button-hover-fill-color);
+  }
+
+  .colab-df-quickchart-complete:disabled,
+  .colab-df-quickchart-complete:disabled:hover {
+    background-color: var(--disabled-bg-color);
+    fill: var(--disabled-fill-color);
+    box-shadow: none;
+  }
+
+  .colab-df-spinner {
+    border: 2px solid var(--fill-color);
+    border-color: transparent;
+    border-bottom-color: var(--fill-color);
+    animation:
+      spin 1s steps(1) infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+      border-left-color: var(--fill-color);
+    }
+    20% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    30% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+      border-right-color: var(--fill-color);
+    }
+    40% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    60% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+    }
+    80% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-bottom-color: var(--fill-color);
+    }
+    90% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+    }
+  }
+</style>
+
+  <script>
+    async function quickchart(key) {
+      const quickchartButtonEl =
+        document.querySelector('#' + key + ' button');
+      quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
+      quickchartButtonEl.classList.add('colab-df-spinner');
+      try {
+        const charts = await google.colab.kernel.invokeFunction(
+            'suggestCharts', [key], {});
+      } catch (error) {
+        console.error('Error during call to suggestCharts:', error);
+      }
+      quickchartButtonEl.classList.remove('colab-df-spinner');
+      quickchartButtonEl.classList.add('colab-df-quickchart-complete');
+    }
+    (() => {
+      let quickchartButtonEl =
+        document.querySelector('#df-4659a076-e7fc-4ac4-9251-de42cc611954 button');
+      quickchartButtonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+    })();
+  </script>
+</div>
+
+  <div id="id_449e9cf8-1834-4c68-9b92-f57eb3fcb40f">
+    <style>
+      .colab-df-generate {
+        background-color: #E8F0FE;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        display: none;
+        fill: #1967D2;
+        height: 32px;
+        padding: 0 0 0 0;
+        width: 32px;
+      }
+
+      .colab-df-generate:hover {
+        background-color: #E2EBFA;
+        box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+        fill: #174EA6;
+      }
+
+      [theme=dark] .colab-df-generate {
+        background-color: #3B4455;
+        fill: #D2E3FC;
+      }
+
+      [theme=dark] .colab-df-generate:hover {
+        background-color: #434B5C;
+        box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+        filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+        fill: #FFFFFF;
+      }
+    </style>
+    <button class="colab-df-generate" onclick="generateWithVariable('df_asociaciones')"
+            title="Generate code using this dataframe."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M7,19H8.4L18.45,9,17,7.55,7,17.6ZM5,21V16.75L18.45,3.32a2,2,0,0,1,2.83,0l1.4,1.43a1.91,1.91,0,0,1,.58,1.4,1.91,1.91,0,0,1-.58,1.4L9.25,21ZM18.45,9,17,7.55Zm-12,3A5.31,5.31,0,0,0,4.9,8.1,5.31,5.31,0,0,0,1,6.5,5.31,5.31,0,0,0,4.9,4.9,5.31,5.31,0,0,0,6.5,1,5.31,5.31,0,0,0,8.1,4.9,5.31,5.31,0,0,0,12,6.5,5.46,5.46,0,0,0,6.5,12Z"/>
+  </svg>
+    </button>
+    <script>
+      (() => {
+      const buttonEl =
+        document.querySelector('#id_449e9cf8-1834-4c68-9b92-f57eb3fcb40f button.colab-df-generate');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      buttonEl.onclick = () => {
+        google.colab.notebook.generateWithVariable('df_asociaciones');
+      }
+      })();
+    </script>
+  </div>
+
+    </div>
+  </div>
+</div></div>
+      </div><div class="nb-cell nb-markdown-cell">Generamos una tabla de los productos únicos con su 'id_producto', 'id_seccion', 'id_departamento' para enriquecer la tabla de reglas</div><div class="nb-cell nb-code-cell">
+        <div class="nb-input"><pre><code class="language-python"># Crear una tabla con los productos únicos y las columnas correspondientes
+productos_unicos = df[[&#039;id_producto&#039;, &#039;id_seccion&#039;, &#039;id_departamento&#039;, &#039;nombre_producto&#039;]].drop_duplicates()
+
+productos_unicos</code></pre></div>
+        <div class="nb-output"><div class="nb-rendered-html">
+  <div id="df-e2990dc3-1325-45cc-8024-836532538d5f" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id_producto</th>
+      <th>id_seccion</th>
+      <th>id_departamento</th>
+      <th>nombre_producto</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>49683</td>
+      <td>83</td>
+      <td>4</td>
+      <td>Pepino Kirby</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>13176</td>
+      <td>24</td>
+      <td>4</td>
+      <td>Bolsa de Bananas Orgánicas</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>47209</td>
+      <td>24</td>
+      <td>4</td>
+      <td>Aguacate Hass Orgánico</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>28985</td>
+      <td>83</td>
+      <td>4</td>
+      <td>Col Rizada Orgánica de Michigan</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>17794</td>
+      <td>83</td>
+      <td>4</td>
+      <td>Zanahorias</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>21903</td>
+      <td>123</td>
+      <td>4</td>
+      <td>Espinacas Baby Orgánicas</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>27966</td>
+      <td>123</td>
+      <td>4</td>
+      <td>Frambuesas Orgánicas</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>24852</td>
+      <td>24</td>
+      <td>4</td>
+      <td>Banana</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>31717</td>
+      <td>16</td>
+      <td>4</td>
+      <td>Cilantro Orgánico</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>47766</td>
+      <td>24</td>
+      <td>4</td>
+      <td>Aguacate Orgánico</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>4605</td>
+      <td>83</td>
+      <td>4</td>
+      <td>Cebollas Amarillas</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>21137</td>
+      <td>24</td>
+      <td>4</td>
+      <td>Fresas Orgánicas</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>49235</td>
+      <td>53</td>
+      <td>16</td>
+      <td>Crema Orgánica</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>27845</td>
+      <td>84</td>
+      <td>16</td>
+      <td>Leche Entera Orgánica</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>45066</td>
+      <td>24</td>
+      <td>4</td>
+      <td>Manzana Honeycrisp</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>44632</td>
+      <td>115</td>
+      <td>7</td>
+      <td>Agua con Gas de Pomelo</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>46979</td>
+      <td>83</td>
+      <td>4</td>
+      <td>Espárragos</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>42265</td>
+      <td>123</td>
+      <td>4</td>
+      <td>Zanahorias Baby Orgánicas</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>8518</td>
+      <td>83</td>
+      <td>4</td>
+      <td>Cebolla Roja Orgánica</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>41950</td>
+      <td>83</td>
+      <td>4</td>
+      <td>Racimo de Tomates Orgánicos</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>47626</td>
+      <td>24</td>
+      <td>4</td>
+      <td>Limón Grande</td>
+    </tr>
+    <tr>
+      <th>38</th>
+      <td>22935</td>
+      <td>83</td>
+      <td>4</td>
+      <td>Cebolla Amarilla Orgánica</td>
+    </tr>
+    <tr>
+      <th>41</th>
+      <td>4920</td>
+      <td>123</td>
+      <td>4</td>
+      <td>Uvas Rojas sin Semillas</td>
+    </tr>
+    <tr>
+      <th>47</th>
+      <td>21616</td>
+      <td>123</td>
+      <td>4</td>
+      <td>Rúcula Baby Orgánica</td>
+    </tr>
+    <tr>
+      <th>49</th>
+      <td>28204</td>
+      <td>24</td>
+      <td>4</td>
+      <td>Manzana Fuji Orgánica</td>
+    </tr>
+    <tr>
+      <th>52</th>
+      <td>16797</td>
+      <td>24</td>
+      <td>4</td>
+      <td>Fresas</td>
+    </tr>
+    <tr>
+      <th>53</th>
+      <td>39275</td>
+      <td>123</td>
+      <td>4</td>
+      <td>Arándanos Orgánicos</td>
+    </tr>
+    <tr>
+      <th>57</th>
+      <td>37646</td>
+      <td>24</td>
+      <td>4</td>
+      <td>Manzanas Gala Orgánicas</td>
+    </tr>
+    <tr>
+      <th>59</th>
+      <td>40706</td>
+      <td>123</td>
+      <td>4</td>
+      <td>Tomates Cherry Orgánicos</td>
+    </tr>
+    <tr>
+      <th>60</th>
+      <td>5876</td>
+      <td>24</td>
+      <td>4</td>
+      <td>Limón Orgánico</td>
+    </tr>
+    <tr>
+      <th>67</th>
+      <td>30391</td>
+      <td>83</td>
+      <td>4</td>
+      <td>Pepino Orgánico</td>
+    </tr>
+    <tr>
+      <th>70</th>
+      <td>24964</td>
+      <td>83</td>
+      <td>4</td>
+      <td>Ajo Orgánico</td>
+    </tr>
+    <tr>
+      <th>75</th>
+      <td>19057</td>
+      <td>24</td>
+      <td>4</td>
+      <td>Manzana Fuji Extra Grande Orgánica</td>
+    </tr>
+    <tr>
+      <th>85</th>
+      <td>26209</td>
+      <td>24</td>
+      <td>4</td>
+      <td>Limones</td>
+    </tr>
+    <tr>
+      <th>99</th>
+      <td>8277</td>
+      <td>24</td>
+      <td>4</td>
+      <td>Manzana Honeycrisp Orgánica</td>
+    </tr>
+    <tr>
+      <th>138</th>
+      <td>27104</td>
+      <td>83</td>
+      <td>4</td>
+      <td>Coliflor Fresca</td>
+    </tr>
+    <tr>
+      <th>156</th>
+      <td>30489</td>
+      <td>67</td>
+      <td>20</td>
+      <td>Hummus Original</td>
+    </tr>
+    <tr>
+      <th>159</th>
+      <td>44359</td>
+      <td>83</td>
+      <td>4</td>
+      <td>Apio Orgánico en Ramillete Pequeño</td>
+    </tr>
+    <tr>
+      <th>172</th>
+      <td>45007</td>
+      <td>83</td>
+      <td>4</td>
+      <td>Calabacín Orgánico</td>
+    </tr>
+    <tr>
+      <th>289</th>
+      <td>27086</td>
+      <td>53</td>
+      <td>16</td>
+      <td>Crema</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-e2990dc3-1325-45cc-8024-836532538d5f')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-e2990dc3-1325-45cc-8024-836532538d5f button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-e2990dc3-1325-45cc-8024-836532538d5f');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+<div id="df-037d1723-877c-40e9-9a10-99a0797fc16c">
+  <button class="colab-df-quickchart" onclick="quickchart('df-037d1723-877c-40e9-9a10-99a0797fc16c')"
+            title="Suggest charts"
+            style="display:none;">
+
+<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+     width="24px">
+    <g>
+        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+    </g>
+</svg>
+  </button>
+
+<style>
+  .colab-df-quickchart {
+      --bg-color: #E8F0FE;
+      --fill-color: #1967D2;
+      --hover-bg-color: #E2EBFA;
+      --hover-fill-color: #174EA6;
+      --disabled-fill-color: #AAA;
+      --disabled-bg-color: #DDD;
+  }
+
+  [theme=dark] .colab-df-quickchart {
+      --bg-color: #3B4455;
+      --fill-color: #D2E3FC;
+      --hover-bg-color: #434B5C;
+      --hover-fill-color: #FFFFFF;
+      --disabled-bg-color: #3B4455;
+      --disabled-fill-color: #666;
+  }
+
+  .colab-df-quickchart {
+    background-color: var(--bg-color);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    fill: var(--fill-color);
+    height: 32px;
+    padding: 0;
+    width: 32px;
+  }
+
+  .colab-df-quickchart:hover {
+    background-color: var(--hover-bg-color);
+    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+    fill: var(--button-hover-fill-color);
+  }
+
+  .colab-df-quickchart-complete:disabled,
+  .colab-df-quickchart-complete:disabled:hover {
+    background-color: var(--disabled-bg-color);
+    fill: var(--disabled-fill-color);
+    box-shadow: none;
+  }
+
+  .colab-df-spinner {
+    border: 2px solid var(--fill-color);
+    border-color: transparent;
+    border-bottom-color: var(--fill-color);
+    animation:
+      spin 1s steps(1) infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+      border-left-color: var(--fill-color);
+    }
+    20% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    30% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+      border-right-color: var(--fill-color);
+    }
+    40% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    60% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+    }
+    80% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-bottom-color: var(--fill-color);
+    }
+    90% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+    }
+  }
+</style>
+
+  <script>
+    async function quickchart(key) {
+      const quickchartButtonEl =
+        document.querySelector('#' + key + ' button');
+      quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
+      quickchartButtonEl.classList.add('colab-df-spinner');
+      try {
+        const charts = await google.colab.kernel.invokeFunction(
+            'suggestCharts', [key], {});
+      } catch (error) {
+        console.error('Error during call to suggestCharts:', error);
+      }
+      quickchartButtonEl.classList.remove('colab-df-spinner');
+      quickchartButtonEl.classList.add('colab-df-quickchart-complete');
+    }
+    (() => {
+      let quickchartButtonEl =
+        document.querySelector('#df-037d1723-877c-40e9-9a10-99a0797fc16c button');
+      quickchartButtonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+    })();
+  </script>
+</div>
+
+  <div id="id_077f3bc2-4c5e-4860-9903-b4419c778a08">
+    <style>
+      .colab-df-generate {
+        background-color: #E8F0FE;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        display: none;
+        fill: #1967D2;
+        height: 32px;
+        padding: 0 0 0 0;
+        width: 32px;
+      }
+
+      .colab-df-generate:hover {
+        background-color: #E2EBFA;
+        box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+        fill: #174EA6;
+      }
+
+      [theme=dark] .colab-df-generate {
+        background-color: #3B4455;
+        fill: #D2E3FC;
+      }
+
+      [theme=dark] .colab-df-generate:hover {
+        background-color: #434B5C;
+        box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+        filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+        fill: #FFFFFF;
+      }
+    </style>
+    <button class="colab-df-generate" onclick="generateWithVariable('productos_unicos')"
+            title="Generate code using this dataframe."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M7,19H8.4L18.45,9,17,7.55,7,17.6ZM5,21V16.75L18.45,3.32a2,2,0,0,1,2.83,0l1.4,1.43a1.91,1.91,0,0,1,.58,1.4,1.91,1.91,0,0,1-.58,1.4L9.25,21ZM18.45,9,17,7.55Zm-12,3A5.31,5.31,0,0,0,4.9,8.1,5.31,5.31,0,0,0,1,6.5,5.31,5.31,0,0,0,4.9,4.9,5.31,5.31,0,0,0,6.5,1,5.31,5.31,0,0,0,8.1,4.9,5.31,5.31,0,0,0,12,6.5,5.46,5.46,0,0,0,6.5,12Z"/>
+  </svg>
+    </button>
+    <script>
+      (() => {
+      const buttonEl =
+        document.querySelector('#id_077f3bc2-4c5e-4860-9903-b4419c778a08 button.colab-df-generate');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      buttonEl.onclick = () => {
+        google.colab.notebook.generateWithVariable('productos_unicos');
+      }
+      })();
+    </script>
+  </div>
+
+    </div>
+  </div>
+</div></div>
+      </div><div class="nb-cell nb-code-cell">
+        <div class="nb-input"><pre><code class="language-python">df_asociaciones_enriquecido = df_asociaciones.merge(productos_unicos, left_on=&#039;antecedente&#039;, right_on=&#039;nombre_producto&#039;, how=&#039;left&#039;).drop(columns=[&#039;nombre_producto&#039;])
+df_asociaciones_enriquecido.columns = [&#039;antecedente&#039;, &#039;consecuente&#039;, &#039;soporte_a&#039;, &#039;confianza&#039;, &#039;lift&#039;, &#039;id_producto_a&#039;, &#039;id_seccion_a&#039;, &#039;id_departamento_a&#039;]
+df_asociaciones_enriquecido</code></pre></div>
+        <div class="nb-output"><div class="nb-rendered-html">
+  <div id="df-a0f075d2-eea1-4b21-b761-949eb0cfe0e8" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>antecedente</th>
+      <th>consecuente</th>
+      <th>soporte_a</th>
+      <th>confianza</th>
+      <th>lift</th>
+      <th>id_producto_a</th>
+      <th>id_seccion_a</th>
+      <th>id_departamento_a</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Cilantro Orgánico</td>
+      <td>Limones</td>
+      <td>3.5</td>
+      <td>25.4</td>
+      <td>3.6</td>
+      <td>31717</td>
+      <td>16</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Cebolla Roja Orgánica</td>
+      <td>Cilantro Orgánico</td>
+      <td>3.4</td>
+      <td>12.8</td>
+      <td>3.6</td>
+      <td>8518</td>
+      <td>83</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Ajo Orgánico</td>
+      <td>Cebolla Amarilla Orgánica</td>
+      <td>5.5</td>
+      <td>20.1</td>
+      <td>3.5</td>
+      <td>24964</td>
+      <td>83</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Apio Orgánico en Ramillete Pequeño</td>
+      <td>Zanahorias</td>
+      <td>3.4</td>
+      <td>12.0</td>
+      <td>3.3</td>
+      <td>44359</td>
+      <td>83</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Apio Orgánico en Ramillete Pequeño</td>
+      <td>Pepino Orgánico</td>
+      <td>3.4</td>
+      <td>12.7</td>
+      <td>3.1</td>
+      <td>44359</td>
+      <td>83</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>394</th>
+      <td>Crema Orgánica</td>
+      <td>Espinacas Baby Orgánicas</td>
+      <td>3.8</td>
+      <td>8.7</td>
+      <td>0.7</td>
+      <td>49235</td>
+      <td>53</td>
+      <td>16</td>
+    </tr>
+    <tr>
+      <th>395</th>
+      <td>Frambuesas Orgánicas</td>
+      <td>Fresas</td>
+      <td>6.9</td>
+      <td>5.3</td>
+      <td>0.7</td>
+      <td>27966</td>
+      <td>123</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>396</th>
+      <td>Aguacate Orgánico</td>
+      <td>Bolsa de Bananas Orgánicas</td>
+      <td>8.9</td>
+      <td>13.0</td>
+      <td>0.7</td>
+      <td>47766</td>
+      <td>24</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>397</th>
+      <td>Frambuesas Orgánicas</td>
+      <td>Limón Grande</td>
+      <td>6.9</td>
+      <td>5.8</td>
+      <td>0.7</td>
+      <td>27966</td>
+      <td>123</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>398</th>
+      <td>Aguacate Hass Orgánico</td>
+      <td>Banana</td>
+      <td>10.7</td>
+      <td>14.6</td>
+      <td>0.6</td>
+      <td>47209</td>
+      <td>24</td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
+<p>399 rows × 8 columns</p>
+</div>
+    <div class="colab-df-buttons">
+
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-a0f075d2-eea1-4b21-b761-949eb0cfe0e8')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-a0f075d2-eea1-4b21-b761-949eb0cfe0e8 button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-a0f075d2-eea1-4b21-b761-949eb0cfe0e8');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+
+
+<div id="df-cbc7ac78-20cc-4309-a972-e20c2bcee588">
+  <button class="colab-df-quickchart" onclick="quickchart('df-cbc7ac78-20cc-4309-a972-e20c2bcee588')"
+            title="Suggest charts"
+            style="display:none;">
+
+<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+     width="24px">
+    <g>
+        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+    </g>
+</svg>
+  </button>
+
+<style>
+  .colab-df-quickchart {
+      --bg-color: #E8F0FE;
+      --fill-color: #1967D2;
+      --hover-bg-color: #E2EBFA;
+      --hover-fill-color: #174EA6;
+      --disabled-fill-color: #AAA;
+      --disabled-bg-color: #DDD;
+  }
+
+  [theme=dark] .colab-df-quickchart {
+      --bg-color: #3B4455;
+      --fill-color: #D2E3FC;
+      --hover-bg-color: #434B5C;
+      --hover-fill-color: #FFFFFF;
+      --disabled-bg-color: #3B4455;
+      --disabled-fill-color: #666;
+  }
+
+  .colab-df-quickchart {
+    background-color: var(--bg-color);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    fill: var(--fill-color);
+    height: 32px;
+    padding: 0;
+    width: 32px;
+  }
+
+  .colab-df-quickchart:hover {
+    background-color: var(--hover-bg-color);
+    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+    fill: var(--button-hover-fill-color);
+  }
+
+  .colab-df-quickchart-complete:disabled,
+  .colab-df-quickchart-complete:disabled:hover {
+    background-color: var(--disabled-bg-color);
+    fill: var(--disabled-fill-color);
+    box-shadow: none;
+  }
+
+  .colab-df-spinner {
+    border: 2px solid var(--fill-color);
+    border-color: transparent;
+    border-bottom-color: var(--fill-color);
+    animation:
+      spin 1s steps(1) infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+      border-left-color: var(--fill-color);
+    }
+    20% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    30% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+      border-right-color: var(--fill-color);
+    }
+    40% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    60% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+    }
+    80% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-bottom-color: var(--fill-color);
+    }
+    90% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+    }
+  }
+</style>
+
+  <script>
+    async function quickchart(key) {
+      const quickchartButtonEl =
+        document.querySelector('#' + key + ' button');
+      quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
+      quickchartButtonEl.classList.add('colab-df-spinner');
+      try {
+        const charts = await google.colab.kernel.invokeFunction(
+            'suggestCharts', [key], {});
+      } catch (error) {
+        console.error('Error during call to suggestCharts:', error);
+      }
+      quickchartButtonEl.classList.remove('colab-df-spinner');
+      quickchartButtonEl.classList.add('colab-df-quickchart-complete');
+    }
+    (() => {
+      let quickchartButtonEl =
+        document.querySelector('#df-cbc7ac78-20cc-4309-a972-e20c2bcee588 button');
+      quickchartButtonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+    })();
+  </script>
+</div>
+
+  <div id="id_c552d173-422b-4761-b1cc-fde99809cc46">
+    <style>
+      .colab-df-generate {
+        background-color: #E8F0FE;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        display: none;
+        fill: #1967D2;
+        height: 32px;
+        padding: 0 0 0 0;
+        width: 32px;
+      }
+
+      .colab-df-generate:hover {
+        background-color: #E2EBFA;
+        box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+        fill: #174EA6;
+      }
+
+      [theme=dark] .colab-df-generate {
+        background-color: #3B4455;
+        fill: #D2E3FC;
+      }
+
+      [theme=dark] .colab-df-generate:hover {
+        background-color: #434B5C;
+        box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+        filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+        fill: #FFFFFF;
+      }
+    </style>
+    <button class="colab-df-generate" onclick="generateWithVariable('df_asociaciones_enriquecido')"
+            title="Generate code using this dataframe."
+            style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M7,19H8.4L18.45,9,17,7.55,7,17.6ZM5,21V16.75L18.45,3.32a2,2,0,0,1,2.83,0l1.4,1.43a1.91,1.91,0,0,1,.58,1.4,1.91,1.91,0,0,1-.58,1.4L9.25,21ZM18.45,9,17,7.55Zm-12,3A5.31,5.31,0,0,0,4.9,8.1,5.31,5.31,0,0,0,1,6.5,5.31,5.31,0,0,0,4.9,4.9,5.31,5.31,0,0,0,6.5,1,5.31,5.31,0,0,0,8.1,4.9,5.31,5.31,0,0,0,12,6.5,5.46,5.46,0,0,0,6.5,12Z"/>
+  </svg>
+    </button>
+    <script>
+      (() => {
+      const buttonEl =
+        document.querySelector('#id_c552d173-422b-4761-b1cc-fde99809cc46 button.colab-df-generate');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      buttonEl.onclick = () => {
+        google.colab.notebook.generateWithVariable('df_asociaciones_enriquecido');
+      }
+      })();
+    </script>
+  </div>
+
+    </div>
+  </div>
+</div></div>
+      </div><div class="nb-cell nb-code-cell">
+        <div class="nb-input"><pre><code class="language-python">df_asociaciones_enriquecido.to_csv(&#039;reglas.csv&#039;, index=False, sep=&#039;;&#039;, decimal=&#039;,&#039;)
+</code></pre></div>
+        
+      </div>
+    <div class="nb-footer">
+      <p>Portafolio — <a href="/">Horacio Laphitz</a></p>
+    </div>
+  </div>
+</body>
+</html>

@@ -11,6 +11,34 @@ const PUBLIC_PROJECTS_DIR = path.join(__dirname, '../../public/Proyectos');
 const CONTENT_PROJECTS_DIR = path.join(__dirname, '../src/content/proyectos');
 const GITHUB_DATA_PATH = path.join(__dirname, '../src/data/github-repos-simple.json');
 
+// ─── Professional Descriptions Map ──────────────────────────────────────────
+// These override raw GitHub descriptions with technically precise, professional
+// descriptions for the portfolio. Key = slugified project id.
+const PROFESSIONAL_DESCRIPTIONS = {
+  'eda-procesos': 'Pipeline automatizado de Análisis Exploratorio de Datos (EDA) con generación de reportes estadísticos, detección de outliers, análisis de correlaciones y visualizaciones avanzadas.',
+  'prediceprecioacciones': 'Modelo de regresión para predicción de series temporales financieras utilizando datos históricos del NYSE, con ingeniería de features y evaluación de métricas de rendimiento.',
+  'clustering': 'Segmentación geoespacial no supervisada mediante K-Means y clustering jerárquico aplicado al mercado inmobiliario de California, con análisis de silueta y reducción de dimensionalidad PCA.',
+  'analisis-datos-2': 'Framework genérico de análisis exploratorio con pipeline modular para ingestión, limpieza, transformación, visualización automática y exportación de reportes estadísticos.',
+  'etl': 'Pipeline de Ingeniería de Datos: extracción desde fuentes heterogéneas, transformación con reglas de negocio y carga en bases de datos relacionales.',
+  'extraer-transformar-cargar': 'Pipeline ETL modular con soporte para formatos XML, CSV y JSON, orientado a la preparación y normalización de datos para modelos de machine learning.',
+  'prediccionimagenes': 'Clasificador de imágenes basado en redes neuronales con preprocesamiento de píxeles, normalización, aumentación de datos y evaluación multiclase.',
+  'redes-convolucionales': 'Arquitectura CNN dual: clasificación de dígitos manuscritos MNIST y clasificación binaria perros vs gatos con TensorFlow, dropout y early stopping.',
+  'warriors-games': 'Análisis estadístico comparativo del rendimiento local vs visitante de los Golden State Warriors, con visualización de distribuciones y métricas descriptivas.',
+  'regresion-lineal': 'Modelo de regresión lineal univariante implementado desde cero con descenso del gradiente, incluyendo visualización de función de costo y convergencia.',
+  'titanic-arbol-de-decision': 'Modelo predictivo de supervivencia basado en árboles de decisión con análisis de factores demográficos, ingeniería de features y validación cruzada sobre el dataset Titanic.',
+  'autoencoder': 'Autoencoder convolutional para reducción de dimensionalidad y denoising de imágenes del dataset MNIST, con visualización de espacio latente y reconstrucción.',
+  'deepdreams': 'Implementación del algoritmo DeepDream para visualización y análisis de patrones aprendidos por redes neuronales convolucionales en diferentes capas.',
+  'redes-generativas-adversariales': 'Arquitectura GAN (Generative Adversarial Network) para generación de datos sintéticos mediante optimización competitiva entre generador y discriminador.',
+  'capitalizacion-del-mercado-de-los-bancos-mas-grandes': 'Pipeline de web scraping y ETL para extracción, transformación y análisis de capitalización de mercado del sector bancario global desde fuentes financieras.',
+  'django-crud-react': 'API RESTful construida con Django REST Framework y frontend React con operaciones CRUD completas, serialización y validación de datos.',
+  'cancer-issue': 'Análisis de factores predictivos de supervivencia en pacientes oncológicos mediante modelos estadísticos y algoritmos de clasificación supervisada.',
+  'marketbasketanalytics': 'Análisis de reglas de asociación aplicando el algoritmo Apriori para descubrimiento de patrones de compra y cross-selling en retail transaccional.',
+  'eda-ibm': 'Análisis exploratorio de datos del dataset IBM HR Analytics Attrition para identificación de factores determinantes de rotación de personal mediante técnicas estadísticas.',
+  'proyecto-sanoyfresco': 'Análisis integral de retail con Market Basket Analysis, segmentación de clientes y optimización de estrategia de merchandising para tienda de productos orgánicos.',
+  'analisis': 'Pipeline integral de análisis exploratorio de datos multidimensionales con visualizaciones estadísticas, clustering y detección de patrones subyacentes.',
+  'dashboards': 'Tablero de control interactivo con métricas de negocio, indicadores KPI y visualizaciones dinámicas para monitoreo y análisis de rendimiento organizacional.',
+};
+
 // Utility: Slugify string
 function slugify(text) {
   return text
@@ -184,11 +212,17 @@ async function processGitHubRepos() {
     const githubData = JSON.parse(await fs.readFile(GITHUB_DATA_PATH, 'utf-8'));
     const projects = [];
 
+    const portfolioNamePattern = /portfolio|portafolio|porfolio/i;
+    const portfolioDescPattern = /portfolio|portafolio|porfolio/i;
     for (const repo of githubData.repositories) {
+      if (portfolioNamePattern.test(repo.name) || (repo.description && portfolioDescPattern.test(repo.description))) {
+        console.log(`   ⏭️  Omitiendo repositorio portfolio: ${repo.name}`);
+        continue;
+      }
       const projectData = {
         id: slugify(repo.name),
         title: repo.name.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
-        description: repo.description || `Proyecto: ${repo.name}`,
+        description: PROFESSIONAL_DESCRIPTIONS[slugify(repo.name)] || repo.description || `Proyecto: ${repo.name}`,
         readme: repo.readme ? repo.readme.substring(0, 500) : '',
         category: detectCategory(repo.name, repo.description, repo.topics),
         technologies: extractTechnologies(repo.description || '', repo.topics, repo.languages),
@@ -223,7 +257,7 @@ async function processLocalProjects() {
 
   try {
     const entries = await fs.readdir(PUBLIC_PROJECTS_DIR, { withFileTypes: true });
-    const folders = entries.filter(entry => entry.isDirectory());
+    const folders = entries.filter(entry => entry.isDirectory() && entry.name !== 'Notebooks');
 
     for (const folder of folders) {
       const folderPath = path.join(PUBLIC_PROJECTS_DIR, folder.name);
@@ -243,6 +277,12 @@ async function processLocalProjects() {
         }
       } catch {
         // No README
+      }
+
+      // Professional descriptions override raw README content
+      const professionalDesc = PROFESSIONAL_DESCRIPTIONS[slugify(folder.name)];
+      if (professionalDesc) {
+        description = professionalDesc;
       }
 
       const projectData = {

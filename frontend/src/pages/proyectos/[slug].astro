@@ -14,7 +14,7 @@ export async function getStaticPaths() {
 const { entry } = Astro.props as { entry: CollectionEntry<'proyectos'> };
 const { Content } = await render(entry);
 
-const tags = entry.data.technologies;
+const technologies = entry.data.technologies;
 ---
 
 <ArticleLayout
@@ -22,9 +22,9 @@ const tags = entry.data.technologies;
   description={entry.data.description}
   category={entry.data.category}
   pubDate={entry.data.createdAt}
-  tags={tags}
-  github={entry.data.githubUrl}
-  dashboard={entry.data.demoUrl}
+  technologies={technologies}
+  githubUrl={entry.data.githubUrl}
+  demoUrl={entry.data.demoUrl}
 >
   <Content />
 </ArticleLayout>

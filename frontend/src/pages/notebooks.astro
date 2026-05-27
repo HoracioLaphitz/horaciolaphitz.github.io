@@ -1,15 +1,15 @@
 ---
 import PageLayout from '@presentation/layouts/PageLayout.astro';
-import NotebooksGrid from '@presentation/components/sections/NotebooksGrid.astro';
-import { getNotebooks } from '../lib/data/getNotebooks';
+import { ProjectsGrid } from '@presentation/components/sections/ProjectsGrid';
+import { getProjects } from '../lib/data/getProjects';
 
-const notebooks = getNotebooks();
+const analysisProjects = getProjects().filter(p => p.type === 'analysis');
 ---
 
 <PageLayout
-  title="Notebooks Interactivos"
-  description="Explora mis notebooks interactivos de análisis de datos y machine learning"
+  title="Análisis de Datos"
+  description="Análisis exploratorios, modelos predictivos y visualización de datos."
   currentPath="/notebooks"
 >
-  <NotebooksGrid projects={notebooks} />
+  <ProjectsGrid projects={analysisProjects} />
 </PageLayout>

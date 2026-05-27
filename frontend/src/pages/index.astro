@@ -7,29 +7,59 @@ import Services from '@presentation/components/sections/Services.astro';
 import { ProjectsGrid } from '@presentation/components/sections/ProjectsGrid';
 import { Contact } from '@presentation/components/sections/Contact.tsx';
 import { getProjects } from '../lib/data/getProjects';
-import { getProfile, getSkills, getContactInfo } from '../lib/data/getProfile';
+import { getProfile, getContactInfo } from '../lib/data/getProfile';
 import { getExperiences } from '../lib/data/getExperience';
+import { SkillCategory } from '@domain/entities/profile.entity';
+import { profileEntity } from '@data/profile-data';
 
 const projects = getProjects();
 const profile = getProfile();
-const skills = getSkills();
 const experiences = getExperiences();
 const contactInfo = getContactInfo();
+
+const groupedSkillsMap: Record<string, string[]> = {};
+for (const s of profileEntity.skills) {
+  const key =
+    s.category === SkillCategory.Programming
+      ? 'Lenguajes'
+      : s.category === SkillCategory.Database
+        ? 'Bases de Datos'
+        : s.category === SkillCategory.DataVisualization
+          ? 'Visualización'
+          : s.category === SkillCategory.DataAnalysis
+            ? 'Análisis de Datos'
+            : s.category === SkillCategory.Soft
+              ? null
+              : 'Herramientas';
+  if (key) {
+    (groupedSkillsMap[key] ??= []).push(s.name);
+  }
+}
 ---
 
-<PageLayout title="Portfolio" description="Data Analyst & Visualization Expert.">
-  <Hero name={profile.name} role={profile.role} description={profile.descriptions[0]} />
+<PageLayout
+  title="Horacio Laphitz — Data Analyst"
+  description="Data Analyst | Python, SQL, Power BI, Machine Learning"
+>
+  <Hero
+    name={profile.name}
+    role={profile.role}
+    description={profile.descriptions[0]}
+    githubBio=""
+  />
   <About
     avatar="/img/profile.png"
-    aboutDescription={profile.descriptions_about?.[0]}
+    aboutDescription={profile.descriptions_about || profile.descriptions[0]}
     badges={[
-      { src: '/img/PythonForDataScienceAndAI.png', alt: 'Insignia Python Data Science' },
+      { src: '/img/PythonForDataScienceAndAI.png', alt: 'Python for Data Science and AI — IBM' },
       {
         src: '/img/PythonProjectForDataEngineering.png',
-        alt: 'Insignia Proyecto Python Data Engineering',
+        alt: 'Python Project for Data Engineering — IBM',
       },
+      { src: '/Certificaciones/Tango_Starter.png', alt: 'Tango Starter' },
+      { src: '/Certificaciones/Tango_Trainee.png', alt: 'Tango Trainee' },
     ]}
-    skills={skills}
+    skillGroups={groupedSkillsMap}
     name={profile.name}
   />
   <ProjectsGrid projects={projects} client:visible compact />

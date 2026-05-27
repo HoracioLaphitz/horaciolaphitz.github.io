@@ -1,26 +1,8 @@
 [
   {
-    "slug": "proyecto-final",
-    "title": "PROYECTO FINAL",
-    "description": "",
-    "has_notebook": true,
-    "notebook_url": "/Proyectos/Notebooks/PROYECTO-FINAL/Copia de PROYECTO-FINAL.ipynb",
-    "html_url": "/notebooks-html/proyecto-final.html",
-    "assets": []
-  },
-  {
-    "slug": "pandas-profiling",
-    "title": "Pandas Profiling",
-    "description": "",
-    "has_notebook": true,
-    "notebook_url": "/Proyectos/Notebooks/Pandas_Profiling/Pandas_Profiling.ipynb",
-    "html_url": "/notebooks-html/Pandas_Profiling.html",
-    "assets": []
-  },
-  {
     "slug": "predice-precios-casas",
     "title": "Predice Precios Casas",
-    "description": "",
+    "description": "Modelo de regresión múltiple para predicción de precios inmobiliarios con ingeniería de features, selección de variables y evaluación mediante MSE y R².",
     "has_notebook": true,
     "notebook_url": "/Proyectos/Notebooks/Predice-Precios-Casas/Predice-Precios-Casas.ipynb",
     "html_url": "/notebooks-html/Predice-Precios-Casas.html",
@@ -29,7 +11,7 @@
   {
     "slug": "prediceprecioacciones",
     "title": "PredicePrecioAcciones",
-    "description": "",
+    "description": "Modelo predictivo de series temporales financieras utilizando redes LSTM y análisis de tendencia con datos históricos del mercado de valores.",
     "has_notebook": true,
     "notebook_url": "/Proyectos/Notebooks/PredicePrecioAcciones/PredicePrecioAcciones.ipynb",
     "html_url": "/notebooks-html/PredicePrecioAcciones.html",
@@ -38,7 +20,7 @@
   {
     "slug": "primermodeloregresionlineal",
     "title": "PrimerModeloRegresionLineal",
-    "description": "",
+    "description": "Implementación desde cero de regresión lineal univariante con descenso del gradiente, función de costo MSE y visualización de convergencia.",
     "has_notebook": true,
     "notebook_url": "/Proyectos/Notebooks/PrimerModeloRegresionLineal/PrimerModeloRegresionLineal.ipynb",
     "html_url": "/notebooks-html/PrimerModeloRegresionLineal.html",
@@ -47,7 +29,7 @@
   {
     "slug": "programacion-orientada-a-objetos",
     "title": "Programacion Orientada a Objetos",
-    "description": "",
+    "description": "Aplicación de principios de programación orientada a objetos (abstracción, encapsulamiento, herencia, polimorfismo) al análisis de datos con Python.",
     "has_notebook": true,
     "notebook_url": "/Proyectos/Notebooks/Programacion_Orientada_a_Objetos/Programacion_Orientada_a_Objetos.ipynb",
     "html_url": "/notebooks-html/Programacion_Orientada_a_Objetos.html",
@@ -55,8 +37,8 @@
   },
   {
     "slug": "red-neuronal-convolucional",
-    "title": "Red Neuronal Convolucional - Proyecto Profesional",
-    "description": "**Proyecto de Ingeniería de Datos** - Redes Neuronales Convolucionales para clasificación de imágenes MNIST y Cats vs Dogs.",
+    "title": "Red Neuronal Convolucional",
+    "description": "Arquitectura de Redes Neuronales Convolucionales (CNN) para clasificación de dígitos manuscritos MNIST y clasificación binaria perros vs gatos con TensorFlow y Keras.",
     "has_notebook": true,
     "notebook_url": "/Proyectos/Notebooks/Red-Neuronal-Convolucional/Red Neuronal Convolucional.ipynb",
     "html_url": "/notebooks-html/Red Neuronal Convolucional.html",
@@ -65,7 +47,7 @@
   {
     "slug": "red-de-clasificacion",
     "title": "Red de Clasificacion",
-    "description": "",
+    "description": "Perceptrón multicapa para clasificación supervisada con función de activación ReLU, regularización L2 y validación cruzada para prevención de overfitting.",
     "has_notebook": true,
     "notebook_url": "/Proyectos/Notebooks/Red-de-Clasificacion/Red de Clasificacion.ipynb",
     "html_url": "/notebooks-html/Red de Clasificacion.html",
@@ -74,34 +56,34 @@
   {
     "slug": "reddeclasificacion",
     "title": "RedDeClasificacion",
-    "description": "",
+    "description": "Red neuronal feed-forward con backpropagation para clasificación multiclase, incluyendo análisis de curvas de aprendizaje y métricas por clase.",
     "has_notebook": true,
     "notebook_url": "/Proyectos/Notebooks/RedDeClasificacion/RedDeClasificacion.ipynb",
-    "html_url": "/notebooks-html/RedDeClasificacion2.html",
+    "html_url": "/notebooks-html/RedDeClasificacion.html",
     "assets": []
   },
   {
     "slug": "reddeclasificacion2",
     "title": "RedDeClasificacion2",
-    "description": "",
+    "description": "Red neuronal profunda con arquitectura optimizada, batch normalization, dropout y early stopping para mejora de generalización en clasificación.",
     "has_notebook": true,
     "notebook_url": "/Proyectos/Notebooks/RedDeClasificacion2/RedDeClasificacion2.ipynb",
-    "html_url": null,
+    "html_url": "/notebooks-html/reddeclasificacion2.html",
     "assets": []
   },
   {
     "slug": "reddeclasificacion2-copia",
     "title": "RedDeClasificacion2 Copia",
-    "description": "",
+    "description": "Red neuronal de clasificación con arquitectura profunda, optimización de hiperparámetros mediante grid search y técnicas de regularización avanzadas.",
     "has_notebook": true,
     "notebook_url": "/Proyectos/Notebooks/RedDeClasificacion2-Copia/Copia de RedDeClasificacion2.ipynb",
-    "html_url": "/notebooks-html/Ia.html",
+    "html_url": null,
     "assets": []
   },
   {
     "slug": "redneuronalterremotos",
     "title": "RedNeuronalTerremotos",
-    "description": "",
+    "description": "Red neuronal para predicción de magnitud sísmica con análisis de curvas de entrenamiento, regularización y evaluación de error en datos de terremotos reales.",
     "has_notebook": true,
     "notebook_url": "/Proyectos/Notebooks/RedNeuronalTerremotos/RedNeuronalTerremotos.ipynb",
     "html_url": "/notebooks-html/RedNeuronalTerremotos.html",
@@ -110,7 +92,7 @@
   {
     "slug": "red-clasificacion-optimizado",
     "title": "Red Clasificacion Optimizado",
-    "description": "",
+    "description": "Red neuronal optimizada para clasificación de dígitos MNIST con búsqueda de hiperparámetros, dropout y normalización por lotes. Incluye matriz de confusión y reporte de clasificación.",
     "has_notebook": true,
     "notebook_url": "/Proyectos/Notebooks/Red_Clasificacion_Optimizado/Red_Clasificacion_Optimizado.ipynb",
     "html_url": "/notebooks-html/Red_Clasificacion_Optimizado.html",
@@ -119,7 +101,7 @@
   {
     "slug": "regresion-logistica",
     "title": "Regresion Logistica",
-    "description": "",
+    "description": "Modelo de regresión logística para clasificación binaria con análisis de odds ratio, curva ROC, matriz de confusión y umbral de decisión óptimo.",
     "has_notebook": true,
     "notebook_url": "/Proyectos/Notebooks/Regresion-Logistica/Regresion Logistica.ipynb",
     "html_url": "/notebooks-html/Regresion Logistica.html",
@@ -128,7 +110,7 @@
   {
     "slug": "text-ia",
     "title": "Text IA",
-    "description": "",
+    "description": "Pipeline de Procesamiento de Lenguaje Natural (NLP) con tokenización, limpieza de texto, embeddings vectoriales y clasificación de documentos mediante modelos supervisados.",
     "has_notebook": true,
     "notebook_url": "/Proyectos/Notebooks/Text-IA/Text-IA.ipynb",
     "html_url": "/notebooks-html/Text-IA.html",
@@ -137,7 +119,7 @@
   {
     "slug": "transferenciaaprendizaje",
     "title": "TransferenciaAprendizaje",
-    "description": "",
+    "description": "Transfer Learning con fine-tuning de modelos preentrenados (VGG16/ResNet) para clasificación de imágenes especializada, con congelado selectivo de capas y aumentación de datos.",
     "has_notebook": true,
     "notebook_url": "/Proyectos/Notebooks/TransferenciaAprendizaje/TransferenciaAprendizaje.ipynb",
     "html_url": "/notebooks-html/TransferenciaAprendizaje.html",
@@ -146,19 +128,10 @@
   {
     "slug": "transferenciaaprendizaje-copia",
     "title": "TransferenciaAprendizaje Copia",
-    "description": "",
+    "description": "Fine-tuning de arquitecturas preentrenadas con técnicas de data augmentation, regularización y ajuste de hiperparámetros para optimización de precisión.",
     "has_notebook": true,
     "notebook_url": "/Proyectos/Notebooks/TransferenciaAprendizaje-Copia/Copia de TransferenciaAprendizaje.ipynb",
-    "html_url": null,
-    "assets": []
-  },
-  {
-    "slug": "sd-w-colab-drive",
-    "title": "sd w colab drive",
-    "description": "",
-    "has_notebook": true,
-    "notebook_url": "/Proyectos/Notebooks/sd_w_colab_drive/Copia de sd_w_colab_drive.ipynb",
-    "html_url": "/notebooks-html/Copia de sd_w_colab_drive.html",
+    "html_url": "/notebooks-html/transferenciaaprendizaje-copia.html",
     "assets": []
   },
   {
@@ -176,7 +149,7 @@
     "description": "SanoYFresco es un retailer de productos orgánicos que necesitaba optimizar su estrategia de merchandising y aumentar el valor promedio de compra. El negocio enfrentaba dos desafíos principales:",
     "has_notebook": true,
     "notebook_url": null,
-    "html_url": null,
+    "html_url": "/notebooks-html/proyecto-sanoyfresco.html",
     "assets": [
       {
         "name": "dump.sqlite.sql",
@@ -284,7 +257,7 @@
   {
     "slug": "analisis",
     "title": "analisis",
-    "description": "",
+    "description": "Pipeline integral de análisis exploratorio de datos multidimensionales con visualizaciones estadísticas, detección de patrones y clustering.",
     "has_notebook": true,
     "notebook_url": null,
     "html_url": "/notebooks-html/analisis-datos.html",
@@ -293,7 +266,7 @@
   {
     "slug": "dashboards",
     "title": "dashboards",
-    "description": "",
+    "description": "Tablero de control interactivo con indicadores KPI, métricas de negocio y visualizaciones dinámicas para análisis de rendimiento organizacional.",
     "has_notebook": true,
     "notebook_url": null,
     "html_url": null,

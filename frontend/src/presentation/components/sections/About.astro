@@ -5,82 +5,99 @@ export interface Badge {
 }
 
 export interface Props {
-  aboutDescription?: string;
-  skills?: string[];
+  aboutDescription?: string | string[];
+  skillGroups?: Record<string, string[]>;
   avatar?: string;
   badges?: Badge[];
   name?: string;
 }
 
-const { aboutDescription, skills = [], avatar, badges = [], name } = Astro.props;
+const { aboutDescription, skillGroups = {}, avatar, badges = [], name } = Astro.props;
+
+const paragraphs = Array.isArray(aboutDescription) ? aboutDescription : (aboutDescription ? [aboutDescription] : []);
 ---
 
-<section class="py-4xl px-4"  style="background-color: #050b11;">
-  <div
-    class="container grid gap-2xl lg:grid-cols-[360px_minmax(0,1fr)] items-start animate-fade-in-up"
-  >
-    {
-      avatar && (
-        <div class="space-y-6">
-          <div class="relative overflow-hidden rounded-[2rem] border border-[#1b2838] bg-[#050b11] p-6 shadow-lg">
-            <div class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-accent via-transparent to-accent/30" />
-            <img
-              src={avatar}
-              alt={name || 'Avatar de perfil'}
-              width={320}
-              height={320}
-              loading="lazy"
-              decoding="async"
-              class="relative mx-auto h-72 w-72 rounded-[1.75rem] object-cover border-2 border-[#4ade80]/50 shadow-2xl"
-            />
-          </div>
+<section class="py-4xl md:py-5xl px-4">
+  <div class="container">
+    <div class="section-header animate-fade-in-up">
+      <span class="chip mb-4">Sobre mí</span>
+      <h2>Perfil</h2>
+      <p>Data Analyst con experiencia en sistemas de gestión, automatización y visualización</p>
+    </div>
 
-          {badges.length > 0 && (
-            <div class="grid gap-3 sm:grid-cols-2">
-              {badges.map((badge) => (
-                <div class="overflow-hidden rounded-3xl border border-[#1b2838] bg-[#050b11] p-3 shadow-inner">
-                  <img
-                    src={badge.src}
-                    alt={badge.alt}
-                    class="h-40 w-full object-contain"
-                    loading="lazy"
-                    decoding="async"
-                  />
+    <div
+      class="grid gap-2xl lg:grid-cols-[320px_minmax(0,1fr)] items-start animate-fade-in-up animate-delay-200"
+    >
+      {
+        avatar && (
+          <div class="space-y-6">
+            <div class="glass rounded-2xl p-lg text-center">
+              <img
+                src={avatar}
+                alt={name || 'Avatar de perfil'}
+                width={320}
+                height={320}
+                loading="lazy"
+                decoding="async"
+                class="w-full max-w-[240px] mx-auto rounded-xl object-cover shadow-lg"
+                style="aspect-ratio: 1;"
+              />
+            </div>
+
+            {badges.length > 0 && (
+              <div class="grid gap-3 sm:grid-cols-2">
+                {badges.map((badge) => (
+                  <div class="glass rounded-xl p-3">
+                    <img
+                      src={badge.src}
+                      alt={badge.alt}
+                      class="h-32 w-full object-contain"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )
+      }
+
+      <div class="space-y-8">
+        {
+          paragraphs.length > 0 && (
+            <div class="glass rounded-2xl p-xl space-y-4">
+              {paragraphs.map((p) => (
+                <p class="leading-relaxed" style="color: var(--color-text-secondary);">
+                  {p}
+                </p>
+              ))}
+            </div>
+          )
+        }
+
+        {
+          Object.keys(skillGroups).length > 0 && (
+            <div class="space-y-lg">
+              {Object.entries(skillGroups).map(([category, categorySkills]) => (
+                <div>
+                  <h4
+                    class="text-sm font-semibold mb-3 uppercase tracking-wider"
+                    style="color: var(--color-text-tertiary);"
+                  >
+                    {category}
+                  </h4>
+                  <div class="flex flex-wrap gap-2">
+                    {categorySkills.map((skill) => (
+                      <span class="chip">{skill}</span>
+                    ))}
+                  </div>
                 </div>
               ))}
             </div>
-          )}
-        </div>
-      )
-    }
-
-    <div class="space-y-8">
-      <div>
-        <span class="text-xs uppercase tracking-[0.35em] text-[#7ef9b4]">Sobre mí</span>
+          )
+        }
       </div>
-
-      {
-        aboutDescription && (
-          <div class="rounded-[2rem] border border-[#1b2838] bg-[#08101a]/95 p-8 text-base leading-8 text-[#c8ffb8] shadow-lg">
-            <p class="whitespace-pre-line">{aboutDescription}</p>
-          </div>
-        )
-      }
-
-      {
-        skills.length > 0 && (
-          <div>
-            <h3 class="mb-4 text-lg font-semibold text-[#eeffd2]">Habilidades destacadas</h3>
-            <div class="flex flex-wrap gap-3">
-              {skills.map((skill) => (
-                <span class="rounded-full border border-[#1b2838] bg-[#08101a]/95 px-4 py-2 text-sm font-medium text-[#c8ffb8] shadow-sm">
-                  {skill}
-                </span>
-              ))}
-            </div>
-          </div>
-        )
-      }
     </div>
   </div>
 </section>

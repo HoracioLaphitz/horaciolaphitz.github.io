@@ -1,94 +1,103 @@
 ---
 const services = [
   {
-    icon: 'chart-bar', // SVG de barras
-    title: 'Análisis de Datos y Tableros',
+    icon: 'chart-bar',
+    title: 'Business Intelligence y Dashboards',
     description:
-      'Dejo de lado los reportes estáticos. Diseño tableros interactivos (Power BI / Looker Studio) enfocados en tus KPIs críticos: rentabilidad real, desvíos de costos y proyección de flujo de caja.',
+      'Diseño tableros interactivos en Power BI, Looker Studio y Python (Plotly/Matplotlib) con KPIs críticos: rentabilidad real, desvíos de costos, proyección de flujo de caja y detección de anomalías en tiempo real.',
   },
   {
-    icon: 'chart-dots', // SVG de procesos/nodos
-    title: 'Automatización con Python',
+    icon: 'cpu-chip',
+    title: 'Machine Learning y Modelos Predictivos',
     description:
-      'Elimino las horas perdidas cruzando planillas a mano. Desarrollo scripts personalizados en Python para automatizar la descarga de reportes, facturación masiva, conciliaciones bancarias y limpieza de datos.',
+      'Construyo modelos de regresión, clasificación, clustering y series temporales para predicción de precios, segmentación de clientes, predicción de demanda, análisis de supervivencia y detección de fraude.',
   },
   {
-    icon: 'brain', // SVG de sistema/inteligencia
+    icon: 'eye',
+    title: 'Deep Learning y Visión por Computadora',
+    description:
+      'Implemento redes convolucionales (CNN), autoencoders, transfer learning y GANs para clasificación de imágenes, detección de objetos, denoising, generación de datos sintéticos y análisis de patrones visuales.',
+  },
+  {
+    icon: 'document-text',
+    title: 'ETL, Web Scraping y Automatización',
+    description:
+      'Diseño pipelines ETL con Python para extracción desde APIs, web scraping, archivos XML/CSV/JSON y bases de datos. Automatizo limpieza, transformación y carga para alimentar modelos y reportes.',
+  },
+  {
+    icon: 'chart-dots',
+    title: 'Análisis Exploratorio y Minería de Datos',
+    description:
+      'Realizo EDA completo con perfiles estadísticos, detección de outliers, análisis de correlaciones, reglas de asociación (Market Basket Analysis) y segmentación no supervisada para descubrir patrones ocultos.',
+  },
+  {
+    icon: 'brain',
     title: 'Auditoría y Optimización de Tango',
     description:
-      'Pongo en marcha la operatoria diaria en Tango. Abordo la configuración del entorno, la emisión y registro de comprobantes esenciales  de los módulos Ventas, Compras, Stock y Tesorería, el uso de perfiles y preferencias junto con controles que aseguran orden, trazabilidad y continuidad entre circuitos',
+      'Pongo en marcha la operatoria diaria en Tango: configuración del entorno, emisión y registro de comprobantes en Ventas, Compras, Stock y Tesorería. Concilio datos y optimizo procesos administrativos.',
+  },
+  {
+    icon: 'code-bracket',
+    title: 'Desarrollo de APIs y Aplicaciones Web',
+    description:
+      'Desarrollo APIs RESTful con Django REST Framework y frontends en React para operaciones CRUD, integración de sistemas, visualización de datos y despliegue en entornos cloud.',
   },
 ];
+
+const iconPaths: Record<string, string> = {
+  'chart-bar':
+    'M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z',
+  'chart-dots':
+    'M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5m.75-9l3-3 2.148 2.148A12.061 12.061 0 0116.5 7.605',
+  brain:
+    'M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5',
+  'cpu-chip':
+    'M8.25 3v1.5M16.5 3v1.5M3 8.25h1.5M3 16.5h1.5M3 12h18M3 5.25A2.25 2.25 0 015.25 3h13.5A2.25 2.25 0 0121 5.25v13.5A2.25 2.25 0 0118.75 21H5.25A2.25 2.25 0 013 18.75V5.25zM8.25 12h7.5M8.25 16.5h7.5M8.25 7.5h7.5',
+  eye:
+    'M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178zM15 12a3 3 0 11-6 0 3 3 0 016 0z',
+  'document-text':
+    'M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z',
+  'code-bracket':
+    'M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5',
+};
 ---
 
-<section class="py-4xl px-4" style="background-color: #050b11;">
-  <div class="container grid gap-2xl">
-    <div class="rounded-[2rem] border border-[#1b2838] bg-[#050b11] p-8 shadow-lg">
-      <span class="text-xs uppercase tracking-[0.35em] text-[#7ef9b4]">Servicios</span>
-      <h2 class="mt-3 text-4xl font-bold tracking-tight text-[#eeffd2]">Qué puedo resolver</h2>
-      <p class="mt-4 text-base leading-7 text-[#c8ffb8] max-w-2xl">
-        Parametrizo de datos de tu ERP, elimino las tareas manuales en Excel con Python y creo
-        tableros visuales para que tomes decisiones con números reales.
-      </p>
+<section id="servicios" class="py-3xl md:py-4xl lg:py-5xl px-2 sm:px-4">
+  <div class="container">
+    <div class="section-header animate-fade-in-up">
+      <span class="chip mb-4">Servicios</span>
+      <h2>Qué puedo resolver</h2>
+      <p>Datos, modelos predictivos, automatización y tableros para decisiones basadas en evidencia.</p>
     </div>
 
-    <div class="grid gap-4 md:grid-cols-3">
+    <div class="grid gap-lg sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 animate-fade-in-up animate-delay-200">
       {
         services.map((service, index) => (
           <div
-            class="rounded-[2rem] border border-[#1b2838] bg-[#050b11] p-6 shadow-lg animate-fade-in-up"
-            style={`animation-delay: ${index * 150}ms`}
+            class="glass rounded-2xl p-xl glass-hover animate-fade-in-up"
+            style={`animation-delay: ${200 + index * 100}ms`}
           >
-            <div class="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-3xl border border-[#7ef9b4]/20 bg-[#08101a]/95 text-[#7ef9b4]">
-              {service.icon === 'chart-bar' && (
-                <svg
-                  class="w-6 h-6"
-                  stroke="currentColor"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z"
-                  />
-                </svg>
-              )}
-              {service.icon === 'chart-dots' && (
-                <svg
-                  class="w-6 h-6"
-                  stroke="currentColor"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5m.75-9l3-3 2.148 2.148A12.061 12.061 0 0116.5 7.605"
-                  />
-                </svg>
-              )}
-              {service.icon === 'brain' && (
-                <svg
-                  class="w-6 h-6"
-                  stroke="currentColor"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"
-                  />
-                </svg>
-              )}
+            <div
+              class="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl"
+              style="background-color: var(--color-accent-muted); color: var(--color-accent);"
+            >
+              <svg
+                class="w-6 h-6"
+                stroke="currentColor"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" d={iconPaths[service.icon]} />
+              </svg>
             </div>
 
-            <h3 class="text-xl font-semibold mb-3 text-[#eeffd2]">{service.title}</h3>
-            <p class="text-sm leading-7 text-[#c8ffb8]">{service.description}</p>
+            <h3 class="text-xl font-semibold mb-3" style="color: var(--color-text-primary);">
+              {service.title}
+            </h3>
+            <p class="text-sm leading-relaxed" style="color: var(--color-text-secondary);">
+              {service.description}
+            </p>
           </div>
         ))
       }

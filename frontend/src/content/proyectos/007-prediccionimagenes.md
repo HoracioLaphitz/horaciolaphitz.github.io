@@ -1,6 +1,6 @@
 ---
 title: "PrediccionImagenes"
-description: "Este Proyecto de Aprendizaje automatico realiza una prediccion basado en imagenes utilizadas dentro del entrenamiento, previamente convirtiendo estas imagenes a pixeles para que el script entienda de que imagen se trata."
+description: "Clasificador de imágenes basado en redes neuronales con preprocesamiento de píxeles, normalización, aumentación de datos y evaluación multiclase."
 category: "Machine Learning"
 featured: true
 status: "completed"
@@ -10,7 +10,7 @@ githubUrl: "https://github.com/HoracioLaphitz/PrediccionImagenes"
 
 ## Descripción del Proyecto
 
-Este Proyecto de Aprendizaje automatico realiza una prediccion basado en imagenes utilizadas dentro del entrenamiento, previamente convirtiendo estas imagenes a pixeles para que el script entienda de que imagen se trata.
+Clasificador de imágenes basado en redes neuronales con preprocesamiento de píxeles, normalización, aumentación de datos y evaluación multiclase.
 
 # PrediccionImagenes
 Este Proyecto de Aprendizaje automatico realiza una prediccion basado en imagenes utilizadas dentro del entrenamiento, previamente convirtiendo estas imagenes a pixeles para que el script entienda de que imagen se trata.

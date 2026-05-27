@@ -1,0 +1,98 @@
+---
+import PageLayout from '@presentation/layouts/PageLayout.astro';
+import { getCertifications } from '../lib/data/getExperience';
+import { getProfile } from '../lib/data/getProfile';
+
+const certifications = getCertifications();
+const profile = getProfile();
+
+const DRIVE_CERTIFICACIONES_URL =
+  'https://drive.google.com/drive/folders/1XRv9ZWegRbOknIgQG1mtivt_4zUy6Y1T';
+---
+
+<PageLayout
+  title="Certificaciones"
+  description="Certificaciones profesionales en análisis de datos, machine learning y tecnologías afines."
+>
+  <section class="py-4xl md:py-5xl px-4">
+    <div class="container">
+      <div class="section-header animate-fade-in-up">
+        <span class="chip mb-4">Credenciales</span>
+        <h2>Certificaciones</h2>
+        <p>Formación continua y certificaciones profesionales.</p>
+      </div>
+
+      <div class="max-w-3xl mx-auto mt-lg mb-4xl animate-fade-in-up animate-delay-100">
+        <a
+          href={DRIVE_CERTIFICACIONES_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 px-lg py-md rounded-xl text-sm font-semibold transition-all duration-200 hover:scale-[1.02]"
+          style="background-color: var(--color-accent); color: var(--color-text-inverse);"
+        >
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+          </svg>
+          Ver carpeta completa en Google Drive
+        </a>
+
+        {profile.contact.credly && (
+          <a
+            href={profile.contact.credly}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 px-lg py-md rounded-xl text-sm font-semibold transition-all duration-200 hover:scale-[1.02] ml-3"
+            style="background-color: transparent; color: var(--color-text-primary); border: 1px solid var(--color-border);"
+          >
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+            </svg>
+            Ver en Credly
+          </a>
+        )}
+      </div>
+
+      <div class="max-w-3xl mx-auto space-y-md">
+        {certifications.length === 0 ? (
+          <div class="text-center py-4xl glass rounded-2xl">
+            <p style="color: var(--color-text-secondary);">No hay certificaciones registradas.</p>
+          </div>
+        ) : (
+          certifications.map((cert, index) => (
+            <div
+              class="glass rounded-xl p-xl glass-hover animate-fade-in-up"
+              style={`animation-delay: ${200 + index * 50}ms`}
+            >
+              <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+                <span class="chip">{cert.period}</span>
+              </div>
+              <h3
+                class="text-lg font-semibold mb-1"
+                style="color: var(--color-text-primary);"
+              >
+                {cert.title}
+              </h3>
+              <p class="text-sm font-medium mb-3" style="color: var(--color-accent);">
+                {cert.issuer}
+              </p>
+              {cert.certificateUrl && (
+                <a
+                  href={cert.certificateUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-1.5 text-xs font-medium transition-colors hover:opacity-70"
+                  style="color: var(--color-text-secondary);"
+                >
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                  </svg>
+                  Ver certificado
+                </a>
+              )}
+            </div>
+          ))
+        )}
+      </div>
+    </div>
+  </section>
+</PageLayout>

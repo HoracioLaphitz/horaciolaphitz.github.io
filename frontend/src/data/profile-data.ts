@@ -5,12 +5,11 @@
 
 import { ProfileEntity, SkillCategory, SkillLevel } from '@domain/entities/profile.entity';
 
-const profileEntity = new ProfileEntity(
+export const profileEntity = new ProfileEntity(
   'Horacio Laphitz',
   'Analista de Datos',
   [
-    'Analista de Datos orientado a la resolución de problemas, con experiencia en sistemas de gestión, administración y soporte al usuario.',
-
+    '',
   ],
   {
     email: 'horaciolaphitz99@gmail.com',
@@ -22,34 +21,38 @@ const profileEntity = new ProfileEntity(
   [
     {
       period: 'Dic 2025 – Mar 2026',
-      role: 'Data Entry Specialist',
+      role: 'Procesamiento de datos georreferenciados',
       company: 'Ucrop.it',
       location: 'Remoto',
-      description: 'Procesamiento y validación de datos georreferenciados',
+      description:
+        'Procesamiento de datos georreferenciados, validación geoespacial, detección de inconsistencias mediante algoritmos de machine learning, desarrollo de agentes de IA y automatización de tareas.',
       sortDate: new Date(2025, 11, 1),
+    },
+    {
+      period: 'Abr 2024 – May 2024',
+      role: 'Procesamiento de datos georreferenciados',
+      company: 'Ucrop.it',
+      location: 'Remoto',
+      description:
+        'Procesamiento y validación de datos georreferenciados, con foco en la precisión del dato y automatización de tareas.',
+      sortDate: new Date(2024, 4, 1),
     },
     {
       period: 'Ene 2021 – Nov 2025',
       role: 'Técnico en Sistemas',
       company: 'PcService Posadas',
       location: 'Posadas',
-      description: 'Mantenimiento de hardware y servidores, optimización de sistemas',
+      description:
+        'Mantenimiento de hardware y servidores, instalación de sistemas operativos, configuración y optimización de sistemas, y atención al cliente.',
       sortDate: new Date(2025, 10, 1),
-    },
-    {
-      period: 'Abr 2024 – May 2024',
-      role: 'Data Entry',
-      company: 'Ucrop.it',
-      location: 'Remoto',
-      description: 'Entrada precisa y eficiente de datos georreferenciados',
-      sortDate: new Date(2024, 4, 1),
     },
     {
       period: 'Jul 2019 – Dic 2019',
       role: 'Capacitador Técnico en Sistemas',
       company: 'Hospital Escuela Dr. Ramón Madariaga',
       location: 'Posadas',
-      description: 'Coordinación de capacitación e implementación de sistema R.I.S.mi',
+      description:
+        'Coordinación de equipo de capacitación, implementación del sistema R.I.S.mi, relevamiento de requerimientos técnicos y seguimiento del desempeño del personal.',
       sortDate: new Date(2019, 11, 1),
     },
     {
@@ -57,165 +60,83 @@ const profileEntity = new ProfileEntity(
       role: 'Asistente Administrativo Contable',
       company: 'Ministerio de Salud Pública de Misiones',
       location: 'Posadas',
-      description: 'Gestión de compras, licitaciones y ERP',
+      description:
+        'Gestión de compras de insumos, administración de proveedores, gestión de licitaciones, uso de Tango Gestión y ERP interno, y atención a usuarios.',
       sortDate: new Date(2019, 5, 1),
     },
+    {
+      period: 'Ene 2020 – Dic 2020',
+      role: 'Desarrollo de base de datos y automatización',
+      company: 'Ferretería Centenario Posadas',
+      location: 'Posadas',
+      description:
+        'Desarrollo de base de datos en MySQL, automatización de procesos y desarrollo de pipelines de datos con Python.',
+      sortDate: new Date(2020, 11, 1),
+    },
   ],
   [
     {
-      period: 'Febrero 2026',
-      title: 'SQL con Databricks',
-      issuer: 'Lovelytics Latam',
-      sortDate: new Date(2026, 1, 1),
+      period: '2026',
+      title: 'SQL on Databricks',
+      issuer: 'Lovelytics LATAM',
+      sortDate: new Date(2026, 0, 1),
     },
     {
-      period: 'Mar 2025',
-      title: 'Business & Operations Management Excellence',
-      issuer: 'MTF Institute - Udemy',
-      certificateUrl:
-        '/Certificaciones/Certificate in Business & Operations Management Excellence.pdf',
-      sortDate: new Date(2025, 2, 1),
-    },
-    {
-      period: 'Mar 2025',
-      title: 'Sales & Service Data Analysis & Analytics Expert',
-      issuer: 'MTF Institute - Udemy',
+      period: '2025',
+      title: 'Sales & Service Data Analytics Expertise',
+      issuer: 'MTF Institute (Coursera)',
       certificateUrl: '/Certificaciones/Sales & Service Data Analysis & Analytics Expert.pdf',
-      sortDate: new Date(2025, 2, 1),
+      sortDate: new Date(2025, 0, 1),
     },
     {
-      period: 'Mar 2025',
-      title: 'Microsoft Office Mastery',
-      issuer: 'Sayman Creative Institute - Udemy',
-      certificateUrl:
-        '/Certificaciones/Microsoft Office Mastery Learn Word Excel and PowerPoint.pdf',
-      sortDate: new Date(2025, 2, 1),
-    },
-    {
-      period: 'Mar 2025',
-      title: 'Professional Diploma in Corporate Management',
-      issuer: 'MTF Institute - Udemy',
-      certificateUrl: '/Certificaciones/Prefesional diploma in corporate managemet.pdf',
-      sortDate: new Date(2025, 2, 1),
-    },
-    {
-      period: 'May 2024',
-      title: 'Supervised Machine Learning',
-      issuer: 'Stanford University - Coursera',
-      certificateUrl:
-        '/Certificaciones/Supervised Machine Learning_ Regression and Classification.pdf',
-      sortDate: new Date(2024, 4, 1),
-    },
-    {
-      period: 'Abr 2024',
-      title: 'Python for Data Engineering',
-      issuer: 'IBM - Coursera',
-      certificateUrl: '/Certificaciones/IBM-python-data-engineering.pdf',
-      credlyBadgeId: '78a917fc-2fee-416b-a3c4-d14f3cd09541',
-      sortDate: new Date(2024, 3, 1),
-    },
-    {
-      period: 'Mar 2024',
-      title: 'Certificado Profesional de Análisis de Datos',
-      issuer: 'Google Careers - Coursera',
-      certificateUrl: '/Certificaciones/GOOGLE-PYTHON-CERTIFICATE.pdf',
-      sortDate: new Date(2024, 2, 1),
-    },
-    {
-      period: 'Mar 2024',
-      title: 'Fundamentos de Ciencia de Datos',
-      issuer: 'Google Careers - Coursera',
-      certificateUrl: '/Certificaciones/Fundamentos de ciencia de datos.pdf',
-      sortDate: new Date(2024, 2, 1),
-    },
-    {
-      period: 'Feb 2024',
-      title: 'Python for Data Science, AI & Development',
-      issuer: 'IBM - Coursera',
+      period: '2024 - 2025',
+      title: 'Python for Data Science and AI',
+      issuer: 'IBM',
       certificateUrl: '/Certificaciones/IBM-DATA SCIENCE - AI - DEVELOPMENT.pdf',
-      credlyBadgeId: '57d36636-8b10-4218-a641-7cd6fcf9d8fe',
-      sortDate: new Date(2024, 1, 1),
+      sortDate: new Date(2025, 0, 1),
     },
     {
-      period: 'Feb 2024',
-      title: 'Análisis computacional de Datos en R',
-      issuer: 'Google Careers - Coursera',
-      certificateUrl: '/Certificaciones/GOOGLE-Analisis-computacional-de-datos-R.pdf',
-      sortDate: new Date(2024, 1, 1),
-    },
-    {
-      period: 'Feb 2024',
-      title: 'Curso Final de Análisis Computacional de Datos',
-      issuer: 'Google Careers - Coursera',
-      certificateUrl:
-        '/Certificaciones/Curso final de análisis computacional de datos completa un caso practico.pdf',
-      sortDate: new Date(2024, 1, 1),
-    },
-    {
-      period: 'Ene 2024',
-      title: 'Go Beyond the Numbers: Translate Data into Insights',
-      issuer: 'Google Careers - Coursera',
-      certificateUrl: '/Certificaciones/GoBeyondtheNumbersTranslateData.pdf',
+      period: '2024',
+      title: 'Supervised Machine Learning: Regression and Classification',
+      issuer: 'Stanford (Coursera)',
+      certificateUrl: '/Certificaciones/Supervised Machine Learning_ Regression and Classification.pdf',
       sortDate: new Date(2024, 0, 1),
     },
     {
-      period: 'Ene 2024',
-      title: 'Get Started with Python',
-      issuer: 'Google Careers - Coursera',
+      period: '2024',
+      title: 'Data Analytics Professional Certificate',
+      issuer: 'Google (Coursera)',
       certificateUrl: '/Certificaciones/GOOGLE-PYTHON-CERTIFICATE.pdf',
       sortDate: new Date(2024, 0, 1),
     },
     {
-      period: 'Ene 2024',
-      title: 'Tu Primera Experiencia como Analista de Datos',
-      issuer: 'Google Careers - Coursera',
-      certificateUrl:
-        '/Certificaciones/certificate-of-completion-for-tu-primera-experiencia-como-analista-de-datos.pdf',
-      sortDate: new Date(2024, 0, 1),
+      period: '2023',
+      title: 'Ultimate Python Expertise',
+      issuer: 'Udemy',
+      sortDate: new Date(2023, 0, 1),
     },
     {
-      period: 'Dic 2023',
-      title: 'Python Expertise',
-      issuer: 'Nicolas Schurmann - Udemy',
-      certificateUrl: '/Certificaciones/Python-Developer-Udemy.pdf',
-      sortDate: new Date(2023, 11, 1),
-    },
-    {
-      period: 'Nov 2023',
-      title: 'Introducción a Machine Learning',
-      issuer: 'Domestika',
-      sortDate: new Date(2023, 10, 1),
-    },
-    {
-      period: 'Jul 2023',
-      title: 'Bases de Datos desde Cero',
+      period: '2023',
+      title: 'Database Fundamentals',
       issuer: 'Silicon Misiones',
       certificateUrl: '/Certificaciones/SILICON MISIONES- Certificado Digital Bases de Datos.pdf',
-      sortDate: new Date(2023, 6, 1),
-    },
-    {
-      period: 'Mar 2023',
-      title: 'Data Analytics Nivel Growth',
-      issuer: 'Silicon Misiones',
-      certificateUrl: '/Certificaciones/SILICON MISIONES-Certificado de Data & Analytics.pdf',
-      sortDate: new Date(2023, 2, 1),
-    },
-    {
-      period: 'Dic 2022',
-      title: 'Introducción a la Programación',
-      issuer: 'Silicon Misiones',
-      certificateUrl:
-        '/Certificaciones/SILICON MISIONES- Certificado Laphitz Horacio Intro a la programacion.pdf',
-      sortDate: new Date(2022, 11, 1),
+      sortDate: new Date(2023, 0, 1),
     },
   ],
   [
     {
-      period: '2018 – 2020',
-      degree: 'Técnico Superior en Análisis de Sistemas',
-      institution: 'Instituto Superior Antonio Ruiz de Montoya',
+      period: '2023 - Sin finalizar',
+      degree: 'Analista en Sistemas de Comunicación',
+      institution: 'Universidad Nacional de Misiones',
       location: 'Posadas, Misiones',
-      sortDate: new Date(2020, 11, 1),
+      sortDate: new Date(2023, 0, 1),
+    },
+    {
+      period: '2019 - 2020 - Sin finalizar',
+      degree: 'Contador Público Nacional',
+      institution: 'Universidad de la Cuenca del Plata',
+      location: 'Posadas',
+      sortDate: new Date(2020, 0, 1),
     },
   ],
   [
@@ -248,6 +169,11 @@ const profileEntity = new ProfileEntity(
       name: 'Power BI',
       category: SkillCategory.DataVisualization,
       level: SkillLevel.Advanced,
+    },
+    {
+      name: 'Looker Studio',
+      category: SkillCategory.DataVisualization,
+      level: SkillLevel.Intermediate,
     },
     {
       name: 'Tableau',
@@ -299,7 +225,36 @@ const profileEntity = new ProfileEntity(
       category: SkillCategory.Tools,
       level: SkillLevel.Intermediate,
     },
-    { name: 'Git', category: SkillCategory.Tools, level: SkillLevel.Advanced },
+    {
+      name: 'Bash',
+      category: SkillCategory.Tools,
+      level: SkillLevel.Intermediate,
+    },
+    {
+      name: 'Windows',
+      category: SkillCategory.Tools,
+      level: SkillLevel.Advanced,
+    },
+    {
+      name: 'Linux',
+      category: SkillCategory.Tools,
+      level: SkillLevel.Advanced,
+    },
+    {
+      name: 'Word',
+      category: SkillCategory.Tools,
+      level: SkillLevel.Advanced,
+    },
+    {
+      name: 'PowerPoint',
+      category: SkillCategory.Tools,
+      level: SkillLevel.Advanced,
+    },
+    {
+      name: 'Git',
+      category: SkillCategory.Tools,
+      level: SkillLevel.Advanced,
+    },
     {
       name: 'Docker',
       category: SkillCategory.Tools,
@@ -365,8 +320,12 @@ const profileEntity = new ProfileEntity(
 
 export const PROFILE_DATA = {
   ...profileEntity,
-  // Agregar campos adicionales para compatibilidad con páginas
   location: 'Posadas, Misiones, Argentina',
+  descriptions_about: [
+    'Orientación a posiciones de Analista de Datos Jr., Analista Funcional y áreas administrativas. Formación en análisis de datos, programación y gestión de información.',
+    'Experiencia en procesamiento de datos, soporte técnico y tareas administrativas, con foco en Python, SQL, Power BI, Looker Studio, machine learning y gestión de información.',
+    'Disponibilidad Full-Time.',
+  ],
   skills: [
     'Python',
     'SQL',
@@ -374,6 +333,7 @@ export const PROFILE_DATA = {
     'JavaScript',
     'TypeScript',
     'Power BI',
+    'Looker Studio',
     'Tableau',
     'Excel Avanzado',
     'Pandas',
@@ -384,6 +344,11 @@ export const PROFILE_DATA = {
     'MySQL',
     'MongoDB',
     'Databricks',
+    'Bash',
+    'Windows',
+    'Linux',
+    'Word',
+    'PowerPoint',
     'Git',
     'Docker',
     'Tango Gestión',

@@ -8,7 +8,7 @@ Disallow: /dist/
 Crawl-delay: 1
 
 # Sitemap
-Sitemap: https://horaciolaphitz.github.io/sitemap.xml
+Sitemap: https://horaciolaphitz.vercel.app/sitemap.xml
 
 # Allow specific search engines
 User-agent: Googlebot

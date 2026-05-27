@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Project, Technology, Experience, Education, Certification
+
+from .models import Certification, ContactMessage, Education, Experience, Project, Technology
 
 
 class ProjectTechnologyInline(admin.TabularInline):
@@ -37,3 +38,12 @@ class EducationAdmin(admin.ModelAdmin):
 @admin.register(Certification)
 class CertificationAdmin(admin.ModelAdmin):
     list_display = ['title', 'issuer', 'issue_date']
+
+
+@admin.register(ContactMessage)
+class ContactMessageAdmin(admin.ModelAdmin):
+    list_display = ['name', 'email', 'created_at', 'read']
+    list_filter = ['read', 'created_at']
+    search_fields = ['name', 'email', 'message']
+    date_hierarchy = 'created_at'
+    readonly_fields = ['name', 'email', 'message', 'created_at']

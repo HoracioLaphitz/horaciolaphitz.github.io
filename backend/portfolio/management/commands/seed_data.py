@@ -119,7 +119,7 @@ class Command(BaseCommand):
     help = 'Seed the database with portfolio data from frontend generated manifests'
 
     def handle(self, *args, **options):
-        repo_root = Path(__file__).resolve().parents[5]
+        repo_root = Path(__file__).resolve().parents[4]
         frontend_data_dir = repo_root / 'frontend' / 'src' / 'data' / 'generated'
 
         self.stdout.write(f'Loading frontend data from {frontend_data_dir}...')

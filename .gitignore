@@ -1,8 +1,7 @@
 .agent/
 .agents/
 .env
-.env.example
-
+doc/
 .vercel
 .astro/
 __pycache__/
@@ -25,3 +24,8 @@ node_modules
 *.ps1
 /docs
 .gitignore
+
+# Build artifacts
+frontend/dist/
+public/Proyectos/
+api/__pycache__/

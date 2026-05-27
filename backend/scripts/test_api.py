@@ -1,62 +1,62 @@
 """
-Script to test API endpoints
-Run: python -m scripts.test_api
+Quick API smoke test using Django's test client.
+
+Usage:
+    python -m scripts.test_api
 """
+import os
 import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'portfolio_backend.settings')
+os.environ['API_SECRET_KEY'] = 'test-key'
+os.environ['DJANGO_DEBUG'] = 'True'
+os.environ['ALLOWED_HOSTS'] = '*'
 
-from api.core.database import create_supabase_client
-from api.infrastructure.repositories import (
-    SupabaseProjectRepository,
-    SupabaseTechnologyRepository,
-    SupabaseExperienceRepository,
-)
-from api.application.services import (
-    ProjectService,
-    TechnologyService,
-    ExperienceService,
-)
+import django  # noqa: E402 — must be after env vars
+
+django.setup()
+
+from django.test import Client  # noqa: E402 — import after setup()
 
 
-def test_projects(service: ProjectService):
-    print("Projects...")
-    projects = service.get_all()
-    print(f"  Found {len(projects)} projects")
-    featured = service.get_featured()
-    print(f"  Featured: {len(featured)}")
-    if projects:
-        p = service.get_by_slug(projects[0].slug)
-        if p:
-            print(f"  Slug OK: {p.title}")
+def test_endpoints(client):
+    endpoints = [
+        ('GET', '/api/health', 200),
+        ('GET', '/api/v1/profile', 200),
+        ('GET', '/api/v1/projects', 200),
+        ('GET', '/api/v1/projects/featured', 200),
+        ('GET', '/api/v1/technologies', 200),
+        ('GET', '/api/v1/experience', 200),
+        ('GET', '/api/v1/education', 200),
+        ('GET', '/api/v1/certifications', 200),
+        ('GET', '/api/v1/notebooks', 200),
+    ]
 
+    print(f"🔍 Testing {len(endpoints)} endpoints...\n")
+    ok = 0
 
-def test_technologies(service: TechnologyService):
-    print("\nTechnologies...")
-    techs = service.get_all()
-    print(f"  Found {len(techs)} technologies")
-    if techs:
-        t = service.get_by_slug(techs[0].slug)
-        if t:
-            print(f"  Slug OK: {t.name} ({t.project_count} projects)")
+    for method, url, expected in endpoints:
+        response = getattr(client, method.lower())(url)
+        status = '✅' if response.status_code == expected else '❌'
+        print(f"  {status} {method:4s} {url:40s} → {response.status_code}")
+        if response.status_code == expected:
+            ok += 1
 
-
-def test_experience(service: ExperienceService):
-    print("\nExperience...")
-    exp = service.get_all()
-    print(f"  Found {len(exp)} entries")
-    if exp:
-        print(f"  Latest: {exp[0].role} at {exp[0].company}")
+    print(f"\n{'='*50}")
+    print(f"  {ok}/{len(endpoints)} endpoints passed")
+    if ok == len(endpoints):
+        print("  ✅ All tests passed!")
+    else:
+        print(f"  ❌ {len(endpoints) - ok} failures")
+        sys.exit(1)
 
 
 def main():
-    client = create_supabase_client()
-    test_projects(ProjectService(SupabaseProjectRepository(client)))
-    test_technologies(TechnologyService(SupabaseTechnologyRepository(client)))
-    test_experience(ExperienceService(SupabaseExperienceRepository(client)))
-    print("\nAll tests passed!")
+    client = Client()
+    test_endpoints(client)
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()

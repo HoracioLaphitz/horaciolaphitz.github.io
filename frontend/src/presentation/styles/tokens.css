@@ -1,78 +1,41 @@
-/**
- * Design Tokens - Base Variables
- * These are the foundation tokens that themes will override
- */
-
 :root {
   color-scheme: light dark;
-  /* Color Tokens - Will be overridden by theme files */
+
   --color-surface: #ffffff;
-  --color-surface-elevated: #f8f9fa;
+  --color-surface-elevated: #f5f5f7;
   --color-surface-overlay: #ffffff;
 
-  --color-text-primary: #1a1a1a;
-  --color-text-secondary: #6b7280;
-  --color-text-tertiary: #9ca3af;
+  --color-text-primary: #1d1d1f;
+  --color-text-secondary: #86868b;
+  --color-text-tertiary: #aeaeb2;
   --color-text-inverse: #ffffff;
 
-  --color-accent: #0ea5e9;
-  --color-accent-hover: #0284c7;
-  --color-accent-muted: #e0f2fe;
+  --color-accent: #0071e3;
+  --color-accent-hover: #0077ed;
+  --color-accent-muted: rgba(0, 113, 227, 0.08);
 
-  --color-border: #e5e7eb;
-  --color-border-hover: #d1d5db;
+  --color-border: rgba(0, 0, 0, 0.06);
+  --color-border-hover: rgba(0, 0, 0, 0.12);
 
-  --color-success: #10b981;
-  --color-error: #ef4444;
-  --color-warning: #f59e0b;
+  --color-success: #34c759;
+  --color-error: #ff3b30;
+  --color-warning: #ff9500;
 
-  /* Shadow Tokens */
-  --shadow-color: 0deg 0% 63%;
-  --shadow-sm:
-    0px 0.3px 0.4px hsl(var(--shadow-color) / 0.34),
-    0px 0.5px 0.6px -1.2px hsl(var(--shadow-color) / 0.34);
-  --shadow-md:
-    0px 0.3px 0.4px hsl(var(--shadow-color) / 0.36),
-    0px 1.1px 1.3px -0.8px hsl(var(--shadow-color) / 0.36),
-    0.1px 2.7px 3.1px -1.7px hsl(var(--shadow-color) / 0.36);
-  --shadow-lg:
-    0px 0.3px 0.4px hsl(var(--shadow-color) / 0.34),
-    0px 2.1px 2.4px -0.4px hsl(var(--shadow-color) / 0.34),
-    0.1px 4.1px 4.6px -0.7px hsl(var(--shadow-color) / 0.34),
-    0.1px 6.7px 7.5px -1.1px hsl(var(--shadow-color) / 0.34),
-    0.2px 10.7px 12px -1.4px hsl(var(--shadow-color) / 0.34);
-  
-  /* macOS 26 High-Fidelity Shadows */
-  --shadow-macos: 
-    0px 0px 0px 1px rgba(0, 0, 0, 0.04),
-    0px 2px 5px rgba(0, 0, 0, 0.02),
-    0px 10px 24px rgba(0, 0, 0, 0.04),
-    0px 20px 48px rgba(0, 0, 0, 0.06);
-  --shadow-macos-dark: 
-    0px 0px 0px 1px rgba(255, 255, 255, 0.06),
-    0px 2px 5px rgba(0, 0, 0, 0.1),
-    0px 10px 24px rgba(0, 0, 0, 0.25),
-    0px 20px 48px rgba(0, 0, 0, 0.4);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.08);
+  --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.1);
 
-  /* Border Radius Tokens */
-  --radius-sm: 0.25rem;
-  --radius-md: 0.5rem;
-  --radius-lg: 0.75rem;
-  --radius-xl: 1rem;
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.25rem;
   --radius-2xl: 1.5rem;
-  --radius-3xl: 2rem;
   --radius-full: 9999px;
 
-  /* Blur & Glassmorphism Tokens */
-  --blur-premium: blur(24px);
-  --blur-medium: blur(12px);
-  --blur-light: blur(6px);
-  
-  /* Border Styling Tokens */
-  --border-macos-light: 1px solid rgba(0, 0, 0, 0.06);
-  --border-macos-dark: 1px solid rgba(255, 255, 255, 0.08);
+  --blur: blur(24px);
+  --blur-heavy: blur(48px);
 
-  /* Spacing Tokens */
   --spacing-xs: 0.25rem;
   --spacing-sm: 0.5rem;
   --spacing-md: 1rem;
@@ -80,10 +43,11 @@
   --spacing-xl: 2rem;
   --spacing-2xl: 3rem;
   --spacing-3xl: 4rem;
+  --spacing-4xl: 6rem;
+  --spacing-5xl: 8rem;
 
-  /* Typography Tokens */
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-serif: 'Merriweather', Georgia, serif;
+  --font-mono: 'SF Mono', 'JetBrains Mono', Menlo, monospace;
 
   --font-size-xs: 0.75rem;
   --font-size-sm: 0.875rem;
@@ -94,22 +58,21 @@
   --font-size-3xl: 1.875rem;
   --font-size-4xl: 2.25rem;
   --font-size-5xl: 3rem;
+  --font-size-6xl: 3.75rem;
 
   --font-weight-normal: 400;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
 
-  --line-height-tight: 1.25;
-  --line-height-normal: 1.5;
-  --line-height-relaxed: 1.75;
+  --line-height-tight: 1.1;
+  --line-height-normal: 1.4;
+  --line-height-relaxed: 1.6;
 
-  /* Transition Tokens */
-  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: 200ms cubic-bezier(0.25, 0.1, 0.25, 1);
+  --transition-normal: 350ms cubic-bezier(0.25, 0.1, 0.25, 1);
+  --transition-slow: 500ms cubic-bezier(0.25, 0.1, 0.25, 1);
 
-  /* Z-Index Tokens */
   --z-base: 0;
   --z-dropdown: 1000;
   --z-sticky: 1100;
@@ -119,11 +82,6 @@
   --z-tooltip: 1500;
 }
 
-:root[data-theme="dark"] {
-  color-scheme: dark;
-}
-
-/* Smooth theme transitions */
 * {
   transition:
     background-color var(--transition-normal),
@@ -132,12 +90,6 @@
     box-shadow var(--transition-normal);
 }
 
-/* Disable transitions for elements that are animating */
-*:where([data-animating='true']) {
-  transition: none !important;
-}
-
-/* Respect user's motion preferences */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

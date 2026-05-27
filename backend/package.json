@@ -4,9 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "[ -d venv ] && venv/bin/python manage.py runserver 0.0.0.0:8000 || python manage.py runserver 0.0.0.0:8000",
-    "migrate": "python manage.py migrate",
-    "makemigrations": "python manage.py makemigrations",
-    "seed": "python manage.py seed_data",
+    "migrate": "[ -d venv ] && venv/bin/python manage.py migrate || (echo 'No venv/ found. Run: python3 -m venv venv && pip install -r requirements.txt' && false)",
+    "migrate:check": "[ -d venv ] && venv/bin/python manage.py showmigrations || (echo 'No venv/ found. Run: python3 -m venv venv && pip install -r requirements.txt' && false)",
+    "makemigrations": "[ -d venv ] && venv/bin/python manage.py makemigrations || (echo 'No venv/ found. Run: python3 -m venv venv && pip install -r requirements.txt' && false)",
+    "seed": "[ -d venv ] && venv/bin/python manage.py seed_data || (echo 'No venv/ found. Run: python3 -m venv venv && pip install -r requirements.txt' && false)",
     "build": "echo 'Backend build complete'",
     "lint": "ruff check .",
     "format": "ruff check --fix ."

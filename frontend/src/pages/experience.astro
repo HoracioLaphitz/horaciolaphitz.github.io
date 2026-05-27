@@ -5,28 +5,27 @@ import { getExperiences } from '../lib/data/getExperience';
 import { getSkills } from '../lib/data/getProfile';
 ---
 
-<PageLayout title="Experiencia Profesional" description="Mi trayectoria.">
-  <div class="container py-5xl">
-    <div class="max-w-4xl mx-auto">
-      <div class="opacity-0 animate-fade-in-up animate-delay-200">
-        <Timeline experiences={getExperiences()} />
+<PageLayout title="Experiencia" description="Trayectoria profesional en datos y desarrollo.">
+  <Timeline experiences={getExperiences()} />
+
+  <section class="py-4xl md:py-5xl px-4">
+    <div class="container">
+      <div class="section-header animate-fade-in-up animate-delay-200">
+        <span class="chip mb-4">Habilidades</span>
+        <h2>Tecnologías</h2>
+        <p>Herramientas que uso en el día a día.</p>
       </div>
 
-      <div class="mt-5xl opacity-0 animate-fade-in-up animate-delay-400">
-        <h2 class="text-3xl font-bold mb-xl text-center text-text-primary">Habilidades Técnicas</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-lg">
-          {
-            getSkills().map((skill: string, index: number) => (
-              <div
-                class="p-lg rounded-xl border border-border transition-all duration-300 hover:shadow-md opacity-0 animate-fade-in-up"
-                style={`animation-delay: ${Math.min(600 + index * 50, 800)}ms; background-color: var(--color-surface)`}
-              >
-                <p class="text-base font-medium text-text-primary">{skill}</p>
-              </div>
-            ))
-          }
-        </div>
+      <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-md animate-fade-in-up animate-delay-300">
+        {getSkills().map((skill: string, index: number) => (
+          <div
+            class="glass rounded-xl p-lg glass-hover animate-fade-in-up"
+            style={`animation-delay: ${Math.min(300 + index * 50, 700)}ms`}
+          >
+            <p class="text-sm font-medium" style="color: var(--color-text-primary);">{skill}</p>
+          </div>
+        ))}
       </div>
     </div>
-  </div>
+  </section>
 </PageLayout>

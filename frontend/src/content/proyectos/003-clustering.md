@@ -1,6 +1,6 @@
 ---
 title: "Clustering"
-description: "Proceso de Clusterizacion de Casas de la Ciudad de California"
+description: "Segmentación geoespacial no supervisada mediante K-Means y clustering jerárquico aplicado al mercado inmobiliario de California, con análisis de silueta y reducción de dimensionalidad PCA."
 category: "Otros"
 featured: true
 status: "completed"
@@ -10,7 +10,7 @@ githubUrl: "https://github.com/HoracioLaphitz/Clustering"
 
 ## Descripción del Proyecto
 
-Proceso de Clusterizacion de Casas de la Ciudad de California
+Segmentación geoespacial no supervisada mediante K-Means y clustering jerárquico aplicado al mercado inmobiliario de California, con análisis de silueta y reducción de dimensionalidad PCA.
 
 # Clustering
 Proceso de Clusterizacion de Casas de la Ciudad de California

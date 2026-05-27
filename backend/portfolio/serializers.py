@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from .models import Project, Technology, Experience, Education, Certification
+
+from .models import Certification, ContactMessage, Education, Experience, Project, Technology
 
 
 class TechnologyNestedSerializer(serializers.Serializer):
@@ -62,7 +63,16 @@ class CertificationSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class ContactMessageSerializer(serializers.Serializer):
-    name = serializers.CharField(min_length=2, max_length=100)
+class ContactMessageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ContactMessage
+        fields = ['name', 'email', 'message']
+
+
+class ProfileSerializer(serializers.Serializer):
+    name = serializers.CharField(default='Horacio Laphitz')
+    role = serializers.CharField(default='Analista de Datos')
     email = serializers.EmailField()
-    message = serializers.CharField(min_length=10, max_length=5000)
+    location = serializers.CharField(default='Argentina')
+    skills = serializers.DictField(child=serializers.ListField(child=serializers.CharField()))
+    social = serializers.DictField(child=serializers.URLField())

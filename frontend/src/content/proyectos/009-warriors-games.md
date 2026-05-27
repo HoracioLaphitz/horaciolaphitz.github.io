@@ -1,6 +1,6 @@
 ---
 title: "Warriors Games"
-description: "Este script de python lo que hace es comparar los juegos de visitante y de local del equipo de baloncesto Golden State Warriors"
+description: "Análisis estadístico comparativo del rendimiento local vs visitante de los Golden State Warriors, con visualización de distribuciones y métricas descriptivas."
 category: "Análisis de Datos"
 featured: true
 status: "completed"
@@ -10,7 +10,7 @@ githubUrl: "https://github.com/HoracioLaphitz/Warriors-Games"
 
 ## Descripción del Proyecto
 
-Este script de python lo que hace es comparar los juegos de visitante y de local del equipo de baloncesto Golden State Warriors
+Análisis estadístico comparativo del rendimiento local vs visitante de los Golden State Warriors, con visualización de distribuciones y métricas descriptivas.
 
 # Warriors-Games
 Este script de python lo que hace es comparar los juegos de visitante y de local del equipo de baloncesto Golden State Warriors

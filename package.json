@@ -1,5 +1,5 @@
 {
-  "name": "portfolio-profesional-2026",
+  "name": "portfolio-horacio-laphitz",
   "version": "1.0.0",
   "private": true,
   "type": "module",
@@ -24,7 +24,5 @@
     "node": ">=20.0.0",
     "pnpm": ">=9.0.0"
   },
-  "dependencies": {
-    "axios": "^1.16.1"
-  }
+  "dependencies": {}
 }

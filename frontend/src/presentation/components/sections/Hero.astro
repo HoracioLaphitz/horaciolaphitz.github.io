@@ -3,59 +3,88 @@ export interface Props {
   name?: string;
   role?: string;
   description?: string;
+  githubBio?: string;
 }
 
-const { name = 'Horacio Laphitz', role = 'Analista de Datos', description } = Astro.props;
+const {
+  name = 'Horacio Laphitz',
+  role = 'Analista de Datos',
+  description,
+  githubBio,
+} = Astro.props;
 ---
 
-<section
-  class="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#050b11] px-4 py-10 text-[#d7ffb7]"
->
+<section class="relative min-h-[90vh] flex items-center justify-center overflow-hidden px-4 py-4xl">
   <div
-    class="relative z-10 mx-auto w-full max-w-4xl overflow-hidden rounded-[2rem] border border-[#1b2838] bg-[#08101a]/95 shadow-[0_35px_90px_-40px_rgba(34,255,138,0.35)]"
+    class="absolute inset-0 pointer-events-none select-none overflow-hidden z-0"
+    aria-hidden="true"
   >
-    <div class="flex items-center gap-3 border-b border-[#12202e] bg-[#061118]/95 px-5 py-4">
-      <span class="h-3 w-3 rounded-full bg-[#ff5f56]"></span>
-      <span class="h-3 w-3 rounded-full bg-[#ffbd2e]"></span>
-      <span class="h-3 w-3 rounded-full bg-[#27c93f]"></span>
-      <span class="ml-auto text-xs uppercase tracking-[0.4em] text-[#7ef9b4]">console</span>
+    <div
+      class="absolute top-[10vw] -left-[20vw] w-[90vw] h-[90vw] md:top-[15%] md:-left-[10%] md:w-[60vw] md:h-[60vw] rounded-full opacity-[0.06] dark:opacity-[0.03] blur-[80px] md:blur-[120px] animate-float-slow transition-all duration-500"
+      style="background: radial-gradient(circle, var(--color-accent), transparent)"
+    >
     </div>
+    <div
+      class="absolute bottom-[5vw] -right-[15vw] w-[70vw] h-[70vw] md:bottom-[10%] md:-right-[5%] md:w-[45vw] md:h-[45vw] rounded-full opacity-[0.06] dark:opacity-[0.03] blur-[60px] md:blur-[100px] animate-pulse-slow transition-all duration-500"
+      style="background: radial-gradient(circle, var(--color-warning), transparent)"
+    >
+    </div>
+  </div>
 
-    <div class="px-6 py-10 md:px-10">
-      <div class="mb-8 space-y-3">
-        <p class="text-sm uppercase tracking-[0.35em] text-[#74f1a4]">
-          ╔══════════════════════════════════════════════╗
+  <div class="relative z-10 mx-auto w-full max-w-4xl text-center">
+    <h1
+      class="text-5xl md:text-7xl font-bold tracking-tight mb-md animate-fade-in-up"
+      style="color: var(--color-text-primary); line-height: var(--line-height-tight);"
+    >
+      {name}
+    </h1>
+
+    <p
+      class="text-xl md:text-2xl font-medium mb-2 animate-fade-in-up animate-delay-100"
+      style="color: var(--color-text-secondary);"
+    >
+      {role}
+    </p>
+
+    {
+      githubBio && (
+        <p
+          class="text-base md:text-lg mb-xl animate-fade-in-up animate-delay-150"
+          style="color: var(--color-text-tertiary);"
+        >
+          {githubBio}
         </p>
-        <p class="text-4xl font-semibold tracking-tight text-[#eeffd2]">{name}</p>
-        <p class="text-base text-[#9ef4b8]">{role}</p>
-      </div>
+      )
+    }
 
-      <div
-        class="space-y-4 rounded-[1.75rem] border border-[#172335] bg-[#071018]/95 p-6 font-mono text-sm leading-7 text-[#c8ffb8] shadow-inner"
+    {
+      description && (
+        <p
+          class="text-base md:text-lg max-w-2xl mx-auto leading-relaxed animate-fade-in-up animate-delay-200"
+          style="color: var(--color-text-secondary);"
+        >
+          {description}
+        </p>
+      )
+    }
+
+    <div
+      class="flex flex-wrap items-center justify-center gap-3 mt-4xl animate-fade-in-up animate-delay-300"
+    >
+      <a
+        href="/#proyectos"
+        class="inline-flex items-center justify-center px-xl py-md rounded-xl font-semibold text-base transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+        style="background-color: var(--color-accent); color: var(--color-text-inverse); box-shadow: 0 4px 14px color-mix(in srgb, var(--color-accent) 30%, transparent);"
       >
-        <div class="space-y-2">
-          <p><span class="text-[#7ef9b4]">&gt; Class Porfolio:</span></p>
-          <p>
-            <span class="text-[#7ef9b4]">└─</span> self._usuario = <span class="text-[#f7ffd3]"
-              >"{name}"</span
-            >
-          </p>
-          <p>
-            <span class="text-[#7ef9b4]">└─</span> self._rol = <span class="text-[#f7ffd3]"
-              >"{role}"</span
-            >
-          </p>
-        </div>
-
-        {
-          description && (
-            <div class="space-y-2">
-              <p class="text-[#7ef9b4]">&gt; self.descripcion</p>
-              <p class="whitespace-pre-wrap text-[#e9f9c8]">{description}</p>
-            </div>
-          )
-        }
-      </div>
+        Ver Proyectos
+      </a>
+      <a
+        href="/#contacto"
+        class="inline-flex items-center justify-center px-xl py-md rounded-xl font-semibold text-base transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+        style="background-color: transparent; color: var(--color-text-primary); border: 1px solid var(--color-border);"
+      >
+        Contacto
+      </a>
     </div>
   </div>
 </section>

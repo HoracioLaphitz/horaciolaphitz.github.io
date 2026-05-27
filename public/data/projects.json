@@ -2,7 +2,7 @@
   {
     "slug": "eda-procesos",
     "title": "EDA Procesos",
-    "description": "Script creado en python para automatizar el proceso de analisis de datos",
+    "description": "Pipeline automatizado de Análisis Exploratorio de Datos (EDA) con generación de reportes estadísticos, detección de outliers, análisis de correlaciones y visualizaciones avanzadas.",
     "category": "Análisis de Datos",
     "featured": true,
     "status": "completed",
@@ -26,7 +26,7 @@
   {
     "slug": "prediceprecioacciones",
     "title": "PredicePrecioAcciones",
-    "description": "Modelo de aprendizaje automatico para realizar predicciones de acciones dentro de la bolsa de Nueva York",
+    "description": "Modelo de regresión para predicción de series temporales financieras utilizando datos históricos del NYSE, con ingeniería de features y evaluación de métricas de rendimiento.",
     "category": "Machine Learning",
     "featured": true,
     "status": "completed",
@@ -47,7 +47,7 @@
   {
     "slug": "clustering",
     "title": "Clustering",
-    "description": "Proceso de Clusterizacion de Casas de la Ciudad de California",
+    "description": "Segmentación geoespacial no supervisada mediante K-Means y clustering jerárquico aplicado al mercado inmobiliario de California, con análisis de silueta y reducción de dimensionalidad PCA.",
     "category": "Otros",
     "featured": true,
     "status": "completed",
@@ -71,7 +71,7 @@
   {
     "slug": "analisis-datos-2",
     "title": "Analisis Datos 2",
-    "description": "Este Script de python es utilizado para analisis de datos(general), el mismo permite poder automatizar el proceso de analisis de los datos, se debe reemplazar la linea data.csv por el nombre del archivo de datos a analizar",
+    "description": "Framework genérico de análisis exploratorio con pipeline modular para ingestión, limpieza, transformación, visualización automática y exportación de reportes estadísticos.",
     "category": "Análisis de Datos",
     "featured": true,
     "status": "completed",
@@ -95,7 +95,7 @@
   {
     "slug": "etl",
     "title": "ETL",
-    "description": "Ejercicio de Ingeniería de Datos. Extraer , Transformar y Cargar",
+    "description": "Pipeline de Ingeniería de Datos: extracción desde fuentes heterogéneas, transformación con reglas de negocio y carga en bases de datos relacionales.",
     "category": "Ingeniería de Datos",
     "featured": true,
     "status": "completed",
@@ -113,7 +113,7 @@
   {
     "slug": "extraer-transformar-cargar",
     "title": "Extraer Transformar Cargar",
-    "description": "Este script de python es una automatizacion para : carga , transformacion y extraccion de datos de formatos como : XML , CSV y JSON , para posteriormente ser utilizados para ser analizados o entrenamiento de modelo de aprendizaje automático",
+    "description": "Pipeline ETL modular con soporte para formatos XML, CSV y JSON, orientado a la preparación y normalización de datos para modelos de machine learning.",
     "category": "Machine Learning",
     "featured": true,
     "status": "completed",
@@ -137,7 +137,7 @@
   {
     "slug": "prediccionimagenes",
     "title": "PrediccionImagenes",
-    "description": "Este Proyecto de Aprendizaje automatico realiza una prediccion basado en imagenes utilizadas dentro del entrenamiento, previamente convirtiendo estas imagenes a pixeles para que el script entienda de que imagen se trata.",
+    "description": "Clasificador de imágenes basado en redes neuronales con preprocesamiento de píxeles, normalización, aumentación de datos y evaluación multiclase.",
     "category": "Machine Learning",
     "featured": true,
     "status": "completed",
@@ -161,7 +161,7 @@
   {
     "slug": "redes-convolucionales",
     "title": "Redes Convolucionales",
-    "description": "Este Script en Python muestra 2 tipos de redes neuronales , la primera realiza una prediccion de que numero se trata(tener en cuenta que el set de datos utilizados es sobre numeros escritos a mano) y la segunda red Convolucional trata sobre un clasificador de perros y gatos(también utilizando un set de datos proveniente de la libreria Tensorflow)",
+    "description": "Arquitectura CNN dual: clasificación de dígitos manuscritos MNIST y clasificación binaria perros vs gatos con TensorFlow, dropout y early stopping.",
     "category": "Deep Learning",
     "featured": true,
     "status": "completed",
@@ -188,7 +188,7 @@
   {
     "slug": "warriors-games",
     "title": "Warriors Games",
-    "description": "Este script de python lo que hace es comparar los juegos de visitante y de local del equipo de baloncesto Golden State Warriors",
+    "description": "Análisis estadístico comparativo del rendimiento local vs visitante de los Golden State Warriors, con visualización de distribuciones y métricas descriptivas.",
     "category": "Análisis de Datos",
     "featured": true,
     "status": "completed",
@@ -212,7 +212,7 @@
   {
     "slug": "regresion-lineal",
     "title": "Regresion_Lineal",
-    "description": "Modelo de Regresion Lineal el cual Toma datos en grados Celcius y los transforma de manera automatica a grados Fahrenheit",
+    "description": "Modelo de regresión lineal univariante implementado desde cero con descenso del gradiente, incluyendo visualización de función de costo y convergencia.",
     "category": "Machine Learning",
     "featured": true,
     "status": "completed",
@@ -236,7 +236,7 @@
   {
     "slug": "titanic-arbol-de-decision",
     "title": "TITANIC Arbol_de_Decision",
-    "description": "Este script de python analiza a las personas que asistieron al hundimiento del Titanic, además realiza una predicción si una nueva persona que no haya estado en el barco tendría la posibilidad de sobrevivir o no.",
+    "description": "Modelo predictivo de supervivencia basado en árboles de decisión con análisis de factores demográficos, ingeniería de features y validación cruzada sobre el dataset Titanic.",
     "category": "Análisis de Datos",
     "featured": true,
     "status": "completed",
@@ -260,7 +260,7 @@
   {
     "slug": "autoencoder",
     "title": "Autoencoder",
-    "description": "Este script de python es una Red Nueronal capaz de reconocer images borrosas y predecir a que numero corresponde.",
+    "description": "Autoencoder convolutional para reducción de dimensionalidad y denoising de imágenes del dataset MNIST, con visualización de espacio latente y reconstrucción.",
     "category": "Deep Learning",
     "featured": true,
     "status": "completed",
@@ -284,7 +284,7 @@
   {
     "slug": "deepdreams",
     "title": "DeepDreams",
-    "description": "Modelo de Aprendizaje automático creado para el estudio del entrenamiento de las Redes Neuronales",
+    "description": "Implementación del algoritmo DeepDream para visualización y análisis de patrones aprendidos por redes neuronales convolucionales en diferentes capas.",
     "category": "Deep Learning",
     "featured": true,
     "status": "completed",
@@ -308,7 +308,7 @@
   {
     "slug": "redes-generativas-adversariales",
     "title": "Redes Generativas Adversariales",
-    "description": "Algoritmo de Aprendizaje no supervisado, capaz de competir con otro para poder entrenarse.",
+    "description": "Arquitectura GAN (Generative Adversarial Network) para generación de datos sintéticos mediante optimización competitiva entre generador y discriminador.",
     "category": "Otros",
     "featured": true,
     "status": "completed",
@@ -332,7 +332,7 @@
   {
     "slug": "capitalizacion-del-mercado-de-los-bancos-mas-grandes",
     "title": "Capitalizacion Del Mercado De Los Bancos Mas Grandes",
-    "description": "Este Script de pyton se encarga de utilizar la tecnica de Webscrapping para obtener datos de una pagina web, en especifico de una tabla dentro de la misma y pasarlos por el proceso ETL para hacer estos datos mas útiles",
+    "description": "Pipeline de web scraping y ETL para extracción, transformación y análisis de capitalización de mercado del sector bancario global desde fuentes financieras.",
     "category": "Ingeniería de Datos",
     "featured": true,
     "status": "completed",
@@ -359,7 +359,7 @@
   {
     "slug": "django-crud-react",
     "title": "Django Crud React",
-    "description": "Proyecto que crea una API enpoint para enviar Datos",
+    "description": "API RESTful construida con Django REST Framework y frontend React con operaciones CRUD completas, serialización y validación de datos.",
     "category": "Desarrollo Web",
     "featured": true,
     "status": "completed",
@@ -377,7 +377,7 @@
   {
     "slug": "cancer-issue",
     "title": "Cancer_issue",
-    "description": "Documento que Describe las posibilidades de pacientes para sobrevivir al cancer (En Proceso)",
+    "description": "Análisis de factores predictivos de supervivencia en pacientes oncológicos mediante modelos estadísticos y algoritmos de clasificación supervisada.",
     "category": "Otros",
     "featured": false,
     "status": "completed",
@@ -401,7 +401,7 @@
   {
     "slug": "marketbasketanalytics",
     "title": "MarketBasketAnalytics",
-    "description": "técnica de minería de datos que busca descubrir patrones de compra entre productos que suelen adquirirse juntos",
+    "description": "Análisis de reglas de asociación aplicando el algoritmo Apriori para descubrimiento de patrones de compra y cross-selling en retail transaccional.",
     "category": "Análisis de Datos",
     "featured": false,
     "status": "completed",
@@ -422,7 +422,7 @@
   {
     "slug": "eda-ibm",
     "title": "EDA_IBM",
-    "description": "Analisis exploratorio de datos, set IBM HR Analytics Attrition",
+    "description": "Análisis exploratorio de datos del dataset IBM HR Analytics Attrition para identificación de factores determinantes de rotación de personal mediante técnicas estadísticas.",
     "category": "Análisis de Datos",
     "featured": false,
     "status": "completed",
@@ -441,10 +441,10 @@
     "demoUrl": null
   },
   {
-    "slug": "proyecto-sanoyfresco",
-    "title": "Proyecto SanoYFresco",
-    "description": "Proyecto: Proyecto SanoYFresco",
-    "category": "Otros",
+    "slug": "dashboards",
+    "title": "dashboards",
+    "description": "Tablero de control interactivo con métricas de negocio, indicadores KPI y visualizaciones dinámicas para monitoreo y análisis de rendimiento organizacional.",
+    "category": "Business Intelligence",
     "featured": false,
     "status": "completed",
     "technologies": [
@@ -454,5 +454,317 @@
     ],
     "githubUrl": null,
     "demoUrl": null
+  },
+  {
+    "slug": "predice-precios-casas",
+    "title": "Predice Precios Casas",
+    "description": "Modelo de regresión múltiple para predicción de precios inmobiliarios con ingeniería de features, selección de variables y evaluación mediante MSE y R².",
+    "category": "Data Analysis",
+    "type": "analysis",
+    "featured": false,
+    "status": "completed",
+    "technologies": [],
+    "githubUrl": null,
+    "demoUrl": null,
+    "notebookUrl": "/Proyectos/Notebooks/Predice-Precios-Casas/Predice-Precios-Casas.ipynb",
+    "htmlUrl": "/notebooks-html/Predice-Precios-Casas.html",
+    "assets": []
+  },
+  {
+    "slug": "prediceprecioacciones",
+    "title": "PredicePrecioAcciones",
+    "description": "Modelo predictivo de series temporales financieras utilizando redes LSTM y análisis de tendencia con datos históricos del mercado de valores.",
+    "category": "Data Analysis",
+    "type": "analysis",
+    "featured": false,
+    "status": "completed",
+    "technologies": [],
+    "githubUrl": null,
+    "demoUrl": null,
+    "notebookUrl": "/Proyectos/Notebooks/PredicePrecioAcciones/PredicePrecioAcciones.ipynb",
+    "htmlUrl": "/notebooks-html/PredicePrecioAcciones.html",
+    "assets": []
+  },
+  {
+    "slug": "primermodeloregresionlineal",
+    "title": "PrimerModeloRegresionLineal",
+    "description": "Implementación desde cero de regresión lineal univariante con descenso del gradiente, función de costo MSE y visualización de convergencia.",
+    "category": "Data Analysis",
+    "type": "analysis",
+    "featured": false,
+    "status": "completed",
+    "technologies": [],
+    "githubUrl": null,
+    "demoUrl": null,
+    "notebookUrl": "/Proyectos/Notebooks/PrimerModeloRegresionLineal/PrimerModeloRegresionLineal.ipynb",
+    "htmlUrl": "/notebooks-html/PrimerModeloRegresionLineal.html",
+    "assets": []
+  },
+  {
+    "slug": "programacion-orientada-a-objetos",
+    "title": "Programacion Orientada a Objetos",
+    "description": "Aplicación de principios de programación orientada a objetos (abstracción, encapsulamiento, herencia, polimorfismo) al análisis de datos con Python.",
+    "category": "Data Analysis",
+    "type": "analysis",
+    "featured": false,
+    "status": "completed",
+    "technologies": [],
+    "githubUrl": null,
+    "demoUrl": null,
+    "notebookUrl": "/Proyectos/Notebooks/Programacion_Orientada_a_Objetos/Programacion_Orientada_a_Objetos.ipynb",
+    "htmlUrl": "/notebooks-html/Programacion_Orientada_a_Objetos.html",
+    "assets": []
+  },
+  {
+    "slug": "red-neuronal-convolucional",
+    "title": "Red Neuronal Convolucional",
+    "description": "Arquitectura de Redes Neuronales Convolucionales (CNN) para clasificación de dígitos manuscritos MNIST y clasificación binaria perros vs gatos con TensorFlow y Keras.",
+    "category": "Data Analysis",
+    "type": "analysis",
+    "featured": false,
+    "status": "completed",
+    "technologies": [],
+    "githubUrl": null,
+    "demoUrl": null,
+    "notebookUrl": "/Proyectos/Notebooks/Red-Neuronal-Convolucional/Red Neuronal Convolucional.ipynb",
+    "htmlUrl": "/notebooks-html/Red Neuronal Convolucional.html",
+    "assets": []
+  },
+  {
+    "slug": "red-de-clasificacion",
+    "title": "Red de Clasificacion",
+    "description": "Perceptrón multicapa para clasificación supervisada con función de activación ReLU, regularización L2 y validación cruzada para prevención de overfitting.",
+    "category": "Data Analysis",
+    "type": "analysis",
+    "featured": false,
+    "status": "completed",
+    "technologies": [],
+    "githubUrl": null,
+    "demoUrl": null,
+    "notebookUrl": "/Proyectos/Notebooks/Red-de-Clasificacion/Red de Clasificacion.ipynb",
+    "htmlUrl": "/notebooks-html/Red de Clasificacion.html",
+    "assets": []
+  },
+  {
+    "slug": "reddeclasificacion",
+    "title": "RedDeClasificacion",
+    "description": "Red neuronal feed-forward con backpropagation para clasificación multiclase, incluyendo análisis de curvas de aprendizaje y métricas por clase.",
+    "category": "Data Analysis",
+    "type": "analysis",
+    "featured": false,
+    "status": "completed",
+    "technologies": [],
+    "githubUrl": null,
+    "demoUrl": null,
+    "notebookUrl": "/Proyectos/Notebooks/RedDeClasificacion/RedDeClasificacion.ipynb",
+    "htmlUrl": "/notebooks-html/RedDeClasificacion.html",
+    "assets": []
+  },
+  {
+    "slug": "reddeclasificacion2",
+    "title": "RedDeClasificacion2",
+    "description": "Red neuronal profunda con arquitectura optimizada, batch normalization, dropout y early stopping para mejora de generalización en clasificación.",
+    "category": "Data Analysis",
+    "type": "analysis",
+    "featured": false,
+    "status": "completed",
+    "technologies": [],
+    "githubUrl": null,
+    "demoUrl": null,
+    "notebookUrl": "/Proyectos/Notebooks/RedDeClasificacion2/RedDeClasificacion2.ipynb",
+    "htmlUrl": "/notebooks-html/reddeclasificacion2.html",
+    "assets": []
+  },
+  {
+    "slug": "reddeclasificacion2-copia",
+    "title": "RedDeClasificacion2 Copia",
+    "description": "Red neuronal de clasificación con arquitectura profunda, optimización de hiperparámetros mediante grid search y técnicas de regularización avanzadas.",
+    "category": "Data Analysis",
+    "type": "analysis",
+    "featured": false,
+    "status": "completed",
+    "technologies": [],
+    "githubUrl": null,
+    "demoUrl": null,
+    "notebookUrl": "/Proyectos/Notebooks/RedDeClasificacion2-Copia/Copia de RedDeClasificacion2.ipynb",
+    "htmlUrl": null,
+    "assets": []
+  },
+  {
+    "slug": "redneuronalterremotos",
+    "title": "RedNeuronalTerremotos",
+    "description": "Red neuronal para predicción de magnitud sísmica con análisis de curvas de entrenamiento, regularización y evaluación de error en datos de terremotos reales.",
+    "category": "Data Analysis",
+    "type": "analysis",
+    "featured": false,
+    "status": "completed",
+    "technologies": [],
+    "githubUrl": null,
+    "demoUrl": null,
+    "notebookUrl": "/Proyectos/Notebooks/RedNeuronalTerremotos/RedNeuronalTerremotos.ipynb",
+    "htmlUrl": "/notebooks-html/RedNeuronalTerremotos.html",
+    "assets": []
+  },
+  {
+    "slug": "red-clasificacion-optimizado",
+    "title": "Red Clasificacion Optimizado",
+    "description": "Red neuronal optimizada para clasificación de dígitos MNIST con búsqueda de hiperparámetros, dropout y normalización por lotes. Incluye matriz de confusión y reporte de clasificación.",
+    "category": "Data Analysis",
+    "type": "analysis",
+    "featured": false,
+    "status": "completed",
+    "technologies": [],
+    "githubUrl": null,
+    "demoUrl": null,
+    "notebookUrl": "/Proyectos/Notebooks/Red_Clasificacion_Optimizado/Red_Clasificacion_Optimizado.ipynb",
+    "htmlUrl": "/notebooks-html/Red_Clasificacion_Optimizado.html",
+    "assets": []
+  },
+  {
+    "slug": "regresion-logistica",
+    "title": "Regresion Logistica",
+    "description": "Modelo de regresión logística para clasificación binaria con análisis de odds ratio, curva ROC, matriz de confusión y umbral de decisión óptimo.",
+    "category": "Data Analysis",
+    "type": "analysis",
+    "featured": false,
+    "status": "completed",
+    "technologies": [],
+    "githubUrl": null,
+    "demoUrl": null,
+    "notebookUrl": "/Proyectos/Notebooks/Regresion-Logistica/Regresion Logistica.ipynb",
+    "htmlUrl": "/notebooks-html/Regresion Logistica.html",
+    "assets": []
+  },
+  {
+    "slug": "text-ia",
+    "title": "Text IA",
+    "description": "Pipeline de Procesamiento de Lenguaje Natural (NLP) con tokenización, limpieza de texto, embeddings vectoriales y clasificación de documentos mediante modelos supervisados.",
+    "category": "Data Analysis",
+    "type": "analysis",
+    "featured": false,
+    "status": "completed",
+    "technologies": [],
+    "githubUrl": null,
+    "demoUrl": null,
+    "notebookUrl": "/Proyectos/Notebooks/Text-IA/Text-IA.ipynb",
+    "htmlUrl": "/notebooks-html/Text-IA.html",
+    "assets": []
+  },
+  {
+    "slug": "transferenciaaprendizaje",
+    "title": "TransferenciaAprendizaje",
+    "description": "Transfer Learning con fine-tuning de modelos preentrenados (VGG16/ResNet) para clasificación de imágenes especializada, con congelado selectivo de capas y aumentación de datos.",
+    "category": "Data Analysis",
+    "type": "analysis",
+    "featured": false,
+    "status": "completed",
+    "technologies": [],
+    "githubUrl": null,
+    "demoUrl": null,
+    "notebookUrl": "/Proyectos/Notebooks/TransferenciaAprendizaje/TransferenciaAprendizaje.ipynb",
+    "htmlUrl": "/notebooks-html/TransferenciaAprendizaje.html",
+    "assets": []
+  },
+  {
+    "slug": "transferenciaaprendizaje-copia",
+    "title": "TransferenciaAprendizaje Copia",
+    "description": "Fine-tuning de arquitecturas preentrenadas con técnicas de data augmentation, regularización y ajuste de hiperparámetros para optimización de precisión.",
+    "category": "Data Analysis",
+    "type": "analysis",
+    "featured": false,
+    "status": "completed",
+    "technologies": [],
+    "githubUrl": null,
+    "demoUrl": null,
+    "notebookUrl": "/Proyectos/Notebooks/TransferenciaAprendizaje-Copia/Copia de TransferenciaAprendizaje.ipynb",
+    "htmlUrl": "/notebooks-html/transferenciaaprendizaje-copia.html",
+    "assets": []
+  },
+  {
+    "slug": "proyecto-sanoyfresco",
+    "title": "SanoYFresco - Análisis de Retail y Market Basket Analysis",
+    "description": "SanoYFresco es un retailer de productos orgánicos que necesitaba optimizar su estrategia de merchandising y aumentar el valor promedio de compra. El negocio enfrentaba dos desafíos principales:",
+    "category": "Data Analysis",
+    "type": "analysis",
+    "featured": false,
+    "status": "completed",
+    "technologies": [],
+    "githubUrl": null,
+    "demoUrl": null,
+    "notebookUrl": null,
+    "htmlUrl": "/notebooks-html/proyecto-sanoyfresco.html",
+    "assets": [
+      {
+        "name": "dump.sqlite.sql",
+        "url": "/Proyectos/Proyecto SanoYFresco/DB/dump.sqlite.sql"
+      },
+      {
+        "name": "Colores.txt",
+        "url": "/Proyectos/Proyecto SanoYFresco/Media/Colores.txt"
+      },
+      {
+        "name": "Logo.jpg",
+        "url": "/Proyectos/Proyecto SanoYFresco/Media/Logo.jpg"
+      },
+      {
+        "name": "flecha-hacia-arriba.png",
+        "url": "/Proyectos/Proyecto SanoYFresco/Media/flecha-hacia-arriba.png"
+      },
+      {
+        "name": "icono cesta.png",
+        "url": "/Proyectos/Proyecto SanoYFresco/Media/icono cesta.png"
+      },
+      {
+        "name": "icono euro.png",
+        "url": "/Proyectos/Proyecto SanoYFresco/Media/icono euro.png"
+      },
+      {
+        "name": "icono hash.png",
+        "url": "/Proyectos/Proyecto SanoYFresco/Media/icono hash.png"
+      },
+      {
+        "name": "icono media.png",
+        "url": "/Proyectos/Proyecto SanoYFresco/Media/icono media.png"
+      },
+      {
+        "name": "icono ventas.png",
+        "url": "/Proyectos/Proyecto SanoYFresco/Media/icono ventas.png"
+      },
+      {
+        "name": "imagenes secciones",
+        "url": "/Proyectos/Proyecto SanoYFresco/Media/imagenes secciones"
+      },
+      {
+        "name": "secciones.xlsx",
+        "url": "/Proyectos/Proyecto SanoYFresco/Media/secciones.xlsx"
+      },
+      {
+        "name": "web.jpg",
+        "url": "/Proyectos/Proyecto SanoYFresco/Media/web.jpg"
+      },
+      {
+        "name": "TPE_MarketBasketAnalysis_colab.ipynb",
+        "url": "/Proyectos/Proyecto SanoYFresco/Notebooks/TPE_MarketBasketAnalysis_colab.ipynb"
+      },
+      {
+        "name": "reglas.csv",
+        "url": "/Proyectos/Proyecto SanoYFresco/reglas/reglas.csv"
+      }
+    ]
+  },
+  {
+    "slug": "analisis",
+    "title": "analisis",
+    "description": "Pipeline integral de análisis exploratorio de datos multidimensionales con visualizaciones estadísticas, detección de patrones y clustering.",
+    "category": "Data Analysis",
+    "type": "analysis",
+    "featured": false,
+    "status": "completed",
+    "technologies": [],
+    "githubUrl": null,
+    "demoUrl": null,
+    "notebookUrl": null,
+    "htmlUrl": "/notebooks-html/analisis-datos.html",
+    "assets": []
   }
 ]

@@ -1,6 +1,6 @@
 ---
 title: "DeepDreams"
-description: "Modelo de Aprendizaje automático creado para el estudio del entrenamiento de las Redes Neuronales"
+description: "Implementación del algoritmo DeepDream para visualización y análisis de patrones aprendidos por redes neuronales convolucionales en diferentes capas."
 category: "Deep Learning"
 featured: true
 status: "completed"
@@ -10,7 +10,7 @@ githubUrl: "https://github.com/HoracioLaphitz/DeepDreams"
 
 ## Descripción del Proyecto
 
-Modelo de Aprendizaje automático creado para el estudio del entrenamiento de las Redes Neuronales
+Implementación del algoritmo DeepDream para visualización y análisis de patrones aprendidos por redes neuronales convolucionales en diferentes capas.
 
 # Deep Dreams
 *Este proyecto explora la fascinante técnica de DeepDream, que utiliza redes neuronales convolucionales (CNN) para generar imágenes psicodélicas y surrealistas*. 

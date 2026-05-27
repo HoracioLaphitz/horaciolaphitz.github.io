@@ -1,18 +1,21 @@
 import logging
 
+from ..models import ContactMessage
+
 logger = logging.getLogger(__name__)
 
 
 def handle_contact_message(name, email, message):
     try:
-        logger.info(f"Contact message from {email}: {name}")
+        ContactMessage.objects.create(name=name, email=email, message=message)
+        logger.info(f"Contact message saved from {email}: {name}")
         return {
             "success": True,
-            "message": "Tu mensaje ha sido recibido. Te contactaremos pronto.",
+            "message": "Mensaje recibido. Te respondo a la brevedad.",
         }
     except Exception as e:
         logger.error(f"Error processing contact message: {e}")
         return {
             "success": False,
-            "message": "Error al procesar tu mensaje. Intenta más tarde.",
+            "message": "Error al enviar el mensaje. Intenta de nuevo más tarde.",
         }

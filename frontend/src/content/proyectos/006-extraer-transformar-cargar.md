@@ -1,6 +1,6 @@
 ---
 title: "Extraer Transformar Cargar"
-description: "Este script de python es una automatizacion para : carga , transformacion y extraccion de datos de formatos como : XML , CSV y JSON , para posteriormente ser utilizados para ser analizados o entrenamiento de modelo de aprendizaje automático"
+description: "Pipeline ETL modular con soporte para formatos XML, CSV y JSON, orientado a la preparación y normalización de datos para modelos de machine learning."
 category: "Machine Learning"
 featured: true
 status: "completed"
@@ -10,7 +10,7 @@ githubUrl: "https://github.com/HoracioLaphitz/Extraer-Transformar-Cargar"
 
 ## Descripción del Proyecto
 
-Este script de python es una automatizacion para : carga , transformacion y extraccion de datos de formatos como : XML , CSV y JSON , para posteriormente ser utilizados para ser analizados o entrenamiento de modelo de aprendizaje automático
+Pipeline ETL modular con soporte para formatos XML, CSV y JSON, orientado a la preparación y normalización de datos para modelos de machine learning.
 
 # Extraer-Transformar-Cargar
 Este script de python es una automatizacion para : carga , transformacion y extraccion de datos de formatos como : XML , CSV y JSON , para posteriormente ser utilizados para ser analizados o entrenamiento de modelo de aprendizaje automático

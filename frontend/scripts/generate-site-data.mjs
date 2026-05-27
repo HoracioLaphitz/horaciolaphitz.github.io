@@ -147,6 +147,17 @@ function extractProfileFromTS(content) {
     }
   }
 
+  // ── descriptions_about: desde PROFILE_DATA (opcional) ──
+  let descriptionsAbout = null;
+  const aboutSection = content.match(/descriptions_about:\s*\[([\s\S]*?)\]\s*,\s*skills:/);
+  if (aboutSection) {
+    const aboutStr = aboutSection[1];
+    const aboutMatches = aboutStr.match(/'([^']+)'/g);
+    if (aboutMatches) {
+      descriptionsAbout = aboutMatches.map(d => d.replace(/'/g, ''));
+    }
+  }
+
   // ── Skills: desde PROFILE_DATA.skills (array simple de strings) ──
   const skills = [];
   // Find `skills: [` in PROFILE_DATA
@@ -172,7 +183,7 @@ function extractProfileFromTS(content) {
     }
   }
 
-  return { name, role, descriptions, contact, skills };
+    return { name, role, descriptions, descriptionsAbout, contact, skills };
 }
 
 /**
@@ -595,12 +606,25 @@ async function generateNotebooks() {
 
         const htmlSlug = slugify(slugifyHtmlName(htmlFile));
 
-        // Buscar el notebook que coincida
+        // Buscar el notebook que coincida (exact match primero, substring como fallback)
+        // Fase 1: exact match por slug o título
+        let matched = false;
         for (const nb of notebooks) {
           const nbSlug = slugify(nb.title);
-          if (nbSlug === htmlSlug || htmlSlug.includes(nbSlug) || nbSlug.includes(htmlSlug)) {
+          if (nbSlug === htmlSlug || nb.slug === htmlSlug) {
             nb.html_url = `/notebooks-html/${htmlFile}`;
+            matched = true;
             break;
+          }
+        }
+        // Fase 2: substring match — solo si no hubo exact match
+        if (!matched) {
+          for (const nb of notebooks) {
+            const nbSlug = slugify(nb.title);
+            if (htmlSlug.includes(nbSlug) || nbSlug.includes(htmlSlug)) {
+              nb.html_url = `/notebooks-html/${htmlFile}`;
+              break;
+            }
           }
         }
       }
@@ -628,6 +652,7 @@ async function generateProfile() {
       name: data.name || 'Horacio Laphitz',
       role: data.role || 'Analista de Datos',
       descriptions: data.descriptions.length > 0 ? data.descriptions : ['Analista de Datos'],
+      descriptions_about: data.descriptionsAbout || null,
       contact: data.contact,
       skills: data.skills,
     };
@@ -678,15 +703,52 @@ async function main() {
   // 1. Projects
   console.log('📦 Generando projects.json...');
   const projects = await generateProjects();
+
+  // 2. Notebooks — merge into projects as 'analysis' type
+  console.log('\n📓 Fusionando notebooks en projects.json...');
+  const notebooks = await generateNotebooks();
+  const appSlugs = new Set(projects.map(p => p.slug));
+  const analysisEntries = notebooks
+    .filter(nb => nb.title && nb.slug)
+    .filter(nb => {
+      if (!appSlugs.has(nb.slug)) return true;
+      if (nb.html_url || nb.notebook_url) return true;
+      return false;
+    })
+    .map(nb => ({
+      slug: nb.slug,
+      title: nb.title,
+      description: nb.description || 'Análisis de datos exploratorio.',
+      category: 'Data Analysis',
+      type: 'analysis',
+      featured: false,
+      status: 'completed',
+      technologies: [],
+      githubUrl: null,
+      demoUrl: null,
+      notebookUrl: nb.notebook_url || null,
+      htmlUrl: nb.html_url || null,
+      assets: nb.assets || [],
+    }));
+  const mergedProjects = [...projects, ...analysisEntries];
+
+  // Eliminar duplicados: si un proyecto local (sin githubUrl) también existe como
+  // caso de estudio (analysis), nos quedamos con la versión analysis que tiene más info
+  const analysisSlugs = new Set(analysisEntries.map(a => a.slug));
+  const dedupedProjects = mergedProjects.filter(p => {
+    if (p.type === 'analysis') return true;
+    if (p.githubUrl) return true;
+    if (analysisSlugs.has(p.slug)) return false;
+    return true;
+  });
+
   await fs.writeFile(
     path.join(DATA_DIR, 'projects.json'),
-    JSON.stringify(projects, null, 2),
+    JSON.stringify(dedupedProjects, null, 2),
     'utf-8'
   );
 
-  // 2. Notebooks
-  console.log('\n📓 Generando notebooks.json...');
-  const notebooks = await generateNotebooks();
+  // Keep notebooks.json for backward compatibility
   await fs.writeFile(
     path.join(DATA_DIR, 'notebooks.json'),
     JSON.stringify(notebooks, null, 2),
@@ -718,8 +780,10 @@ async function main() {
   console.log('\n✨ Manifests generados exitosamente:');
   console.log(`   📁 ${DATA_DIR}/ (build-time imports)`);
   console.log(`   📁 ${DATA_PUBLIC_DIR}/ (runtime access)`);
-  console.log(`   ├── projects.json    (${projects.length} proyectos)`);
- console.log(`   ├── notebooks.json   (${notebooks.length} notebooks)`);
+  const withRepo = dedupedProjects.filter(p => Boolean(p.githubUrl)).length;
+  const caseStudy = dedupedProjects.filter(p => !Boolean(p.githubUrl)).length;
+  console.log(`   ├── projects.json    (${dedupedProjects.length} total: ${withRepo} con repo · ${caseStudy} casos de estudio)`);
+  console.log(`   ├── notebooks.json   (${notebooks.length} notebooks)`);
   console.log(`   ├── profile.json     (${profile.name})`);
   console.log(`   └── experience.json  (${JSON.stringify(experience).length} chars)`);
   console.log('');

@@ -1,6 +1,6 @@
 ---
 title: "Redes Generativas Adversariales"
-description: "Algoritmo de Aprendizaje no supervisado, capaz de competir con otro para poder entrenarse."
+description: "Arquitectura GAN (Generative Adversarial Network) para generación de datos sintéticos mediante optimización competitiva entre generador y discriminador."
 category: "Otros"
 featured: true
 status: "completed"
@@ -10,7 +10,7 @@ githubUrl: "https://github.com/HoracioLaphitz/Redes-Generativas-Adversariales"
 
 ## Descripción del Proyecto
 
-Algoritmo de Aprendizaje no supervisado, capaz de competir con otro para poder entrenarse.
+Arquitectura GAN (Generative Adversarial Network) para generación de datos sintéticos mediante optimización competitiva entre generador y discriminador.
 
 # Generative Adversarial Networks (GANs)
  - Las Redes Generativas Adversariales (GANs) son un tipo de arquitectura de redes neuronales profundas utilizadas para generar datos sintéticos, como imágenes, música o texto. Fueron propuestas por Ian Goodfellow y su equipo en 2014.

@@ -1,37 +1,36 @@
 import { ThemeToggle } from '../atoms/ThemeToggle';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 export function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isVisible, setIsVisible] = useState(true);
-    const [lastScrollY, setLastScrollY] = useState(0);
+    const lastScrollYRef = useRef(0);
 
     useEffect(() => {
         const handleScroll = () => {
             const currentScrollY = window.scrollY;
+            const lastScrollY = lastScrollYRef.current;
 
             // Mostrar navbar si estamos en el top de la página
             if (currentScrollY < 50) {
                 setIsVisible(true);
-                setLastScrollY(currentScrollY);
+                lastScrollYRef.current = currentScrollY;
                 return;
             }
 
             // Comparar scroll actual con el anterior
             if (currentScrollY > lastScrollY) {
-                // Scrolling down - hide
                 setIsVisible(false);
             } else {
-                // Scrolling up - show
                 setIsVisible(true);
             }
 
-            setLastScrollY(currentScrollY);
+            lastScrollYRef.current = currentScrollY;
         };
 
         window.addEventListener('scroll', handleScroll, { passive: true });
         return () => window.removeEventListener('scroll', handleScroll);
-    }, [lastScrollY]);
+    }, []); // Empty deps: effect runs once, ref keeps the mutable value
 
     return (
         <header className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2rem)] max-w-5xl glass-panel rounded-2xl transition-all duration-300 ${isVisible ? 'translate-y-0 opacity-100' : '-translate-y-24 opacity-0 pointer-events-none'
@@ -43,10 +42,9 @@ export function Header() {
                     </a>
                     <div className="hidden md:flex items-center gap-1">
                         {[
-                            { href: '/#proyectos', label: 'Proyectos' },
-                            { href: '/notebooks', label: 'Notebooks' },
-                            { href: '/#experiencia', label: 'Experiencia' },
-                            { href: '/#contacto', label: 'Contacto' },
+                            { href: '/projects', label: 'Proyectos' },
+                            { href: '/experience', label: 'Experiencia' },
+                            { href: '/certificaciones', label: 'Certificaciones' },
                         ].map((link) => (
                             <a
                                 key={link.label}
@@ -80,10 +78,9 @@ export function Header() {
                     <div className="md:hidden py-3 border-t border-border animate-fade-in">
                         <div className="flex flex-col gap-1">
                             {[
-                                { href: '/#proyectos', label: 'Proyectos' },
-                                { href: '/notebooks', label: 'Notebooks' },
-                                { href: '/#experiencia', label: 'Experiencia' },
-                                { href: '/#contacto', label: 'Contacto' },
+                                { href: '/projects', label: 'Proyectos' },
+                                { href: '/experience', label: 'Experiencia' },
+                                { href: '/certificaciones', label: 'Certificaciones' },
                             ].map((link) => (
                                 <a
                                     key={link.label}
