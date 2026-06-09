@@ -4,7 +4,7 @@ export function Footer() {
     return (
         <footer className="border-t border-border" style={{ backgroundColor: 'var(--color-surface)' }}>
             <div className="container py-4xl">
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-xl mb-3xl">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-xl mb-3xl">
                     <div className="md:col-span-2">
                         <h3 className="text-2xl font-bold mb-md tracking-tight text-text-primary">
                             Horacio Laphitz

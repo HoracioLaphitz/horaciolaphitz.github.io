@@ -7,6 +7,7 @@ import { dirname, resolve } from 'path';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
+  base: '/Portafolio/',
   publicDir: '../public',
   integrations: [
     react(),

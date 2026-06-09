@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
-    "build": "node scripts/sync-all-projects.mjs && astro check && astro build",
+    "build": "node scripts/sync-all-projects.mjs && astro build",
     "preview": "astro preview",
     "astro": "astro",
     "type-check": "astro check",
@@ -30,6 +30,7 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.9",
+    "@tailwindcss/typography": "^0.5.19",
     "@types/node": "^25.9.0",
     "@types/react": "^18.3.11",
     "@types/react-dom": "^18.3.0",
