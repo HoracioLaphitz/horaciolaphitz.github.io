@@ -17,6 +17,8 @@ venv/
 *.swp
 *.swo
 build/
+.atl/
+frontend/dist/
 .kiro
 .vscode
 env.production
