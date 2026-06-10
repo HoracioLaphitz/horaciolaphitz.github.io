@@ -17,7 +17,8 @@ const proyectosDataAnalysis = proyectos.filter(
   (p) =>
     p.category === ProjectCategory.DataAnalysis &&
     !p.title.toLowerCase().includes("portfolio") &&
-    !p.title.toLowerCase().includes("horaciolaphitz.github.io")
+    !p.slug.includes("porfolio") &&
+    !p.slug.includes("horaciolaphitz")
 );
 
 // Serialize for client

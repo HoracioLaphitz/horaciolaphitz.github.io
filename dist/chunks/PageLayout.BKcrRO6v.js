@@ -1,4 +1,4 @@
-import { m as createAstro, n as createComponent, w as renderTemplate, s as renderComponent, v as renderSlot, t as renderHead, l as addAttribute, r as maybeRenderHead } from './astro/server.CgJg2L5V.js';
+import { c as createAstro, b as createComponent, g as renderTemplate, r as renderComponent, f as renderSlot, e as renderHead, a as addAttribute, m as maybeRenderHead } from './astro/server.Zp8LmZMK.js';
 import { jsx, jsxs } from 'react/jsx-runtime';
 /* empty css                          */
 import { useState, useEffect } from 'react';

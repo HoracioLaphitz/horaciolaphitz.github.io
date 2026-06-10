@@ -134,6 +134,49 @@ export class GitHubApiRepository implements IProjectRepository {
     }
   }
 
+  /**
+   * Fetches a repository's README content as raw markdown
+   */
+  async getRepoReadme(repoName: string): Promise<string | null> {
+    try {
+      const response = await fetch(
+        `${this.baseUrl}/repos/${this.username}/${repoName}/readme`,
+        {
+          headers: {
+            Accept: "application/vnd.github.raw",
+            "User-Agent": "Portfolio-HoracioLaphitz",
+          },
+        }
+      );
+
+      if (response.status === 404) {
+        logger.debug("No README found for repository", {
+          username: this.username,
+          repo: repoName,
+        });
+        return null;
+      }
+
+      if (!response.ok) {
+        logger.warn("Failed to fetch README", {
+          username: this.username,
+          repo: repoName,
+          status: response.status,
+        });
+        return null;
+      }
+
+      return await response.text();
+    } catch (error) {
+      logger.error("Error fetching README", {
+        username: this.username,
+        repo: repoName,
+        error: error instanceof Error ? error.message : "Unknown error",
+      });
+      return null;
+    }
+  }
+
   private async fetchRepositories() {
     try {
       const response = await fetch(

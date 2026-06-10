@@ -1,42 +1,61 @@
 ---
-import { getCollection } from "astro:content";
-import type { CollectionEntry } from "astro:content";
 import ArticleLayout from "@presentation/layouts/ArticleLayout.astro";
-import { ResourceDownload } from "@presentation/components/proyectos/ResourceDownload";
+import { GitHubApiRepository } from "@infrastructure/repositories/github-api.repository";
+import { ProjectCategory } from "@domain/entities/project.entity";
+import { marked } from "marked";
 
 export async function getStaticPaths() {
-  const proyectos = await getCollection("proyectos");
-  return proyectos.map((proyecto: CollectionEntry<"proyectos">) => ({
+  const githubRepo = new GitHubApiRepository("HoracioLaphitz");
+  const proyectos = await githubRepo.findAll();
+
+  // Same filter as index and projects pages
+  const dataAnalysisRepos = proyectos.filter(
+    (p) =>
+      p.category === ProjectCategory.DataAnalysis &&
+      !p.title.toLowerCase().includes("portfolio") &&
+      !p.slug.includes("porfolio") &&
+      !p.slug.includes("horaciolaphitz")
+  );
+
+  return dataAnalysisRepos.map((proyecto) => ({
     params: { slug: proyecto.slug },
     props: { proyecto },
   }));
 }
 
 interface Props {
-  proyecto: CollectionEntry<"proyectos">;
+  proyecto: import("@domain/entities/project.entity").ProjectEntity;
 }
 
 const { proyecto } = Astro.props;
-const { Content } = await proyecto.render();
+const githubRepo = new GitHubApiRepository("HoracioLaphitz");
+
+// Extract repo name from GitHub URL (e.g. "HoracioLaphitz/MarketBasketAnalytics")
+const repoName = proyecto.githubUrl?.split("/").pop() || proyecto.slug;
+
+// Fetch and render README
+const readmeRaw = await githubRepo.getRepoReadme(repoName);
+const readmeHtml = readmeRaw ? await marked.parse(readmeRaw) : null;
 ---
 
 <ArticleLayout
-  title={proyecto.data.title}
-  description={proyecto.data.description}
-  category={proyecto.data.category}
-  pubDate={proyecto.data.pubDate}
-  tags={proyecto.data.tags}
-  author={proyecto.data.author}
-  github={proyecto.data.github}
-  dashboard={proyecto.data.dashboard}
+  title={proyecto.title}
+  description={proyecto.description}
+  category={proyecto.category}
+  pubDate={proyecto.publishDate}
+  tags={[...proyecto.tags]}
+  author={proyecto.author}
+  github={proyecto.githubUrl}
+  dashboard={proyecto.dashboardUrl}
   currentPath={`/proyectos/${proyecto.slug}`}
 >
-  <Content />
-
-  <ResourceDownload
-    client:load
-    notebooks={proyecto.data.resources?.notebooks}
-    pdfs={proyecto.data.resources?.pdfs}
-    datasets={proyecto.data.resources?.datasets}
-  />
+  {
+    readmeHtml ? (
+      <div set:html={readmeHtml} />
+    ) : (
+      <p class="text-skin-muted text-center py-12">
+        Este repositorio no tiene un README disponible.
+      </p>
+    )
+  }
 </ArticleLayout>
