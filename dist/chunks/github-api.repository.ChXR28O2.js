@@ -1,6 +1,7 @@
 import { jsxs, jsx } from 'react/jsx-runtime';
 import { useState, useEffect, useMemo } from 'react';
 import { D as DocumentIcon, P as PresentationChartLineIcon, a as BriefcaseIcon, C as ChartBarIcon, R as RobotIcon, S as SearchIcon, F as FolderIcon } from './PageLayout.B0MMBHOe.js';
+import { z } from 'zod';
 
 const ProjectCard = ({ title, description, slug, category, tags, github, dashboard }) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -71,7 +72,9 @@ const ProjectCard = ({ title, description, slug, category, tags, github, dashboa
             /* @__PURE__ */ jsxs(
               "a",
               {
-                href: `/proyectos/${slug}`,
+                href: github || `/proyectos/${slug}`,
+                target: github ? "_blank" : void 0,
+                rel: github ? "noopener noreferrer" : void 0,
                 className: "flex items-center gap-1.5 px-3 py-2 text-xs font-medium text-skin-primary bg-brand-primary hover:bg-brand-hover rounded-lg transition-all duration-200 ml-auto",
                 children: [
                   "Ver más",
@@ -343,48 +346,349 @@ class ProjectEntity {
   }
 }
 
-class ProjectMapper {
-  static toDomain(entry) {
+class GitHubMapper {
+  static toDomain(repo) {
     return new ProjectEntity(
-      entry.slug,
-      entry.data.title,
-      entry.data.description,
-      this.mapCategory(entry.data.category),
-      Object.freeze([...entry.data.tags]),
-      entry.data.pubDate,
-      entry.data.author,
-      entry.data.github,
-      entry.data.dashboard,
-      ProjectStatus.Completed,
-      entry.data.featured ?? false,
-      this.mapImpact(entry.data.impact)
+      this.slugify(repo.name),
+      this.formatTitle(repo.name),
+      repo.description || "No description available",
+      this.inferCategory(repo),
+      Object.freeze(repo.topics || []),
+      new Date(repo.created_at),
+      "Horacio Laphitz",
+      repo.html_url,
+      repo.homepage || void 0,
+      this.inferStatus(repo),
+      this.isFeatured(repo)
     );
   }
-  static toDomainArray(entries) {
-    return entries.filter((entry) => !entry.data.draft).map((entry) => this.toDomain(entry));
+  static toDomainArray(repos) {
+    return repos.filter((repo) => this.isPublishable(repo)).map((repo) => this.toDomain(repo));
   }
-  static mapCategory(category) {
-    const categoryMap = {
-      "Machine Learning": ProjectCategory.MachineLearning,
-      "Análisis de datos": ProjectCategory.DataAnalysis,
-      "Business Intelligence": ProjectCategory.BusinessIntelligence,
-      "Data Visualization": ProjectCategory.DataVisualization
-    };
-    return categoryMap[category] || ProjectCategory.DataAnalysis;
+  static slugify(name) {
+    return name.toLowerCase().replace(/[^a-z0-9]+/g, "-");
   }
-  /**
-   * Mapea las métricas de impacto desde el frontmatter
-   */
-  static mapImpact(impact) {
-    if (!impact) return void 0;
-    return {
-      efficiencyGain: typeof impact.efficiencyGain === "number" ? impact.efficiencyGain : void 0,
-      costSavings: typeof impact.costSavings === "string" ? impact.costSavings : void 0,
-      timeReduction: typeof impact.timeReduction === "string" ? impact.timeReduction : void 0,
-      revenueIncrease: typeof impact.revenueIncrease === "string" ? impact.revenueIncrease : void 0,
-      customMetrics: impact.customMetrics && typeof impact.customMetrics === "object" && !Array.isArray(impact.customMetrics) ? impact.customMetrics : void 0
-    };
+  static formatTitle(name) {
+    return name.split(/[-_]/).map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");
+  }
+  static inferCategory(repo) {
+    const topics = repo.topics || [];
+    const language = repo.language?.toLowerCase() || "";
+    const name = repo.name.toLowerCase();
+    if (topics.some(
+      (t) => t.includes("ml") || t.includes("machine-learning")
+    ) || name.includes("ml") || name.includes("neural")) {
+      return ProjectCategory.MachineLearning;
+    }
+    if (topics.some((t) => t.includes("dashboard") || t.includes("bi")) || name.includes("dashboard")) {
+      return ProjectCategory.BusinessIntelligence;
+    }
+    if (topics.some((t) => t.includes("viz") || t.includes("chart")) || name.includes("visualization")) {
+      return ProjectCategory.DataVisualization;
+    }
+    if (language === "python" || language === "r") {
+      return ProjectCategory.DataAnalysis;
+    }
+    return ProjectCategory.DataAnalysis;
+  }
+  static inferStatus(repo) {
+    if (repo.archived) {
+      return ProjectStatus.Archived;
+    }
+    const daysSinceUpdate = this.daysSince(new Date(repo.pushed_at));
+    if (daysSinceUpdate > 180) {
+      return ProjectStatus.Archived;
+    }
+    if (daysSinceUpdate < 30) {
+      return ProjectStatus.InProgress;
+    }
+    return ProjectStatus.Completed;
+  }
+  static isFeatured(repo) {
+    return repo.stargazers_count >= 5 || (repo.topics?.length || 0) >= 3;
+  }
+  static isPublishable(repo) {
+    if (repo.fork) return false;
+    if (repo.archived || repo.disabled) return false;
+    if (!repo.description && repo.stargazers_count === 0) return false;
+    if (repo.visibility === "private") return false;
+    return true;
+  }
+  static daysSince(date) {
+    const now = /* @__PURE__ */ new Date();
+    const diff = now.getTime() - date.getTime();
+    return Math.floor(diff / (1e3 * 60 * 60 * 24));
   }
 }
 
-export { ProjectCategories as P, ProjectMapper as a };
+const GitHubRepoSchema = z.object({
+  id: z.number(),
+  name: z.string(),
+  full_name: z.string(),
+  description: z.string().nullable(),
+  html_url: z.string().url(),
+  homepage: z.string().url().nullable().or(z.literal("")),
+  language: z.string().nullable(),
+  topics: z.array(z.string()).default([]),
+  stargazers_count: z.number().int().nonnegative(),
+  created_at: z.string().datetime(),
+  updated_at: z.string().datetime(),
+  pushed_at: z.string().datetime(),
+  fork: z.boolean(),
+  archived: z.boolean(),
+  disabled: z.boolean().optional(),
+  visibility: z.enum(["public", "private"]).optional()
+});
+const GitHubReposArraySchema = z.array(GitHubRepoSchema);
+
+class Logger {
+  isDevelopment = false;
+  formatMessage(entry) {
+    return `[${entry.timestamp}] [${entry.level.toUpperCase()}] ${entry.message}`;
+  }
+  log(level, message, data) {
+    const entry = {
+      level,
+      message,
+      timestamp: (/* @__PURE__ */ new Date()).toISOString(),
+      data
+    };
+    if (!this.isDevelopment && level === "debug") {
+      return;
+    }
+    const formattedMessage = this.formatMessage(entry);
+    switch (level) {
+      case "error":
+        console.error(formattedMessage, data);
+        break;
+      case "warn":
+        console.warn(formattedMessage, data);
+        break;
+      case "debug":
+        console.debug(formattedMessage, data);
+        break;
+      default:
+        console.log(formattedMessage, data);
+    }
+  }
+  info(message, data) {
+    this.log("info", message, data);
+  }
+  warn(message, data) {
+    this.log("warn", message, data);
+  }
+  error(message, data) {
+    this.log("error", message, data);
+  }
+  debug(message, data) {
+    this.log("debug", message, data);
+  }
+}
+const logger = new Logger();
+
+class DomainError extends Error {
+  constructor(message, code, context) {
+    super(message);
+    this.code = code;
+    this.context = context;
+    this.name = "DomainError";
+    if (Error.captureStackTrace) {
+      Error.captureStackTrace(this, this.constructor);
+    }
+  }
+  /**
+   * Convert error to JSON for logging
+   */
+  toJSON() {
+    return {
+      name: this.name,
+      message: this.message,
+      code: this.code,
+      context: this.context,
+      stack: this.stack
+    };
+  }
+}
+class RepositoryError extends DomainError {
+  constructor(message, context) {
+    super(message, "REPOSITORY_ERROR", context);
+    this.name = "RepositoryError";
+  }
+}
+class ValidationError extends DomainError {
+  constructor(message, context) {
+    super(message, "VALIDATION_ERROR", context);
+    this.name = "ValidationError";
+  }
+}
+class ExternalAPIError extends DomainError {
+  constructor(service, message, context) {
+    super(`${service} API error: ${message}`, "EXTERNAL_API_ERROR", {
+      service,
+      ...context
+    });
+    this.name = "ExternalAPIError";
+  }
+}
+
+class GitHubApiRepository {
+  baseUrl = "https://api.github.com";
+  username;
+  cache = null;
+  cacheTimestamp = 0;
+  cacheDuration = 1e3 * 60 * 60;
+  // 1 hour
+  constructor(username) {
+    this.username = username;
+  }
+  async findAll() {
+    if (this.isCacheValid() && this.cache) {
+      logger.debug("Using cached GitHub repositories", {
+        username: this.username,
+        count: this.cache.length
+      });
+      return this.cache;
+    }
+    try {
+      const repos = await this.fetchRepositories();
+      this.cache = GitHubMapper.toDomainArray(repos);
+      this.cacheTimestamp = Date.now();
+      logger.info("GitHub repositories fetched successfully", {
+        username: this.username,
+        count: repos.length
+      });
+      return this.cache;
+    } catch (error) {
+      logger.error("Failed to fetch GitHub repositories", {
+        username: this.username,
+        error: error instanceof Error ? error.message : "Unknown error",
+        hasCache: this.cache !== null
+      });
+      if (this.cache) {
+        logger.warn("Returning stale cache due to fetch error", {
+          username: this.username,
+          cacheAge: Date.now() - this.cacheTimestamp
+        });
+        return this.cache;
+      }
+      return [];
+    }
+  }
+  async findBySlug(slug) {
+    try {
+      const all = await this.findAll();
+      const project = all.find((project2) => project2.slug === slug);
+      if (!project) {
+        logger.debug("Project not found by slug", {
+          slug,
+          username: this.username
+        });
+      }
+      return project || null;
+    } catch (error) {
+      logger.error("Error finding project by slug", {
+        slug,
+        username: this.username,
+        error: error instanceof Error ? error.message : "Unknown error"
+      });
+      throw new RepositoryError("Failed to find project by slug", { slug });
+    }
+  }
+  async findFeatured() {
+    try {
+      const all = await this.findAll();
+      const featured = all.filter((project) => project.isFeatured());
+      logger.debug("Featured projects retrieved", {
+        count: featured.length,
+        username: this.username
+      });
+      return featured;
+    } catch (error) {
+      logger.error("Error finding featured projects", {
+        username: this.username,
+        error: error instanceof Error ? error.message : "Unknown error"
+      });
+      throw new RepositoryError("Failed to find featured projects");
+    }
+  }
+  async findByCategory(category) {
+    try {
+      const all = await this.findAll();
+      const filtered = all.filter(
+        (project) => project.matchesCategory(category)
+      );
+      logger.debug("Projects filtered by category", {
+        category,
+        count: filtered.length,
+        username: this.username
+      });
+      return filtered;
+    } catch (error) {
+      logger.error("Error finding projects by category", {
+        category,
+        username: this.username,
+        error: error instanceof Error ? error.message : "Unknown error"
+      });
+      throw new RepositoryError("Failed to find projects by category", {
+        category
+      });
+    }
+  }
+  async fetchRepositories() {
+    try {
+      const response = await fetch(
+        `${this.baseUrl}/users/${this.username}/repos?sort=updated&per_page=100`
+      );
+      if (!response.ok) {
+        throw new ExternalAPIError(
+          "GitHub",
+          `HTTP ${response.status}: ${response.statusText}`,
+          {
+            username: this.username,
+            status: response.status,
+            statusText: response.statusText
+          }
+        );
+      }
+      const data = await response.json();
+      const result = GitHubReposArraySchema.safeParse(data);
+      if (!result.success) {
+        logger.error("GitHub API returned invalid data", {
+          username: this.username,
+          errors: result.error.errors,
+          sampleData: data.slice(0, 2)
+          // Log first 2 items for debugging
+        });
+        throw new ValidationError("Invalid data from GitHub API", {
+          username: this.username,
+          errors: result.error.errors
+        });
+      }
+      return result.data;
+    } catch (error) {
+      if (error instanceof ExternalAPIError || error instanceof ValidationError) {
+        throw error;
+      }
+      logger.error("Unexpected error fetching GitHub repositories", {
+        username: this.username,
+        error: error instanceof Error ? error.message : "Unknown error"
+      });
+      throw new RepositoryError(
+        "Unexpected error fetching GitHub repositories",
+        {
+          username: this.username,
+          originalError: error instanceof Error ? error.message : String(error)
+        }
+      );
+    }
+  }
+  isCacheValid() {
+    return this.cache !== null && Date.now() - this.cacheTimestamp < this.cacheDuration;
+  }
+  clearCache() {
+    this.cache = null;
+    this.cacheTimestamp = 0;
+  }
+}
+
+export { GitHubApiRepository as G, ProjectCategories as P, ProjectCategory as a, logger as l };

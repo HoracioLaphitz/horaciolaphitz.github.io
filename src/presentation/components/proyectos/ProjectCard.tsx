@@ -98,7 +98,9 @@ const ProjectCard = ({ title, description, slug, category, tags, github, dashboa
                         </a>
                     )}
                     <a
-                        href={`/proyectos/${slug}`}
+                        href={github || `/proyectos/${slug}`}
+                        target={github ? "_blank" : undefined}
+                        rel={github ? "noopener noreferrer" : undefined}
                         className="flex items-center gap-1.5 px-3 py-2 text-xs font-medium text-skin-primary bg-brand-primary hover:bg-brand-hover rounded-lg transition-all duration-200 ml-auto"
                     >
                         Ver más

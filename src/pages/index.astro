@@ -5,15 +5,23 @@ import Timeline from "@presentation/components/sections/Timeline";
 import Services from "@presentation/components/sections/Services";
 import ProjectCategories from "@presentation/components/sections/ProjectCategories";
 import Contact from "@presentation/components/sections/Contact";
-import { getCollection } from "astro:content";
-import { ProjectMapper } from "@infrastructure/mappers/project.mapper";
+import { GitHubApiRepository } from "@infrastructure/repositories/github-api.repository";
+import { ProjectCategory } from "@domain/entities/project.entity";
 
-// Fetch projects from Astro Content Collection and map to domain entities
-const proyectosRaw = await getCollection("proyectos");
-const proyectos = ProjectMapper.toDomainArray(proyectosRaw);
+// Fetch projects from GitHub API, only data analysis related
+const githubRepo = new GitHubApiRepository("HoracioLaphitz");
+const proyectos = await githubRepo.findAll();
+
+// Filter to show only Data Analysis projects (exclude portfolio sites and web dev)
+const proyectosDataAnalysis = proyectos.filter(
+  (p) =>
+    p.category === ProjectCategory.DataAnalysis &&
+    !p.title.toLowerCase().includes("portfolio") &&
+    !p.title.toLowerCase().includes("horaciolaphitz.github.io")
+);
 
 // Serialize for client
-const proyectosSerializados = proyectos.map((p) => ({
+const proyectosSerializados = proyectosDataAnalysis.map((p) => ({
   slug: p.slug,
   title: p.title,
   description: p.description,
