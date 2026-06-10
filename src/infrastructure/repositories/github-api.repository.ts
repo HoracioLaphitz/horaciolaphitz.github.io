@@ -143,8 +143,8 @@ export class GitHubApiRepository implements IProjectRepository {
         `${this.baseUrl}/repos/${this.username}/${repoName}/readme`,
         {
           headers: {
+            ...this.getHeaders(),
             Accept: "application/vnd.github.raw",
-            "User-Agent": "Portfolio-HoracioLaphitz",
           },
         }
       );
@@ -177,10 +177,31 @@ export class GitHubApiRepository implements IProjectRepository {
     }
   }
 
+  private getHeaders(): Record<string, string> {
+    const headers: Record<string, string> = {
+      Accept: "application/vnd.github.v3+json",
+      "User-Agent": "Portfolio-HoracioLaphitz",
+    };
+
+    // Server-side only: process.env para evitar inlining de secrets en el bundle
+    // No usar import.meta.env — Vite/Astro inlinea el valor en el build
+    const token =
+      typeof process !== "undefined"
+        ? process.env?.GITHUB_TOKEN || process.env?.PUBLIC_GITHUB_TOKEN
+        : undefined;
+
+    if (token) {
+      headers.Authorization = `Bearer ${token}`;
+    }
+
+    return headers;
+  }
+
   private async fetchRepositories() {
     try {
       const response = await fetch(
-        `${this.baseUrl}/users/${this.username}/repos?sort=updated&per_page=100`
+        `${this.baseUrl}/users/${this.username}/repos?sort=updated&per_page=100`,
+        { headers: this.getHeaders() }
       );
 
       if (!response.ok) {

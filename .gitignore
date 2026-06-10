@@ -238,3 +238,6 @@ public/Proyectos/Redes-Generativas-Adversariales/
 public/Proyectos/Regresion_Lineal/
 public/Proyectos/TITANIC-Arbol_de_Decision/
 public/Proyectos/Warriors-Games/
+
+# Build output - NO trackear bundles
+dist/

@@ -2,6 +2,8 @@
 
 interface ImportMetaEnv {
   readonly PUBLIC_WEB3FORMS_ACCESS_KEY: string;
+  readonly GITHUB_TOKEN?: string;
+  readonly PUBLIC_GITHUB_TOKEN?: string;
 }
 
 interface ImportMeta {
