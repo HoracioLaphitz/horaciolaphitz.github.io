@@ -30,7 +30,7 @@ docs
 scripts
 
 # Certificados y archivos grandes
-public/Certificaciones
+
 public/notebooks
 public/notebooks-html
 
@@ -42,7 +42,6 @@ yarn-debug.log*
 yarn-error.log*
 
 # Environment
-.env
 .env.local
 .env.*.local
 

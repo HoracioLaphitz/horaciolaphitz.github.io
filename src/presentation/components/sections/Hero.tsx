@@ -89,7 +89,7 @@ const Hero = () => {
                 Proyectos
               </a>
               <a
-                href="public\CV-HoracioNahuelLaphitz.pdf"
+                href="/CV-HoracioNahuelLaphitz.pdf"
                 download
                 className="px-6 py-3 bg-skin-secondary text-skin-text font-semibold border border-skin-border rounded-lg hover:bg-skin-secondary/80 transition-colors duration-200"
               >
