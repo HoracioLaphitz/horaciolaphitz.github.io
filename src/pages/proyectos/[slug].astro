@@ -1,23 +1,24 @@
 ---
 import ArticleLayout from "@presentation/layouts/ArticleLayout.astro";
 import { GitHubApiRepository } from "@infrastructure/repositories/github-api.repository";
-import { ProjectCategory } from "@domain/entities/project.entity";
 import { marked } from "marked";
+import { HIDDEN_PROJECT_SLUGS } from "@shared/constants/projects.config";
+import { sanitizeReadmeText } from "@shared/utils/sanitizeReadme";
 
 export async function getStaticPaths() {
   const githubRepo = new GitHubApiRepository("HoracioLaphitz");
   const proyectos = await githubRepo.findAll();
 
   // Same filter as index and projects pages
-  const dataAnalysisRepos = proyectos.filter(
+  const visibleRepos = proyectos.filter(
     (p) =>
-      p.category === ProjectCategory.DataAnalysis &&
+      !HIDDEN_PROJECT_SLUGS.has(p.slug) &&
       !p.title.toLowerCase().includes("portfolio") &&
       !p.slug.includes("porfolio") &&
       !p.slug.includes("horaciolaphitz")
   );
 
-  return dataAnalysisRepos.map((proyecto) => ({
+  return visibleRepos.map((proyecto) => ({
     params: { slug: proyecto.slug },
     props: { proyecto },
   }));
@@ -33,9 +34,10 @@ const githubRepo = new GitHubApiRepository("HoracioLaphitz");
 // Extract repo name from GitHub URL (e.g. "HoracioLaphitz/MarketBasketAnalytics")
 const repoName = proyecto.githubUrl?.split("/").pop() || proyecto.slug;
 
-// Fetch and render README
+// Fetch, sanitize, and render README
 const readmeRaw = await githubRepo.getRepoReadme(repoName);
-const readmeHtml = readmeRaw ? await marked.parse(readmeRaw) : null;
+const readmeSanitized = readmeRaw ? sanitizeReadmeText(readmeRaw) : null;
+const readmeHtml = readmeSanitized ? await marked.parse(readmeSanitized) : null;
 ---
 
 <ArticleLayout

@@ -79,7 +79,7 @@ export const PROFILE_DATA = new ProfileEntity(
       title: "Business & Operations Management Excellence",
       issuer: "MTF Institute - Udemy",
       certificateUrl:
-        "/Certificaciones/Certificate in Business & Operations Management Excellence.pdf",
+        "/Certificaciones/CertificateinBusiness&OperationsManagementExcellence.pdf",
       sortDate: new Date(2025, 2, 1),
     },
     {

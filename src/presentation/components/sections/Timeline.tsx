@@ -233,7 +233,7 @@ const TIMELINE_ITEMS: readonly TimelineItem[] = [
     type: "certification",
     sortDate: new Date(2025, 2, 1),
     certificateUrl:
-      "/Certificaciones/Certificate in Business & Operations Management Excellence.pdf",
+      "/Certificaciones/CertificateinBusiness&OperationsManagementExcellence.pdf",
   },
   {
     period: "Mar 2025",
@@ -283,6 +283,7 @@ const TIMELINE_ITEMS: readonly TimelineItem[] = [
     type: "certification",
     sortDate: new Date(2024, 3, 1),
     certificateUrl: "/Certificaciones/IBM-python-data-engineering.pdf",
+    credlyBadgeId: "78a917fc-2fee-416b-a3c4-d14f3cd09541",
   },
   {
     period: "Mar 2024",
@@ -310,6 +311,7 @@ const TIMELINE_ITEMS: readonly TimelineItem[] = [
     type: "certification",
     sortDate: new Date(2024, 1, 1),
     certificateUrl: "/Certificaciones/IBM-DATA SCIENCE - AI - DEVELOPMENT.pdf",
+    credlyBadgeId: "57d36636-8b10-4218-a641-7cd6fcf9d8fe",
   },
   {
     period: "Feb 2024",
@@ -453,9 +455,9 @@ const Timeline = () => {
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const modalTitleId = "cert-modal-title";
 
-  // Credly script — load only once
+  // Credly embed script — load once, process dynamically added badges
   useEffect(() => {
-    if (document.querySelector('script[src*="credly.com"]')) return;
+    if (document.querySelector('script[src*="credly.com/assets/utilities/embed"]')) return;
     const script = document.createElement("script");
     script.src = "//cdn.credly.com/assets/utilities/embed.js";
     script.async = true;
@@ -613,8 +615,8 @@ const Timeline = () => {
               onClick={() => setActiveFilter("all")}
               aria-pressed={activeFilter === "all"}
               className={`px-6 py-3 rounded-lg text-sm font-semibold transition-all duration-300 ${activeFilter === "all"
-                  ? "bg-brand-primary text-skin-primary"
-                  : "bg-skin-primary text-skin-text border border-skin-border hover:border-brand-primary"
+                ? "bg-brand-primary text-skin-primary"
+                : "bg-skin-primary text-skin-text border border-skin-border hover:border-brand-primary"
                 }`}
             >
               <span className="flex items-center gap-2">
@@ -626,8 +628,8 @@ const Timeline = () => {
               onClick={() => setActiveFilter("work")}
               aria-pressed={activeFilter === "work"}
               className={`px-6 py-3 rounded-lg text-sm font-semibold transition-all duration-300 ${activeFilter === "work"
-                  ? "bg-brand-primary text-skin-primary"
-                  : "bg-skin-primary text-skin-text border border-skin-border hover:border-brand-primary"
+                ? "bg-brand-primary text-skin-primary"
+                : "bg-skin-primary text-skin-text border border-skin-border hover:border-brand-primary"
                 }`}
             >
               <span className="flex items-center gap-2">
@@ -639,8 +641,8 @@ const Timeline = () => {
               onClick={() => setActiveFilter("certification")}
               aria-pressed={activeFilter === "certification"}
               className={`px-6 py-3 rounded-lg text-sm font-semibold transition-all duration-300 ${activeFilter === "certification"
-                  ? "bg-brand-primary text-skin-primary"
-                  : "bg-skin-primary text-skin-text border border-skin-border hover:border-brand-primary"
+                ? "bg-brand-primary text-skin-primary"
+                : "bg-skin-primary text-skin-text border border-skin-border hover:border-brand-primary"
                 }`}
             >
               <span className="flex items-center gap-2">
@@ -716,8 +718,8 @@ const Timeline = () => {
                       <div className="flex items-start justify-between gap-2 mb-4">
                         <div
                           className={`p-2.5 rounded-xl ${item.type === "work"
-                              ? "bg-brand-primary/10 text-brand-primary"
-                              : "bg-brand-accent/10 text-brand-accent"
+                            ? "bg-brand-primary/10 text-brand-primary"
+                            : "bg-brand-accent/10 text-brand-accent"
                             }`}
                         >
                           {item.type === "work" ? (
@@ -775,6 +777,21 @@ const Timeline = () => {
                           Ver Certificado
                         </button>
                       )}
+
+                      {item.type === "certification" && item.credlyBadgeId && (
+                        <a
+                          href={`https://www.credly.com/badges/${item.credlyBadgeId}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          className="mt-3 w-full inline-flex items-center justify-center gap-2 px-4 py-2 bg-amber-500 text-white text-sm font-semibold rounded-lg hover:bg-amber-600 transition-all duration-300"
+                        >
+                          <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                          </svg>
+                          Ver Badge en Credly
+                        </a>
+                      )}
                     </div>
 
                     {/* Timeline dot — static, no animate-ping noise */}
@@ -814,6 +831,19 @@ const Timeline = () => {
                 </p>
               </div>
               <div className="flex gap-2">
+                {selectedCert.credlyBadgeId && (
+                  <a
+                    href={`https://www.credly.com/badges/${selectedCert.credlyBadgeId}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-4 py-2 bg-amber-500 text-white rounded-lg hover:bg-amber-600 transition-colors flex items-center gap-2 font-semibold"
+                  >
+                    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                    </svg>
+                    Ver Badge
+                  </a>
+                )}
                 <a
                   href={selectedCert.certificateUrl}
                   download

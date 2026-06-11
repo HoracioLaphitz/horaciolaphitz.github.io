@@ -62,8 +62,8 @@ const Hero = () => {
 
             {/* Value proposition - Controlled spacing */}
             <p className="text-lg sm:text-xl text-skin-muted max-w-3xl leading-relaxed mb-12">
-              Análisis y automatización de datos para mejorar
-              trazabilidad, control y eficiencia.
+              Analizo, automatizo y visualizo datos.
+              Python | SQL | Power BI | Machine Learning aplicado a problemas reales.
             </p>
 
             {/* Tech stack - Minimal badges */}

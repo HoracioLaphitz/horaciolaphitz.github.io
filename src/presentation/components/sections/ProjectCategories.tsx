@@ -2,6 +2,7 @@ import { useState, useMemo, useEffect } from "react";
 import ProjectCard from "../proyectos/ProjectCard";
 import ProjectFilters from "../proyectos/ProjectFilters";
 import { SearchIcon, FolderIcon } from "../ui/Icons";
+import { DATA_ANALYSIS_CATEGORIES } from "@shared/constants/projects.config";
 
 interface SerializedProject {
   slug: string;
@@ -46,11 +47,11 @@ const ProjectCategories = ({ posts }: ProjectCategoriesProps) => {
     return Array.from(categories).sort();
   }, [posts]);
 
-  // Filter projects
-  const filteredPosts = useMemo(() => {
-    let filtered = [...posts];
+  // Filter projects by search and category
+  const applyFilters = (projects: SerializedProject[]) => {
+    let filtered = [...projects];
 
-    // Filter by category
+    // Filter by category (if not "all")
     if (selectedCategory !== "all") {
       filtered = filtered.filter((p) => p.category === selectedCategory);
     }
@@ -67,12 +68,68 @@ const ProjectCategories = ({ posts }: ProjectCategoriesProps) => {
     }
 
     return filtered;
-  }, [posts, selectedCategory, searchQuery]);
+  };
+
+  // Split into two sections
+  const { dataAnalysis, others } = useMemo(() => {
+    const da: SerializedProject[] = [];
+    const ot: SerializedProject[] = [];
+
+    for (const project of posts) {
+      if (DATA_ANALYSIS_CATEGORIES.has(project.category)) {
+        da.push(project);
+      } else {
+        ot.push(project);
+      }
+    }
+
+    return {
+      dataAnalysis: applyFilters(da),
+      others: applyFilters(ot),
+    };
+  }, [posts, searchQuery, selectedCategory]);
+
+  const totalFiltered = dataAnalysis.length + others.length;
 
   const getAnimationClass = (index: number) =>
     `transition-all duration-700 delay-${index * 100} ${
       mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
     }`;
+
+  const renderSection = (
+    title: string,
+    projects: SerializedProject[],
+    index: number
+  ) => {
+    if (projects.length === 0) return null;
+
+    return (
+      <div className={`mb-16 ${getAnimationClass(index)}`}>
+        <div className="flex items-center gap-3 mb-8">
+          <h3 className="text-2xl sm:text-3xl font-bold text-skin-text">
+            {title}
+          </h3>
+          <span className="text-sm px-3 py-1 bg-brand-primary/10 text-brand-primary rounded-full font-medium">
+            {projects.length}
+          </span>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {projects.map((project) => (
+            <ProjectCard
+              key={project.slug}
+              title={project.title}
+              description={project.description}
+              slug={project.slug}
+              category={project.category}
+              tags={project.tags}
+              github={project.githubUrl}
+              dashboard={project.dashboardUrl}
+            />
+          ))}
+        </div>
+      </div>
+    );
+  };
 
   return (
     <section
@@ -98,32 +155,17 @@ const ProjectCategories = ({ posts }: ProjectCategoriesProps) => {
             searchQuery={searchQuery}
             onSearchChange={setSearchQuery}
             totalPosts={posts.length}
-            filteredCount={filteredPosts.length}
+            filteredCount={totalFiltered}
           />
         </div>
 
-        {/* Projects Grid */}
-        {filteredPosts.length > 0 && (
-          <div className={`mb-12 ${getAnimationClass(2)}`}>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {filteredPosts.map((project) => (
-                <ProjectCard
-                  key={project.slug}
-                  title={project.title}
-                  description={project.description}
-                  slug={project.slug}
-                  category={project.category}
-                  tags={project.tags}
-                  github={project.githubUrl}
-                  dashboard={project.dashboardUrl}
-                />
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* Empty State */}
-        {filteredPosts.length === 0 && (
+        {/* Sections */}
+        {totalFiltered > 0 ? (
+          <>
+            {renderSection("Análisis de Datos", dataAnalysis, 2)}
+            {renderSection("Otros", others, 3)}
+          </>
+        ) : (
           <div className={`text-center py-16 ${getAnimationClass(2)}`}>
             <div className="text-6xl mb-4 flex justify-center">
               {searchQuery ? (
@@ -135,10 +177,12 @@ const ProjectCategories = ({ posts }: ProjectCategoriesProps) => {
             <h3 className="text-xl font-bold text-skin-text mb-2">
               {searchQuery
                 ? `No se encontraron resultados para "${searchQuery}"`
-                : "No se encontraron resultados con estos filtros"}
+                : "No se encontraron proyectos"}
             </h3>
             <p className="text-skin-muted mb-6">
-              Probá con otros términos de búsqueda o ajustá los filtros
+              {searchQuery
+                ? "Probá con otros términos de búsqueda"
+                : "Ajustá los filtros de búsqueda"}
             </p>
             <div className="flex gap-3 justify-center flex-wrap">
               {searchQuery && (

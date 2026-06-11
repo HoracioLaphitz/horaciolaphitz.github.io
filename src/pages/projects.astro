@@ -2,23 +2,23 @@
 import PageLayout from "@presentation/layouts/PageLayout.astro";
 import ProjectCategories from "@presentation/components/sections/ProjectCategories";
 import { GitHubApiRepository } from "@infrastructure/repositories/github-api.repository";
-import { ProjectCategory } from "@domain/entities/project.entity";
+import { HIDDEN_PROJECT_SLUGS } from "@shared/constants/projects.config";
 
 // Fetch projects from GitHub API, only data analysis related
 const githubRepo = new GitHubApiRepository("HoracioLaphitz");
 const proyectos = await githubRepo.findAll();
 
-// Filter to show only Data Analysis projects
-const proyectosDataAnalysis = proyectos.filter(
+// Filter to show only non-trivial projects
+const proyectosVisibles = proyectos.filter(
   (p) =>
-    p.category === ProjectCategory.DataAnalysis &&
+    !HIDDEN_PROJECT_SLUGS.has(p.slug) &&
     !p.title.toLowerCase().includes("portfolio") &&
     !p.slug.includes("porfolio") &&
     !p.slug.includes("horaciolaphitz")
 );
 
 // Serialize for client
-const proyectosSerializados = proyectosDataAnalysis.map((p) => ({
+const proyectosSerializados = proyectosVisibles.map((p) => ({
   slug: p.slug,
   title: p.title,
   description: p.description,
