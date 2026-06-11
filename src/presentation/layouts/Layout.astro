@@ -1,4 +1,5 @@
 ---
+import Analytics from "@vercel/analytics/astro";
 import Footer from "../components/layout/Footer.tsx";
 import "../styles/global.css";
 import "../styles/fonts.css";
@@ -254,5 +255,6 @@ const canonicalUrl = canonical
   <body class="relative">
     <slot />
     <Footer client:load />
+    <Analytics />
   </body>
 </html>

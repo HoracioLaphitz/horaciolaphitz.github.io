@@ -23,6 +23,7 @@
     "@astrojs/check": "^0.9.4",
     "@astrojs/react": "^3.6.2",
     "@astrojs/tailwind": "^5.1.2",
+    "@vercel/analytics": "^2.0.1",
     "astro": "^5.0.5",
     "isomorphic-dompurify": "^2.16.0",
     "lucide-react": "^0.468.0",
