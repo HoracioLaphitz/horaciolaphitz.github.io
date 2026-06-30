@@ -1,54 +1,47 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Logo from "../ui/Logo";
 import ThemeToggle from "../ui/ThemeToggle";
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const navItems = [
-    { name: "Inicio", path: "#inicio" },
     { name: "Proyectos", path: "#proyectos" },
-    { name: "Servicios", path: "#services" },
-    { name: "Experiencia", path: "#timeline" },
+    { name: "Stack", path: "#skills" },
     { name: "Contacto", path: "#contacto" },
   ];
 
-  const handleNavClick = (
-    e: React.MouseEvent<HTMLAnchorElement>,
-    path: string
-  ) => {
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
     if (path.startsWith("#")) {
       e.preventDefault();
-
-      // Si estamos en la página principal, hacer scroll
       if (window.location.pathname === "/") {
-        const element = document.querySelector(path);
-        if (element) {
-          const offset = 56; // navbar height
-          const elementPosition = element.getBoundingClientRect().top;
-          const offsetPosition = elementPosition + window.pageYOffset - offset;
-
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: "smooth",
-          });
+        const el = document.querySelector(path);
+        if (el) {
+          const top = el.getBoundingClientRect().top + window.pageYOffset - 56;
+          window.scrollTo({ top, behavior: "smooth" });
         }
       } else {
-        // Si estamos en otra página, navegar a la página principal con el hash
         window.location.href = `/${path}`;
       }
-      setIsMenuOpen(false);
-    } else if (!path.startsWith("http")) {
-      // Para rutas internas como /proyectos, dejar que navegue normalmente
       setIsMenuOpen(false);
     }
   };
 
+  const navClass = scrolled
+    ? "bg-skin-primary/95 backdrop-blur-xl border-b border-skin-border shadow-sm"
+    : "bg-transparent border-b border-transparent";
+
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-skin-primary/95 backdrop-blur-xl border-b border-skin-border">
-      <div className="container mx-auto px-6 max-w-7xl">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${navClass}`}>
+      <div className="mx-auto px-6 max-w-[980px]">
+        <div className="flex items-center justify-between h-14">
           <a
             href="/"
             className="flex items-center gap-2 text-skin-text hover:opacity-70 transition-opacity duration-200"
@@ -56,7 +49,6 @@ const Navigation = () => {
             <Logo size="sm" />
           </a>
 
-          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-1">
             {navItems.map((item) => (
               <a
@@ -68,14 +60,11 @@ const Navigation = () => {
                 {item.name}
               </a>
             ))}
-
-            {/* Theme Toggle */}
             <div className="ml-3 pl-3 border-l border-skin-border">
               <ThemeToggle />
             </div>
           </div>
 
-          {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center gap-2">
             <ThemeToggle />
             <button
@@ -83,33 +72,17 @@ const Navigation = () => {
               className="p-2 text-skin-muted hover:text-skin-text transition-colors duration-200 rounded-lg"
               aria-label="Toggle menu"
             >
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 {isMenuOpen ? (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 ) : (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
                 )}
               </svg>
             </button>
           </div>
         </div>
 
-        {/* Mobile Menu */}
         {isMenuOpen && (
           <div className="md:hidden py-4 border-t border-skin-border">
             <div className="flex flex-col gap-1">
