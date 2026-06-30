@@ -4,7 +4,7 @@ description: "Chat en lenguaje natural sobre 100k+ órdenes de e-commerce. LangC
 pubDate: 2026-06-30
 category: "GenAI"
 tags: ["LangChain", "Groq", "LLM", "Pandas", "Streamlit", "Python", "RAG", "Data Analytics"]
-github: "https://github.com/horaciolaphitz/Portfolio-26/tree/main/Proyectos/ai-sales-assistant"
+github: "https://github.com/HoracioLaphitz/ai-sales-assistant"
 featured: true
 draft: false
 ---
