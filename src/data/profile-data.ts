@@ -11,10 +11,10 @@ import {
 
 export const PROFILE_DATA = new ProfileEntity(
   "Horacio Laphitz",
-  "Analista de Datos",
+  "Applied GenAI Data Analyst | Python, LLMs, Vector Databases & LangChain",
   [
-    "Analista de Datos orientado a la resolución de problemas, con experiencia en sistemas de gestión, administración y soporte al usuario.",
-    "Además, parametrizo procesos en Tango Gestión (procesos generales, artículos, cuentas de tesorería, clientes, proveedores, artículos, administrador general) con enfoque en el estricto cumplimiento normativo.",
+    "Construyo pipelines donde los datos de tu empresa alimentan modelos de lenguaje — RAG, chatbots internos y reportes que se generan solos.",
+    "Trabajo en la intersección entre análisis de datos de negocio y GenAI aplicada: desde ETL y EDA hasta flujos con LangChain, embeddings y Vector Databases.",
   ],
   {
     email: "horaciolaphitz99@gmail.com",
@@ -231,44 +231,46 @@ export const PROFILE_DATA = new ProfileEntity(
     },
   ],
   [
+    // GenAI & LLMs
     {
       name: "Python",
       category: SkillCategory.Programming,
       level: SkillLevel.Advanced,
     },
     {
+      name: "LangChain",
+      category: SkillCategory.DataAnalysis,
+      level: SkillLevel.Intermediate,
+    },
+    {
+      name: "LlamaIndex",
+      category: SkillCategory.DataAnalysis,
+      level: SkillLevel.Intermediate,
+    },
+    {
+      name: "RAG (Retrieval-Augmented Generation)",
+      category: SkillCategory.DataAnalysis,
+      level: SkillLevel.Intermediate,
+    },
+    {
+      name: "Vector Databases",
+      category: SkillCategory.Database,
+      level: SkillLevel.Intermediate,
+    },
+    {
+      name: "OpenAI API",
+      category: SkillCategory.Tools,
+      level: SkillLevel.Intermediate,
+    },
+    {
+      name: "Prompt Engineering",
+      category: SkillCategory.Tools,
+      level: SkillLevel.Intermediate,
+    },
+    // Data Analysis
+    {
       name: "SQL",
       category: SkillCategory.Database,
-      level: SkillLevel.Advanced,
-    },
-    {
-      name: "R",
-      category: SkillCategory.Programming,
-      level: SkillLevel.Intermediate,
-    },
-    {
-      name: "JavaScript",
-      category: SkillCategory.Programming,
-      level: SkillLevel.Intermediate,
-    },
-    {
-      name: "TypeScript",
-      category: SkillCategory.Programming,
-      level: SkillLevel.Intermediate,
-    },
-    {
-      name: "Power BI",
-      category: SkillCategory.Visualization,
-      level: SkillLevel.Advanced,
-    },
-    {
-      name: "Tableau",
-      category: SkillCategory.Visualization,
-      level: SkillLevel.Intermediate,
-    },
-    {
-      name: "Excel Avanzado",
-      category: SkillCategory.Tools,
       level: SkillLevel.Advanced,
     },
     {
@@ -287,10 +289,21 @@ export const PROFILE_DATA = new ProfileEntity(
       level: SkillLevel.Intermediate,
     },
     {
-      name: "TensorFlow",
-      category: SkillCategory.DataAnalysis,
+      name: "Power BI",
+      category: SkillCategory.Visualization,
+      level: SkillLevel.Advanced,
+    },
+    {
+      name: "Tableau",
+      category: SkillCategory.Visualization,
       level: SkillLevel.Intermediate,
     },
+    {
+      name: "R",
+      category: SkillCategory.Programming,
+      level: SkillLevel.Intermediate,
+    },
+    // Databases
     {
       name: "PostgreSQL",
       category: SkillCategory.Database,
@@ -311,6 +324,17 @@ export const PROFILE_DATA = new ProfileEntity(
       category: SkillCategory.Tools,
       level: SkillLevel.Intermediate,
     },
+    // Dev Tools
+    {
+      name: "JavaScript",
+      category: SkillCategory.Programming,
+      level: SkillLevel.Intermediate,
+    },
+    {
+      name: "TypeScript",
+      category: SkillCategory.Programming,
+      level: SkillLevel.Intermediate,
+    },
     { name: "Git", category: SkillCategory.Tools, level: SkillLevel.Advanced },
     {
       name: "Docker",
@@ -318,14 +342,20 @@ export const PROFILE_DATA = new ProfileEntity(
       level: SkillLevel.Intermediate,
     },
     {
+      name: "Excel Avanzado",
+      category: SkillCategory.Tools,
+      level: SkillLevel.Advanced,
+    },
+    // Soft Skills
+    {
       name: "Resolución de Problemas",
       category: SkillCategory.Soft,
       level: SkillLevel.Expert,
     },
     {
-      name: "Trabajo en Equipo",
+      name: "Pensamiento Analítico",
       category: SkillCategory.Soft,
-      level: SkillLevel.Advanced,
+      level: SkillLevel.Expert,
     },
     {
       name: "Comunicación",
@@ -333,10 +363,11 @@ export const PROFILE_DATA = new ProfileEntity(
       level: SkillLevel.Advanced,
     },
     {
-      name: "Pensamiento Analítico",
+      name: "Trabajo en Equipo",
       category: SkillCategory.Soft,
-      level: SkillLevel.Expert,
+      level: SkillLevel.Advanced,
     },
+    // ERP
     {
       name: "Tango Gestión",
       category: SkillCategory.Tools,
@@ -353,12 +384,12 @@ export const PROFILE_DATA = new ProfileEntity(
       level: SkillLevel.Advanced,
     },
     {
-      name: "Procesos de Ventas",
+      name: "Gestión de Stock",
       category: SkillCategory.Tools,
       level: SkillLevel.Advanced,
     },
     {
-      name: "Gestión de Stock",
+      name: "Procesos de Ventas",
       category: SkillCategory.Tools,
       level: SkillLevel.Advanced,
     },
