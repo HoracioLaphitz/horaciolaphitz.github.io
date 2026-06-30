@@ -1,41 +1,45 @@
 ---
 import PageLayout from "@presentation/layouts/PageLayout.astro";
 import Hero from "@presentation/components/sections/Hero.tsx";
+import Stats from "@presentation/components/sections/Stats.tsx";
 import Timeline from "@presentation/components/sections/Timeline.tsx";
-import Services from "@presentation/components/sections/Services.tsx";
+import Skills from "@presentation/components/sections/Skills.tsx";
 import ProjectCategories from "@presentation/components/sections/ProjectCategories.tsx";
 import Contact from "@presentation/components/sections/Contact.tsx";
 import { getCollection } from "astro:content";
 import { ProjectMapper } from "@infrastructure/mappers/project.mapper";
 
-// Fetch projects from Astro Content Collection and map to domain entities
-const proyectosRaw = await getCollection("proyectos");
-const proyectos = ProjectMapper.toDomainArray(proyectosRaw);
-
-// Serialize for client
-const proyectosSerializados = proyectos.map((p) => ({
-  slug: p.slug,
-  title: p.title,
-  description: p.description,
-  category: p.category,
-  tags: [...p.tags],
-  publishDate: p.publishDate.toISOString(),
-  author: p.author,
-  githubUrl: p.githubUrl,
-  dashboardUrl: p.dashboardUrl,
-  status: p.status,
-  featured: p.featured,
-}));
+let proyectosSerializados: object[] = [];
+try {
+  const proyectosRaw = await getCollection("proyectos");
+  const proyectos = ProjectMapper.toDomainArray(proyectosRaw);
+  proyectosSerializados = proyectos.map((p) => ({
+    slug: p.slug,
+    title: p.title,
+    description: p.description,
+    category: p.category,
+    tags: [...p.tags],
+    publishDate: p.publishDate.toISOString(),
+    author: p.author,
+    githubUrl: p.githubUrl,
+    dashboardUrl: p.dashboardUrl,
+    status: p.status,
+    featured: p.featured,
+  }));
+} catch {
+  // Content collection "proyectos" does not exist yet
+}
 ---
 
 <PageLayout
   title="Portfolio"
-  description="Data Analyst & Visualization Expert."
+  description="Applied GenAI Data Analyst — Python, LLMs, LangChain, Vector Databases."
   currentPath="/"
 >
   <Hero client:load />
+  <Stats client:visible />
   <ProjectCategories posts={proyectosSerializados} client:load />
-  <Services client:visible />
+  <Skills client:visible />
   <Timeline client:visible />
   <Contact client:visible />
 </PageLayout>
