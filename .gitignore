@@ -229,6 +229,7 @@ protocolo_*.md
 !CONTRIBUTING.md
 !CODE_OF_CONDUCT.md
 !CHANGELOG.md
+!src/content/**/*.md
 
 # ============================================================================
 # DATA FILES & LARGE ASSETS
