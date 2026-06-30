@@ -92,9 +92,11 @@ RAG, chatbots internos y reportes que se generan solos.
 
 ### Stats
 ```
-3+              10+                    2024
-Años en datos   Proyectos reales       Primer RAG productivo
+3+              10+                    Python · SQL · LLMs
+Años en datos   Proyectos reales       Stack principal
 ```
+
+> **Nota:** el tercer stat se actualiza cuando Phase 2 entregue el primer proyecto RAG productivo. Por ahora muestra stack en lugar de año para no afirmar algo que aún no existe.
 
 ### Contacto
 ```
@@ -141,4 +143,4 @@ Hablemos.
 6. Credly badges renderizan correctamente en ambos temas
 7. Nav se vuelve opaco al hacer scroll (no transparente sobre contenido)
 8. CV descargable desde botón en Hero
-9. Ruta `/proyectos/` sin 404 o removida de nav
+9. Ruta `/proyectos/` removida del nav. La página `/projects` existente es el destino correcto.
