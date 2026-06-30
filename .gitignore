@@ -422,3 +422,4 @@ logs/
 # Review frequency: Monthly or when adding new file types
 # ============================================================================
 
+!docs/**/*.md
