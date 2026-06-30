@@ -6,31 +6,22 @@ export const useTheme = () => {
   const [theme, setTheme] = useState<Theme>("light");
 
   useEffect(() => {
-    // Verificar preferencia guardada, por defecto siempre light
-    const savedTheme = localStorage.getItem("theme") as Theme;
-
-    // Si no hay preferencia guardada, usar light por defecto
-    const initialTheme = savedTheme || "light";
-    setTheme(initialTheme);
-    applyTheme(initialTheme);
+    const saved = localStorage.getItem("theme") as Theme | null;
+    const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const initial: Theme = saved ?? (systemDark ? "dark" : "light");
+    setTheme(initial);
+    applyTheme(initial);
   }, []);
 
-  const applyTheme = (newTheme: Theme) => {
-    const root = document.documentElement;
-
-    if (newTheme === "dark") {
-      root.classList.add("dark");
-    } else {
-      root.classList.remove("dark");
-    }
-
-    localStorage.setItem("theme", newTheme);
+  const applyTheme = (next: Theme) => {
+    document.documentElement.classList.toggle("dark", next === "dark");
+    localStorage.setItem("theme", next);
   };
 
   const toggleTheme = () => {
-    const newTheme = theme === "light" ? "dark" : "light";
-    setTheme(newTheme);
-    applyTheme(newTheme);
+    const next: Theme = theme === "light" ? "dark" : "light";
+    setTheme(next);
+    applyTheme(next);
   };
 
   return { theme, toggleTheme };
