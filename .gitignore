@@ -423,3 +423,4 @@ logs/
 # ============================================================================
 
 !docs/**/*.md
+!Proyectos/ai-sales-assistant/tests/fixtures/*.csv
