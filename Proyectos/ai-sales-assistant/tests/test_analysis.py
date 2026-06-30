@@ -33,3 +33,21 @@ def test_figs_are_plotly_figures(sample_df):
     for key in ("monthly", "categories", "states"):
         assert key in result["figs"]
         assert isinstance(result["figs"][key], go.Figure)
+
+
+def test_kpis_avg_distance_km(sample_df):
+    result = run_analysis(sample_df)
+    expected = round(sample_df["distance_km"].mean(), 1)
+    assert abs(result["kpis"]["avg_distance_km"] - expected) < 0.1
+
+
+def test_kpis_avg_delivery_delay(sample_df):
+    result = run_analysis(sample_df)
+    expected = round(sample_df["delivery_delay_days"].mean(), 1)
+    assert abs(result["kpis"]["avg_delivery_delay_days"] - expected) < 0.1
+
+
+def test_kpis_late_delivery_rate(sample_df):
+    result = run_analysis(sample_df)
+    expected = round((sample_df["delivery_delay_days"] > 0).mean() * 100, 1)
+    assert abs(result["kpis"]["late_delivery_rate"] - expected) < 0.1

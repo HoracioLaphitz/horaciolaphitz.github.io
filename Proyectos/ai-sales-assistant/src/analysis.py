@@ -6,6 +6,9 @@ def run_analysis(df: pd.DataFrame) -> dict:
     total_revenue = round(df["payment_value"].sum(), 2)
     total_orders = df["order_id"].nunique()
     aov = round(total_revenue / total_orders, 2) if total_orders > 0 else 0.0
+    avg_distance_km = round(df["distance_km"].mean(), 1)
+    avg_delivery_delay_days = round(df["delivery_delay_days"].mean(), 1)
+    late_delivery_rate = round((df["delivery_delay_days"] > 0).mean() * 100, 1)
 
     monthly_agg = (
         df.assign(month=df["order_purchase_timestamp"].dt.to_period("M").astype(str))
@@ -39,6 +42,9 @@ def run_analysis(df: pd.DataFrame) -> dict:
             "total_revenue": total_revenue,
             "total_orders": total_orders,
             "aov": aov,
+            "avg_distance_km": avg_distance_km,
+            "avg_delivery_delay_days": avg_delivery_delay_days,
+            "late_delivery_rate": late_delivery_rate,
         },
         "figs": {
             "monthly": fig_monthly,
