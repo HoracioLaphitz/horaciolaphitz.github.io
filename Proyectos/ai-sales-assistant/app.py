@@ -7,6 +7,8 @@ from src.agent import build_agent, ask
 
 load_dotenv()
 
+DB_PATH = os.path.join("data", "olist_mart.db")
+
 st.set_page_config(
     page_title="AI Sales Assistant",
     page_icon="🫡",
@@ -14,12 +16,22 @@ st.set_page_config(
 )
 
 st.title("🤖 AI Sales Assistant")
-st.caption("Olist Brazilian E-Commerce · LangChain + Groq llama3-70b · [Código en GitHub](https://github.com/horaciolaphitz)")
+st.caption(
+    "Olist Brazilian E-Commerce · LangChain + NVIDIA NIM · "
+    "[Code on GitHub](https://github.com/HoracioLaphitz/ai-sales-assistant)"
+)
+
+if not os.path.exists(DB_PATH):
+    st.error(
+        "❌ Data mart not found. "
+        "Run `python -m src.etl` once to build it before starting the app."
+    )
+    st.stop()
 
 
 @st.cache_data
 def get_data():
-    return load_data("data")
+    return load_data(DB_PATH)
 
 
 @st.cache_data
@@ -35,23 +47,29 @@ def get_agent(_df, api_key):
 api_key = os.environ.get("NVAPI", "")
 
 if not api_key:
-    st.error("❌ NVAPI no encontrada. Configurá la variable de entorno NVAPI antes de correr la app.")
+    st.error("❌ NVAPI not found. Set the NVAPI environment variable before running the app.")
     st.stop()
 
-with st.spinner("Cargando datos de Olist (~100k órdenes)..."):
+with st.spinner("Loading Olist data (~100k orders)..."):
     df = get_data()
 
 analysis = get_analysis(df)
 kpis = analysis["kpis"]
 figs = analysis["figs"]
 
-tab1, tab2 = st.tabs(["📊 Análisis", "💬 Preguntas"])
+tab1, tab2 = st.tabs(["📊 Analysis", "💬 Questions"])
 
 with tab1:
     col1, col2, col3 = st.columns(3)
-    col1.metric("Revenue Total", f"R$ {kpis['total_revenue']:,.0f}")
-    col2.metric("Órdenes entregadas", f"{kpis['total_orders']:,}")
-    col3.metric("Ticket promedio (AOV)", f"R$ {kpis['aov']:,.2f}")
+    col1.metric("Total Revenue", f"R$ {kpis['total_revenue']:,.0f}")
+    col2.metric("Delivered Orders", f"{kpis['total_orders']:,}")
+    col3.metric("Average Order Value", f"R$ {kpis['aov']:,.2f}")
+
+    col4, col5, col6 = st.columns(3)
+    col4.metric("Avg Distance (km)", f"{kpis['avg_distance_km']:,.1f}")
+    delay = kpis["avg_delivery_delay_days"]
+    col5.metric("Avg Delivery Delay", f"{'+' if delay > 0 else ''}{delay:.1f} days")
+    col6.metric("Late Delivery Rate", f"{kpis['late_delivery_rate']:.1f}%")
 
     st.divider()
 
@@ -64,15 +82,15 @@ with tab1:
         st.plotly_chart(figs["states"], use_container_width=True)
 
 with tab2:
-    st.markdown("**Preguntale al assistant sobre los datos de ventas:**")
+    st.markdown("**Ask the assistant about the sales data:**")
 
     example_questions = [
-        "¿Cuál fue el mes con más revenue?",
-        "¿Cuáles son los 5 estados con más órdenes?",
-        "¿Cuál es el ticket promedio por categoría de producto?",
-        "¿Qué porcentaje de órdenes tiene más de R$ 200 en precio?",
+        "Which month had the most revenue?",
+        "What are the 5 states with the most orders?",
+        "What is the average order value per product category?",
+        "What percentage of orders had prices above R$ 200?",
     ]
-    with st.expander("💡 Ejemplos de preguntas"):
+    with st.expander("💡 Example questions"):
         for q in example_questions:
             st.markdown(f"- {q}")
 
@@ -83,23 +101,23 @@ with tab2:
         with st.chat_message(msg["role"]):
             st.markdown(msg["content"])
 
-    if prompt := st.chat_input("Escribí tu pregunta..."):
+    if prompt := st.chat_input("Type your question..."):
         st.session_state.messages.append({"role": "user", "content": prompt})
         with st.chat_message("user"):
             st.markdown(prompt)
 
         with st.chat_message("assistant"):
-            with st.spinner("Analizando..."):
+            with st.spinner("Analyzing..."):
                 agent = get_agent(df, api_key)
                 result = ask(agent, prompt)
 
             st.markdown(result["answer"])
 
             if result["intermediate_steps"]:
-                with st.expander("🔍 Ver código Pandas generado"):
+                with st.expander("🔍 View generated Pandas code"):
                     for action, observation in result["intermediate_steps"]:
                         if hasattr(action, "tool_input"):
                             st.code(action.tool_input, language="python")
-                        st.markdown(f"**Resultado:** `{str(observation)[:200]}`")
+                        st.markdown(f"**Result:** `{str(observation)[:200]}`")
 
         st.session_state.messages.append({"role": "assistant", "content": result["answer"]})

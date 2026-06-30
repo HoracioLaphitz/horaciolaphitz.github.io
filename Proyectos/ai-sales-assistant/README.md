@@ -1,7 +1,7 @@
 # AI Sales Assistant
 
 Chat en lenguaje natural sobre 100k+ órdenes de e-commerce de Brasil.
-Analizá datos de Olist con LangChain + Groq llama3-70b desde una interfaz Streamlit.
+Analizá datos de Olist con LangChain + NVIDIA NIM llama3-70b desde una interfaz Streamlit.
 
 ## Setup local
 
@@ -24,19 +24,30 @@ Copiá estos archivos en `data/`:
 pip install -r requirements.txt
 ```
 
-### 3. Configurar API key
+### 3. Build the Data Mart (once)
 
-Obtené tu Groq API key gratuita en https://console.groq.com/
+Download the [Olist dataset from Kaggle](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
+and place all CSV files in the `data/` directory, then run:
+
+```bash
+python -m src.etl
+```
+
+This creates `data/olist_mart.db` (Star Schema SQLite). Run this once — the app reads only from the DB.
+
+### 4. Configurar API key
+
+Obtené tu NVIDIA NIM API key gratuita en https://build.nvidia.com/
 
 ```bash
 # Windows PowerShell
-$env:GROQ_API_KEY="tu_api_key_aqui"
+$env:NVAPI="tu_api_key_aqui"
 
 # macOS / Linux
-export GROQ_API_KEY="tu_api_key_aqui"
+export NVAPI="tu_api_key_aqui"
 ```
 
-### 4. Correr la app
+### 5. Correr la app
 
 ```bash
 streamlit run app.py
@@ -53,12 +64,12 @@ pytest tests/ -v
 1. Fork este repo
 2. Ir a https://streamlit.io/cloud → New app → seleccionar este repo
 3. Main file: `Proyectos/ai-sales-assistant/app.py`
-4. Secrets: `GROQ_API_KEY = "tu_key"`
+4. Secrets: `NVAPI = "tu_key"`
 
 ## Stack
 
 - LangChain + langchain-experimental (Pandas DataFrame Agent)
-- Groq llama3-70b-8192
+- NVIDIA NIM llama3-70b
 - Streamlit
 - Plotly Express
 - Pandas
