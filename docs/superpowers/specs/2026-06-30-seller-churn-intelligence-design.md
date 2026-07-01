@@ -22,10 +22,21 @@ recommendations. The project runs 100% offline — no external API keys.
 
 ## Architecture
 
-Three sequential layers, all reading from the SQLite Data Mart:
+ELT pipeline (load raw, clean in SQL, model in Python), all reading from the
+SQLite Data Mart:
 
 ```
-9 CSVs → [etl.py] → olist_mart.db (Star Schema, + reviews)
+9 CSVs → [ingest] → raw_* staging tables (verbatim dumps)
+                          ↓
+        sql/clean/*.sql   ── SQL cleaning: dedup, cast, coalesce, normalize, filter
+                          ↓
+        stg_* cleaned tables  +  Python enrichment (Haversine distance)
+                          ↓
+        sql/mart/*.sql    ── build Star Schema (fact_orders + dims) via INSERT…SELECT
+                          ↓
+        sql/quality/*.sql ── data-quality assertions (fail loud)  +  sql/views/*.sql
+                          ↓
+        olist_mart.db (Star Schema, + reviews, + analytical views)
                           ↓
         SalesMart (repository)  ── data access boundary
                           ↓
@@ -40,33 +51,105 @@ Three sequential layers, all reading from the SQLite Data Mart:
 
 - **OOP with single responsibility.** Each churn concern is a class with a
   clear interface, testable in isolation.
+- **SQL-first cleaning (ELT).** Cleaning and transformation logic lives in
+  versioned `.sql` files, not buried in pandas. A reviewer opens the `.db` in
+  DB Browser and reads exactly how the data was cleaned. Python is used only
+  for CSV ingestion and what SQL can't do portably (Haversine — SQLite math
+  functions aren't guaranteed across builds).
 - **Repository pattern** for data access: `SalesMart` is the only class that
-  knows SQL. Every downstream consumer receives DataFrames, never a
+  knows SQL at runtime. Every downstream consumer receives DataFrames, never a
   connection.
+- **Data quality is a gate, not an afterthought.** ETL fails loud on quality
+  violations (nulls in keys, duplicate PKs, broken referential integrity,
+  out-of-range values). A serious analyst validates before trusting.
 - **No data leakage.** Cohort design guarantees features precede the label
   window in time.
-- **Portable artifacts.** Model, metrics, and drift baselines are files
-  committed to the repo — a recruiter clones and runs everything offline.
+- **Portable & reproducible.** Model, metrics, drift baselines, and every
+  transformation `.sql` are committed to the repo — a recruiter clones and
+  runs everything offline, and can audit the cleaning end to end.
 
-## Phase 1 — Complete the Data Foundation
+## Phase 1 — Data Foundation (ELT with SQL cleaning)
 
-### 1a. Add the 9th CSV (reviews)
+`etl.py` is restructured from ETL (pandas cleaning) to ELT: load raw, clean in
+SQL, build the mart in SQL. Python orchestrates and does only CSV ingestion
+and Haversine.
 
-`etl.py` gains `olist_order_reviews_dataset.csv`. Review score is a top churn
-signal — a seller with falling ratings is a seller about to leave.
+### 1a. Raw staging layer
 
-- New column on `fact_orders`: `review_score` (INTEGER, nullable — not every
-  order has a review).
-- Aggregation: **mean** `review_score` per `order_id` (an order can have
-  multiple review rows; mean is more robust than first).
+Load all 9 CSVs verbatim into `raw_*` tables (`raw_orders`, `raw_order_items`,
+`raw_products`, `raw_customers`, `raw_sellers`, `raw_geolocation`,
+`raw_payments`, `raw_reviews`, `raw_category_translation`). No transformation —
+the raw layer is the auditable source of truth.
 
-### 1b. EDA report
+### 1b. SQL cleaning layer (`sql/clean/`)
 
-`src/eda.py` exposes a `profile_mart(db_path, output_path)` function using
-`ydata-profiling` to generate an HTML EDA report of the seller feature matrix.
+Versioned `.sql` scripts transform `raw_*` → `stg_*` cleaned tables. Each
+script is idempotent (`DROP … IF EXISTS` then rebuild) and documents its
+assumptions in a header comment. Cleaning responsibilities handled in SQL:
+
+- **Type casting** — dates via `julianday`/`datetime`, numerics.
+- **Deduplication** — `raw_geolocation` collapsed to one centroid per ZIP
+  prefix (`AVG(lat)`, `AVG(lng)`, `GROUP BY zip`); reviews to mean score per
+  order.
+- **Null handling** — `COALESCE` and explicit rules; rows with null keys
+  filtered.
+- **String normalization** — `LOWER(TRIM(city))`, standardized states.
+- **Invalid-row filtering** — orders without a valid status, negative prices,
+  impossible dates.
+- **`delivery_delay_days`** computed in SQL:
+  `julianday(order_delivered_customer_date) - julianday(order_estimated_delivery_date)`.
+
+**Haversine stays in Python** (numpy) — SQLite math functions (`sin`, `cos`,
+`radians`) require a build flag not guaranteed across environments; computing
+in Python preserves the spec's portability guarantee. The Python step reads
+`stg_customers`/`stg_sellers` centroids and writes `stg_order_distance`.
+
+### 1c. SQL mart layer (`sql/mart/`)
+
+`.sql` scripts build the Star Schema from `stg_*` via `INSERT … SELECT`:
+`fact_orders` (+ `review_score` INTEGER nullable, mean per order; +
+`distance_km`, `delivery_delay_days`), `dim_customers`, `dim_sellers`,
+`dim_products`, `dim_date`. Indexes created here (seller, customer, date,
+product). Delivered orders only.
+
+### 1d. Data quality gate (`sql/quality/`)
+
+`checks.sql` runs after the mart is built and **fails the ETL loudly** on
+violation. Each check is a query that must return zero offending rows:
+
+- No null primary keys in any dim.
+- No duplicate PKs (unique `seller_id`, `customer_id`, `product_id`).
+- Referential integrity: every `fact_orders.seller_id` exists in `dim_sellers`
+  (same for customer, product, date).
+- Value ranges: `price >= 0`, `review_score` in 1–5 or null, `distance_km >= 0`.
+- Row-count sanity: `fact_orders` non-empty.
+
+Python runs each check query; any non-empty result raises
+`DataQualityError` naming the failed check. This is the analyst's "trust but
+verify" gate.
+
+### 1e. Analytical views (`sql/views/`)
+
+SQL views for the analytical/feature layer, so the logic is inspectable in the
+`.db` itself:
+
+- `v_seller_features` — the seller × feature matrix as a view (RFM, delivery,
+  reviews, geo aggregates). `SellerFeatureBuilder` reads this view rather than
+  re-deriving aggregates in pandas.
+- `v_monthly_revenue`, `v_state_revenue` — power the Analytics tab.
+
+### 1f. Data dictionary
+
+`docs/data-dictionary.md` documents every mart table and column: name, type,
+source, cleaning rule applied, nullability. Standard deliverable of a serious
+analyst.
+
+### 1g. EDA report
+
+`src/eda.py` exposes `profile_mart(db_path, output_path)` using
+`ydata-profiling` to generate an HTML EDA report of `v_seller_features`.
 Generated on demand via `python -m src.eda`; output to `reports/eda.html`,
-which is gitignored (the HTML is large). This is documentation, not a runtime
-dependency of the app.
+gitignored (the HTML is large). Documentation, not a runtime dependency.
 
 ## Phase 2 — Churn Pipeline (OOP)
 
@@ -116,13 +199,17 @@ Edge cases the tests must cover:
 Builds the seller × feature matrix as-of the cutoff. Uses only orders on/before
 `T` (no leakage).
 
+Aggregation SQL lives in the `v_seller_features` view; this class reads the
+view (filtered to orders on/before `cutoff`) and applies only Python-side
+concerns (imputation, `has_reviews` flag).
+
 ```python
 class SellerFeatureBuilder:
     def build(self, mart: SalesMart, cutoff: pd.Timestamp) -> pd.DataFrame:
-        # index: seller_id. Columns:
+        # reads v_seller_features via mart; index: seller_id. Columns:
         #   recency_days, frequency, monetary_total, monetary_aov, tenure_days,
         #   avg_delivery_delay_days, pct_late, avg_distance_km,
-        #   avg_review_score, pct_low_review, category_diversity
+        #   avg_review_score, pct_low_review, category_diversity, has_reviews
 ```
 
 ### `ChurnModel` (`src/churn/model.py`)
@@ -214,6 +301,8 @@ missing `models/model.pkl` (like the existing DB guard).
 
 ## Error Handling
 
+- Data quality violation during ETL → `DataQualityError` naming the failed
+  check; ETL aborts (no half-built mart trusted downstream).
 - Missing `olist_mart.db` → Streamlit error + stop (existing pattern).
 - Missing `models/model.pkl` → Streamlit error directing user to run
   `python -m src.churn.train`.
@@ -224,7 +313,14 @@ missing `models/model.pkl` (like the existing DB guard).
 
 ## Testing
 
-- Keep the 29 existing tests (ETL, loader, analysis, charts) green.
+- Keep the existing ETL/loader/analysis/charts tests green (adjusted for the
+  ELT restructure and reviews column).
+- **SQL cleaning:** fixture with dirty rows (duplicate geolocation ZIP,
+  multiple reviews per order, null-key row, negative price) → `stg_*` tables
+  cleaned as specified.
+- **Data quality gate:** fixture violating a check → ETL raises
+  `DataQualityError` naming that check; clean fixture → passes.
+- `v_seller_features` view: fixture → expected aggregate values.
 - `SalesMart`: query methods return expected columns/shapes from the fixture DB.
 - `ChurnLabeler`: the three cohort edge cases above.
 - `SellerFeatureBuilder`: known fixture → expected feature values.
