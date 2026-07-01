@@ -41,3 +41,44 @@ def test_db_path():
     build_mart(data_dir=FIXTURES, db_path=db)
     yield db
     os.unlink(db)
+
+
+@pytest.fixture
+def churn_mart(tmp_path):
+    """SalesMart over a hand-built mart with controlled seller timelines.
+
+    max_order_date = 2018-08-01. cutoff (horizon 90) = 2018-05-03.
+      sA: orders before and after cutoff  -> churned 0
+      sB: orders only before cutoff       -> churned 1
+      sC: orders only after cutoff        -> excluded (not eligible)
+    """
+    import sqlite3
+    from src.mart import SalesMart
+    db = str(tmp_path / "churn.db")
+    conn = sqlite3.connect(db)
+    conn.executescript(
+        """
+        CREATE TABLE fact_orders (
+            order_id TEXT, customer_id TEXT, seller_id TEXT, product_id TEXT,
+            date_id TEXT, price REAL, freight_value REAL, payment_value REAL,
+            distance_km REAL, delivery_delay_days REAL, review_score REAL,
+            order_status TEXT, order_purchase_timestamp TEXT);
+        """
+    )
+    rows = [
+        # sA before + after cutoff
+        ("a1", "c1", "sA", "p1", "2018-02-01", 100, 10, 110, 50, -2, 5, "delivered", "2018-02-01 10:00:00"),
+        ("a2", "c2", "sA", "p1", "2018-07-01", 120, 12, 132, 60,  3, 4, "delivered", "2018-07-01 10:00:00"),
+        # sB only before cutoff -> churned
+        ("b1", "c3", "sB", "p2", "2018-01-10", 200, 20, 220, 80,  5, 2, "delivered", "2018-01-10 10:00:00"),
+        ("b2", "c4", "sB", "p2", "2018-03-15", 150, 15, 165, 90,  1, 3, "delivered", "2018-03-15 10:00:00"),
+        # sC only after cutoff -> excluded
+        ("d1", "c5", "sC", "p1", "2018-07-20", 300, 30, 330, 40, -1, 5, "delivered", "2018-07-20 10:00:00"),
+        # anchor max date
+        ("z1", "c6", "sA", "p1", "2018-08-01", 100, 10, 110, 50,  0, 5, "delivered", "2018-08-01 10:00:00"),
+    ]
+    conn.executemany(
+        "INSERT INTO fact_orders VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)", rows)
+    conn.commit()
+    conn.close()
+    return SalesMart(db)
