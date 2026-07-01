@@ -3,3 +3,6 @@ reports/
 *.db-shm
 __pycache__/
 .pytest_cache/
+
+# root .gitignore blocks *.sql globally; this project versions cleaning SQL
+!sql/*.sql
