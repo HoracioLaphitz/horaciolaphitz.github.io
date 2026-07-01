@@ -1,7 +1,6 @@
 ---
 import PageLayout from "@presentation/layouts/PageLayout.astro";
 import Hero from "@presentation/components/sections/Hero.tsx";
-import Stats from "@presentation/components/sections/Stats.tsx";
 import Timeline from "@presentation/components/sections/Timeline.tsx";
 import Skills from "@presentation/components/sections/Skills.tsx";
 import ProjectCategories from "@presentation/components/sections/ProjectCategories.tsx";
@@ -32,12 +31,11 @@ try {
 ---
 
 <PageLayout
-  title="Portfolio"
+  title="Applied GenAI Data Analyst — Python, LangChain & RAG"
   description="Applied GenAI Data Analyst — Python, LLMs, LangChain, Vector Databases."
   currentPath="/"
 >
   <Hero client:load />
-  <Stats client:visible />
   <ProjectCategories posts={proyectosSerializados} client:load />
   <Skills client:visible />
   <Timeline client:visible />

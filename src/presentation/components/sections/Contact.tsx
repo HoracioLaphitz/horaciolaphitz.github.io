@@ -8,24 +8,24 @@ const Contact = () => {
     <section
       ref={elementRef as React.RefObject<HTMLElement>}
       id="contacto"
-      className="bg-skin-secondary py-[120px]"
+      className="bg-skin-secondary py-20 md:py-28"
     >
       <div className="mx-auto max-w-[980px] px-6">
         <div
-          className={`transition-all duration-700 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}
+          className={`transition-all duration-200 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
+            }`}
         >
           <h2
             className="font-bold text-skin-text tracking-tight mb-6"
             style={{ fontSize: "clamp(36px, 5vw, 56px)", letterSpacing: "-0.02em" }}
           >
-            ¿Tenés un problema de datos?
+            ¿Proyecto o Pregunta en mente?
           </h2>
           <p className="text-xl text-skin-muted mb-10 max-w-xl leading-relaxed">
             Hablemos.
-          </p>
 
+          </p>
+          <p className="text-xl text-skin-muted mb-10 max-w-xl leading-relaxed">Disponibilidad: Lunes a Sábados de 08:00 a 18:00hs</p>
           <div className="flex flex-wrap gap-4">
             <a
               href="mailto:horaciolaphitz99@gmail.com"
@@ -33,7 +33,7 @@ const Contact = () => {
               style={{ backgroundColor: "var(--accent-primary)" }}
             >
               <MailIcon className="w-4 h-4" />
-              horaciolaphitz99@gmail.com
+              Correo
             </a>
             <a
               href="https://www.linkedin.com/in/horacio-laphitz/"

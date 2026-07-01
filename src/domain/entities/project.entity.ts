@@ -9,6 +9,8 @@ export enum ProjectCategory {
   DataAnalysis = "Análisis de datos",
   BusinessIntelligence = "Business Intelligence",
   DataVisualization = "Data Visualization",
+  NotebooksAnalytics = "Notebooks Analytics",
+  GenAI = "GenAI",
 }
 
 export enum ProjectStatus {

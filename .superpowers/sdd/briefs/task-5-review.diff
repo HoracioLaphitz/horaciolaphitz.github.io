@@ -1,0 +1,285 @@
+=== COMMITS ===
+f34fdbc feat: SQL analytical views + data dictionary; retire monolithic test_etl
+
+=== STAT ===
+ Proyectos/ai-sales-assistant/.gitignore            |  3 +
+ .../ai-sales-assistant/docs/data-dictionary.md     | 41 +++++++++++
+ Proyectos/ai-sales-assistant/sql/views.sql         | 39 ++++++++++
+ Proyectos/ai-sales-assistant/src/etl.py            |  1 +
+ Proyectos/ai-sales-assistant/tests/test_etl.py     | 86 ----------------------
+ .../ai-sales-assistant/tests/test_etl_views.py     | 42 +++++++++++
+ 6 files changed, 126 insertions(+), 86 deletions(-)
+
+=== DIFF ===
+diff --git a/Proyectos/ai-sales-assistant/.gitignore b/Proyectos/ai-sales-assistant/.gitignore
+index 09fc1a4..54c748b 100644
+--- a/Proyectos/ai-sales-assistant/.gitignore
++++ b/Proyectos/ai-sales-assistant/.gitignore
+@@ -1,8 +1,11 @@
+ reports/
+ *.db-wal
+ *.db-shm
+ __pycache__/
+ .pytest_cache/
+ 
+ # root .gitignore blocks *.sql globally; this project versions cleaning SQL
+ !sql/*.sql
++
++# root .gitignore blocks *.md globally; this project versions its data dictionary
++!docs/data-dictionary.md
+diff --git a/Proyectos/ai-sales-assistant/docs/data-dictionary.md b/Proyectos/ai-sales-assistant/docs/data-dictionary.md
+new file mode 100644
+index 0000000..4c3327e
+--- /dev/null
++++ b/Proyectos/ai-sales-assistant/docs/data-dictionary.md
+@@ -0,0 +1,41 @@
++# Data Dictionary — olist_mart.db
++
++## fact_orders (grain: one delivered order)
++| column | type | source | cleaning | nullable |
++|--------|------|--------|----------|----------|
++| order_id | TEXT | raw_orders | delivered only | no |
++| customer_id | TEXT | raw_orders | — | no |
++| seller_id | TEXT | raw_order_items | first per order | yes |
++| product_id | TEXT | raw_order_items | first per order | yes |
++| date_id | TEXT | derived | date(purchase ts) | no |
++| price | REAL | raw_order_items | sum, ≥0 | yes |
++| freight_value | REAL | raw_order_items | sum | yes |
++| payment_value | REAL | raw_payments | sum per order | yes |
++| distance_km | REAL | Python Haversine | seller↔customer centroid | yes |
++| delivery_delay_days | REAL | SQL julianday diff | delivered − estimated | yes |
++| review_score | REAL | raw_reviews | mean per order, 1–5 | yes |
++| order_status | TEXT | raw_orders | = 'delivered' | no |
++| order_purchase_timestamp | TEXT | raw_orders | — | no |
++
++## dim_sellers / dim_customers
++| column | type | cleaning |
++|--------|------|----------|
++| *_id | TEXT | PK, not null, unique |
++| *_state | TEXT | — |
++| *_city | TEXT | LOWER(TRIM()) |
++| lat, lng | REAL | ZIP centroid (mean) |
++
++## dim_products
++| column | type | cleaning |
++|--------|------|----------|
++| product_id | TEXT | PK |
++| product_category_name_english | TEXT | translated |
++| weight_g | REAL | — |
++| volume_cm3 | REAL | length×height×width |
++
++## dim_date
++year, month, quarter, day_of_week derived from purchase timestamp.
++
++## Views
++- **v_seller_features** — seller × churn feature aggregates.
++- **v_monthly_revenue**, **v_state_revenue** — analytics.
+diff --git a/Proyectos/ai-sales-assistant/sql/views.sql b/Proyectos/ai-sales-assistant/sql/views.sql
+new file mode 100644
+index 0000000..ea365fe
+--- /dev/null
++++ b/Proyectos/ai-sales-assistant/sql/views.sql
+@@ -0,0 +1,39 @@
++-- Analytical views. Auditable in DB Browser.
++
++DROP VIEW IF EXISTS v_monthly_revenue;
++CREATE VIEW v_monthly_revenue AS
++SELECT strftime('%Y-%m', order_purchase_timestamp) AS month,
++       SUM(payment_value) AS revenue
++FROM fact_orders
++GROUP BY month
++ORDER BY month;
++
++DROP VIEW IF EXISTS v_state_revenue;
++CREATE VIEW v_state_revenue AS
++SELECT c.customer_state, SUM(f.payment_value) AS revenue
++FROM fact_orders f
++JOIN dim_customers c ON f.customer_id = c.customer_id
++GROUP BY c.customer_state;
++
++DROP VIEW IF EXISTS v_seller_features;
++CREATE VIEW v_seller_features AS
++WITH maxd AS (SELECT MAX(order_purchase_timestamp) AS m FROM fact_orders)
++SELECT
++    f.seller_id,
++    julianday((SELECT m FROM maxd)) - julianday(MAX(f.order_purchase_timestamp))
++        AS recency_days,
++    COUNT(*) AS frequency,
++    SUM(f.payment_value) AS monetary_total,
++    AVG(f.payment_value) AS monetary_aov,
++    julianday(MAX(f.order_purchase_timestamp))
++        - julianday(MIN(f.order_purchase_timestamp)) AS tenure_days,
++    AVG(f.delivery_delay_days) AS avg_delivery_delay_days,
++    AVG(CASE WHEN f.delivery_delay_days > 0 THEN 1.0 ELSE 0.0 END) AS pct_late,
++    AVG(f.distance_km) AS avg_distance_km,
++    AVG(f.review_score) AS avg_review_score,
++    AVG(CASE WHEN f.review_score <= 2 THEN 1.0 ELSE 0.0 END) AS pct_low_review,
++    COUNT(DISTINCT p.product_category_name_english) AS category_diversity,
++    MAX(f.order_purchase_timestamp) AS last_order_ts
++FROM fact_orders f
++LEFT JOIN dim_products p ON f.product_id = p.product_id
++GROUP BY f.seller_id;
+diff --git a/Proyectos/ai-sales-assistant/src/etl.py b/Proyectos/ai-sales-assistant/src/etl.py
+index 9eaa377..cc2fd8c 100644
+--- a/Proyectos/ai-sales-assistant/src/etl.py
++++ b/Proyectos/ai-sales-assistant/src/etl.py
+@@ -91,18 +91,19 @@ def build_mart(data_dir: str = "data", db_path: str = "data/olist_mart.db") -> N
+         os.makedirs(parent, exist_ok=True)
+ 
+     conn = sqlite3.connect(db_path)
+     try:
+         conn.execute("PRAGMA journal_mode=WAL")
+         _ingest_raw(conn, data_dir)
+         _run_sql(conn, "clean.sql")
+         _enrich_distance(conn)
+         _run_sql(conn, "mart.sql")
+         _run_quality_checks(conn)
++        _run_sql(conn, "views.sql")
+         conn.commit()
+     finally:
+         conn.close()
+ 
+ 
+ if __name__ == "__main__":
+     build_mart()
+     print("Data mart built: data/olist_mart.db")
+diff --git a/Proyectos/ai-sales-assistant/tests/test_etl.py b/Proyectos/ai-sales-assistant/tests/test_etl.py
+deleted file mode 100644
+index 019dbee..0000000
+--- a/Proyectos/ai-sales-assistant/tests/test_etl.py
++++ /dev/null
+@@ -1,86 +0,0 @@
+-import os
+-import sqlite3
+-import pytest
+-
+-FIXTURES = os.path.join(os.path.dirname(__file__), "fixtures")
+-
+-
+-@pytest.fixture
+-def tmp_db(tmp_path):
+-    return str(tmp_path / "test.db")
+-
+-
+-def test_build_mart_creates_db(tmp_db):
+-    from src.etl import build_mart
+-    build_mart(data_dir=FIXTURES, db_path=tmp_db)
+-    assert os.path.exists(tmp_db)
+-
+-
+-def test_build_mart_creates_all_tables(tmp_db):
+-    from src.etl import build_mart
+-    build_mart(data_dir=FIXTURES, db_path=tmp_db)
+-    conn = sqlite3.connect(tmp_db)
+-    tables = {r[0] for r in conn.execute(
+-        "SELECT name FROM sqlite_master WHERE type='table'"
+-    ).fetchall()}
+-    conn.close()
+-    assert tables == {"fact_orders", "dim_customers", "dim_sellers", "dim_products", "dim_date"}
+-
+-
+-def test_fact_orders_excludes_canceled(tmp_db):
+-    from src.etl import build_mart
+-    build_mart(data_dir=FIXTURES, db_path=tmp_db)
+-    conn = sqlite3.connect(tmp_db)
+-    count = conn.execute("SELECT COUNT(*) FROM fact_orders").fetchone()[0]
+-    conn.close()
+-    assert count == 2  # o1 and o2 only; o3 is canceled
+-
+-
+-def test_fact_orders_has_distance_km(tmp_db):
+-    from src.etl import build_mart
+-    build_mart(data_dir=FIXTURES, db_path=tmp_db)
+-    conn = sqlite3.connect(tmp_db)
+-    rows = {r[0]: r[1] for r in conn.execute(
+-        "SELECT order_id, distance_km FROM fact_orders ORDER BY order_id"
+-    ).fetchall()}
+-    conn.close()
+-    assert rows["o1"] is not None and rows["o1"] > 0
+-    assert rows["o2"] is not None and rows["o2"] > 0
+-    assert rows["o1"] < rows["o2"]  # SP-to-SP < RJ-to-SP
+-
+-
+-def test_fact_orders_has_delivery_delay(tmp_db):
+-    from src.etl import build_mart
+-    build_mart(data_dir=FIXTURES, db_path=tmp_db)
+-    conn = sqlite3.connect(tmp_db)
+-    rows = {r[0]: r[1] for r in conn.execute(
+-        "SELECT order_id, delivery_delay_days FROM fact_orders ORDER BY order_id"
+-    ).fetchall()}
+-    conn.close()
+-    assert rows["o1"] == pytest.approx(-5.0)   # delivered 5 days early
+-    assert rows["o2"] == pytest.approx(5.0)    # delivered 5 days late
+-
+-
+-def test_dim_customers_has_lat_lng(tmp_db):
+-    from src.etl import build_mart
+-    build_mart(data_dir=FIXTURES, db_path=tmp_db)
+-    conn = sqlite3.connect(tmp_db)
+-    row = conn.execute(
+-        "SELECT lat, lng FROM dim_customers WHERE customer_id='c1'"
+-    ).fetchone()
+-    conn.close()
+-    assert row is not None
+-    assert row[0] == pytest.approx(-23.5505, abs=0.01)
+-    assert row[1] == pytest.approx(-46.6333, abs=0.01)
+-
+-
+-def test_indexes_exist(tmp_db):
+-    from src.etl import build_mart
+-    build_mart(data_dir=FIXTURES, db_path=tmp_db)
+-    conn = sqlite3.connect(tmp_db)
+-    indexes = {r[0] for r in conn.execute(
+-        "SELECT name FROM sqlite_master WHERE type='index'"
+-    ).fetchall()}
+-    conn.close()
+-    assert "idx_fact_seller" in indexes
+-    assert "idx_fact_date" in indexes
+diff --git a/Proyectos/ai-sales-assistant/tests/test_etl_views.py b/Proyectos/ai-sales-assistant/tests/test_etl_views.py
+new file mode 100644
+index 0000000..7f6b482
+--- /dev/null
++++ b/Proyectos/ai-sales-assistant/tests/test_etl_views.py
+@@ -0,0 +1,42 @@
++import os
++import sqlite3
++import pytest
++
++FIXTURES = os.path.join(os.path.dirname(__file__), "fixtures")
++
++
++@pytest.fixture
++def tmp_db(tmp_path):
++    return str(tmp_path / "mart.db")
++
++
++def test_views_exist(tmp_db):
++    from src.etl import build_mart
++    build_mart(data_dir=FIXTURES, db_path=tmp_db)
++    conn = sqlite3.connect(tmp_db)
++    v = {r[0] for r in conn.execute(
++        "SELECT name FROM sqlite_master WHERE type='view'").fetchall()}
++    conn.close()
++    assert {"v_seller_features", "v_monthly_revenue", "v_state_revenue"}.issubset(v)
++
++
++def test_seller_features_columns(tmp_db):
++    from src.etl import build_mart
++    build_mart(data_dir=FIXTURES, db_path=tmp_db)
++    conn = sqlite3.connect(tmp_db)
++    cols = {r[1] for r in conn.execute("PRAGMA table_info(v_seller_features)").fetchall()}
++    conn.close()
++    for c in ("seller_id", "frequency", "avg_review_score", "pct_late",
++              "avg_distance_km", "category_diversity", "last_order_ts"):
++        assert c in cols
++
++
++def test_seller_features_frequency(tmp_db):
++    # s1 sold o1+o2 (both delivered) -> frequency 2
++    from src.etl import build_mart
++    build_mart(data_dir=FIXTURES, db_path=tmp_db)
++    conn = sqlite3.connect(tmp_db)
++    freq = conn.execute(
++        "SELECT frequency FROM v_seller_features WHERE seller_id='s1'").fetchone()[0]
++    conn.close()
++    assert freq == 2

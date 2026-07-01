@@ -44,6 +44,8 @@ export class ProjectMapper {
       "Análisis de datos": ProjectCategory.DataAnalysis,
       "Business Intelligence": ProjectCategory.BusinessIntelligence,
       "Data Visualization": ProjectCategory.DataVisualization,
+      "Notebooks Analytics": ProjectCategory.NotebooksAnalytics,
+      GenAI: ProjectCategory.GenAI,
     };
 
     return categoryMap[category] || ProjectCategory.DataAnalysis;

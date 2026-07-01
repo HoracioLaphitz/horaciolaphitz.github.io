@@ -82,31 +82,34 @@ const Services = () => {
         <section
             ref={elementRef as React.RefObject<HTMLElement>}
             id="services"
-            className="relative bg-skin-primary py-12 sm:py-16 lg:py-20"
+            className="relative bg-skin-primary py-20 md:py-28"
         >
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+            <div className="mx-auto px-6 max-w-[980px]">
 
-                <div className={`text-center mb-10 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-                    <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-skin-text mb-4">
+                <div className={`mb-12 lg:mb-16 transition-all duration-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}`}>
+                    <h2
+                        className="font-bold text-skin-text tracking-tight"
+                        style={{ fontSize: "clamp(36px, 5vw, 56px)", letterSpacing: "-0.02em" }}
+                    >
                         Servicios
                     </h2>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
                     {SERVICES.map((service, index) => {
                         const Icon = service.icon;
                         return (
                             <div
                                 key={service.title}
-                                className={`transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-                                style={{ transitionDelay: `${(index + 1) * 100}ms` }}
+                                className={`transition-all duration-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}`}
+                                style={{ transitionDelay: `${(index + 1) * 75}ms` }}
                             >
-                                <div className="bg-skin-secondary rounded-2xl p-6 border border-skin-border hover:border-brand-primary transition-all duration-300 h-full group">
-                                    <div className="flex items-start gap-4 mb-4">
-                                        <div className="p-2.5 rounded-xl bg-brand-primary/10 text-brand-primary flex-shrink-0">
-                                            <Icon className="w-6 h-6" />
+                                <div className="bg-skin-secondary rounded-xl p-5 border border-skin-border hover:border-skin-border-medium transition-all duration-200 h-full">
+                                    <div className="flex items-start gap-3 mb-3">
+                                        <div className="text-skin-muted flex-shrink-0 pt-0.5">
+                                            <Icon className="w-5 h-5" />
                                         </div>
-                                        <h3 className="text-lg font-bold text-skin-text group-hover:text-brand-primary transition-colors pt-1">
+                                        <h3 className="text-lg font-bold text-skin-text pt-0.5">
                                             {service.title}
                                         </h3>
                                     </div>

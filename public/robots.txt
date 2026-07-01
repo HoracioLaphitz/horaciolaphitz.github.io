@@ -1,23 +1,35 @@
 User-agent: *
 Allow: /
 Disallow: /api/
-Disallow: /_astro/
-Disallow: /dist/
-
-# Crawl-delay for better server performance
-Crawl-delay: 1
 
 # Sitemap
-Sitemap: https://horaciolaphitz.github.io/sitemap.xml
+Sitemap: https://horaciolaphitz.github.io/sitemap-index.xml
 
-# Allow specific search engines
+# Search engines
 User-agent: Googlebot
 Allow: /
-Crawl-delay: 1
 
 User-agent: Bingbot
 Allow: /
-Crawl-delay: 1
 
 User-agent: LinkedInBot
+Allow: /
+
+# AI / generative engines (GEO) — explicitly allowed
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
 Allow: /

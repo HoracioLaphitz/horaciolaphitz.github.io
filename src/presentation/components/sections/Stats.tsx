@@ -20,8 +20,8 @@ const Stats = () => {
           {stats.map((stat, i) => (
             <div
               key={stat.label}
-              className={`flex flex-col items-center py-8 px-6 text-center transition-all duration-700 ${
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+              className={`flex flex-col items-center py-8 px-6 text-center transition-all duration-200 ${
+                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
               }`}
               style={{ transitionDelay: `${i * 100}ms` }}
             >

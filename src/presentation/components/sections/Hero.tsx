@@ -16,9 +16,8 @@ const Hero = () => {
     >
       <div className="mx-auto max-w-[980px] w-full px-6 py-20 lg:py-0">
         <div
-          className={`grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-16 items-center transition-all duration-700 ${
-            mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-          }`}
+          className={`grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-16 items-center transition-all duration-700 ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            }`}
         >
           {/* Content */}
           <div>
@@ -38,8 +37,7 @@ const Hero = () => {
             </p>
 
             <p className="text-lg text-skin-muted max-w-2xl leading-relaxed mb-10">
-              Construyo pipelines donde los datos de tu empresa alimentan modelos
-              de lenguaje — RAG, chatbots internos y reportes que se generan solos.
+              Analista de Datos orientado al desarrollo agéntico de soluciones para problemas del mundo real.
             </p>
 
             <div className="flex flex-wrap gap-4 mb-12">

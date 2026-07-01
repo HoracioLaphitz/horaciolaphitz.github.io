@@ -1,0 +1,72 @@
+=== COMMITS ===
+97089b8 feat: RecommendationEngine — rules-based seller actions
+
+=== STAT ===
+ .../src/churn/recommendations.py                   | 22 ++++++++++++++++
+ .../tests/test_churn_recommendations.py            | 29 ++++++++++++++++++++++
+ 2 files changed, 51 insertions(+)
+
+=== DIFF ===
+diff --git a/Proyectos/ai-sales-assistant/src/churn/recommendations.py b/Proyectos/ai-sales-assistant/src/churn/recommendations.py
+new file mode 100644
+index 0000000..f1615c2
+--- /dev/null
++++ b/Proyectos/ai-sales-assistant/src/churn/recommendations.py
+@@ -0,0 +1,22 @@
++import pandas as pd
++
++
++class RecommendationEngine:
++    """Rules-based, offline business recommendations from seller features."""
++
++    LATE_THRESHOLD = 0.3
++    LOW_REVIEW_THRESHOLD = 3.0
++    INACTIVE_DAYS = 60
++
++    def recommend(self, seller_features: pd.Series) -> list[str]:
++        recs: list[str] = []
++        if seller_features.get("pct_late", 0) > self.LATE_THRESHOLD:
++            recs.append(
++                "Improve logistics: over 30% of deliveries are late.")
++        if seller_features.get("avg_review_score", 5) < self.LOW_REVIEW_THRESHOLD:
++            recs.append(
++                "Address quality: low customer satisfaction (avg review < 3).")
++        if seller_features.get("recency_days", 0) > self.INACTIVE_DAYS:
++            recs.append(
++                "Re-engage: seller inactive for 60+ days.")
++        return recs
+diff --git a/Proyectos/ai-sales-assistant/tests/test_churn_recommendations.py b/Proyectos/ai-sales-assistant/tests/test_churn_recommendations.py
+new file mode 100644
+index 0000000..1fc0a7d
+--- /dev/null
++++ b/Proyectos/ai-sales-assistant/tests/test_churn_recommendations.py
+@@ -0,0 +1,29 @@
++import pandas as pd
++from src.churn.recommendations import RecommendationEngine
++
++
++def test_late_deliveries_flagged():
++    s = pd.Series({"pct_late": 0.4, "avg_review_score": 4.5,
++                   "recency_days": 10, "avg_distance_km": 100})
++    recs = RecommendationEngine().recommend(s)
++    assert any("logistic" in r.lower() or "late" in r.lower() for r in recs)
++
++
++def test_low_reviews_flagged():
++    s = pd.Series({"pct_late": 0.05, "avg_review_score": 2.5,
++                   "recency_days": 10, "avg_distance_km": 100})
++    recs = RecommendationEngine().recommend(s)
++    assert any("quality" in r.lower() or "satisfaction" in r.lower() for r in recs)
++
++
++def test_inactive_flagged():
++    s = pd.Series({"pct_late": 0.05, "avg_review_score": 4.5,
++                   "recency_days": 90, "avg_distance_km": 100})
++    recs = RecommendationEngine().recommend(s)
++    assert any("re-engage" in r.lower() or "inactive" in r.lower() for r in recs)
++
++
++def test_healthy_seller_no_recs():
++    s = pd.Series({"pct_late": 0.02, "avg_review_score": 4.8,
++                   "recency_days": 5, "avg_distance_km": 100})
++    assert RecommendationEngine().recommend(s) == []

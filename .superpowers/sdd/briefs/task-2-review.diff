@@ -1,0 +1,458 @@
+=== COMMITS ===
+e9c88ba feat: ELT restructure — raw ingestion + SQL cleaning layer
+
+=== STAT ===
+ Proyectos/ai-sales-assistant/.gitignore            |   3 +
+ Proyectos/ai-sales-assistant/sql/clean.sql         |  85 ++++++++
+ Proyectos/ai-sales-assistant/src/errors.py         |   2 +
+ Proyectos/ai-sales-assistant/src/etl.py            | 235 +++------------------
+ .../ai-sales-assistant/tests/test_etl_clean.py     |  63 ++++++
+ 5 files changed, 185 insertions(+), 203 deletions(-)
+
+=== DIFF ===
+diff --git a/Proyectos/ai-sales-assistant/.gitignore b/Proyectos/ai-sales-assistant/.gitignore
+index f25966c..09fc1a4 100644
+--- a/Proyectos/ai-sales-assistant/.gitignore
++++ b/Proyectos/ai-sales-assistant/.gitignore
+@@ -1,5 +1,8 @@
+ reports/
+ *.db-wal
+ *.db-shm
+ __pycache__/
+ .pytest_cache/
++
++# root .gitignore blocks *.sql globally; this project versions cleaning SQL
++!sql/*.sql
+diff --git a/Proyectos/ai-sales-assistant/sql/clean.sql b/Proyectos/ai-sales-assistant/sql/clean.sql
+new file mode 100644
+index 0000000..c8d02ae
+--- /dev/null
++++ b/Proyectos/ai-sales-assistant/sql/clean.sql
+@@ -0,0 +1,85 @@
++-- Cleaning layer: raw_* -> stg_*. Idempotent. Assumptions in headers.
++
++-- Geolocation: one centroid (mean lat/lng) per ZIP prefix.
++DROP TABLE IF EXISTS stg_geolocation;
++CREATE TABLE stg_geolocation AS
++SELECT geolocation_zip_code_prefix AS zip,
++       AVG(geolocation_lat) AS lat,
++       AVG(geolocation_lng) AS lng
++FROM raw_geolocation
++GROUP BY geolocation_zip_code_prefix;
++
++-- Customers: normalize city, attach centroid.
++DROP TABLE IF EXISTS stg_customers;
++CREATE TABLE stg_customers AS
++SELECT c.customer_id,
++       c.customer_state,
++       LOWER(TRIM(c.customer_city)) AS customer_city,
++       g.lat, g.lng
++FROM raw_customers c
++LEFT JOIN stg_geolocation g ON c.customer_zip_code_prefix = g.zip
++WHERE c.customer_id IS NOT NULL;
++
++-- Sellers: normalize city, attach centroid.
++DROP TABLE IF EXISTS stg_sellers;
++CREATE TABLE stg_sellers AS
++SELECT s.seller_id,
++       s.seller_state,
++       LOWER(TRIM(s.seller_city)) AS seller_city,
++       g.lat, g.lng
++FROM raw_sellers s
++LEFT JOIN stg_geolocation g ON s.seller_zip_code_prefix = g.zip
++WHERE s.seller_id IS NOT NULL;
++
++-- Products: English category, weight, volume.
++DROP TABLE IF EXISTS stg_products;
++CREATE TABLE stg_products AS
++SELECT p.product_id,
++       t.product_category_name_english,
++       p.product_weight_g AS weight_g,
++       (p.product_length_cm * p.product_height_cm * p.product_width_cm) AS volume_cm3
++FROM raw_products p
++LEFT JOIN raw_category_translation t
++       ON p.product_category_name = t.product_category_name
++WHERE p.product_id IS NOT NULL;
++
++-- Orders: cast, delivery delay in SQL, delivered only, valid dates.
++DROP TABLE IF EXISTS stg_orders;
++CREATE TABLE stg_orders AS
++SELECT order_id,
++       customer_id,
++       order_status,
++       order_purchase_timestamp,
++       (julianday(order_delivered_customer_date)
++        - julianday(order_estimated_delivery_date)) AS delivery_delay_days
++FROM raw_orders
++WHERE order_status = 'delivered'
++  AND order_id IS NOT NULL
++  AND order_purchase_timestamp IS NOT NULL;
++
++-- Order items: first seller/product per order, summed price/freight; drop negatives.
++DROP TABLE IF EXISTS stg_order_items;
++CREATE TABLE stg_order_items AS
++SELECT order_id,
++       MIN(seller_id)  AS seller_id,
++       MIN(product_id) AS product_id,
++       SUM(price)         AS price,
++       SUM(freight_value) AS freight_value
++FROM raw_order_items
++WHERE price >= 0
++GROUP BY order_id;
++
++-- Payments: total per order.
++DROP TABLE IF EXISTS stg_payments;
++CREATE TABLE stg_payments AS
++SELECT order_id, SUM(payment_value) AS payment_value
++FROM raw_payments
++GROUP BY order_id;
++
++-- Reviews: mean score per order, clamped to 1..5.
++DROP TABLE IF EXISTS stg_reviews;
++CREATE TABLE stg_reviews AS
++SELECT order_id, AVG(review_score) AS review_score
++FROM raw_reviews
++WHERE review_score BETWEEN 1 AND 5
++GROUP BY order_id;
+diff --git a/Proyectos/ai-sales-assistant/src/errors.py b/Proyectos/ai-sales-assistant/src/errors.py
+new file mode 100644
+index 0000000..64055ac
+--- /dev/null
++++ b/Proyectos/ai-sales-assistant/src/errors.py
+@@ -0,0 +1,2 @@
++class DataQualityError(Exception):
++    """Raised when the ELT data-quality gate finds violating rows."""
+diff --git a/Proyectos/ai-sales-assistant/src/etl.py b/Proyectos/ai-sales-assistant/src/etl.py
+index d104371..446fb7a 100644
+--- a/Proyectos/ai-sales-assistant/src/etl.py
++++ b/Proyectos/ai-sales-assistant/src/etl.py
+@@ -1,228 +1,57 @@
+ import os
+ import sqlite3
+ import numpy as np
+ import pandas as pd
+ 
+-
+-def _haversine(lat1: np.ndarray, lon1: np.ndarray, lat2: np.ndarray, lon2: np.ndarray) -> np.ndarray:
++SQL_DIR = os.path.join(os.path.dirname(__file__), "..", "sql")
++
++_CSV_TO_RAW = {
++    "olist_orders_dataset.csv": "raw_orders",
++    "olist_order_items_dataset.csv": "raw_order_items",
++    "olist_products_dataset.csv": "raw_products",
++    "product_category_name_translation.csv": "raw_category_translation",
++    "olist_order_payments_dataset.csv": "raw_payments",
++    "olist_customers_dataset.csv": "raw_customers",
++    "olist_sellers_dataset.csv": "raw_sellers",
++    "olist_geolocation_dataset.csv": "raw_geolocation",
++    "olist_order_reviews_dataset.csv": "raw_reviews",
++}
++
++
++def _haversine(lat1, lon1, lat2, lon2):
+     R = 6371.0
+     lat1, lon1, lat2, lon2 = map(np.radians, [lat1, lon1, lat2, lon2])
+-    dlat = lat2 - lat1
+-    dlon = lon2 - lon1
++    dlat, dlon = lat2 - lat1, lon2 - lon1
+     a = np.sin(dlat / 2) ** 2 + np.cos(lat1) * np.cos(lat2) * np.sin(dlon / 2) ** 2
+     return 2 * R * np.arcsin(np.sqrt(a))
+ 
+ 
+-def build_mart(data_dir: str = "data", db_path: str = "data/olist_mart.db") -> None:
+-    # 1. Read CSVs
+-    orders = pd.read_csv(
+-        os.path.join(data_dir, "olist_orders_dataset.csv"),
+-        parse_dates=[
+-            "order_purchase_timestamp",
+-            "order_delivered_customer_date",
+-            "order_estimated_delivery_date",
+-        ],
+-    )
+-    items = pd.read_csv(os.path.join(data_dir, "olist_order_items_dataset.csv"))
+-    products = pd.read_csv(os.path.join(data_dir, "olist_products_dataset.csv"))
+-    translation = pd.read_csv(os.path.join(data_dir, "product_category_name_translation.csv"))
+-    payments = pd.read_csv(os.path.join(data_dir, "olist_order_payments_dataset.csv"))
+-    customers = pd.read_csv(os.path.join(data_dir, "olist_customers_dataset.csv"))
+-    sellers = pd.read_csv(os.path.join(data_dir, "olist_sellers_dataset.csv"))
+-    geo = pd.read_csv(os.path.join(data_dir, "olist_geolocation_dataset.csv"))
+-
+-    # 2. Geo centroids: mean lat/lng per ZIP prefix
+-    geo_centroids = (
+-        geo.groupby("geolocation_zip_code_prefix")[["geolocation_lat", "geolocation_lng"]]
+-        .mean()
+-        .reset_index()
+-        .rename(columns={
+-            "geolocation_zip_code_prefix": "zip",
+-            "geolocation_lat": "lat",
+-            "geolocation_lng": "lng",
+-        })
+-    )
+-
+-    # 3. Dimension tables
+-    cust_geo = customers.merge(
+-        geo_centroids, left_on="customer_zip_code_prefix", right_on="zip", how="left"
+-    )
+-    dim_customers = cust_geo[["customer_id", "customer_state", "customer_city", "lat", "lng"]]
+-
+-    sell_geo = sellers.merge(
+-        geo_centroids, left_on="seller_zip_code_prefix", right_on="zip", how="left"
+-    )
+-    dim_sellers = sell_geo[["seller_id", "seller_state", "seller_city", "lat", "lng"]]
+-
+-    prods = products.merge(translation, on="product_category_name", how="left")
+-    has_weight = "product_weight_g" in prods.columns
+-    if has_weight:
+-        volume = prods["product_length_cm"] * prods["product_height_cm"] * prods["product_width_cm"]
+-        dim_products = prods.assign(weight_g=prods["product_weight_g"], volume_cm3=volume)[
+-            ["product_id", "product_category_name_english", "weight_g", "volume_cm3"]
+-        ]
+-    else:
+-        dim_products = prods[["product_id", "product_category_name_english"]].assign(
+-            weight_g=None, volume_cm3=None
+-        )
+-
+-    # 4. Aggregate items per order (first product/seller, sum price/freight)
+-    items_agg = (
+-        items.groupby("order_id")
+-        .agg(
+-            price=("price", "sum"),
+-            freight_value=("freight_value", "sum"),
+-            product_id=("product_id", "first"),
+-            seller_id=("seller_id", "first"),
+-        )
+-        .reset_index()
+-    )
+-
+-    payments_agg = payments.groupby("order_id")["payment_value"].sum().reset_index()
++def _run_sql(conn: sqlite3.Connection, filename: str) -> None:
++    with open(os.path.join(SQL_DIR, filename), "r", encoding="utf-8") as f:
++        conn.executescript(f.read())
+ 
+-    # 5. Build fact table (delivered orders only)
+-    delivered = orders[orders["order_status"] == "delivered"].copy()
+-    fact = (
+-        delivered
+-        .merge(items_agg, on="order_id", how="left")
+-        .merge(payments_agg, on="order_id", how="left")
+-    )
+ 
+-    # 6. Delivery delay in days (negative = early, positive = late)
+-    fact["delivery_delay_days"] = (
+-        (fact["order_delivered_customer_date"] - fact["order_estimated_delivery_date"])
+-        .dt.total_seconds() / 86400
+-    )
++def _ingest_raw(conn: sqlite3.Connection, data_dir: str) -> None:
++    for csv_name, table in _CSV_TO_RAW.items():
++        df = pd.read_csv(os.path.join(data_dir, csv_name))
++        df.to_sql(table, conn, if_exists="replace", index=False)
+ 
+-    # 7. Haversine distance seller -> customer
+-    fact = (
+-        fact
+-        .merge(
+-            cust_geo[["customer_id", "lat", "lng"]].rename(columns={"lat": "c_lat", "lng": "c_lng"}),
+-            on="customer_id",
+-            how="left",
+-        )
+-        .merge(
+-            sell_geo[["seller_id", "lat", "lng"]].rename(columns={"lat": "s_lat", "lng": "s_lng"}),
+-            on="seller_id",
+-            how="left",
+-        )
+-    )
+-    fact["distance_km"] = _haversine(
+-        fact["c_lat"].values,
+-        fact["c_lng"].values,
+-        fact["s_lat"].values,
+-        fact["s_lng"].values,
+-    )
+ 
+-    # 8. dim_date
+-    ts = delivered["order_purchase_timestamp"].dropna()
+-    dim_date = pd.DataFrame({
+-        "date_id": ts.dt.strftime("%Y-%m-%d"),
+-        "year": ts.dt.year,
+-        "month": ts.dt.month,
+-        "quarter": ts.dt.quarter,
+-        "day_of_week": ts.dt.dayofweek,
+-    }).drop_duplicates("date_id")
+-
+-    # 9. Write to SQLite
++def build_mart(data_dir: str = "data", db_path: str = "data/olist_mart.db") -> None:
+     parent = os.path.dirname(db_path)
+     if parent:
+         os.makedirs(parent, exist_ok=True)
+ 
+     conn = sqlite3.connect(db_path)
+-    conn.execute("PRAGMA journal_mode=WAL")
+-    conn.executescript("""
+-        DROP TABLE IF EXISTS fact_orders;
+-        DROP TABLE IF EXISTS dim_customers;
+-        DROP TABLE IF EXISTS dim_sellers;
+-        DROP TABLE IF EXISTS dim_products;
+-        DROP TABLE IF EXISTS dim_date;
+-
+-        CREATE TABLE dim_date (
+-            date_id TEXT PRIMARY KEY,
+-            year INTEGER,
+-            month INTEGER,
+-            quarter INTEGER,
+-            day_of_week INTEGER
+-        );
+-        CREATE TABLE dim_customers (
+-            customer_id TEXT PRIMARY KEY,
+-            customer_state TEXT,
+-            customer_city TEXT,
+-            lat REAL,
+-            lng REAL
+-        );
+-        CREATE TABLE dim_sellers (
+-            seller_id TEXT PRIMARY KEY,
+-            seller_state TEXT,
+-            seller_city TEXT,
+-            lat REAL,
+-            lng REAL
+-        );
+-        CREATE TABLE dim_products (
+-            product_id TEXT PRIMARY KEY,
+-            product_category_name_english TEXT,
+-            weight_g REAL,
+-            volume_cm3 REAL
+-        );
+-        CREATE TABLE fact_orders (
+-            order_id TEXT,
+-            customer_id TEXT,
+-            seller_id TEXT,
+-            product_id TEXT,
+-            date_id TEXT,
+-            price REAL,
+-            freight_value REAL,
+-            payment_value REAL,
+-            distance_km REAL,
+-            delivery_delay_days REAL,
+-            order_status TEXT,
+-            order_purchase_timestamp TEXT
+-        );
+-        CREATE INDEX idx_fact_seller   ON fact_orders(seller_id);
+-        CREATE INDEX idx_fact_customer ON fact_orders(customer_id);
+-        CREATE INDEX idx_fact_date     ON fact_orders(date_id);
+-        CREATE INDEX idx_fact_product  ON fact_orders(product_id);
+-    """)
+-
+-    cur = conn.cursor()
+-
+-    cur.executemany(
+-        "INSERT INTO dim_date VALUES (?,?,?,?,?)",
+-        dim_date[["date_id", "year", "month", "quarter", "day_of_week"]].itertuples(index=False, name=None),
+-    )
+-    cur.executemany(
+-        "INSERT INTO dim_customers VALUES (?,?,?,?,?)",
+-        dim_customers[["customer_id", "customer_state", "customer_city", "lat", "lng"]].itertuples(index=False, name=None),
+-    )
+-    cur.executemany(
+-        "INSERT INTO dim_sellers VALUES (?,?,?,?,?)",
+-        dim_sellers[["seller_id", "seller_state", "seller_city", "lat", "lng"]].itertuples(index=False, name=None),
+-    )
+-    cur.executemany(
+-        "INSERT INTO dim_products VALUES (?,?,?,?)",
+-        dim_products[["product_id", "product_category_name_english", "weight_g", "volume_cm3"]].itertuples(index=False, name=None),
+-    )
+-
+-    fact["date_id"] = fact["order_purchase_timestamp"].dt.strftime("%Y-%m-%d")
+-    fact_rows = fact[[
+-        "order_id", "customer_id", "seller_id", "product_id", "date_id",
+-        "price", "freight_value", "payment_value",
+-        "distance_km", "delivery_delay_days",
+-        "order_status", "order_purchase_timestamp",
+-    ]].copy()
+-    fact_rows["order_purchase_timestamp"] = fact_rows["order_purchase_timestamp"].astype(str)
+-
+-    cur.executemany(
+-        "INSERT INTO fact_orders VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
+-        fact_rows.itertuples(index=False, name=None),
+-    )
+-
+-    conn.commit()
+-    conn.close()
++    try:
++        conn.execute("PRAGMA journal_mode=WAL")
++        _ingest_raw(conn, data_dir)
++        _run_sql(conn, "clean.sql")
++        conn.commit()
++    finally:
++        conn.close()
+ 
+ 
+ if __name__ == "__main__":
+     build_mart()
+     print("Data mart built: data/olist_mart.db")
+diff --git a/Proyectos/ai-sales-assistant/tests/test_etl_clean.py b/Proyectos/ai-sales-assistant/tests/test_etl_clean.py
+new file mode 100644
+index 0000000..7994732
+--- /dev/null
++++ b/Proyectos/ai-sales-assistant/tests/test_etl_clean.py
+@@ -0,0 +1,63 @@
++import os
++import sqlite3
++import pytest
++
++FIXTURES = os.path.join(os.path.dirname(__file__), "fixtures")
++
++
++@pytest.fixture
++def tmp_db(tmp_path):
++    return str(tmp_path / "mart.db")
++
++
++def _tables(db):
++    conn = sqlite3.connect(db)
++    t = {r[0] for r in conn.execute(
++        "SELECT name FROM sqlite_master WHERE type='table'").fetchall()}
++    conn.close()
++    return t
++
++
++def test_raw_tables_loaded(tmp_db):
++    from src.etl import build_mart
++    build_mart(data_dir=FIXTURES, db_path=tmp_db)
++    t = _tables(tmp_db)
++    for name in ("raw_orders", "raw_reviews", "raw_geolocation"):
++        assert name in t
++
++
++def test_stg_geolocation_dedup_to_centroid(tmp_db):
++    from src.etl import build_mart
++    build_mart(data_dir=FIXTURES, db_path=tmp_db)
++    conn = sqlite3.connect(tmp_db)
++    rows = conn.execute("SELECT COUNT(*) FROM stg_geolocation").fetchone()[0]
++    distinct_zip = conn.execute(
++        "SELECT COUNT(DISTINCT zip) FROM stg_geolocation").fetchone()[0]
++    conn.close()
++    assert rows == distinct_zip  # one centroid per ZIP
++
++
++def test_stg_reviews_mean_per_order(tmp_db):
++    from src.etl import build_mart
++    build_mart(data_dir=FIXTURES, db_path=tmp_db)
++    conn = sqlite3.connect(tmp_db)
++    score = conn.execute(
++        "SELECT review_score FROM stg_reviews WHERE order_id='o1'").fetchone()[0]
++    conn.close()
++    assert score == pytest.approx(5.0)  # mean of rv1,rv2
++
++
++def test_stg_orders_delivery_delay_in_sql(tmp_db):
++    from src.etl import build_mart
++    build_mart(data_dir=FIXTURES, db_path=tmp_db)
++    conn = sqlite3.connect(tmp_db)
++    rows = {r[0]: r[1] for r in conn.execute(
++        "SELECT order_id, delivery_delay_days FROM stg_orders ORDER BY order_id").fetchall()}
++    conn.close()
++    assert rows["o1"] == pytest.approx(-5.0)
++    assert rows["o2"] == pytest.approx(5.0)
++
++
++def test_data_quality_error_exists():
++    from src.errors import DataQualityError
++    assert issubclass(DataQualityError, Exception)

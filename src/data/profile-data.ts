@@ -11,10 +11,9 @@ import {
 
 export const PROFILE_DATA = new ProfileEntity(
   "Horacio Laphitz",
-  "Applied GenAI Data Analyst | Python, LLMs, Vector Databases & LangChain",
+  "Spec Driven Development Data Analyst | Python + LLMs + SQL",
   [
-    "Construyo pipelines donde los datos de tu empresa alimentan modelos de lenguaje — RAG, chatbots internos y reportes que se generan solos.",
-    "Trabajo en la intersección entre análisis de datos de negocio y GenAI aplicada: desde ETL y EDA hasta flujos con LangChain, embeddings y Vector Databases.",
+    "Analista de Datos orientado el desarrollo agentico de soluciones para problemas del mundo real",
   ],
   {
     email: "horaciolaphitz99@gmail.com",

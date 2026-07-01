@@ -6,12 +6,21 @@ export interface Props {
   title: string;
   description: string;
   currentPath: string;
+  type?: "website" | "article" | "profile";
+  keywords?: string[];
+  canonical?: string;
 }
 
-const { title, description, currentPath } = Astro.props;
+const { title, description, currentPath, type, keywords, canonical } = Astro.props;
 ---
 
-<Layout title={title} description={description}>
+<Layout
+  title={title}
+  description={description}
+  type={type}
+  keywords={keywords}
+  canonical={canonical}
+>
   <Navigation client:load />
 
   <main class="pt-14 min-h-screen bg-skin-primary">

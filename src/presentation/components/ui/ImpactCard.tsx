@@ -17,27 +17,27 @@ export function ImpactCard({
   icon = "📊",
   variant = "primary",
 }: ImpactCardProps) {
-  const variantStyles = {
-    primary: "bg-gradient-to-br from-[#0A74DA] to-[#085BB0] text-white",
-    accent: "bg-gradient-to-br from-[#FF6B35] to-[#E65520] text-white",
-    secondary: "bg-gradient-to-br from-[#2E2E2E] to-[#1A1A1A] text-white",
+  const valueColor = {
+    primary: "text-accent-primary",
+    accent: "text-skin-text",
+    secondary: "text-skin-text",
   };
 
   return (
     <div
-      className={`
-        ${variantStyles[variant]}
+      className="
+        bg-skin-primary
+        border border-skin-border
         rounded-xl p-lg
-        shadow-lg
-        transform transition-all duration-300
-        hover:scale-105 hover:shadow-xl
+        transition-all duration-200
+        hover:border-skin-border-medium
         flex flex-col items-center justify-center
-        min-h-[140px]
-      `}
+        min-h-[120px]
+      "
     >
-      <div className="text-4xl mb-sm">{icon}</div>
-      <div className="text-3xl font-bold font-display mb-xs">{value}</div>
-      <div className="text-sm font-medium opacity-90 text-center">{label}</div>
+      <div className="text-2xl mb-sm text-skin-muted">{icon}</div>
+      <div className={`text-3xl font-bold font-display mb-xs ${valueColor[variant]}`}>{value}</div>
+      <div className="text-sm font-medium text-skin-muted text-center">{label}</div>
     </div>
   );
 }

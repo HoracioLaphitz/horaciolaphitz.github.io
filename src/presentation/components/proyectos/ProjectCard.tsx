@@ -16,32 +16,32 @@ const ProjectCard = ({ title, description, slug, category, tags, github, dashboa
     const [isHovered, setIsHovered] = useState(false);
 
     const categoryIcons: Record<string, ReactElement> = {
-        "Machine Learning": <RobotIcon className="w-6 h-6" />,
-        "Análisis de datos": <ChartBarIcon className="w-6 h-6" />,
-        "Business Intelligence": <BriefcaseIcon className="w-6 h-6" />,
-        "Data Visualization": <PresentationChartLineIcon className="w-6 h-6" />,
+        "Machine Learning": <RobotIcon className="w-4 h-4" />,
+        "Análisis de datos": <ChartBarIcon className="w-4 h-4" />,
+        "Business Intelligence": <BriefcaseIcon className="w-4 h-4" />,
+        "Data Visualization": <PresentationChartLineIcon className="w-4 h-4" />,
+        "Notebooks Analytics": <DocumentIcon className="w-4 h-4" />,
+        "GenAI": <RobotIcon className="w-4 h-4" />,
     };
 
     return (
         <article
-            className="group relative bg-skin-secondary border border-skin-border rounded-2xl overflow-hidden transition-all duration-300 hover:border-brand-primary/50"
-            style={{ boxShadow: isHovered ? 'var(--md-elevation-3)' : 'var(--md-elevation-1)' }}
+            className="group relative bg-skin-secondary border border-skin-border rounded-xl overflow-hidden transition-all duration-200 hover:border-skin-border-medium"
+            style={{ boxShadow: isHovered ? 'var(--md-elevation-1)' : 'none' }}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
         >
-            <div className="p-6 flex flex-col h-full">
+            <div className="p-5 flex flex-col h-full">
                 {/* Header con categoría */}
-                <div className="flex items-center justify-between mb-4">
-                    <div className="p-2.5 bg-brand-primary/10 rounded-xl text-brand-primary group-hover:scale-110 transition-transform duration-200">
-                        {categoryIcons[category] || <DocumentIcon className="w-5 h-5" />}
-                    </div>
-                    <span className="text-xs font-medium text-skin-muted uppercase tracking-wide">
+                <div className="flex items-center gap-2 mb-3 text-skin-muted">
+                    {categoryIcons[category] || <DocumentIcon className="w-4 h-4" />}
+                    <span className="text-xs font-medium uppercase tracking-wide">
                         {category}
                     </span>
                 </div>
 
                 {/* Título */}
-                <h3 className="text-lg font-bold text-skin-text mb-3 group-hover:text-brand-primary transition-colors duration-200 line-clamp-2">
+                <h3 className="text-lg font-bold text-skin-text mb-2 transition-colors duration-200 line-clamp-2">
                     {title}
                 </h3>
 
@@ -51,17 +51,17 @@ const ProjectCard = ({ title, description, slug, category, tags, github, dashboa
                 </p>
 
                 {/* Tags */}
-                <div className="flex flex-wrap gap-2 mb-4">
+                <div className="flex flex-wrap gap-1.5 mb-4">
                     {tags.slice(0, 3).map((tag, idx) => (
                         <span
                             key={idx}
-                            className="text-xs px-3 py-1.5 bg-skin-primary text-accent-primary border-2 border-accent-primary/30 rounded-full font-medium hover:border-accent-primary hover:shadow-sm transition-all duration-200"
+                            className="text-xs px-2.5 py-1 bg-skin-primary text-skin-muted rounded-md font-medium"
                         >
                             {tag}
                         </span>
                     ))}
                     {tags.length > 3 && (
-                        <span className="text-xs px-3 py-1.5 bg-skin-primary text-accent-primary border-2 border-accent-primary/30 rounded-full font-medium">
+                        <span className="text-xs px-2.5 py-1 bg-skin-primary text-skin-muted rounded-md font-medium">
                             +{tags.length - 3}
                         </span>
                     )}
@@ -107,11 +107,6 @@ const ProjectCard = ({ title, description, slug, category, tags, github, dashboa
                         </svg>
                     </a>
                 </div>
-            </div>
-
-            {/* Hover effect */}
-            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                <div className="absolute inset-0 bg-brand-primary/5"></div>
             </div>
         </article>
     );

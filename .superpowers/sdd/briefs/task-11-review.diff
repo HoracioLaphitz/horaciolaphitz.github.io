@@ -1,0 +1,103 @@
+=== COMMITS ===
+d9f2a74 feat: DriftMonitor - PSI drift detection, JSON reference
+
+=== STAT ===
+ Proyectos/ai-sales-assistant/src/churn/drift.py    | 49 ++++++++++++++++++++++
+ .../ai-sales-assistant/tests/test_churn_drift.py   | 33 +++++++++++++++
+ 2 files changed, 82 insertions(+)
+
+=== DIFF ===
+diff --git a/Proyectos/ai-sales-assistant/src/churn/drift.py b/Proyectos/ai-sales-assistant/src/churn/drift.py
+new file mode 100644
+index 0000000..76d4345
+--- /dev/null
++++ b/Proyectos/ai-sales-assistant/src/churn/drift.py
+@@ -0,0 +1,49 @@
++import json
++import numpy as np
++import pandas as pd
++
++
++class DriftMonitor:
++    """Population Stability Index per feature. Portable, offline."""
++
++    def __init__(self, reference: pd.DataFrame, bins: int = 10) -> None:
++        self.bins = bins
++        self._edges: dict[str, list[float]] = {}
++        self._ref_pct: dict[str, list[float]] = {}
++        for col in reference.columns:
++            edges = np.quantile(reference[col], np.linspace(0, 1, bins + 1))
++            edges[0], edges[-1] = -np.inf, np.inf
++            edges = np.unique(edges)
++            counts, _ = np.histogram(reference[col], bins=edges)
++            pct = counts / max(counts.sum(), 1)
++            self._edges[col] = edges.tolist()
++            self._ref_pct[col] = pct.tolist()
++
++    def psi(self, current: pd.DataFrame) -> dict:
++        out = {}
++        for col, edges in self._edges.items():
++            if col not in current.columns:
++                continue
++            ref_pct = np.array(self._ref_pct[col])
++            counts, _ = np.histogram(current[col], bins=np.array(edges))
++            cur_pct = counts / max(counts.sum(), 1)
++            eps = 1e-6
++            ref_pct = np.clip(ref_pct, eps, None)
++            cur_pct = np.clip(cur_pct, eps, None)
++            out[col] = float(np.sum((cur_pct - ref_pct) * np.log(cur_pct / ref_pct)))
++        return out
++
++    def save_reference(self, path: str) -> None:
++        with open(path, "w", encoding="utf-8") as f:
++            json.dump({"bins": self.bins, "edges": self._edges,
++                       "ref_pct": self._ref_pct}, f, indent=2)
++
++    @classmethod
++    def from_reference_file(cls, path: str) -> "DriftMonitor":
++        with open(path, "r", encoding="utf-8") as f:
++            blob = json.load(f)
++        obj = cls.__new__(cls)
++        obj.bins = blob["bins"]
++        obj._edges = blob["edges"]
++        obj._ref_pct = blob["ref_pct"]
++        return obj
+diff --git a/Proyectos/ai-sales-assistant/tests/test_churn_drift.py b/Proyectos/ai-sales-assistant/tests/test_churn_drift.py
+new file mode 100644
+index 0000000..ea1b6cb
+--- /dev/null
++++ b/Proyectos/ai-sales-assistant/tests/test_churn_drift.py
+@@ -0,0 +1,33 @@
++import numpy as np
++import pandas as pd
++from src.churn.drift import DriftMonitor
++
++
++def _frame(seed):
++    rng = np.random.default_rng(seed)
++    return pd.DataFrame({
++        "recency_days": rng.uniform(0, 200, 500),
++        "frequency": rng.uniform(1, 20, 500),
++    })
++
++
++def test_psi_zero_for_same_distribution():
++    ref = _frame(1)
++    psi = DriftMonitor(ref).psi(ref)
++    assert all(v < 0.1 for v in psi.values())
++
++
++def test_psi_flags_shift():
++    ref = _frame(1)
++    cur = _frame(1).assign(recency_days=lambda d: d["recency_days"] + 500)
++    psi = DriftMonitor(ref).psi(cur)
++    assert psi["recency_days"] > 0.2
++
++
++def test_reference_roundtrip(tmp_path):
++    ref = _frame(1)
++    path = str(tmp_path / "ref.json")
++    DriftMonitor(ref).save_reference(path)
++    loaded = DriftMonitor.from_reference_file(path)
++    psi = loaded.psi(ref)
++    assert all(v < 0.1 for v in psi.values())

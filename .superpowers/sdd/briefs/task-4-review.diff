@@ -1,0 +1,172 @@
+=== COMMITS ===
+05261e2 feat: SQL data-quality gate raising DataQualityError on violation
+
+=== STAT ===
+ Proyectos/ai-sales-assistant/sql/quality.sql       | 39 ++++++++++++++++++++++
+ Proyectos/ai-sales-assistant/src/etl.py            | 29 ++++++++++++++++
+ .../ai-sales-assistant/tests/test_etl_quality.py   | 31 +++++++++++++++++
+ 3 files changed, 99 insertions(+)
+
+=== DIFF ===
+diff --git a/Proyectos/ai-sales-assistant/sql/quality.sql b/Proyectos/ai-sales-assistant/sql/quality.sql
+new file mode 100644
+index 0000000..27c5b12
+--- /dev/null
++++ b/Proyectos/ai-sales-assistant/sql/quality.sql
+@@ -0,0 +1,39 @@
++-- Data-quality gate. Each labelled SELECT must return ZERO rows.
++
++-- CHECK: dim_sellers_no_null_pk
++SELECT seller_id FROM dim_sellers WHERE seller_id IS NULL;
++
++-- CHECK: dim_customers_no_null_pk
++SELECT customer_id FROM dim_customers WHERE customer_id IS NULL;
++
++-- CHECK: dim_sellers_unique_pk
++SELECT seller_id FROM dim_sellers GROUP BY seller_id HAVING COUNT(*) > 1;
++
++-- CHECK: dim_customers_unique_pk
++SELECT customer_id FROM dim_customers GROUP BY customer_id HAVING COUNT(*) > 1;
++
++-- CHECK: dim_products_unique_pk
++SELECT product_id FROM dim_products GROUP BY product_id HAVING COUNT(*) > 1;
++
++-- CHECK: fact_seller_referential_integrity
++SELECT f.order_id FROM fact_orders f
++LEFT JOIN dim_sellers s ON f.seller_id = s.seller_id
++WHERE f.seller_id IS NOT NULL AND s.seller_id IS NULL;
++
++-- CHECK: fact_customer_referential_integrity
++SELECT f.order_id FROM fact_orders f
++LEFT JOIN dim_customers c ON f.customer_id = c.customer_id
++WHERE c.customer_id IS NULL;
++
++-- CHECK: fact_price_non_negative
++SELECT order_id FROM fact_orders WHERE price < 0;
++
++-- CHECK: fact_review_score_in_range
++SELECT order_id FROM fact_orders
++WHERE review_score IS NOT NULL AND (review_score < 1 OR review_score > 5);
++
++-- CHECK: fact_distance_non_negative
++SELECT order_id FROM fact_orders WHERE distance_km < 0;
++
++-- CHECK: fact_non_empty
++SELECT 1 WHERE (SELECT COUNT(*) FROM fact_orders) = 0;
+diff --git a/Proyectos/ai-sales-assistant/src/etl.py b/Proyectos/ai-sales-assistant/src/etl.py
+index ebf1ea0..9eaa377 100644
+--- a/Proyectos/ai-sales-assistant/src/etl.py
++++ b/Proyectos/ai-sales-assistant/src/etl.py
+@@ -1,15 +1,17 @@
+ import os
+ import sqlite3
+ import numpy as np
+ import pandas as pd
+ 
++from src.errors import DataQualityError
++
+ SQL_DIR = os.path.join(os.path.dirname(__file__), "..", "sql")
+ 
+ _CSV_TO_RAW = {
+     "olist_orders_dataset.csv": "raw_orders",
+     "olist_order_items_dataset.csv": "raw_order_items",
+     "olist_products_dataset.csv": "raw_products",
+     "product_category_name_translation.csv": "raw_category_translation",
+     "olist_order_payments_dataset.csv": "raw_payments",
+     "olist_customers_dataset.csv": "raw_customers",
+     "olist_sellers_dataset.csv": "raw_sellers",
+@@ -50,30 +52,57 @@ def _enrich_distance(conn: sqlite3.Connection) -> None:
+     df = (orders.merge(items, on="order_id", how="left")
+                 .merge(cust, on="customer_id", how="left")
+                 .merge(sell, on="seller_id", how="left"))
+     df["distance_km"] = _haversine(
+         df["c_lat"].values, df["c_lng"].values,
+         df["s_lat"].values, df["s_lng"].values)
+     df[["order_id", "distance_km"]].to_sql(
+         "stg_order_distance", conn, if_exists="replace", index=False)
+ 
+ 
++def _run_quality_checks(conn: sqlite3.Connection) -> None:
++    path = os.path.join(SQL_DIR, "quality.sql")
++    with open(path, "r", encoding="utf-8") as f:
++        content = f.read()
++    checks = []
++    name = None
++    buf = []
++    for line in content.splitlines():
++        stripped = line.strip()
++        if stripped.startswith("-- CHECK:"):
++            if name and buf:
++                checks.append((name, "\n".join(buf)))
++            name = stripped.replace("-- CHECK:", "").strip()
++            buf = []
++        elif stripped and not stripped.startswith("--"):
++            buf.append(line)
++            if stripped.endswith(";"):
++                checks.append((name, "\n".join(buf)))
++                name, buf = None, []
++    for check_name, sql in checks:
++        rows = conn.execute(sql).fetchall()
++        if rows:
++            raise DataQualityError(
++                f"Data-quality check failed: {check_name} ({len(rows)} rows)")
++
++
+ def build_mart(data_dir: str = "data", db_path: str = "data/olist_mart.db") -> None:
+     parent = os.path.dirname(db_path)
+     if parent:
+         os.makedirs(parent, exist_ok=True)
+ 
+     conn = sqlite3.connect(db_path)
+     try:
+         conn.execute("PRAGMA journal_mode=WAL")
+         _ingest_raw(conn, data_dir)
+         _run_sql(conn, "clean.sql")
+         _enrich_distance(conn)
+         _run_sql(conn, "mart.sql")
++        _run_quality_checks(conn)
+         conn.commit()
+     finally:
+         conn.close()
+ 
+ 
+ if __name__ == "__main__":
+     build_mart()
+     print("Data mart built: data/olist_mart.db")
+diff --git a/Proyectos/ai-sales-assistant/tests/test_etl_quality.py b/Proyectos/ai-sales-assistant/tests/test_etl_quality.py
+new file mode 100644
+index 0000000..f993cad
+--- /dev/null
++++ b/Proyectos/ai-sales-assistant/tests/test_etl_quality.py
+@@ -0,0 +1,31 @@
++import os
++import shutil
++import sqlite3
++import pytest
++
++FIXTURES = os.path.join(os.path.dirname(__file__), "fixtures")
++
++
++@pytest.fixture
++def tmp_db(tmp_path):
++    return str(tmp_path / "mart.db")
++
++
++def test_clean_fixture_passes_quality(tmp_db):
++    from src.etl import build_mart
++    build_mart(data_dir=FIXTURES, db_path=tmp_db)  # must not raise
++    assert os.path.exists(tmp_db)
++
++
++def test_duplicate_seller_pk_raises(tmp_path):
++    from src.etl import build_mart
++    from src.errors import DataQualityError
++    dirty = tmp_path / "dirty"
++    shutil.copytree(FIXTURES, dirty)
++    # inject a duplicate seller_id row
++    sellers = dirty / "olist_sellers_dataset.csv"
++    with open(sellers, "a", encoding="utf-8") as f:
++        f.write("s1,99999,duplicate city,SP\n")
++    with pytest.raises(DataQualityError) as exc:
++        build_mart(data_dir=str(dirty), db_path=str(tmp_path / "d.db"))
++    assert "seller" in str(exc.value).lower()

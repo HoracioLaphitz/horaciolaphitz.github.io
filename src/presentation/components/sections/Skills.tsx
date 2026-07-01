@@ -42,12 +42,12 @@ const Skills = () => {
     <section
       ref={elementRef as React.RefObject<HTMLElement>}
       id="skills"
-      className="bg-skin-primary py-[120px]"
+      className="bg-skin-primary py-20 md:py-28"
     >
       <div className="mx-auto max-w-[980px] px-6">
         <div
-          className={`mb-16 transition-all duration-700 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          className={`mb-16 transition-all duration-200 ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
           }`}
         >
           <h2
@@ -62,8 +62,8 @@ const Skills = () => {
           {SKILL_GROUPS.map((group, gi) => (
             <div
               key={group.label}
-              className={`transition-all duration-700 ${
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              className={`transition-all duration-200 ${
+                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
               }`}
               style={{ transitionDelay: `${gi * 80}ms` }}
             >
@@ -90,8 +90,8 @@ const Skills = () => {
 
         {/* Credly Badges */}
         <div
-          className={`mt-16 pt-12 border-t border-skin-border transition-all duration-700 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          className={`mt-16 pt-12 border-t border-skin-border transition-all duration-200 ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
           }`}
           style={{ transitionDelay: "600ms" }}
         >

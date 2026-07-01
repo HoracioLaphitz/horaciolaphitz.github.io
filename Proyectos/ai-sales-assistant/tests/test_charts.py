@@ -28,3 +28,17 @@ def test_states_bar_chart_returns_figure(sample_df):
     by_state = sample_df.groupby("customer_state")["payment_value"].sum().reset_index()
     fig = states_bar_chart(by_state, state_col="customer_state", value_col="payment_value", title="States")
     assert isinstance(fig, Figure)
+
+
+def test_feature_importance_chart():
+    import plotly.graph_objects as go
+    from src.charts import feature_importance_chart
+    fig = feature_importance_chart({"pct_late": 0.4, "recency_days": 0.6})
+    assert isinstance(fig, go.Figure)
+
+
+def test_confusion_matrix_chart():
+    import plotly.graph_objects as go
+    from src.charts import confusion_matrix_chart
+    fig = confusion_matrix_chart([[10, 2], [3, 5]])
+    assert isinstance(fig, go.Figure)

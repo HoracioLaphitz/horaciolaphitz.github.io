@@ -1,32 +1,53 @@
 {
-  "lastUpdated": "2026-05-15T05:48:44.327Z",
-  "totalRepos": 22,
+  "lastUpdated": "2026-06-30T14:55:46.905Z",
+  "totalRepos": 23,
   "repositories": [
     {
-      "id": 1050887640,
-      "name": "HoracioLaphitz.github.io",
-      "description": "Portfolio Personal",
-      "html_url": "https://github.com/HoracioLaphitz/HoracioLaphitz.github.io",
+      "id": 1241914862,
+      "name": "horaciolaphitz.github.io",
+      "description": "",
+      "html_url": "https://github.com/HoracioLaphitz/horaciolaphitz.github.io",
       "stargazers_count": 0,
       "forks_count": 0,
-      "language": "HTML",
+      "language": "TypeScript",
       "fork": false,
-      "pushed_at": "2026-05-15T05:46:24Z",
-      "created_at": "2025-09-05T05:23:00Z",
-      "updated_at": "2026-05-05T15:24:01Z",
+      "pushed_at": "2026-06-11T02:18:56Z",
+      "created_at": "2026-05-18T00:52:58Z",
+      "updated_at": "2026-06-11T02:19:00Z",
       "topics": [],
-      "readme": "# Portfolio - Horacio Laphitz\n\nPortfolio profesional de Analista de Datos especializado en Python, SQL, Power BI y Machine Learning.\n\n## 🚀 Tecnologías\n\n- **Frontend**: Astro, React, TypeScript, Tailwind CSS\n- **Deployment**: GitHub Pages\n- **Analytics**: Python, SQL, Power BI, Machine Learning\n\n## 🌐 Enlaces\n\n- **Portfolio**: horaciolaphitz.github.io\n- **LinkedIn**: linkedin.com/in/horacio-laphitz\n- **GitHub**: github.com/HoracioLaphitz\n- **Credly**: credly.com/users/horacio-laphitz\n\n \n```\n\n## 📧 Contacto\n\n**Email**: horaciolaphitz99@gmail.com\n\n## 📄 Licencia\n\nMIT License © 2026 Horacio Laphitz",
+      "readme": "# Portfolio - Horacio Laphitz\n\nPortfolio profesional desarrollado con Astro, React y Tailwind CSS. Desplegado en GitHub Pages con integracion continua automatizada.\n\n## Stack Tecnologico\n\n- **Framework**: Astro 5.x\n- **UI Library**: React 18\n- **Styling**: Tailwind CSS 3\n- **Lenguaje**: TypeScript 5\n- **Testing**: Vitest\n- **Deployment**: GitHub Pages\n- **CI/CD**: GitHub Actions\n- **Package Manager**: pnpm 9\n\n## Enlaces\n\n- Portfolio: horaciolaphitz.github.io\n- LinkedIn: linkedin.com/in/horacio-laphitz\n- GitHub: github.com/HoracioLaphitz\n- Credly: credly.com/users/horacio-laphitz\n\n## Contacto\n\nEmail: horaciolaphitz99@gmail.com\n\n## Licencia\n\nMIT License (c) 2026 Horacio Laphitz",
       "languages": [
-        "HTML",
-        "Jupyter Notebook",
         "TypeScript",
-        "Python",
-        "JavaScript",
+        "Jupyter Notebook",
         "Astro",
         "CSS",
-        "Shell",
+        "JavaScript",
         "PowerShell",
-        "Makefile"
+        "Shell"
+      ]
+    },
+    {
+      "id": 1240279000,
+      "name": "Porfolio",
+      "description": "Porfolio de Analisis de Datos con astro",
+      "html_url": "https://github.com/HoracioLaphitz/Porfolio",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "language": "TypeScript",
+      "fork": false,
+      "pushed_at": "2026-05-16T17:53:17Z",
+      "created_at": "2026-05-16T00:39:11Z",
+      "updated_at": "2026-05-17T23:44:12Z",
+      "topics": [],
+      "readme": "# Portfolio - Horacio Laphitz\n\nProfessional portfolio built with Astro, React, and Tailwind CSS. Deployed on GitHub Pages with automated CI/CD.\n\n## 🚀 Tech Stack\n\n- **Framework**: Astro 5.x\n- **UI Library**: React 18\n- **Styling**: Tailwind CSS 3\n- **Language**: TypeScript 5\n- **Testing**: Vitest\n- **Deployment**: GitHub Pages\n- **CI/CD**: GitHub Actions\n- **Package Manager**: pnpm 9\n\n## 🔗 Links\n\n- **Portfolio**: horaciolaphitz.github.io\n- **LinkedIn**: linkedin.com/in/horacio-laphitz\n- **GitHub**: github.com/HoracioLaphitz\n- **Credly**: credly.com/users/horacio-laphitz\n\n## 📧 Contact\n\n**Email**: horaciolaphitz99@gmail.com\n\n## 📄 License\n\nMIT License © 2026 Horacio Laphitz\n\n---\n\nHoracio Laphitz",
+      "languages": [
+        "TypeScript",
+        "Jupyter Notebook",
+        "Astro",
+        "CSS",
+        "JavaScript",
+        "PowerShell",
+        "Shell"
       ]
     },
     {
@@ -122,10 +143,8 @@
         "tailwindcss",
         "vitejs"
       ],
-      "readme": "# PROYECTO en Desarrollo - API CON Python Y ViteJs\n- Se crea una REST API con Python y despues se usa Vitejs para generar la aplicacion cliente y consumir los endpoints a traves de peticiones HTTP.\n- Adicionalmente, se añadirá TailwindCSS para estilizar la aplicacion.",
-      "languages": [
-        "Python"
-      ]
+      "readme": "Proyecto que crea una API enpoint para enviar Datos",
+      "languages": []
     },
     {
       "id": 832251797,
@@ -273,9 +292,7 @@
         "reflex"
       ],
       "readme": "# Portfolio Data \n*Portfolio creado 100% con python*\nEl mismo utiza Reflex que es una plataforma de desarrollo de aplicaciones web que aprovecha el lenguaje de programación Python para simplificar la creación de aplicaciones. \nCon Reflex,se pueden crear aplicaciones web completas, tanto front-end como back-end, utilizando unicamente  Python.\nSe hace uso de la API de *Reflex*",
-      "languages": [
-        "Python"
-      ]
+      "languages": []
     },
     {
       "id": 760911253,

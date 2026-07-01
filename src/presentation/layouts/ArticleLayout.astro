@@ -14,9 +14,26 @@ interface Props {
 }
 
 const { title, description, category, pubDate, tags, author, github, dashboard, currentPath } = Astro.props;
+
+const siteUrl = "https://horaciolaphitz.github.io";
+const articleUrl = new URL(currentPath, siteUrl).href;
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: title,
+  description,
+  articleSection: category,
+  datePublished: pubDate.toISOString(),
+  keywords: tags.join(", "),
+  url: articleUrl,
+  mainEntityOfPage: { "@type": "WebPage", "@id": articleUrl },
+  author: { "@type": "Person", name: author, url: siteUrl },
+  publisher: { "@type": "Person", name: author, url: siteUrl },
+};
 ---
 
-<PageLayout title={title} description={description} currentPath={currentPath}>
+<PageLayout title={title} description={description} currentPath={currentPath} type="article">
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(articleSchema)} />
   <article class="article-layout">
     <!-- Header estilo NYT -->
     <header class="article-header">

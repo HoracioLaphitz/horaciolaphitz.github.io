@@ -520,8 +520,8 @@ const Timeline = () => {
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div
-          className={`text-center mb-12 transition-all duration-700 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          className={`text-center mb-12 transition-all duration-200 ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
           }`}
         >
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-skin-text mb-4">
@@ -530,8 +530,8 @@ const Timeline = () => {
         </div>
 
         <div
-          className={`mb-12 transition-all duration-700 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          className={`mb-12 transition-all duration-200 ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
           }`}
           style={{ transitionDelay: "100ms" }}
         >
@@ -593,8 +593,8 @@ const Timeline = () => {
         </div>
 
         <div
-          className={`mb-8 transition-all duration-700 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          className={`mb-8 transition-all duration-200 ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
           }`}
           style={{ transitionDelay: "200ms" }}
         >
@@ -642,7 +642,7 @@ const Timeline = () => {
         </div>
 
         <div
-          className={`relative transition-all duration-700 ${
+          className={`relative transition-all duration-200 ${
             isVisible ? "opacity-100" : "opacity-0"
           }`}
         >
@@ -682,7 +682,7 @@ const Timeline = () => {
               {filteredItems.map((item, index) => (
                 <div
                   key={`${item.period}-${item.role}-${index}`}
-                  className={`relative flex-shrink-0 w-80 transition-all duration-700 hover:scale-105 ${
+                  className={`relative flex-shrink-0 w-80 transition-all duration-200 hover:scale-105 ${
                     isVisible ? "opacity-100" : "opacity-0"
                   }`}
                   style={{ transitionDelay: `${Math.min(index * 50, 500)}ms` }}

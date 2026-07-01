@@ -1,3 +1,9 @@
+allowBuilds:
+  esbuild: true
+  sharp: true
+onlyBuiltDependencies:
+  - esbuild
+  - sharp
 overrides:
   got@<11.8.5: '>=11.8.5'
   semver-regex@<3.1.3: '>=3.1.3'
