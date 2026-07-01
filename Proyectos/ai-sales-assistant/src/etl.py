@@ -3,6 +3,8 @@ import sqlite3
 import numpy as np
 import pandas as pd
 
+from src.errors import DataQualityError
+
 SQL_DIR = os.path.join(os.path.dirname(__file__), "..", "sql")
 
 _CSV_TO_RAW = {
@@ -57,6 +59,32 @@ def _enrich_distance(conn: sqlite3.Connection) -> None:
         "stg_order_distance", conn, if_exists="replace", index=False)
 
 
+def _run_quality_checks(conn: sqlite3.Connection) -> None:
+    path = os.path.join(SQL_DIR, "quality.sql")
+    with open(path, "r", encoding="utf-8") as f:
+        content = f.read()
+    checks = []
+    name = None
+    buf = []
+    for line in content.splitlines():
+        stripped = line.strip()
+        if stripped.startswith("-- CHECK:"):
+            if name and buf:
+                checks.append((name, "\n".join(buf)))
+            name = stripped.replace("-- CHECK:", "").strip()
+            buf = []
+        elif stripped and not stripped.startswith("--"):
+            buf.append(line)
+            if stripped.endswith(";"):
+                checks.append((name, "\n".join(buf)))
+                name, buf = None, []
+    for check_name, sql in checks:
+        rows = conn.execute(sql).fetchall()
+        if rows:
+            raise DataQualityError(
+                f"Data-quality check failed: {check_name} ({len(rows)} rows)")
+
+
 def build_mart(data_dir: str = "data", db_path: str = "data/olist_mart.db") -> None:
     parent = os.path.dirname(db_path)
     if parent:
@@ -69,6 +97,7 @@ def build_mart(data_dir: str = "data", db_path: str = "data/olist_mart.db") -> N
         _run_sql(conn, "clean.sql")
         _enrich_distance(conn)
         _run_sql(conn, "mart.sql")
+        _run_quality_checks(conn)
         conn.commit()
     finally:
         conn.close()
