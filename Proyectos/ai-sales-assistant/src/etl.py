@@ -98,6 +98,7 @@ def build_mart(data_dir: str = "data", db_path: str = "data/olist_mart.db") -> N
         _enrich_distance(conn)
         _run_sql(conn, "mart.sql")
         _run_quality_checks(conn)
+        _run_sql(conn, "views.sql")
         conn.commit()
     finally:
         conn.close()
