@@ -37,6 +37,26 @@ def _ingest_raw(conn: sqlite3.Connection, data_dir: str) -> None:
         df.to_sql(table, conn, if_exists="replace", index=False)
 
 
+def _enrich_distance(conn: sqlite3.Connection) -> None:
+    orders = pd.read_sql_query(
+        "SELECT order_id, customer_id FROM stg_orders", conn)
+    items = pd.read_sql_query(
+        "SELECT order_id, seller_id FROM stg_order_items", conn)
+    cust = pd.read_sql_query(
+        "SELECT customer_id, lat AS c_lat, lng AS c_lng FROM stg_customers", conn)
+    sell = pd.read_sql_query(
+        "SELECT seller_id, lat AS s_lat, lng AS s_lng FROM stg_sellers", conn)
+
+    df = (orders.merge(items, on="order_id", how="left")
+                .merge(cust, on="customer_id", how="left")
+                .merge(sell, on="seller_id", how="left"))
+    df["distance_km"] = _haversine(
+        df["c_lat"].values, df["c_lng"].values,
+        df["s_lat"].values, df["s_lng"].values)
+    df[["order_id", "distance_km"]].to_sql(
+        "stg_order_distance", conn, if_exists="replace", index=False)
+
+
 def build_mart(data_dir: str = "data", db_path: str = "data/olist_mart.db") -> None:
     parent = os.path.dirname(db_path)
     if parent:
@@ -47,6 +67,8 @@ def build_mart(data_dir: str = "data", db_path: str = "data/olist_mart.db") -> N
         conn.execute("PRAGMA journal_mode=WAL")
         _ingest_raw(conn, data_dir)
         _run_sql(conn, "clean.sql")
+        _enrich_distance(conn)
+        _run_sql(conn, "mart.sql")
         conn.commit()
     finally:
         conn.close()
