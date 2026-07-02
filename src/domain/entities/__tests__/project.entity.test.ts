@@ -3,7 +3,12 @@
  * Testing business logic without external dependencies
  */
 
-import { ProjectEntity, ProjectCategory, ProjectStatus } from "../project.entity";
+import {
+    ProjectEntity,
+    ProjectCategory,
+    ProjectStatus,
+    type ProjectImpact,
+} from "../project.entity";
 
 interface ProjectOverrides {
     slug?: string;
@@ -11,6 +16,7 @@ interface ProjectOverrides {
     featured?: boolean;
     githubUrl?: string;
     dashboardUrl?: string;
+    impact?: ProjectImpact;
 }
 
 describe("ProjectEntity", () => {
@@ -23,10 +29,13 @@ describe("ProjectEntity", () => {
             ["python", "ml"],
             new Date("2024-01-01"),
             "Test Author",
-            overrides.githubUrl ?? "https://github.com/test/project",
+            "githubUrl" in overrides
+                ? overrides.githubUrl
+                : "https://github.com/test/project",
             overrides.dashboardUrl,
             overrides.status ?? ProjectStatus.Completed,
-            overrides.featured ?? false
+            overrides.featured ?? false,
+            overrides.impact
         );
     };
 
@@ -80,8 +89,16 @@ describe("ProjectEntity", () => {
 
     describe("isFeatured", () => {
         it("should return true for featured and publishable project", () => {
-            const project = createTestProject({ featured: true });
+            const project = createTestProject({
+                featured: true,
+                impact: { efficiencyGain: 25 },
+            });
             expect(project.isFeatured()).toBe(true);
+        });
+
+        it("should return false for featured project without impact metrics", () => {
+            const project = createTestProject({ featured: true });
+            expect(project.isFeatured()).toBe(false);
         });
 
         it("should return false for featured but not publishable project", () => {

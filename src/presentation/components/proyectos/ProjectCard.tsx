@@ -7,7 +7,7 @@ interface ProjectCardProps {
     description: string;
     slug: string;
     category: string;
-    tags: string[];
+    tags: readonly string[];
     github?: string;
     dashboard?: string;
 }

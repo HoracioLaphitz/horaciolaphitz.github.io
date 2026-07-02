@@ -2,8 +2,9 @@ import { useState, useMemo, useEffect } from "react";
 import ProjectCard from "../proyectos/ProjectCard";
 import ProjectFilters from "../proyectos/ProjectFilters";
 import { SearchIcon, FolderIcon } from "../ui/Icons";
+import type { ProjectEntity } from "@domain/entities/project.entity";
 
-interface SerializedProject {
+export interface SerializedProject {
   slug: string;
   title: string;
   description: string;
@@ -16,6 +17,23 @@ interface SerializedProject {
   status: string;
   featured: boolean;
 }
+
+export const serializeProjects = (
+  projects: ProjectEntity[]
+): SerializedProject[] =>
+  projects.map((p) => ({
+    slug: p.slug,
+    title: p.title,
+    description: p.description,
+    category: p.category,
+    tags: [...p.tags],
+    publishDate: p.publishDate.toISOString(),
+    author: p.author,
+    githubUrl: p.githubUrl,
+    dashboardUrl: p.dashboardUrl,
+    status: p.status,
+    featured: p.featured,
+  }));
 
 interface ProjectCategoriesProps {
   posts: SerializedProject[];

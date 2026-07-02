@@ -7,24 +7,17 @@ import ProjectCategories from "@presentation/components/sections/ProjectCategori
 import Contact from "@presentation/components/sections/Contact.tsx";
 import { getCollection } from "astro:content";
 import { ProjectMapper } from "@infrastructure/mappers/project.mapper";
+import {
+  serializeProjects,
+  type SerializedProject,
+} from "@presentation/components/sections/ProjectCategories.tsx";
 
-let proyectosSerializados: object[] = [];
+let proyectosSerializados: SerializedProject[] = [];
 try {
   const proyectosRaw = await getCollection("proyectos");
-  const proyectos = ProjectMapper.toDomainArray(proyectosRaw);
-  proyectosSerializados = proyectos.map((p) => ({
-    slug: p.slug,
-    title: p.title,
-    description: p.description,
-    category: p.category,
-    tags: [...p.tags],
-    publishDate: p.publishDate.toISOString(),
-    author: p.author,
-    githubUrl: p.githubUrl,
-    dashboardUrl: p.dashboardUrl,
-    status: p.status,
-    featured: p.featured,
-  }));
+  proyectosSerializados = serializeProjects(
+    ProjectMapper.toDomainArray(proyectosRaw)
+  );
 } catch {
   // Content collection "proyectos" does not exist yet
 }
