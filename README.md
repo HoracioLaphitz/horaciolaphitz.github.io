@@ -4,7 +4,7 @@ Portfolio profesional desplegado en GitHub Pages.
 
 ## 👋 Sobre mí
 
-Soy **Horacio Laphitz**, Data Scientist & ML Engineer. Construyo pipelines de datos, modelos evaluados con rigor, y software de producción con arquitectura limpia — no solo notebooks.
+Soy **Horacio Laphitz**, Data Analyst especializado en Python, SQL y Machine Learning. Construyo pipelines de datos, modelos evaluados con rigor, y software de producción con arquitectura limpia — no solo notebooks.
 
 **Proyectos para empezar:**
 - [Data Analysis Ecommerce](https://github.com/HoracioLaphitz/Data-Analysis-Ecommerce) — pipeline de datos + agente conversacional sobre 100k+ órdenes de e-commerce, con tests en cada capa.

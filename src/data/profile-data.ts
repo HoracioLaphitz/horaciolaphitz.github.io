@@ -11,7 +11,7 @@ import {
 
 export const PROFILE_DATA = new ProfileEntity(
   "Horacio Laphitz",
-  "Data Scientist & ML Enthusiast | Python, Arquitectura de Software & Machine Learning",
+  "Data Analyst | Python, SQL & Machine Learning",
   [
     "Analista de Datos orientado al desarrollo agéntico de soluciones para problemas del mundo real",
   ],
