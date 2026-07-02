@@ -58,14 +58,14 @@ const Skills = () => {
           </h2>
         </div>
 
-        <div className="space-y-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-10">
           {SKILL_GROUPS.map((group, gi) => (
             <div
               key={group.label}
               className={`transition-all duration-200 ${
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
               }`}
-              style={{ transitionDelay: `${gi * 80}ms` }}
+              style={{ transitionDelay: `${gi * 60}ms` }}
             >
               <h3 className="text-xs font-semibold text-skin-muted uppercase tracking-widest mb-4">
                 {group.label}
