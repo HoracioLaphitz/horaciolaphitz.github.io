@@ -74,38 +74,6 @@ export const PROFILE_DATA = new ProfileEntity(
       sortDate: new Date(2026, 1, 1),
     },
     {
-      period: "Mar 2025",
-      title: "Business & Operations Management Excellence",
-      issuer: "MTF Institute - Udemy",
-      certificateUrl:
-        "/Certificaciones/Certificate in Business & Operations Management Excellence.pdf",
-      sortDate: new Date(2025, 2, 1),
-    },
-    {
-      period: "Mar 2025",
-      title: "Sales & Service Data Analysis & Analytics Expert",
-      issuer: "MTF Institute - Udemy",
-      certificateUrl:
-        "/Certificaciones/Sales & Service Data Analysis & Analytics Expert.pdf",
-      sortDate: new Date(2025, 2, 1),
-    },
-    {
-      period: "Mar 2025",
-      title: "Microsoft Office Mastery",
-      issuer: "Sayman Creative Institute - Udemy",
-      certificateUrl:
-        "/Certificaciones/Microsoft Office Mastery Learn Word Excel and PowerPoint.pdf",
-      sortDate: new Date(2025, 2, 1),
-    },
-    {
-      period: "Mar 2025",
-      title: "Professional Diploma in Corporate Management",
-      issuer: "MTF Institute - Udemy",
-      certificateUrl:
-        "/Certificaciones/Prefesional diploma in corporate managemet.pdf",
-      sortDate: new Date(2025, 2, 1),
-    },
-    {
       period: "May 2024",
       title: "Supervised Machine Learning",
       issuer: "Stanford University - Coursera",
@@ -152,73 +120,6 @@ export const PROFILE_DATA = new ProfileEntity(
         "/Certificaciones/GOOGLE-Analisis-computacional-de-datos-R.pdf",
       sortDate: new Date(2024, 1, 1),
     },
-    {
-      period: "Feb 2024",
-      title: "Curso Final de Análisis Computacional de Datos",
-      issuer: "Google Careers - Coursera",
-      certificateUrl:
-        "/Certificaciones/Curso final de análisis computacional de datos completa un caso practico.pdf",
-      sortDate: new Date(2024, 1, 1),
-    },
-    {
-      period: "Ene 2024",
-      title: "Go Beyond the Numbers: Translate Data into Insights",
-      issuer: "Google Careers - Coursera",
-      certificateUrl: "/Certificaciones/GoBeyondtheNumbersTranslateData.pdf",
-      sortDate: new Date(2024, 0, 1),
-    },
-    {
-      period: "Ene 2024",
-      title: "Get Started with Python",
-      issuer: "Google Careers - Coursera",
-      certificateUrl: "/Certificaciones/GOOGLE-PYTHON-CERTIFICATE.pdf",
-      sortDate: new Date(2024, 0, 1),
-    },
-    {
-      period: "Ene 2024",
-      title: "Tu Primera Experiencia como Analista de Datos",
-      issuer: "Google Careers - Coursera",
-      certificateUrl:
-        "/Certificaciones/certificate-of-completion-for-tu-primera-experiencia-como-analista-de-datos.pdf",
-      sortDate: new Date(2024, 0, 1),
-    },
-    {
-      period: "Dic 2023",
-      title: "Python Expertise",
-      issuer: "Nicolas Schurmann - Udemy",
-      certificateUrl: "/Certificaciones/Python-Developer-Udemy.pdf",
-      sortDate: new Date(2023, 11, 1),
-    },
-    {
-      period: "Nov 2023",
-      title: "Introducción a Machine Learning",
-      issuer: "Domestika",
-      sortDate: new Date(2023, 10, 1),
-    },
-    {
-      period: "Jul 2023",
-      title: "Bases de Datos desde Cero",
-      issuer: "Silicon Misiones",
-      certificateUrl:
-        "/Certificaciones/SILICON MISIONES- Certificado Digital Bases de Datos.pdf",
-      sortDate: new Date(2023, 6, 1),
-    },
-    {
-      period: "Mar 2023",
-      title: "Data Analytics Nivel Growth",
-      issuer: "Silicon Misiones",
-      certificateUrl:
-        "/Certificaciones/SILICON MISIONES-Certificado de Data & Analytics.pdf",
-      sortDate: new Date(2023, 2, 1),
-    },
-    {
-      period: "Dic 2022",
-      title: "Introducción a la Programación",
-      issuer: "Silicon Misiones",
-      certificateUrl:
-        "/Certificaciones/SILICON MISIONES- Certificado Laphitz Horacio Intro a la programacion.pdf",
-      sortDate: new Date(2022, 11, 1),
-    },
   ],
   [
     {
@@ -242,28 +143,8 @@ export const PROFILE_DATA = new ProfileEntity(
       level: SkillLevel.Intermediate,
     },
     {
-      name: "LlamaIndex",
-      category: SkillCategory.DataAnalysis,
-      level: SkillLevel.Intermediate,
-    },
-    {
       name: "RAG (Retrieval-Augmented Generation)",
       category: SkillCategory.DataAnalysis,
-      level: SkillLevel.Intermediate,
-    },
-    {
-      name: "Vector Databases",
-      category: SkillCategory.Database,
-      level: SkillLevel.Intermediate,
-    },
-    {
-      name: "OpenAI API",
-      category: SkillCategory.Tools,
-      level: SkillLevel.Intermediate,
-    },
-    {
-      name: "Prompt Engineering",
-      category: SkillCategory.Tools,
       level: SkillLevel.Intermediate,
     },
     // Data Analysis
@@ -293,11 +174,6 @@ export const PROFILE_DATA = new ProfileEntity(
       level: SkillLevel.Advanced,
     },
     {
-      name: "Tableau",
-      category: SkillCategory.Visualization,
-      level: SkillLevel.Intermediate,
-    },
-    {
       name: "R",
       category: SkillCategory.Programming,
       level: SkillLevel.Intermediate,
@@ -314,26 +190,11 @@ export const PROFILE_DATA = new ProfileEntity(
       level: SkillLevel.Advanced,
     },
     {
-      name: "MongoDB",
-      category: SkillCategory.Database,
-      level: SkillLevel.Intermediate,
-    },
-    {
       name: "Databricks",
       category: SkillCategory.Tools,
       level: SkillLevel.Intermediate,
     },
     // Dev Tools
-    {
-      name: "JavaScript",
-      category: SkillCategory.Programming,
-      level: SkillLevel.Intermediate,
-    },
-    {
-      name: "TypeScript",
-      category: SkillCategory.Programming,
-      level: SkillLevel.Intermediate,
-    },
     { name: "Git", category: SkillCategory.Tools, level: SkillLevel.Advanced },
     {
       name: "Docker",
@@ -342,63 +203,6 @@ export const PROFILE_DATA = new ProfileEntity(
     },
     {
       name: "Excel Avanzado",
-      category: SkillCategory.Tools,
-      level: SkillLevel.Advanced,
-    },
-    // Soft Skills
-    {
-      name: "Resolución de Problemas",
-      category: SkillCategory.Soft,
-      level: SkillLevel.Expert,
-    },
-    {
-      name: "Pensamiento Analítico",
-      category: SkillCategory.Soft,
-      level: SkillLevel.Expert,
-    },
-    {
-      name: "Comunicación",
-      category: SkillCategory.Soft,
-      level: SkillLevel.Advanced,
-    },
-    {
-      name: "Trabajo en Equipo",
-      category: SkillCategory.Soft,
-      level: SkillLevel.Advanced,
-    },
-    // ERP
-    {
-      name: "Tango Gestión",
-      category: SkillCategory.Tools,
-      level: SkillLevel.Advanced,
-    },
-    {
-      name: "Parametrización Contable",
-      category: SkillCategory.Tools,
-      level: SkillLevel.Advanced,
-    },
-    {
-      name: "Gestión de Datos Maestros",
-      category: SkillCategory.Database,
-      level: SkillLevel.Advanced,
-    },
-    {
-      name: "Gestión de Stock",
-      category: SkillCategory.Tools,
-      level: SkillLevel.Advanced,
-    },
-    {
-      name: "Procesos de Ventas",
-      category: SkillCategory.Tools,
-      level: SkillLevel.Advanced,
-    },
-    {
-      name: "Tesorería",
-      category: SkillCategory.Tools,
-      level: SkillLevel.Advanced,
-    },
-    {
-      name: "Gestión de Compras",
       category: SkillCategory.Tools,
       level: SkillLevel.Advanced,
     },
