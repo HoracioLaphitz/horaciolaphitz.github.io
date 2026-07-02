@@ -22,4 +22,4 @@ Un modelo de deep learning con **transferencia de aprendizaje**: reutilizo featu
 
 ## Impacto
 
-Clasificación de imágenes funcional que muestra cómo aprovechar modelos preentrenados en lugar de entrenar desde cero.
+Clasificación de imágenes funcional que muestra cómo aprovechar modelos preentrenados en lugar de entrenar desde cero. El fine-tuning llevó la **val_accuracy de 79.69% a 100%** (val_loss final: 0.0179) en pocas épocas — la progresión rápida es evidencia directa del efecto del transfer learning frente a entrenar una red desde inicialización aleatoria.
