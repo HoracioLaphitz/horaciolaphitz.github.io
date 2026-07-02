@@ -1,7 +1,6 @@
 /* Variable Fonts - Apple-style Typography */
 
-/* Inter - Variable Font, fuente body y fallback de display */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+/* Inter is imported once in global.css */
 
 /* Font Preload Hints */
 :root {
