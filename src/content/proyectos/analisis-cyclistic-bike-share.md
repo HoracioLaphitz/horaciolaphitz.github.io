@@ -4,7 +4,7 @@ description: "Capstone de análisis de datos: en qué se diferencian los ciclist
 pubDate: 2024-06-01
 category: "Análisis de datos"
 tags: ["Data Analysis", "SQL", "R", "Data Visualization", "Business Intelligence"]
-draft: false
+draft: true
 ---
 
 ## Situación

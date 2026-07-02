@@ -4,7 +4,7 @@ description: "Cuando la respuesta es sí o no, la regresión logística es la he
 pubDate: 2024-03-15
 category: "Notebooks Analytics"
 tags: ["Python", "Scikit-learn", "Logistic Regression", "Classification", "Machine Learning"]
-draft: false
+draft: true
 ---
 
 ## Situación

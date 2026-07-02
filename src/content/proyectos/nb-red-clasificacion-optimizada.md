@@ -4,7 +4,7 @@ description: "Versión optimizada de la red de clasificación: tuning de hiperpa
 pubDate: 2024-03-12
 category: "Notebooks Analytics"
 tags: ["Python", "TensorFlow", "Neural Network", "Classification", "Hyperparameter Tuning"]
-draft: false
+draft: true
 ---
 
 ## Situación

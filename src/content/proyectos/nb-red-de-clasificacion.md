@@ -4,7 +4,7 @@ description: "Red neuronal para un problema de clasificación multiclase, con pr
 pubDate: 2024-03-06
 category: "Notebooks Analytics"
 tags: ["Python", "TensorFlow", "Neural Network", "Classification", "Deep Learning"]
-draft: false
+draft: true
 ---
 
 ## Situación

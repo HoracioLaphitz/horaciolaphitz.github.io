@@ -5,7 +5,7 @@ pubDate: 2024-03-22
 category: "Notebooks Analytics"
 tags: ["Python", "Web Scraping", "ETL", "SQLite", "Pandas", "BeautifulSoup"]
 github: "https://github.com/HoracioLaphitz/Capitalizacion-del-Mercado-de-los-Bancos-mas-Grandes"
-draft: false
+draft: true
 ---
 
 ## Situación

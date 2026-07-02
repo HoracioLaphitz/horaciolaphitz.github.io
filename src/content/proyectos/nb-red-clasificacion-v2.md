@@ -4,7 +4,7 @@ description: "Segunda iteración de la red de clasificación, ajustando capas y 
 pubDate: 2024-03-08
 category: "Notebooks Analytics"
 tags: ["Python", "TensorFlow", "Neural Network", "Classification"]
-draft: false
+draft: true
 ---
 
 ## Situación

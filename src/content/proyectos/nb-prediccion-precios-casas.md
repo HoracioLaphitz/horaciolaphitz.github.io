@@ -4,7 +4,7 @@ description: "Modelo de regresión que pone precio a una vivienda a partir de su
 pubDate: 2024-04-01
 category: "Notebooks Analytics"
 tags: ["Python", "Scikit-learn", "Regression", "Machine Learning", "Pandas"]
-draft: false
+draft: true
 ---
 
 ## Situación

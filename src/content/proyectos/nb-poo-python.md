@@ -4,7 +4,7 @@ description: "Ejercicios de POO en Python: clases, herencia, encapsulamiento y p
 pubDate: 2024-03-01
 category: "Notebooks Analytics"
 tags: ["Python", "OOP", "Software Design"]
-draft: false
+draft: true
 ---
 
 ## Situación

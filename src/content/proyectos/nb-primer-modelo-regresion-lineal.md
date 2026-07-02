@@ -4,7 +4,7 @@ description: "Introducción práctica a la regresión lineal: entrenamiento, pre
 pubDate: 2024-02-20
 category: "Notebooks Analytics"
 tags: ["Python", "Linear Regression", "Machine Learning", "Scikit-learn"]
-draft: false
+draft: true
 ---
 
 ## Situación

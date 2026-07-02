@@ -4,7 +4,7 @@ description: "Notebook de preparación y limpieza de datos, dejándolos listos p
 pubDate: 2024-05-01
 category: "Notebooks Analytics"
 tags: ["Python", "Pandas", "Data Cleaning", "BigQuery", "SQL"]
-draft: false
+draft: true
 ---
 
 ## Situación

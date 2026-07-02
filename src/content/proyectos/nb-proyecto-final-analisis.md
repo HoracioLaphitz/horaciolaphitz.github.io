@@ -4,7 +4,7 @@ description: "Proyecto integrador: desde la ingesta y limpieza hasta el análisi
 pubDate: 2024-05-15
 category: "Notebooks Analytics"
 tags: ["Python", "Pandas", "EDA", "Data Analysis", "Matplotlib"]
-draft: false
+draft: true
 ---
 
 ## Situación

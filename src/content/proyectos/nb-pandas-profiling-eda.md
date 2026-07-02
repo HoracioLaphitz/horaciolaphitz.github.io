@@ -4,7 +4,7 @@ description: "EDA en una línea: ydata-profiling (Pandas Profiling) genera un re
 pubDate: 2024-05-01
 category: "Notebooks Analytics"
 tags: ["Python", "Pandas", "EDA", "ydata-profiling", "Data Analysis"]
-draft: false
+draft: true
 ---
 
 ## Situación

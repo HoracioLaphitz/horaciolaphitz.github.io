@@ -4,7 +4,7 @@ description: "Versión base de una red de clasificación, punto de partida para 
 pubDate: 2024-03-07
 category: "Notebooks Analytics"
 tags: ["Python", "TensorFlow", "Neural Network", "Classification"]
-draft: false
+draft: true
 ---
 
 ## Situación

@@ -4,7 +4,7 @@ description: "Implementación de una CNN para clasificación de imágenes con Te
 pubDate: 2024-03-05
 category: "Notebooks Analytics"
 tags: ["Python", "TensorFlow", "CNN", "Deep Learning", "Computer Vision"]
-draft: false
+draft: true
 ---
 
 ## Situación
