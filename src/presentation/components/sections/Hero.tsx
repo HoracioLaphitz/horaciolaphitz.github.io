@@ -14,9 +14,8 @@ const Hero = () => {
       className="min-h-screen flex items-center justify-center relative pt-14"
     >
       <div
-        className={`mx-auto max-w-[760px] w-full px-6 py-20 text-center transition-all duration-700 ${
-          mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-        }`}
+        className={`mx-auto max-w-[760px] w-full px-6 py-20 text-center transition-all duration-700 ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+          }`}
       >
         <p className="text-sm font-semibold text-brand-primary uppercase tracking-widest mb-6">
           Data Science & ML Engineering
@@ -38,7 +37,7 @@ const Hero = () => {
         </p>
 
         <p className="text-lg text-skin-muted max-w-xl mx-auto leading-relaxed mb-10">
-          Python, SQL, ETL, Power BI y Databricks — limpio datos reales de negocio, armo dashboards que se usan en producción y modelos evaluados con métricas, no con notebooks sueltos.
+          Python, SQL, Power BI y Databricks + ETL, EDA, SDD, TDD para armado de dashboards, seguimiento e identificacion de Kpi´s y entrenamiento de modelos para uso local.
         </p>
 
         <div className="flex flex-wrap items-center justify-center gap-6">
