@@ -38,7 +38,7 @@ const Hero = () => {
         </p>
 
         <p className="text-lg text-skin-muted max-w-xl mx-auto leading-relaxed mb-10">
-          Construyo software de producción con arquitectura sólida, no solo notebooks — pipelines de datos, modelos evaluados con rigor, y sistemas que otros pueden mantener.
+          Python, SQL, ETL, Power BI y Databricks — limpio datos reales de negocio, armo dashboards que se usan en producción y modelos evaluados con métricas, no con notebooks sueltos.
         </p>
 
         <div className="flex flex-wrap items-center justify-center gap-6">
@@ -50,7 +50,7 @@ const Hero = () => {
             Ver proyectos
           </a>
           <a
-            href="/CV-HoracioNahuelLaphitz.pdf"
+            href="/CV_HoracioLaphitz.docx"
             download
             className="text-sm font-semibold text-skin-text hover:text-brand-primary transition-colors duration-200"
           >

@@ -599,8 +599,6 @@ const Timeline = () => {
             }}
           >
             <div className="relative inline-flex gap-6 px-4 min-w-full">
-              <div className="absolute top-12 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-brand-primary to-transparent" />
-
               {filteredItems.map((item, index) => (
                 <div
                   key={`${item.period}-${item.role}-${index}`}
