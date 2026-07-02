@@ -49,7 +49,7 @@ const Hero = () => {
             Ver proyectos
           </a>
           <a
-            href="/CV_HoracioLaphitz.docx"
+            href="/CV_HoracioLaphitz.pdf"
             download
             className="text-sm font-semibold text-skin-text hover:text-brand-primary transition-colors duration-200"
           >
