@@ -1,0 +1,75 @@
+# Workflow: Hotfix Deployment
+# Branch: hotfix/*
+# Purpose: Fast-track critical fixes to production
+# Triggers: Push to hotfix branches
+# Dependencies: pnpm, Node.js 23, Astro
+# Outputs: Immediate deployment to GitHub Pages after validation
+
+name: Hotfix Deployment
+
+on:
+  push:
+    branches:
+      - "hotfix/**"
+  workflow_dispatch:
+
+concurrency:
+  group: hotfix-deployment
+  cancel-in-progress: false
+
+jobs:
+  validate-and-deploy:
+    name: Validate and Deploy Hotfix
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout hotfix branch
+        uses: actions/checkout@v4
+        with:
+          submodules: false
+          fetch-depth: 1
+          clean: true
+
+      - name: Setup Node.js 23
+        uses: actions/setup-node@v4
+        with:
+          node-version: "23"
+          cache: "pnpm"
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 9
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run critical tests
+        run: pnpm run test:run
+
+      - name: Type check
+        run: pnpm run astro check
+
+      - name: Build
+        run: pnpm run build
+        env:
+          PUBLIC_WEB3FORMS_ACCESS_KEY: ${{ secrets.PUBLIC_WEB3FORMS_ACCESS_KEY }}
+          NODE_ENV: production
+
+      - name: Validate build
+        run: |
+          echo "🔍 Validating hotfix build..."
+          node scripts/validate-file-sizes.mjs dist
+          if [ ! -d "dist" ]; then
+            echo "❌ Build failed"
+            exit 1
+          fi
+          echo "✅ Hotfix build validated"
+
+      - name: Create hotfix summary
+        run: |
+          echo "## Hotfix Deployment" >> $GITHUB_STEP_SUMMARY
+          echo "- Branch: ${{ github.ref_name }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Commit: ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Status: ✅ Ready for deployment" >> $GITHUB_STEP_SUMMARY

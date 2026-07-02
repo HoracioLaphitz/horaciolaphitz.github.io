@@ -1,0 +1,50 @@
+# Vercel Ignore File
+# Archivos que NO deben subirse a Vercel
+
+# Development
+.git
+.github
+.vscode
+.idea
+
+# Dependencies (se instalan en build)
+node_modules
+
+# Build artifacts (se generan en build)
+dist
+.astro
+
+# Tests
+coverage
+*.test.ts
+*.test.tsx
+*.spec.ts
+*.spec.tsx
+
+# Docs
+docs
+*.md
+!README.md
+
+# Scripts de desarrollo
+scripts
+
+# Certificados y archivos grandes
+
+public/notebooks
+public/notebooks-html
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment
+.env.local
+.env.*.local
+
+# Editor
+.DS_Store
+Thumbs.db
