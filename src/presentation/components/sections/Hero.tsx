@@ -18,7 +18,7 @@ const Hero = () => {
           }`}
       >
         <p className="text-sm font-semibold text-brand-primary uppercase tracking-widest mb-6">
-          Data Science & ML Engineering
+          Data | Machine Learning | Systems
         </p>
 
         <h1
@@ -37,7 +37,7 @@ const Hero = () => {
         </p>
 
         <p className="text-lg text-skin-muted max-w-xl mx-auto leading-relaxed mb-10">
-          Python, SQL, Power BI y Databricks + ETL, EDA, SDD, TDD para armado de dashboards, seguimiento e identificacion de Kpi´s y entrenamiento de modelos para uso local.
+          Construyo pipelines de datos y dashboards con Python, SQL, Power BI y Databricks — como el pipeline sobre 100k+ órdenes de e-commerce con tests en cada capa, o los KPIs de ventas en Power BI listos para dirección.
         </p>
 
         <div className="flex flex-wrap items-center justify-center gap-6">
