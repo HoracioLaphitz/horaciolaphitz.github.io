@@ -26,36 +26,8 @@ docs
 *.md
 !README.md
 
-# Scripts de desarrollo (no scripts/ entero: build.mjs y get-github-repos.mjs corren en build)
-scripts/check-deploy.mjs
-scripts/clean-public.mjs
-scripts/cleanup-large-files.mjs
-scripts/cleanup-redundant-files.mjs
-scripts/deploy-safe.mjs
-scripts/design-migration-md3.mjs
-scripts/diagnose-deployment.mjs
-scripts/fix-deploy-now.mjs
-scripts/fix-git-remote.mjs
-scripts/fix-github-pages-deploy.mjs
-scripts/fix-submodule-issue.mjs
-scripts/fix-submodules-complete.mjs
-scripts/init-branches.ps1
-scripts/init-branches.sh
-scripts/pre-build-validation.mjs
-scripts/pre-commit-check.mjs
-scripts/prepare-build.mjs
-scripts/prepare-dev.mjs
-scripts/push-to-github.ps1
-scripts/reorganize-components.mjs
-scripts/security-audit.sh
-scripts/security-cleanup.ps1
-scripts/security-cleanup.sh
-scripts/setup-git-hooks.mjs
-scripts/sync-readme-metadata.mjs
-scripts/update-imports.mjs
-scripts/validate-file-sizes.mjs
-scripts/validate-readme.mjs
-scripts/verify-deploy-setup.mjs
+# Scripts de desarrollo (el build ya no ejecuta nada de scripts/)
+scripts
 
 # Certificados y archivos grandes
 

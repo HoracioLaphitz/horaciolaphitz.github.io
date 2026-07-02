@@ -21,10 +21,9 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "node scripts/build.mjs && astro build",
+    "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "fetch-repos": "node scripts/get-github-repos.mjs",
     "test": "vitest",
     "test:run": "vitest run",
     "deploy:check": "node scripts/check-deploy.mjs",
