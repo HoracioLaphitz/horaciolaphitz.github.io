@@ -5,7 +5,7 @@
 
 import { useState, useEffect } from "react";
 import type { ProjectEntity } from "../../domain/entities/project.entity";
-import { ProjectFactory } from "../../main/factories/project.factory";
+import { ProjectFacade } from "../../main/factories/project.facade";
 
 export interface UseProjectsReturn {
     projects: ProjectEntity[];
@@ -24,7 +24,7 @@ export function useProjects(): UseProjectsReturn {
         async function fetchProjects() {
             try {
                 setLoading(true);
-                const data = await ProjectFactory.getAllProjects();
+                const data = await ProjectFacade.getAllProjects();
 
                 if (mounted) {
                     setProjects(data);
@@ -63,7 +63,7 @@ export function useFeaturedProjects(): UseProjectsReturn {
         async function fetchProjects() {
             try {
                 setLoading(true);
-                const data = await ProjectFactory.getFeaturedProjects();
+                const data = await ProjectFacade.getFeaturedProjects();
 
                 if (mounted) {
                     setProjects(data);

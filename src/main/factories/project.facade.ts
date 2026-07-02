@@ -1,12 +1,12 @@
 /**
- * Factory: Project
- * Simplifies creation of project-related instances
+ * Facade: Project
+ * Simplifies access to project-related use cases behind a single entry point
  */
 
 import { container } from "@main/di/container";
 import type { ProjectService } from "@application/services/project.service";
 
-export class ProjectFactory {
+export class ProjectFacade {
   static getService(): ProjectService {
     return container.getProjectService();
   }
