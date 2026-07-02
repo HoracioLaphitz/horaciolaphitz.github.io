@@ -1,14 +1,34 @@
 ---
-title: "AI Sales Assistant"
-description: "Chat en lenguaje natural sobre 100k+ órdenes de e-commerce. LangChain + Groq llama3-70b analiza datos de Olist Brazil y responde preguntas de negocio en segundos."
+title: "Data Analysis Ecommerce — Pipeline de Datos + Agente LLM"
+description: "Pipeline de datos sobre 100k+ órdenes de e-commerce (Olist Brazil) con capa de análisis, tests automatizados, y una interfaz conversacional como capa de consulta — no como el producto en sí."
 pubDate: 2026-06-30
-category: "GenAI"
-tags: ["LangChain", "Groq", "LLM", "Pandas", "Streamlit", "Python", "RAG", "Data Analytics"]
-github: "https://github.com/HoracioLaphitz/ai-sales-assistant"
+category: "Data Science"
+tags: ["Python", "Pandas", "Data Engineering", "Testing", "LangChain", "LLM"]
+github: "https://github.com/HoracioLaphitz/Data-Analysis-Ecommerce"
 featured: true
 draft: false
 ---
 
-Aplicación de análisis conversacional sobre el dataset real de Olist Brazilian E-Commerce.
-Combina un dashboard automático de KPIs con un agente LangChain que responde preguntas
-en lenguaje natural generando y ejecutando código Pandas en tiempo real.
+## Situación
+
+El dataset Brazilian E-Commerce de Olist (100k+ órdenes, 5 tablas relacionadas) necesita un pipeline confiable antes de que cualquier análisis o modelo tenga sentido — merge de tablas, filtrado de estados válidos, tipado correcto de fechas y montos.
+
+## Arquitectura
+
+Separación por responsabilidad, cada módulo con una interfaz clara:
+
+- **`loader.py`** — carga los 5 CSVs, mergea por `order_id`/`product_id`/`customer_id`, filtra únicamente órdenes `delivered`, devuelve un DataFrame con schema fijo.
+- **`analysis.py`** — calcula KPIs (revenue total, AOV, top categorías, revenue por estado) sobre el DataFrame ya limpio.
+- **`charts.py`** — funciones puras que devuelven figuras Plotly, sin lógica de negocio.
+- **`agent.py`** — capa de consulta en lenguaje natural sobre el DataFrame vía LangChain, aislada del resto del pipeline.
+
+Cada módulo tiene su propio archivo de test (`test_loader.py`, `test_analysis.py`, `test_charts.py`, `test_agent.py`), con mocks del LLM para no depender de la API externa en CI.
+
+## Decisiones técnicas
+
+- El agente LLM es la capa de interfaz, no el núcleo del proyecto — el valor real está en el pipeline de datos y en que cada capa se puede probar de forma aislada.
+- `agent.py` no conoce el origen de los datos (`loader.py`); solo recibe un DataFrame con un schema acordado — esto permite cambiar la fuente de datos sin tocar la capa de consulta.
+
+## Resultado
+
+Pipeline reproducible con cobertura de tests en las 4 capas y separación de responsabilidades que permite extender (nuevas fuentes de datos, nuevos proveedores de LLM) sin reescribir el resto del sistema.
