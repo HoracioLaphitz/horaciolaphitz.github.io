@@ -1,6 +1,6 @@
 ---
 title: "Data Analysis Ecommerce — Pipeline de Datos + Agente LLM"
-description: "Pipeline de datos sobre 100k+ órdenes de e-commerce (Olist Brazil) con capa de análisis, tests automatizados, y una interfaz conversacional como capa de consulta — no como el producto en sí."
+description: "Pipeline de datos sobre 100k+ órdenes de e-commerce (Olist Brazil) con capa de análisis, tests automatizados y una interfaz conversacional para consultar los datos."
 pubDate: 2026-06-30
 category: "Data Science"
 tags: ["Python", "Pandas", "Data Engineering", "Testing", "LangChain", "LLM"]
@@ -11,7 +11,7 @@ draft: false
 
 ## Situación
 
-El dataset Brazilian E-Commerce de Olist (100k+ órdenes, 5 tablas relacionadas) necesita un pipeline confiable antes de que cualquier análisis o modelo tenga sentido — merge de tablas, filtrado de estados válidos, tipado correcto de fechas y montos.
+El dataset Brazilian E-Commerce de Olist (100k+ órdenes, 5 tablas relacionadas) necesita un pipeline confiable antes de que cualquier análisis o modelo tenga sentido: merge de tablas, filtrado de estados válidos y tipado correcto de fechas y montos.
 
 ## Arquitectura
 
@@ -26,7 +26,7 @@ Cada módulo tiene su propio archivo de test (`test_loader.py`, `test_analysis.p
 
 ## Decisiones técnicas
 
-- El agente LLM es la capa de interfaz, no el núcleo del proyecto — el valor real está en el pipeline de datos y en que cada capa se puede probar de forma aislada.
+- El valor del proyecto está en el pipeline de datos y en que cada capa se puede probar de forma aislada; el agente LLM es solo la capa de consulta.
 - `agent.py` no conoce el origen de los datos (`loader.py`); solo recibe un DataFrame con un schema acordado — esto permite cambiar la fuente de datos sin tocar la capa de consulta.
 
 ## Resultado

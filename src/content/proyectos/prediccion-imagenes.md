@@ -18,8 +18,8 @@ Lograr que un script clasifique correctamente imágenes nuevas, convirtiéndolas
 
 ## La solución
 
-Un modelo de deep learning con **transferencia de aprendizaje**: reutilizo features de un modelo preentrenado y afino sobre el set propio, acelerando el entrenamiento y mejorando la precisión.
+Un modelo de deep learning con **transferencia de aprendizaje**: reutilizo features de un modelo preentrenado y afino sobre el set propio. Entrena más rápido y con mejor precisión que una red desde cero.
 
 ## Impacto
 
-Clasificación de imágenes funcional que muestra cómo aprovechar modelos preentrenados en lugar de entrenar desde cero. El fine-tuning llevó la **val_accuracy de 79.69% a 100%** (val_loss final: 0.0179) en pocas épocas — la progresión rápida es evidencia directa del efecto del transfer learning frente a entrenar una red desde inicialización aleatoria.
+Clasificación de imágenes funcional que muestra cómo aprovechar modelos preentrenados en lugar de entrenar desde cero. El fine-tuning llevó la **val_accuracy de 79.69% a 100%** (val_loss final: 0.0179) en pocas épocas. Esa progresión muestra el efecto del transfer learning frente a entrenar desde inicialización aleatoria.
