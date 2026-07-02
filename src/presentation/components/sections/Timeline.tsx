@@ -16,84 +16,6 @@ interface TimelineItem {
 
 type FilterType = "all" | "work" | "certification";
 
-const CalendarIcon = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-    strokeWidth="1.5"
-    stroke="currentColor"
-    {...props}
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"
-    />
-  </svg>
-);
-
-const MapPinIcon = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-    strokeWidth="1.5"
-    stroke="currentColor"
-    {...props}
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"
-    />
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"
-    />
-  </svg>
-);
-
-const BuildingOfficeIcon = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-    strokeWidth="1.5"
-    stroke="currentColor"
-    {...props}
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008z"
-    />
-  </svg>
-);
-
-const EyeIcon = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-    strokeWidth="1.5"
-    stroke="currentColor"
-    {...props}
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"
-    />
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-    />
-  </svg>
-);
-
 const DownloadIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -601,10 +523,10 @@ const Timeline = () => {
           <div className="flex flex-wrap justify-center gap-3">
             <button
               onClick={() => setActiveFilter("all")}
-              className={`px-6 py-3 rounded-lg text-sm font-semibold transition-all duration-300 ${
+              className={`px-1 pb-2 text-sm font-semibold border-b-2 transition-all duration-300 ${
                 activeFilter === "all"
-                  ? "bg-brand-primary text-skin-primary"
-                  : "bg-skin-primary text-skin-text border border-skin-border hover:border-brand-primary"
+                  ? "border-brand-primary text-skin-text"
+                  : "border-transparent text-skin-muted hover:text-skin-text"
               }`}
             >
               <span className="flex items-center gap-2">
@@ -614,10 +536,10 @@ const Timeline = () => {
             </button>
             <button
               onClick={() => setActiveFilter("work")}
-              className={`px-6 py-3 rounded-lg text-sm font-semibold transition-all duration-300 ${
+              className={`px-1 pb-2 text-sm font-semibold border-b-2 transition-all duration-300 ${
                 activeFilter === "work"
-                  ? "bg-brand-primary text-skin-primary"
-                  : "bg-skin-primary text-skin-text border border-skin-border hover:border-brand-primary"
+                  ? "border-brand-primary text-skin-text"
+                  : "border-transparent text-skin-muted hover:text-skin-text"
               }`}
             >
               <span className="flex items-center gap-2">
@@ -627,10 +549,10 @@ const Timeline = () => {
             </button>
             <button
               onClick={() => setActiveFilter("certification")}
-              className={`px-6 py-3 rounded-lg text-sm font-semibold transition-all duration-300 ${
+              className={`px-1 pb-2 text-sm font-semibold border-b-2 transition-all duration-300 ${
                 activeFilter === "certification"
-                  ? "bg-brand-primary text-skin-primary"
-                  : "bg-skin-primary text-skin-text border border-skin-border hover:border-brand-primary"
+                  ? "border-brand-primary text-skin-text"
+                  : "border-transparent text-skin-muted hover:text-skin-text"
               }`}
             >
               <span className="flex items-center gap-2">
@@ -682,56 +604,37 @@ const Timeline = () => {
               {filteredItems.map((item, index) => (
                 <div
                   key={`${item.period}-${item.role}-${index}`}
-                  className={`relative flex-shrink-0 w-80 transition-all duration-200 hover:scale-105 ${
+                  className={`relative flex-shrink-0 w-80 transition-all duration-200 ${
                     isVisible ? "opacity-100" : "opacity-0"
                   }`}
                   style={{ transitionDelay: `${Math.min(index * 50, 500)}ms` }}
                 >
-                  <div className="group bg-skin-primary border border-skin-border p-6 rounded-2xl hover:border-brand-primary transition-all duration-300 h-full">
-                    <div className="flex items-start justify-between gap-2 mb-4">
-                      <div
-                        className={`p-2.5 rounded-xl ${
-                          item.type === "work"
-                            ? "bg-brand-primary/10 text-brand-primary"
-                            : "bg-brand-accent/10 text-brand-accent"
-                        }`}
-                      >
-                        {item.type === "work" ? (
-                          <BriefcaseIcon className="w-5 h-5" />
-                        ) : (
-                          <BookOpenIcon className="w-5 h-5" />
-                        )}
-                      </div>
+                  <div className="border-t-2 border-skin-border pt-5 h-full">
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="text-xs font-medium text-skin-muted">
+                        {item.period}
+                      </span>
                       <span className="text-xs font-medium text-skin-muted uppercase tracking-wide">
                         {item.type === "work" ? "Experiencia" : "Certificación"}
                       </span>
                     </div>
 
-                    <div className="mb-4">
-                      <span className="inline-flex items-center gap-1.5 text-xs font-medium text-brand-primary bg-brand-primary/10 px-3 py-1.5 rounded-lg">
-                        <CalendarIcon className="w-3.5 h-3.5" />
-                        {item.period}
-                      </span>
-                    </div>
-
-                    <h3 className="text-lg font-bold text-skin-text mb-3 line-clamp-2 min-h-[3.5rem] group-hover:text-brand-primary transition-colors">
+                    <h3 className="text-lg font-semibold text-skin-text mb-1 line-clamp-2 min-h-[3.5rem]">
                       {item.role}
                     </h3>
 
-                    <p className="text-sm font-semibold text-brand-primary mb-2 flex items-center gap-2">
-                      <BuildingOfficeIcon className="w-4 h-4" />
+                    <p className="text-sm text-skin-muted mb-2">
                       {item.company}
                     </p>
 
                     {item.location && (
-                      <p className="text-xs text-skin-muted mb-3 flex items-center gap-1.5 font-medium">
-                        <MapPinIcon className="w-4 h-4" />
+                      <p className="text-xs text-skin-muted mb-3">
                         {item.location}
                       </p>
                     )}
 
                     {item.description && (
-                      <p className="text-sm text-skin-muted mt-4 pt-4 border-t border-skin-border/50 line-clamp-3 leading-relaxed">
+                      <p className="text-sm text-skin-muted mt-3 pt-3 border-t border-skin-border/50 line-clamp-3 leading-relaxed">
                         {item.description}
                       </p>
                     )}
@@ -739,31 +642,11 @@ const Timeline = () => {
                     {item.type === "certification" && item.certificateUrl && (
                       <button
                         onClick={() => setSelectedCert(item)}
-                        className="mt-5 w-full inline-flex items-center gap-2 px-4 py-2.5 bg-brand-primary text-skin-primary text-sm font-semibold rounded-lg hover:bg-brand-hover transition-all duration-300 justify-center"
+                        className="mt-4 text-sm font-semibold text-brand-primary hover:underline"
                       >
-                        <EyeIcon className="w-4 h-4" />
-                        Ver Certificado
+                        Ver certificado →
                       </button>
                     )}
-                  </div>
-
-                  <div className="absolute -top-12 left-1/2 -translate-x-1/2 z-10">
-                    <div className="relative">
-                      <div
-                        className={`absolute inset-0 w-4 h-4 rounded-full animate-ping opacity-20 ${
-                          item.type === "work"
-                            ? "bg-brand-primary"
-                            : "bg-brand-accent"
-                        }`}
-                      />
-                      <div
-                        className={`relative w-4 h-4 rounded-full border-4 border-skin-secondary ${
-                          item.type === "work"
-                            ? "bg-brand-primary"
-                            : "bg-brand-accent"
-                        }`}
-                      />
-                    </div>
                   </div>
                 </div>
               ))}
