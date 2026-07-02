@@ -20,13 +20,9 @@ const Contact = () => {
             className="font-bold text-skin-text tracking-tight mb-6"
             style={{ fontSize: "clamp(36px, 5vw, 56px)", letterSpacing: "-0.02em" }}
           >
-            ¿Proyecto o Pregunta en mente?
+            Contacto
           </h2>
-          <p className="text-xl text-skin-muted mb-10 max-w-xl leading-relaxed">
-            Hablemos.
-
-          </p>
-          <p className="text-xl text-skin-muted mb-10 max-w-xl leading-relaxed">Disponibilidad: Lunes a Sábados de 08:00 a 18:00hs</p>
+          <p className="text-xl text-skin-muted mb-10 max-w-xl leading-relaxed">Disponibilidad Horaria: <span className="font-bold">Lunes a Sábados</span> de <span className="font-bold">08:00 a 18:00hs</span></p>
           <div className="flex flex-wrap gap-4">
             <a
               href="mailto:horaciolaphitz99@gmail.com"
