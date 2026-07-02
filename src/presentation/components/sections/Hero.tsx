@@ -32,12 +32,8 @@ const Hero = () => {
           {PROFILE_DATA.name}
         </h1>
 
-        <p className="text-xl text-skin-muted font-medium mb-4 tracking-wide">
-          {PROFILE_DATA.title}
-        </p>
-
         <p className="text-lg text-skin-muted max-w-xl mx-auto leading-relaxed mb-10">
-          Construyo pipelines de datos y dashboards con Python, SQL, Power BI y Databricks — como el pipeline sobre 100k+ órdenes de e-commerce con tests en cada capa, o los KPIs de ventas en Power BI listos para dirección.
+          Analista de Datos con Python + SQL + Desarrollo Agéntico
         </p>
 
         <div className="flex flex-wrap items-center justify-center gap-6">
@@ -47,6 +43,12 @@ const Hero = () => {
             style={{ backgroundColor: "var(--accent-primary)" }}
           >
             Ver proyectos
+          </a>
+          <a
+            href={`mailto:${PROFILE_DATA.contact.email}`}
+            className="px-6 py-3 text-sm font-semibold text-skin-text border border-skin-border rounded-lg transition-colors duration-200 hover:border-brand-primary hover:text-brand-primary"
+          >
+            Contacto
           </a>
           <a
             href="/CV_HoracioLaphitz.pdf"
