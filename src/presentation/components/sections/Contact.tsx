@@ -1,5 +1,6 @@
 import { useScrollAnimation } from "@presentation/hooks/useScrollAnimation";
-import { MailIcon, LinkedinIcon } from "../ui/Icons";
+import { MailIcon, LinkedinIcon, GithubIcon } from "../ui/Icons";
+import { PROFILE_DATA } from "@data/profile-data";
 
 const Contact = () => {
   const { elementRef, isVisible } = useScrollAnimation({ threshold: 0.2 });
@@ -43,6 +44,15 @@ const Contact = () => {
             >
               <LinkedinIcon className="w-4 h-4" />
               LinkedIn
+            </a>
+            <a
+              href={PROFILE_DATA.contact.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 px-6 py-3 text-sm font-semibold text-skin-text bg-transparent border border-skin-border rounded-lg hover:bg-skin-primary transition-all duration-200"
+            >
+              <GithubIcon className="w-4 h-4" />
+              GitHub
             </a>
           </div>
         </div>
