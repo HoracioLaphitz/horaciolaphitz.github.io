@@ -24,6 +24,8 @@ const { Content } = await proyecto.render();
   author={proyecto.data.author}
   github={proyecto.data.github}
   dashboard={proyecto.data.dashboard}
+  notebooks={proyecto.data.resources?.notebooks}
+  projectSlug={proyecto.slug}
   currentPath={`/proyectos/${proyecto.slug}`}
 >
   <Content />
