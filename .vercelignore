@@ -25,6 +25,8 @@ coverage
 docs
 *.md
 !README.md
+# Content collections must reach the build — they are the site's data
+!src/content/**/*.md
 
 # Scripts de desarrollo (el build ya no ejecuta nada de scripts/)
 scripts
