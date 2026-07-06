@@ -5,7 +5,7 @@ pubDate: 2024-03-05
 category: "Notebooks Analytics"
 tags: ["Python", "TensorFlow", "CNN", "Deep Learning", "Computer Vision"]
 github: "https://github.com/HoracioLaphitz/horaciolaphitz.github.io/blob/main/public/Proyectos/Notebooks/Red-Neuronal-Convolucional/Red%20Neuronal%20Convolucional.ipynb"
-draft: true
+draft: false
 resources:
   notebooks:
     - name: "CNN Principal"

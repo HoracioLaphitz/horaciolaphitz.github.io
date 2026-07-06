@@ -5,7 +5,7 @@ pubDate: 2024-03-12
 category: "Notebooks Analytics"
 tags: ["Python", "TensorFlow", "Neural Network", "Classification", "Hyperparameter Tuning"]
 github: "https://github.com/HoracioLaphitz/horaciolaphitz.github.io/blob/main/public/Proyectos/Notebooks/Red_Clasificacion_Optimizado/Red_Clasificacion_Optimizado.ipynb"
-draft: true
+draft: false
 resources:
   notebooks:
     - name: "Red de Clasificación — Optimizada"

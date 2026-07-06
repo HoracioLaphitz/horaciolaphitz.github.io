@@ -5,7 +5,7 @@ pubDate: 2024-04-10
 category: "Notebooks Analytics"
 tags: ["Python", "NLP", "Text Processing", "Machine Learning"]
 github: "https://github.com/HoracioLaphitz/horaciolaphitz.github.io/blob/main/public/Proyectos/Notebooks/Text-IA/Text-IA.ipynb"
-draft: true
+draft: false
 resources:
   notebooks:
     - name: "Text-IA — NLP"

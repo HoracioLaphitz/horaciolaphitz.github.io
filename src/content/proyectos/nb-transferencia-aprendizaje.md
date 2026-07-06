@@ -5,7 +5,7 @@ pubDate: 2024-04-15
 category: "Notebooks Analytics"
 tags: ["Python", "TensorFlow", "Transfer Learning", "Deep Learning", "Computer Vision"]
 github: "https://github.com/HoracioLaphitz/horaciolaphitz.github.io/blob/main/public/Proyectos/Notebooks/TransferenciaAprendizaje/TransferenciaAprendizaje.ipynb"
-draft: true
+draft: false
 resources:
   notebooks:
     - name: "Transferencia de Aprendizaje"

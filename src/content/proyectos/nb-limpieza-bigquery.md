@@ -5,7 +5,7 @@ pubDate: 2024-05-01
 category: "Notebooks Analytics"
 tags: ["Python", "Pandas", "Data Cleaning", "BigQuery", "SQL"]
 github: "https://github.com/HoracioLaphitz/horaciolaphitz.github.io/blob/main/public/Proyectos/Notebooks/Clean_for_google_bigquery.ipynb"
-draft: true
+draft: false
 resources:
   notebooks:
     - name: "Limpieza de Datos para BigQuery"

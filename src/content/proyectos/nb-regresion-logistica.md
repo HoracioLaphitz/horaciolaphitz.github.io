@@ -5,7 +5,7 @@ pubDate: 2024-03-15
 category: "Notebooks Analytics"
 tags: ["Python", "Scikit-learn", "Logistic Regression", "Classification", "Machine Learning"]
 github: "https://github.com/HoracioLaphitz/horaciolaphitz.github.io/blob/main/public/Proyectos/Notebooks/Regresion-Logistica/Regresion%20Logistica.ipynb"
-draft: true
+draft: false
 resources:
   notebooks:
     - name: "Regresión Logística"

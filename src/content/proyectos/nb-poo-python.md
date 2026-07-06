@@ -5,7 +5,7 @@ pubDate: 2024-03-01
 category: "Notebooks Analytics"
 tags: ["Python", "OOP", "Software Design"]
 github: "https://github.com/HoracioLaphitz/horaciolaphitz.github.io/blob/main/public/Proyectos/Notebooks/Programacion_Orientada_a_Objetos/Programacion_Orientada_a_Objetos.ipynb"
-draft: true
+draft: false
 resources:
   notebooks:
     - name: "Programación Orientada a Objetos"
