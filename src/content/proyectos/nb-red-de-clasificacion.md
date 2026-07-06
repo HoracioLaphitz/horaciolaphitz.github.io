@@ -4,6 +4,7 @@ description: "Red neuronal para un problema de clasificación multiclase, con pr
 pubDate: 2024-03-06
 category: "Notebooks Analytics"
 tags: ["Python", "TensorFlow", "Neural Network", "Classification", "Deep Learning"]
+github: "https://github.com/HoracioLaphitz/horaciolaphitz.github.io/blob/main/public/Proyectos/Notebooks/Red-de-Clasificacion/Red%20de%20Clasificacion.ipynb"
 draft: true
 resources:
   notebooks:
@@ -11,18 +12,20 @@ resources:
       path: "/Proyectos/Notebooks/Red-de-Clasificacion/Red de Clasificacion.ipynb"
 ---
 
-## Situación
+## El problema
 
-Clasificar en varias categorías es uno de los problemas más comunes del aprendizaje supervisado.
+Clasificación multiclase de imágenes: dado un dígito manuscrito, decidir entre 10 categorías posibles. Es el problema canónico para entender cómo una red densa produce una distribución de probabilidad por clase.
 
-## Qué hace
+## Cómo lo resolví
 
-Entrena una red neuronal para clasificación multiclase, con preprocesamiento de datos y evaluación de métricas.
+- Carga y preprocesamiento del dataset con **tensorflow_datasets**: normalización de píxeles y separación entrenamiento/prueba.
+- Red densa en **Keras**: `Flatten` para pasar de matriz de píxeles a vector, capas `Dense` ocultas y salida softmax de 10 neuronas.
+- Entrenamiento de 10 épocas midiendo accuracy, más visualización de predicciones individuales con Matplotlib para ver dónde acierta y dónde falla.
 
 ## Stack
 
-Python · TensorFlow · Keras
+Python · TensorFlow · Keras · tensorflow_datasets
 
 ## Qué aprendí
 
-El diseño de una red densa para clasificación y cómo leer sus métricas.
+Cómo se diseña la capa de salida según el problema — softmax y una neurona por clase — y a leer los errores del modelo mirando ejemplos concretos, no solo la métrica agregada.

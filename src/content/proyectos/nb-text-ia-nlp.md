@@ -4,6 +4,7 @@ description: "El texto es dato no estructurado hasta que lo transformás: tokeni
 pubDate: 2024-04-10
 category: "Notebooks Analytics"
 tags: ["Python", "NLP", "Text Processing", "Machine Learning"]
+github: "https://github.com/HoracioLaphitz/horaciolaphitz.github.io/blob/main/public/Proyectos/Notebooks/Text-IA/Text-IA.ipynb"
 draft: true
 resources:
   notebooks:
@@ -11,18 +12,20 @@ resources:
       path: "/Proyectos/Notebooks/Text-IA/Text-IA.ipynb"
 ---
 
-## Situación
+## El problema
 
-El texto es data no estructurada: hay que transformarlo antes de que un modelo lo entienda.
+Un modelo no entiende texto: entiende tensores. Todo pipeline de NLP arranca por el mismo puente — convertir lenguaje natural en representaciones numéricas que conserven el significado.
 
-## Qué hace
+## Cómo lo resolví
 
-Procesa datos de texto con técnicas de **NLP**: tokenización, vectorización y modelado sobre el corpus resultante.
+- Preprocesamiento de texto con **tensorflow_text**: tokenización nativa dentro del grafo de TensorFlow, sin pasos externos en Python puro.
+- Modelo de lenguaje preentrenado desde **TensorFlow Hub** para generar representaciones (embeddings) del texto de entrada.
+- Aplicación del pipeline sobre texto real para obtener vectores utilizables por capas de clasificación posteriores.
 
 ## Stack
 
-Python · NLP · Scikit-learn
+Python · TensorFlow · tensorflow_text · TensorFlow Hub
 
 ## Qué aprendí
 
-El puente entre lenguaje natural y representaciones numéricas que un modelo puede usar.
+Que en NLP moderno el preprocesamiento y el modelo viven juntos: usar la tokenización del propio modelo preentrenado evita el desajuste clásico entre cómo se entrenó y cómo se usa.

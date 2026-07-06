@@ -4,6 +4,7 @@ description: "EDA en una línea: ydata-profiling (Pandas Profiling) genera un re
 pubDate: 2024-05-01
 category: "Notebooks Analytics"
 tags: ["Python", "Pandas", "EDA", "ydata-profiling", "Data Analysis"]
+github: "https://github.com/HoracioLaphitz/horaciolaphitz.github.io/blob/main/public/Proyectos/Notebooks/Pandas_Profiling/Pandas_Profiling.ipynb"
 draft: true
 resources:
   notebooks:
@@ -11,13 +12,15 @@ resources:
       path: "/Proyectos/Notebooks/Pandas_Profiling/Pandas_Profiling.ipynb"
 ---
 
-## Situación
+## El problema
 
-El análisis exploratorio manual es lento. Hay herramientas que generan un reporte completo en una línea.
+Un EDA manual completo — distribuciones, correlaciones, nulos, duplicados — consume horas de trabajo repetitivo antes de la primera decisión sobre los datos.
 
-## Qué hace
+## Cómo lo resolví
 
-Usa **ydata-profiling** (Pandas Profiling) para producir automáticamente un reporte de EDA: distribuciones, correlaciones, valores faltantes y alertas de calidad.
+- **ydata-profiling** (ex Pandas Profiling) sobre el DataFrame: una llamada genera el reporte HTML completo.
+- El reporte cubre distribución por variable, matriz de correlaciones, valores faltantes, duplicados y alertas automáticas de calidad (alta cardinalidad, columnas constantes, correlaciones sospechosas).
+- Lectura crítica del reporte para decidir los siguientes pasos de limpieza — la herramienta señala, el criterio decide.
 
 ## Stack
 
@@ -25,4 +28,4 @@ Python · Pandas · ydata-profiling
 
 ## Qué aprendí
 
-Cuándo conviene automatizar el EDA para ganar velocidad sin perder criterio sobre los datos.
+Dónde está el límite de la automatización: el reporte reemplaza el trabajo mecánico del EDA, pero la interpretación de qué es un problema real y qué es ruido sigue siendo del analista.

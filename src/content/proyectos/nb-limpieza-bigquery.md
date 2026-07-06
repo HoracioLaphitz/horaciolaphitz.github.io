@@ -4,6 +4,7 @@ description: "Notebook de preparación y limpieza de datos, dejándolos listos p
 pubDate: 2024-05-01
 category: "Notebooks Analytics"
 tags: ["Python", "Pandas", "Data Cleaning", "BigQuery", "SQL"]
+github: "https://github.com/HoracioLaphitz/horaciolaphitz.github.io/blob/main/public/Proyectos/Notebooks/Clean_for_google_bigquery.ipynb"
 draft: true
 resources:
   notebooks:
@@ -11,18 +12,20 @@ resources:
       path: "/Proyectos/Notebooks/Clean_for_google_bigquery.ipynb"
 ---
 
-## Situación
+## El problema
 
-Antes de subir datos a un data warehouse, hay que limpiarlos: tipos, nulos, formatos y nombres de columnas consistentes.
+**BigQuery** rechaza cargas con esquema inconsistente: nombres de columna con caracteres inválidos, tipos mezclados y nulos donde no van. Los datos crudos casi nunca llegan en ese estado.
 
-## Qué hace
+## Cómo lo resolví
 
-Prepara y limpia un dataset con Pandas para cargarlo en **Google BigQuery** sin errores de esquema y con datos consultables.
+- Diagnóstico inicial del dataset con **Pandas** y Seaborn: tipos, nulos y valores fuera de rango.
+- Normalización de nombres de columna con **expresiones regulares** (`re`) al formato que BigQuery exige: sin espacios ni caracteres especiales.
+- Tipado explícito de cada columna y tratamiento de nulos, dejando el DataFrame listo para carga directa sin errores de esquema.
 
 ## Stack
 
-Python · Pandas · BigQuery · SQL
+Python · Pandas · Regex · Google BigQuery
 
 ## Qué aprendí
 
-Cómo se conecta el trabajo local de limpieza con un warehouse cloud y qué exige BigQuery de los datos de entrada.
+Que el warehouse define el contrato: la limpieza local tiene que apuntar al esquema que el destino exige, no a un estándar genérico de "datos limpios".

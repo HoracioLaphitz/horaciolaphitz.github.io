@@ -4,6 +4,7 @@ description: "Ejercicios de POO en Python: clases, herencia, encapsulamiento y p
 pubDate: 2024-03-01
 category: "Notebooks Analytics"
 tags: ["Python", "OOP", "Software Design"]
+github: "https://github.com/HoracioLaphitz/horaciolaphitz.github.io/blob/main/public/Proyectos/Notebooks/Programacion_Orientada_a_Objetos/Programacion_Orientada_a_Objetos.ipynb"
 draft: true
 resources:
   notebooks:
@@ -11,18 +12,23 @@ resources:
       path: "/Proyectos/Notebooks/Programacion_Orientada_a_Objetos/Programacion_Orientada_a_Objetos.ipynb"
 ---
 
-## Situación
+## El problema
 
-Escribir código de datos mantenible exige más que scripts sueltos: exige estructura.
+Los scripts de análisis crecen y se vuelven imposibles de mantener: funciones sueltas, estado global, código copiado. La programación orientada a objetos es la herramienta base para ponerles estructura.
 
-## Qué hace
+## Cómo lo resolví
 
-Practica los pilares de la **programación orientada a objetos** en Python — clases, herencia, encapsulamiento y polimorfismo.
+Ejercicios prácticos de los cuatro pilares de la **POO** en Python:
+
+- **Clases y objetos** — modelar entidades con estado y comportamiento propios.
+- **Herencia** — reutilizar y especializar comportamiento sin duplicar código.
+- **Encapsulamiento** — exponer una interfaz y ocultar la implementación.
+- **Polimorfismo** — que distintas clases respondan al mismo mensaje cada una a su manera.
 
 ## Stack
 
-Python · OOP
+Python · POO
 
 ## Qué aprendí
 
-A organizar el código con objetos, base para proyectos de datos más grandes y reutilizables.
+La base que después uso en proyectos reales: el notebook de la red de clasificación optimizada aplica exactamente estos conceptos (clases para datos, modelo y entrenamiento) sobre un problema de deep learning.

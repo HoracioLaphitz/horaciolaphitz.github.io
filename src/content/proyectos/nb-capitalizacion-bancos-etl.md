@@ -12,18 +12,23 @@ resources:
       path: "/Proyectos/Notebooks/Banks_Project.ipynb"
 ---
 
-## Situación
+## El problema
 
-Muchos datos valiosos viven en tablas de páginas web, sin API. Hay que ir a buscarlos.
+La capitalización de mercado de los bancos más grandes del mundo vive en una tabla de Wikipedia: sin API, sin CSV descargable. Proyecto de la carrera de **Data Engineering de IBM**: construir el pipeline completo para capturar ese dato y dejarlo consultable.
 
-## Qué hace
+## Cómo lo resolví
 
-Extrae por **web scraping** la tabla de los bancos más grandes del mundo y la pasa por un proceso **ETL**: extracción, transformación (limpieza y normalización) y carga hacia una base **SQLite** y un archivo CSV.
+Un pipeline **ETL** de punta a punta:
+
+- **Extracción** — scraping de la tabla con `requests` + **BeautifulSoup**, parseando el HTML a un DataFrame de Pandas.
+- **Transformación** — limpieza de los montos y conversión de la capitalización a múltiples monedas usando tasas de cambio desde un CSV.
+- **Carga** — persistencia doble: base **SQLite** consultable por SQL y archivo CSV.
+- **Logging** — función de log propia que registra cada etapa del pipeline con timestamp, para poder auditar qué corrió y cuándo.
 
 ## Stack
 
-Python · BeautifulSoup · Pandas · SQLite
+Python · BeautifulSoup · Requests · Pandas · SQLite
 
 ## Qué aprendí
 
-El flujo completo de ingeniería de datos sobre una fuente real, dejando los datos listos para análisis posterior.
+La disciplina de un pipeline real: separar las fases, registrar cada paso y verificar la carga con consultas SQL al final. El scraping es lo de menos; la confiabilidad del flujo es el trabajo.

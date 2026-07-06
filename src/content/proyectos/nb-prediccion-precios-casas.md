@@ -4,6 +4,7 @@ description: "Modelo de regresión que pone precio a una vivienda a partir de su
 pubDate: 2024-04-01
 category: "Notebooks Analytics"
 tags: ["Python", "Scikit-learn", "Regression", "Machine Learning", "Pandas"]
+github: "https://github.com/HoracioLaphitz/horaciolaphitz.github.io/blob/main/public/Proyectos/Notebooks/Predice-Precios-Casas/Predice-Precios-Casas.ipynb"
 draft: true
 resources:
   notebooks:
@@ -11,18 +12,20 @@ resources:
       path: "/Proyectos/Notebooks/Predice-Precios-Casas/Predice-Precios-Casas.ipynb"
 ---
 
-## Situación
+## El problema
 
-El precio de una vivienda depende de muchas variables: superficie, ubicación, antigüedad. Un modelo puede aprender esa relación.
+Estimar el precio de una vivienda a partir de sus características — superficie, ubicación, antigüedad. Un problema de regresión supervisada clásico donde el riesgo es evaluar sobre los mismos datos con los que se entrenó.
 
-## Qué hace
+## Cómo lo resolví
 
-Entrena un modelo de **regresión** que predice el precio de casas a partir de sus features, con evaluación sobre datos de prueba.
+- Análisis exploratorio con **Pandas** y **Seaborn**: correlaciones entre features y precio, distribución de la variable objetivo y detección de outliers.
+- Modelo de regresión con **Scikit-learn**, entrenado sobre el split de entrenamiento.
+- Evaluación con **MSE** sobre el set de prueba — datos que el modelo nunca vio — para medir el error real de generalización.
 
 ## Stack
 
-Python · Scikit-learn · Pandas
+Python · Scikit-learn · Pandas · Seaborn · NumPy
 
 ## Qué aprendí
 
-El flujo de un problema de regresión supervisada clásico, de los datos a la métrica de error.
+El flujo completo de una regresión supervisada: del EDA que sugiere qué features importan, al número de error que dice cuánto confiar en el modelo.

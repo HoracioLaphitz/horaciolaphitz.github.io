@@ -4,6 +4,7 @@ description: "Cuando la respuesta es sí o no, la regresión logística es la he
 pubDate: 2024-03-15
 category: "Notebooks Analytics"
 tags: ["Python", "Scikit-learn", "Logistic Regression", "Classification", "Machine Learning"]
+github: "https://github.com/HoracioLaphitz/horaciolaphitz.github.io/blob/main/public/Proyectos/Notebooks/Regresion-Logistica/Regresion%20Logistica.ipynb"
 draft: true
 resources:
   notebooks:
@@ -11,18 +12,20 @@ resources:
       path: "/Proyectos/Notebooks/Regresion-Logistica/Regresion Logistica.ipynb"
 ---
 
-## Situación
+## El problema
 
-Cuando la respuesta es sí/no, la regresión logística es la herramienta base.
+Clasificación binaria: dado un conjunto de features, decidir sí o no. El accuracy solo no alcanza para evaluar un clasificador — con clases desbalanceadas puede ser alto y el modelo, inútil.
 
-## Qué hace
+## Cómo lo resolví
 
-Entrena un modelo de **regresión logística** para clasificación binaria y lo evalúa con métricas y matriz de confusión.
+- Análisis exploratorio previo con **Pandas** y **Seaborn** para entender distribución de features y balance de clases.
+- Modelo de **regresión logística** con Scikit-learn, entrenado sobre el split de entrenamiento y evaluado sobre datos que nunca vio.
+- Evaluación completa: `classification_report` (precision, recall, F1 por clase) y **matriz de confusión** para ver exactamente qué tipo de error comete el modelo — falsos positivos vs falsos negativos.
 
 ## Stack
 
-Python · Scikit-learn
+Python · Scikit-learn · Pandas · Seaborn
 
 ## Qué aprendí
 
-A interpretar precisión, recall y la matriz de confusión más allá del accuracy.
+A elegir la métrica según el costo del error: cuándo importa más el recall (no dejar pasar positivos) y cuándo la precision (no dar falsas alarmas). La matriz de confusión cuenta la historia que el accuracy esconde.

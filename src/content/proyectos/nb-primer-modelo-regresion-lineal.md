@@ -4,6 +4,7 @@ description: "Introducción práctica a la regresión lineal: entrenamiento, pre
 pubDate: 2024-02-20
 category: "Notebooks Analytics"
 tags: ["Python", "Linear Regression", "Machine Learning", "Scikit-learn"]
+github: "https://github.com/HoracioLaphitz/horaciolaphitz.github.io/blob/main/public/Proyectos/Notebooks/PrimerModeloRegresionLineal/PrimerModeloRegresionLineal.ipynb"
 draft: true
 resources:
   notebooks:
@@ -11,18 +12,20 @@ resources:
       path: "/Proyectos/Notebooks/PrimerModeloRegresionLineal/PrimerModeloRegresionLineal.ipynb"
 ---
 
-## Situación
+## El problema
 
-La regresión lineal es la puerta de entrada al machine learning supervisado.
+La regresión lineal es la puerta de entrada al machine learning supervisado: si no se entiende cómo una recta se ajusta a los datos, los modelos complejos se usan a ciegas.
 
-## Qué hace
+## Cómo lo resolví
 
-Construye, entrena y evalúa un modelo de regresión lineal base, mostrando cómo se ajusta la recta a los datos.
+- Exploración inicial del dataset con **Pandas** y **Seaborn** para ver la relación entre la feature y la variable objetivo.
+- Modelo de regresión lineal con **Scikit-learn**: entrenamiento, coeficientes resultantes y predicción sobre datos nuevos.
+- Visualización de la recta ajustada sobre los puntos reales para ver, literalmente, qué aprendió el modelo.
 
 ## Stack
 
-Python · Scikit-learn
+Python · Scikit-learn · Pandas · Seaborn
 
 ## Qué aprendí
 
-Los fundamentos de ajuste, predicción y evaluación que se repiten en modelos más complejos.
+Los fundamentos que se repiten en todo el ML supervisado: separar datos, ajustar, predecir y medir. Todo lo que vino después — de la regresión logística a las redes neuronales — usa esta misma mecánica.
