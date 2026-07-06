@@ -295,9 +295,9 @@ Proyectos/**/Datos en si/
 public/Proyectos/**/DB/
 public/Proyectos/**/Datos en si/
 
-# HTML exports from Jupyter notebooks (can be regenerated)
-public/notebooks-html/
-notebooks-html/*.html
+# Committed pre-rendered notebook HTML lives in public/notebooks-html/
+# (regenerate with `pnpm build:notebooks`; Vercel's Python is uv-managed
+# and blocks pip installs at build time, so conversion runs locally)
 dist/notebooks-html/*.html
 
 # Large notebooks
