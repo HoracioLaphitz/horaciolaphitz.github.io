@@ -21,7 +21,7 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build",
+    "build": "astro build --force",
     "build:notebooks": "node --import tsx scripts/build-notebooks.mjs",
     "preview": "astro preview",
     "astro": "astro",
