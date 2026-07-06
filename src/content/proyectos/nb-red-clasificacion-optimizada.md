@@ -5,6 +5,10 @@ pubDate: 2024-03-12
 category: "Notebooks Analytics"
 tags: ["Python", "TensorFlow", "Neural Network", "Classification", "Hyperparameter Tuning"]
 draft: true
+resources:
+  notebooks:
+    - name: "Red de Clasificación — Optimizada"
+      path: "/Proyectos/Notebooks/Red_Clasificacion_Optimizado/Red_Clasificacion_Optimizado.ipynb"
 ---
 
 ## Situación

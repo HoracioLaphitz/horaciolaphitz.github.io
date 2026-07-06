@@ -5,6 +5,10 @@ pubDate: 2024-02-20
 category: "Notebooks Analytics"
 tags: ["Python", "Linear Regression", "Machine Learning", "Scikit-learn"]
 draft: true
+resources:
+  notebooks:
+    - name: "Primer Modelo de Regresión Lineal"
+      path: "/Proyectos/Notebooks/PrimerModeloRegresionLineal/PrimerModeloRegresionLineal.ipynb"
 ---
 
 ## Situación

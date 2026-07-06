@@ -5,6 +5,10 @@ pubDate: 2024-03-10
 category: "Notebooks Analytics"
 tags: ["Python", "TensorFlow", "Neural Network", "Deep Learning", "Time Series"]
 draft: false
+resources:
+  notebooks:
+    - name: "Red Neuronal — Terremotos"
+      path: "/Proyectos/Notebooks/RedNeuronalTerremotos/RedNeuronalTerremotos.ipynb"
 ---
 
 ## Situación

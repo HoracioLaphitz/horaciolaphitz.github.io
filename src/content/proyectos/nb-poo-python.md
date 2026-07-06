@@ -5,6 +5,10 @@ pubDate: 2024-03-01
 category: "Notebooks Analytics"
 tags: ["Python", "OOP", "Software Design"]
 draft: true
+resources:
+  notebooks:
+    - name: "Programación Orientada a Objetos"
+      path: "/Proyectos/Notebooks/Programacion_Orientada_a_Objetos/Programacion_Orientada_a_Objetos.ipynb"
 ---
 
 ## Situación

@@ -296,7 +296,7 @@ public/Proyectos/**/DB/
 public/Proyectos/**/Datos en si/
 
 # HTML exports from Jupyter notebooks (can be regenerated)
-public/notebooks-html/*.html
+public/notebooks-html/
 notebooks-html/*.html
 dist/notebooks-html/*.html
 

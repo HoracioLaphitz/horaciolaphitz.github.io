@@ -5,6 +5,10 @@ pubDate: 2024-03-15
 category: "Notebooks Analytics"
 tags: ["Python", "Scikit-learn", "Logistic Regression", "Classification", "Machine Learning"]
 draft: true
+resources:
+  notebooks:
+    - name: "Regresión Logística"
+      path: "/Proyectos/Notebooks/Regresion-Logistica/Regresion Logistica.ipynb"
 ---
 
 ## Situación

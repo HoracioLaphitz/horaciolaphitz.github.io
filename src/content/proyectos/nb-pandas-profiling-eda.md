@@ -5,6 +5,10 @@ pubDate: 2024-05-01
 category: "Notebooks Analytics"
 tags: ["Python", "Pandas", "EDA", "ydata-profiling", "Data Analysis"]
 draft: true
+resources:
+  notebooks:
+    - name: "Pandas Profiling"
+      path: "/Proyectos/Notebooks/Pandas_Profiling/Pandas_Profiling.ipynb"
 ---
 
 ## Situación

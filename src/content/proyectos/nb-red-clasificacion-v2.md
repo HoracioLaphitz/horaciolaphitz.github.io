@@ -5,6 +5,10 @@ pubDate: 2024-03-08
 category: "Notebooks Analytics"
 tags: ["Python", "TensorFlow", "Neural Network", "Classification"]
 draft: true
+resources:
+  notebooks:
+    - name: "Red de Clasificación — Iteración 2"
+      path: "/Proyectos/Notebooks/RedDeClasificacion2/RedDeClasificacion2.ipynb"
 ---
 
 ## Situación

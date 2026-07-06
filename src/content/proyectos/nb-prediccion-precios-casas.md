@@ -5,6 +5,10 @@ pubDate: 2024-04-01
 category: "Notebooks Analytics"
 tags: ["Python", "Scikit-learn", "Regression", "Machine Learning", "Pandas"]
 draft: true
+resources:
+  notebooks:
+    - name: "Predicción de Precios de Casas"
+      path: "/Proyectos/Notebooks/Predice-Precios-Casas/Predice-Precios-Casas.ipynb"
 ---
 
 ## Situación

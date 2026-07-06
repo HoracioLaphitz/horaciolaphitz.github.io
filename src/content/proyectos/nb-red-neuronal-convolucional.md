@@ -5,6 +5,12 @@ pubDate: 2024-03-05
 category: "Notebooks Analytics"
 tags: ["Python", "TensorFlow", "CNN", "Deep Learning", "Computer Vision"]
 draft: true
+resources:
+  notebooks:
+    - name: "CNN Principal"
+      path: "/Proyectos/Notebooks/Red-Neuronal-Convolucional/Red Neuronal Convolucional.ipynb"
+    - name: "Análisis Exploratorio"
+      path: "/Proyectos/Notebooks/Red-Neuronal-Convolucional/experiments/01_exploratory_analysis.ipynb"
 ---
 
 ## Situación

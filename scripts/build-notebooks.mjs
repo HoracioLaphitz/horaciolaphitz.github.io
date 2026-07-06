@@ -21,7 +21,18 @@ function loadProyectos() {
     .map((file) => {
       const raw = readFileSync(join(CONTENT_DIR, file), "utf-8");
       const { data } = matter(raw, { engines: { yaml: YAML_ENGINE } });
-      return { slug: file.replace(/\.md$/, ""), resources: data.resources };
+      // Content frontmatter stores web paths (/Proyectos/...); nbconvert
+      // needs the on-disk location under public/.
+      const resources = data.resources?.notebooks
+        ? {
+            ...data.resources,
+            notebooks: data.resources.notebooks.map((nb) => ({
+              ...nb,
+              path: join("public", nb.path),
+            })),
+          }
+        : data.resources;
+      return { slug: file.replace(/\.md$/, ""), resources };
     });
 }
 

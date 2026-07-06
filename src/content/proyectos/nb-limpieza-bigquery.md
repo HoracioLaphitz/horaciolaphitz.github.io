@@ -5,6 +5,10 @@ pubDate: 2024-05-01
 category: "Notebooks Analytics"
 tags: ["Python", "Pandas", "Data Cleaning", "BigQuery", "SQL"]
 draft: true
+resources:
+  notebooks:
+    - name: "Limpieza de Datos para BigQuery"
+      path: "/Proyectos/Notebooks/Clean_for_google_bigquery.ipynb"
 ---
 
 ## Situación

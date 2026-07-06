@@ -5,6 +5,10 @@ pubDate: 2024-04-10
 category: "Notebooks Analytics"
 tags: ["Python", "NLP", "Text Processing", "Machine Learning"]
 draft: true
+resources:
+  notebooks:
+    - name: "Text-IA — NLP"
+      path: "/Proyectos/Notebooks/Text-IA/Text-IA.ipynb"
 ---
 
 ## Situación

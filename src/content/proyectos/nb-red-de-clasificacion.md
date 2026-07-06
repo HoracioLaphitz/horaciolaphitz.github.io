@@ -5,6 +5,10 @@ pubDate: 2024-03-06
 category: "Notebooks Analytics"
 tags: ["Python", "TensorFlow", "Neural Network", "Classification", "Deep Learning"]
 draft: true
+resources:
+  notebooks:
+    - name: "Red Neuronal de Clasificación"
+      path: "/Proyectos/Notebooks/Red-de-Clasificacion/Red de Clasificacion.ipynb"
 ---
 
 ## Situación

@@ -6,6 +6,10 @@ category: "Análisis de datos"
 tags: ["Python", "Machine Learning", "Linear Regression", "TensorFlow"]
 github: "https://github.com/HoracioLaphitz/Regresion_Lineal"
 draft: true
+resources:
+  notebooks:
+    - name: "Regresión Lineal — Celsius a Fahrenheit"
+      path: "/Proyectos/Notebooks/Celcius_a_Fahrenheit.ipynb"
 ---
 
 ## Situación

@@ -5,6 +5,10 @@ pubDate: 2024-04-15
 category: "Notebooks Analytics"
 tags: ["Python", "TensorFlow", "Transfer Learning", "Deep Learning", "Computer Vision"]
 draft: true
+resources:
+  notebooks:
+    - name: "Transferencia de Aprendizaje"
+      path: "/Proyectos/Notebooks/TransferenciaAprendizaje/TransferenciaAprendizaje.ipynb"
 ---
 
 ## Situación
