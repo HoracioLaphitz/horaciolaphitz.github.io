@@ -32,7 +32,6 @@ scripts
 # Certificados y archivos grandes
 
 public/notebooks
-public/notebooks-html
 
 # Logs
 *.log

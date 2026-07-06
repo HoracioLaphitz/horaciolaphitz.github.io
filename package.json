@@ -21,7 +21,7 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "pip install --quiet nbconvert nbformat && node --import tsx scripts/build-notebooks.mjs && astro build",
+    "build": "astro build",
     "build:notebooks": "node --import tsx scripts/build-notebooks.mjs",
     "preview": "astro preview",
     "astro": "astro",
