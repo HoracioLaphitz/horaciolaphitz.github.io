@@ -5,6 +5,10 @@ pubDate: 2024-02-13
 category: "Análisis de datos"
 tags: ["Python", "TensorFlow", "CNN", "Deep Learning", "MNIST", "Computer Vision"]
 github: "https://github.com/HoracioLaphitz/Redes-Convolucionales"
+resources:
+  notebooks:
+    - name: "Red Neuronal Convolucional"
+      path: "/Proyectos/Notebooks/Redes-Convolucionales-Repo/Red_Neuronal_Convolucional.ipynb"
 draft: false
 ---
 

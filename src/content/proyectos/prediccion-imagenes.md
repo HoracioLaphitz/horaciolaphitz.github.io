@@ -5,6 +5,10 @@ pubDate: 2024-02-13
 category: "Análisis de datos"
 tags: ["Python", "TensorFlow", "Deep Learning", "Transfer Learning", "Computer Vision"]
 github: "https://github.com/HoracioLaphitz/PrediccionImagenes"
+resources:
+  notebooks:
+    - name: "Transferencia de Aprendizaje"
+      path: "/Proyectos/Notebooks/PrediccionImagenes/PrediccionImagenes-TRANSFERENCIA_APRENDIZAJE.ipynb"
 draft: false
 ---
 
