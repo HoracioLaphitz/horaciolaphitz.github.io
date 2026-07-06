@@ -5,7 +5,11 @@ pubDate: 2024-02-13
 category: "Análisis de datos"
 tags: ["Python", "Machine Learning", "Scikit-learn", "Pandas", "Time Series", "Finance"]
 github: "https://github.com/HoracioLaphitz/PredicePrecioAcciones"
-draft: true
+draft: false
+resources:
+  notebooks:
+    - name: "Predicción de Precios de Acciones"
+      path: "/Proyectos/Notebooks/PredicePrecioAcciones/PredicePrecioAcciones.ipynb"
 ---
 
 ## Situación

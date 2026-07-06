@@ -1,5 +1,12 @@
 ---
 import PageLayout from './PageLayout.astro';
+import { slugify } from '@shared/slugify';
+
+interface NotebookResource {
+  name: string;
+  path: string;
+  description?: string;
+}
 
 interface Props {
   title: string;
@@ -11,9 +18,11 @@ interface Props {
   github?: string;
   dashboard?: string;
   currentPath: string;
+  notebooks?: NotebookResource[];
+  projectSlug?: string;
 }
 
-const { title, description, category, pubDate, tags, author, github, dashboard, currentPath } = Astro.props;
+const { title, description, category, pubDate, tags, author, github, dashboard, currentPath, notebooks, projectSlug } = Astro.props;
 
 const siteUrl = "https://horaciolaphitz.github.io";
 const articleUrl = new URL(currentPath, siteUrl).href;
@@ -71,7 +80,7 @@ const articleSchema = {
         </div>
 
         <!-- Acciones -->
-        {(github || dashboard) && (
+        {(github || dashboard || (notebooks && notebooks.length > 0)) && (
           <div class="article-actions">
             {github && (
               <a
@@ -99,6 +108,19 @@ const articleSchema = {
                 Ver dashboard
               </a>
             )}
+            {notebooks && projectSlug && notebooks.map((notebook) => (
+              <a
+                href={`/proyectos/${projectSlug}/notebook/${slugify(notebook.name)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="article-action article-action-secondary"
+              >
+                <svg class="action-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s4.332.477 5.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+                Ver notebook: {notebook.name}
+              </a>
+            ))}
           </div>
         )}
       </div>

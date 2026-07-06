@@ -4,21 +4,28 @@ description: "Entrenar una red de visión desde cero es caro; reutilizar una pre
 pubDate: 2024-04-15
 category: "Notebooks Analytics"
 tags: ["Python", "TensorFlow", "Transfer Learning", "Deep Learning", "Computer Vision"]
-draft: true
+github: "https://github.com/HoracioLaphitz/horaciolaphitz.github.io/blob/main/public/Proyectos/Notebooks/TransferenciaAprendizaje/TransferenciaAprendizaje.ipynb"
+draft: false
+resources:
+  notebooks:
+    - name: "Transferencia de Aprendizaje"
+      path: "/Proyectos/Notebooks/TransferenciaAprendizaje/TransferenciaAprendizaje.ipynb"
 ---
 
-## Situación
+## El problema
 
-Entrenar una red de visión desde cero es caro. Reutilizar una preentrenada es mucho más eficiente.
+Entrenar una red de visión desde cero exige millones de imágenes y horas de GPU. Para un problema de clasificación acotado, es pagar un costo que otro ya pagó.
 
-## Qué hace
+## Cómo lo resolví
 
-Aplica **transfer learning**: parte de un modelo preentrenado y lo afina sobre un nuevo problema de clasificación de imágenes.
+- Modelo preentrenado descargado de **TensorFlow Hub** como extractor de features congelado: las capas convolucionales ya saben ver bordes, texturas y formas.
+- Encima del extractor, una capa `Dense` propia entrenada solo para las clases del problema nuevo.
+- Preprocesamiento de imágenes con **PIL** y **OpenCV** para llevarlas al tamaño y formato que el modelo preentrenado espera, y evaluación de accuracy sobre el set de prueba.
 
 ## Stack
 
-Python · TensorFlow · Keras
+Python · TensorFlow · TensorFlow Hub · Keras · OpenCV · PIL
 
 ## Qué aprendí
 
-Cómo reutilizar features aprendidas para lograr buena precisión con poco entrenamiento.
+Que la transferencia de aprendizaje cambia la economía del deep learning: con una fracción del cómputo y de los datos se llega a precisiones que desde cero serían inalcanzables en el mismo tiempo.

@@ -7,6 +7,10 @@ tags: ["Python", "SQL", "Market Basket Analysis", "Apriori", "Power BI", "Pandas
 github: "https://github.com/HoracioLaphitz/MarketBasketAnalytics"
 featured: true
 draft: false
+resources:
+  notebooks:
+    - name: "Market Basket Analysis"
+      path: "/Proyectos/Proyecto SanoYFresco/Notebooks/TPE_MarketBasketAnalysis_colab.ipynb"
 ---
 
 ## Situación
