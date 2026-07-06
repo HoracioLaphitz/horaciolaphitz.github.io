@@ -84,6 +84,9 @@ const ProjectCategories = ({ posts }: ProjectCategoriesProps) => {
       });
     }
 
+    // Featured projects first, preserving original order within each group
+    filtered.sort((a, b) => Number(b.featured) - Number(a.featured));
+
     return filtered;
   }, [posts, selectedCategory, searchQuery]);
 
@@ -136,6 +139,7 @@ const ProjectCategories = ({ posts }: ProjectCategoriesProps) => {
                   tags={project.tags}
                   github={project.githubUrl}
                   dashboard={project.dashboardUrl}
+                  featured={project.featured}
                 />
               ))}
             </div>
