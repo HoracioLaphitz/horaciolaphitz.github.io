@@ -6,7 +6,7 @@ import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://horaciolaphitz.github.io",
+  site: "https://horaciolaphitz.vercel.app",
   base: "/",
 
   // Configurar directorio de páginas
@@ -66,7 +66,7 @@ export default defineConfig({
       sourcemap: false,
     },
     optimizeDeps: {
-      include: ["react", "react-dom", "isomorphic-dompurify"],
+      include: ["react", "react-dom"],
       exclude: ["@astrojs/react"],
       esbuildOptions: {
         target: "esnext",

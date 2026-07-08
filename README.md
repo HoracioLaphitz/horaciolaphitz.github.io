@@ -1,6 +1,6 @@
 # Portfolio - Horacio Laphitz
 
-Portfolio profesional desplegado en GitHub Pages.
+Portfolio profesional desplegado en Vercel.
 
 ## 👋 Sobre mí
 
@@ -15,24 +15,18 @@ Este sitio está construido con Clean Architecture (ver sección Arquitectura m�
 
 ## 🚀 Deployment
 
-Este proyecto se despliega automáticamente en GitHub Pages mediante GitHub Actions.
-
-### Configuración del Repositorio
-
-1. **Nombre del repositorio**: `horaciolaphitz.github.io`
-2. **Rama principal**: `main`
-3. **Rama de deployment**: GitHub Pages usa artifacts (no gh-pages)
+Este proyecto se despliega automáticamente en Vercel.
 
 ### Workflow CI/CD
 
-El proyecto usa GitHub Actions para:
+Vercel se encarga de:
 - Build automático en cada push a `main`
-- Deploy automático a GitHub Pages
-- Caché de dependencias para builds más rápidos
+- Preview deployments en cada Pull Request
+- Deploy automático a producción al mergear a `main`
 
 ### URL del Sitio
 
-🌐 **https://horaciolaphitz.github.io**
+🌐 **https://horaciolaphitz.vercel.app**
 
 ## 📦 Tecnologías
 
@@ -40,7 +34,7 @@ El proyecto usa GitHub Actions para:
 - **UI**: React 18 + Tailwind CSS
 - **Lenguaje**: TypeScript
 - **Build**: Vite
-- **Deploy**: GitHub Pages + GitHub Actions
+- **Deploy**: Vercel
 
 ## 🛠️ Desarrollo Local
 
@@ -63,7 +57,6 @@ pnpm preview
 - `pnpm dev` - Servidor de desarrollo
 - `pnpm build` - Build de producción
 - `pnpm preview` - Preview del build
-- `pnpm fetch-repos` - Actualizar repositorios de GitHub
 - `pnpm test` - Ejecutar tests
 - `pnpm test:run` - Ejecutar tests una vez
 

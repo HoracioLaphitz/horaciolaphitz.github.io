@@ -1,19 +1,18 @@
-# Portafolio de Proyectos de Datos
+# Regresión Altura-Peso — Modelado Predictivo
 
-Este repositorio agrupa varios notebooks dirigidos a ejercicios de análisis, modelado y visualización. Cada archivo contiene un problema concreto acompañado de explicaciones y código ejecutable. Destacamos especialmente el proyecto **Altura-Peso Regresión**, en el que aplicamos técnicas de regresión lineal y polinómica con buenas prácticas de ingeniería de datos.
+Predicción de peso a partir de altura usando regresión lineal y polinómica, con el flujo completo de un proyecto de ML: split train/test, pipelines de `scikit-learn`, validación cruzada y evaluación con métricas estándar (R², MAE, MSE).
 
-## 📊 Descripción general
+## 📊 Qué hace el notebook
 
-- **Altura-Peso-Regresion.ipynb**: se cargan datos de altura y peso, se exploran, se construyen modelos de regresión lineal y polinómica utilizando `scikit-learn`, se evalúan con métricas (R², MAE, MSE) y se encapsulan predicciones en funciones. Incluye división en conjuntos de entrenamiento/prueba, pipelines y validación cruzada.
-- Otros notebooks (clustering, redes neuronales, análisis exploratorio, etc.) contienen ejemplos adicionales.
+`Altura-Peso-Regresion.ipynb` carga y explora los datos, ajusta modelos de regresión lineal y polinómica, compara su desempeño con métricas cuantitativas y encapsula las predicciones en funciones reutilizables — no queda como código suelto en celdas.
 
-## 🎯 Objetivos del proyecto de regresión
+## 🎯 Objetivos
 
-1. Mostrar un flujo completo de modelado de regresión.
-2. Aplicar separación train/test y validación cruzada.
-3. Utilizar pipelines para escalado y transformación polinómica.
-4. Producir visualizaciones comparativas y métricas de rendimiento.
-5. Documentar el proceso para facilitar la revisión y el uso por terceros.
+1. Flujo completo de modelado de regresión, de datos crudos a predicción.
+2. Separación train/test y validación cruzada para evitar overfitting.
+3. Pipelines de `scikit-learn` para escalado y transformación polinómica.
+4. Visualizaciones comparativas y métricas de rendimiento.
+5. Documentación pensada para revisión y reuso por terceros.
 
 ## 🛠️ Tecnologías
 
