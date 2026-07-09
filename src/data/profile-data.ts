@@ -207,5 +207,57 @@ export const PROFILE_DATA = new ProfileEntity(
       category: SkillCategory.Tools,
       level: SkillLevel.Advanced,
     },
+    // Soft Skills
+    {
+      name: "Resolución de Problemas",
+      category: SkillCategory.Soft,
+      level: SkillLevel.Advanced,
+    },
+    {
+      name: "Pensamiento Analítico",
+      category: SkillCategory.Soft,
+      level: SkillLevel.Advanced,
+    },
+    {
+      name: "Comunicación",
+      category: SkillCategory.Soft,
+      level: SkillLevel.Advanced,
+    },
+    {
+      name: "Trabajo en Equipo",
+      category: SkillCategory.Soft,
+      level: SkillLevel.Advanced,
+    },
+    // Tango Gestión (ERP)
+    {
+      name: "Parametrización Contable",
+      category: SkillCategory.Tools,
+      level: SkillLevel.Intermediate,
+    },
+    {
+      name: "Gestión de Datos Maestros",
+      category: SkillCategory.Tools,
+      level: SkillLevel.Intermediate,
+    },
+    {
+      name: "Gestión de Stock",
+      category: SkillCategory.Tools,
+      level: SkillLevel.Intermediate,
+    },
+    {
+      name: "Procesos de Ventas",
+      category: SkillCategory.Tools,
+      level: SkillLevel.Intermediate,
+    },
+    {
+      name: "Tesorería",
+      category: SkillCategory.Tools,
+      level: SkillLevel.Intermediate,
+    },
+    {
+      name: "Gestión de Compras",
+      category: SkillCategory.Tools,
+      level: SkillLevel.Intermediate,
+    },
   ]
 );
