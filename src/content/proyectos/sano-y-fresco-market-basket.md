@@ -10,7 +10,21 @@ draft: false
 resources:
   notebooks:
     - name: "Market Basket Analysis"
-      path: "/Proyectos/Proyecto SanoYFresco/Notebooks/TPE_MarketBasketAnalysis_colab.ipynb"
+      path: "/Proyectos/Proyecto SanoYFresco/Notebooks/MarketBasketAnalysis.ipynb"
+  pdfs:
+    - name: "Documento de Requerimientos Funcionales de Negocio"
+      path: "/Proyectos/Proyecto SanoYFresco/plantillas/Documento de Requerimientos Funcionales de Negocio.docx"
+      description: "Requerimientos de negocio que enmarcaron el análisis: objetivos, alcance y criterios de éxito."
+    - name: "Informe de Conclusiones"
+      path: "/Proyectos/Proyecto SanoYFresco/plantillas/Informe de Conclusiones.docx"
+      description: "Conclusiones ejecutivas del análisis con recomendaciones accionables para el negocio."
+    - name: "Trabajo de Análisis de Insights"
+      path: "/Proyectos/Proyecto SanoYFresco/plantillas/Trabajo de Analisis de Insights.xlsx"
+      description: "Matriz de insights derivados de las reglas de asociación, priorizados por impacto."
+  datasets:
+    - name: "Reglas de asociación (CSV)"
+      path: "/Proyectos/Proyecto SanoYFresco/Datos en si/reglas.csv"
+      description: "50+ reglas de asociación minadas con Apriori: soporte, confianza y lift por combinación de productos."
 ---
 
 ## Situación
@@ -39,3 +53,11 @@ Un pipeline de análisis de canasta de mercado end-to-end:
 - **50+ reglas de asociación** accionables (ej: bananas orgánicas → aguacates, lift 2.3x; panadería → lácteos orgánicos, lift 1.8x).
 - Potencial de **+15-20% en ticket promedio** mediante *bundling* estratégico.
 - Layout optimizado y dos dashboards en Power BI (ventas y marketing) para bajar los insights a decisiones diarias.
+
+### Dashboard de Ventas
+
+![Dashboard de Ventas en Power BI](/Proyectos/Proyecto%20SanoYFresco/DASHVentas.jpg)
+
+### Dashboard de Marketing
+
+![Dashboard de Marketing en Power BI](/Proyectos/Proyecto%20SanoYFresco/DashMarketing.jpg)
