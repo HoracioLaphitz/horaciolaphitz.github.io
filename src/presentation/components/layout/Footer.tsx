@@ -1,4 +1,4 @@
-import { GithubIcon, LinkedinIcon, MailIcon } from "../ui/Icons";
+import { GithubIcon, LinkedinIcon, MailIcon, DownloadIcon } from "../ui/Icons";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -15,21 +15,9 @@ const Footer = () => {
             <a
               href="/cv-horacio-laphitz.pdf"
               download
-              className="inline-flex items-center gap-1.5 text-sm text-brand-primary hover:text-brand-primary/80 transition-colors duration-200"
+              className="focus-ring inline-flex items-center gap-1.5 text-sm text-brand-primary hover:text-brand-primary/80 transition-colors duration-200"
             >
-              <svg
-                className="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                />
-              </svg>
+              <DownloadIcon className="w-4 h-4" />
               Descargar CV
             </a>
           </div>
@@ -40,7 +28,7 @@ const Footer = () => {
               href="https://www.linkedin.com/in/horacio-laphitz/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-skin-muted hover:text-skin-accent transition-all duration-200 hover:scale-110"
+              className="focus-ring text-skin-muted hover:text-skin-accent transition-all duration-200 hover-scale"
               aria-label="LinkedIn"
             >
               <LinkedinIcon width="24" height="24" />
@@ -49,14 +37,14 @@ const Footer = () => {
               href="https://github.com/horaciolaphitz"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-skin-muted hover:text-skin-accent transition-all duration-200 hover:scale-110"
+              className="focus-ring text-skin-muted hover:text-skin-accent transition-all duration-200 hover-scale"
               aria-label="GitHub"
             >
               <GithubIcon width="24" height="24" />
             </a>
             <a
               href="mailto:horaciolaphitz99@gmail.com"
-              className="text-skin-muted hover:text-skin-accent transition-all duration-200 hover:scale-110"
+              className="focus-ring text-skin-muted hover:text-skin-accent transition-all duration-200 hover-scale"
               aria-label="Email"
             >
               <MailIcon width="24" height="24" />

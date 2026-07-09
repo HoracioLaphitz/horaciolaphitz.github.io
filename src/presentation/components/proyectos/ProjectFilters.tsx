@@ -1,29 +1,18 @@
-import { SearchIcon, RefreshIcon } from "../ui/Icons";
-
 interface ProjectFiltersProps {
-    searchQuery: string;
     selectedCategory: string;
     categories: string[];
-    onSearchChange: (value: string) => void;
     onCategoryChange: (value: string) => void;
     totalPosts: number;
     filteredCount: number;
 }
 
 const ProjectFilters = ({
-    searchQuery,
     selectedCategory,
     categories,
-    onSearchChange,
     onCategoryChange,
     totalPosts,
     filteredCount,
 }: ProjectFiltersProps) => {
-    const handleReset = () => {
-        onSearchChange("");
-        onCategoryChange("all");
-    };
-
     return (
         <div className="mb-12">
             {/* Category Buttons */}

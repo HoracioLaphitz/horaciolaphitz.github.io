@@ -27,7 +27,6 @@ const iframeSrc = `/notebooks-html/${proyecto.slug}/${slugify(notebook.name)}.ht
 <PageLayout
   title={`${notebook.name} — ${proyecto.data.title}`}
   description={notebook.description ?? proyecto.data.description}
-  currentPath={`/proyectos/${proyecto.slug}/notebook/${slugify(notebook.name)}`}
 >
   <div class="max-w-5xl mx-auto px-4 py-6">
     <a

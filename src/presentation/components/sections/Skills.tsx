@@ -44,15 +44,15 @@ const Skills = () => {
       id="skills"
       className="bg-skin-primary py-20 md:py-28"
     >
-      <div className="mx-auto max-w-[980px] px-6">
+      <div className="mx-auto max-w-content px-6">
         <div
           className={`mb-16 transition-all duration-200 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
           }`}
         >
           <h2
-            className="font-bold text-skin-text tracking-tight"
-            style={{ fontSize: "clamp(36px, 5vw, 56px)", letterSpacing: "-0.02em" }}
+            className="text-display-sm font-bold text-skin-text tracking-tight"
+            style={{ letterSpacing: "-0.02em" }}
           >
             Stack
           </h2>

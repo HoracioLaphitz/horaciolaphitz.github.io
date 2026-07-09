@@ -40,11 +40,11 @@ const Navigation = () => {
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${navClass}`}>
-      <div className="mx-auto px-6 max-w-[980px]">
+      <div className="mx-auto px-6 max-w-content">
         <div className="flex items-center justify-between h-14">
           <a
             href="/"
-            className="flex items-center gap-2 text-skin-text hover:opacity-70 transition-opacity duration-200"
+            className="focus-ring flex items-center gap-2 text-skin-text hover:opacity-70 transition-opacity duration-200"
           >
             <Logo size="sm" />
           </a>
@@ -55,7 +55,7 @@ const Navigation = () => {
                 key={item.path}
                 href={item.path}
                 onClick={(e) => handleNavClick(e, item.path)}
-                className="px-4 py-2 text-sm font-medium text-skin-muted hover:text-skin-text transition-colors duration-200 rounded-lg"
+                className="focus-ring px-4 py-2 text-sm font-medium text-skin-muted hover:text-skin-text transition-colors duration-200 rounded-lg"
               >
                 {item.name}
               </a>
@@ -69,7 +69,7 @@ const Navigation = () => {
             <ThemeToggle />
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="p-2 text-skin-muted hover:text-skin-text transition-colors duration-200 rounded-lg"
+              className="focus-ring p-2 text-skin-muted hover:text-skin-text transition-colors duration-200 rounded-lg"
               aria-label="Toggle menu"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -91,7 +91,7 @@ const Navigation = () => {
                   key={item.path}
                   href={item.path}
                   onClick={(e) => handleNavClick(e, item.path)}
-                  className="px-4 py-2.5 text-sm font-medium text-skin-muted hover:text-skin-text hover:bg-skin-secondary transition-all duration-200 rounded-lg"
+                  className="focus-ring px-4 py-2.5 text-sm font-medium text-skin-muted hover:text-skin-text hover:bg-skin-secondary transition-all duration-200 rounded-lg"
                 >
                   {item.name}
                 </a>

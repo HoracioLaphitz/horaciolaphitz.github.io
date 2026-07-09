@@ -7,7 +7,7 @@ const ThemeToggle = () => {
     <button
       type="button"
       onClick={toggleTheme}
-      className="relative p-2.5 rounded-xl bg-skin-secondary border border-skin-border text-skin-text hover:text-skin-accent hover:border-skin-accent hover:bg-skin-accent/5 transition-all duration-300 group overflow-hidden shadow-sm"
+      className="focus-ring relative p-2.5 rounded-xl bg-skin-secondary border border-skin-border text-skin-text hover:text-skin-accent hover:border-skin-accent hover:bg-skin-accent/5 transition-all duration-300 group overflow-hidden shadow-sm"
       aria-label={`Cambiar a tema ${theme === 'light' ? 'oscuro' : 'claro'}`}
       title={`Cambiar a tema ${theme === 'light' ? 'oscuro' : 'claro'}`}
     >

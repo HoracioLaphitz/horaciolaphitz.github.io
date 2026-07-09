@@ -14,7 +14,6 @@ const proyectos = serializeProjects(ProjectMapper.toDomainArray(proyectosRaw));
 <PageLayout
   title="Proyectos"
   description="Explora mis proyectos de análisis de datos y visualización."
-  currentPath="/projects"
 >
   <ProjectCategories posts={proyectos} client:visible />
 </PageLayout>

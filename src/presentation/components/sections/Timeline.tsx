@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useScrollAnimation } from "@presentation/hooks/useScrollAnimation";
-import { BriefcaseIcon, BookOpenIcon } from "../ui/Icons";
+import { BriefcaseIcon, BookOpenIcon } from "@presentation/components/ui/Icons";
 
 interface TimelineItem {
   period: string;
@@ -370,7 +370,6 @@ const Timeline = () => {
   const [selectedCert, setSelectedCert] = useState<TimelineItem | null>(null);
   const [showLeftButton, setShowLeftButton] = useState(false);
   const [showRightButton, setShowRightButton] = useState(true);
-  const scrollContainerRef = useState<HTMLDivElement | null>(null)[0];
 
   useEffect(() => {
     const script = document.createElement("script");
@@ -689,7 +688,7 @@ const Timeline = () => {
               </div>
             </div>
 
-            <div className="h-[calc(90vh-80px)] overflow-auto bg-gray-100">
+            <div className="h-[calc(90vh-80px)] overflow-auto bg-skin-secondary">
               <iframe
                 src={selectedCert.certificateUrl}
                 className="w-full h-full"

@@ -41,8 +41,8 @@ const articleSchema = {
 };
 ---
 
-<PageLayout title={title} description={description} currentPath={currentPath} type="article">
-  <script type="application/ld+json" is:inline set:html={JSON.stringify(articleSchema)} />
+<PageLayout title={title} description={description} type="article">
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(articleSchema).replace(/</g, '\\\u003c')} />
   <article class="article-layout">
     <!-- Header estilo NYT -->
     <header class="article-header">

@@ -1,4 +1,4 @@
-import { FileText, Download, BookOpen, Database } from "lucide-react";
+import { DocumentIcon, DownloadIcon, BookOpenIcon, DatabaseIcon } from "@presentation/components/ui/Icons";
 
 interface Resource {
   name: string;
@@ -15,11 +15,11 @@ interface ResourceDownloadProps {
 const getIcon = (type: "notebook" | "pdf" | "dataset") => {
   switch (type) {
     case "notebook":
-      return <BookOpen className="w-5 h-5" />;
+      return <BookOpenIcon className="w-5 h-5" />;
     case "pdf":
-      return <FileText className="w-5 h-5" />;
+      return <DocumentIcon className="w-5 h-5" />;
     case "dataset":
-      return <Database className="w-5 h-5" />;
+      return <DatabaseIcon className="w-5 h-5" />;
   }
 };
 
@@ -44,7 +44,7 @@ const ResourceItem = ({
         <p className="text-sm text-skin-muted mt-1">{resource.description}</p>
       )}
     </div>
-    <Download className="w-4 h-4 text-skin-muted group-hover:text-skin-accent transition-colors flex-shrink-0" />
+    <DownloadIcon className="w-4 h-4 text-skin-muted group-hover:text-skin-accent transition-colors flex-shrink-0" />
   </a>
 );
 
@@ -67,7 +67,7 @@ export function ResourceDownload({
         {notebooks && notebooks.length > 0 && (
           <div>
             <h3 className="text-lg font-semibold text-skin-primary mb-3 flex items-center gap-2">
-              <BookOpen className="w-5 h-5 text-skin-accent" />
+              <BookOpenIcon className="w-5 h-5 text-skin-accent" />
               Notebooks Jupyter
             </h3>
             <div className="space-y-2">
@@ -81,7 +81,7 @@ export function ResourceDownload({
         {pdfs && pdfs.length > 0 && (
           <div>
             <h3 className="text-lg font-semibold text-skin-primary mb-3 flex items-center gap-2">
-              <FileText className="w-5 h-5 text-skin-accent" />
+              <DocumentIcon className="w-5 h-5 text-skin-accent" />
               Documentos PDF
             </h3>
             <div className="space-y-2">
@@ -95,7 +95,7 @@ export function ResourceDownload({
         {datasets && datasets.length > 0 && (
           <div>
             <h3 className="text-lg font-semibold text-skin-primary mb-3 flex items-center gap-2">
-              <Database className="w-5 h-5 text-skin-accent" />
+              <DatabaseIcon className="w-5 h-5 text-skin-accent" />
               Datasets
             </h3>
             <div className="space-y-2">

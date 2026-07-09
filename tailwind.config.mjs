@@ -27,6 +27,9 @@ export default {
         "container-md": "920px",
         "container-lg": "1200px",
         "container-xl": "1280px",
+        // Content containers
+        content: "980px",
+        "prose-narrow": "760px",
       },
       // Spacing - Modular Scale (Ratio 1.5)
       spacing: {
@@ -51,7 +54,16 @@ export default {
         "3xl": ["2.441rem", { lineHeight: "1.2" }], // 39.06px
         "4xl": ["3.052rem", { lineHeight: "1.2" }], // 48.83px
         "5xl": ["3.815rem", { lineHeight: "1.2" }], // 61.04px
-        "6xl": ["4.768rem", { lineHeight: "1.2" }]  // 76.29px
+        "6xl": ["4.768rem", { lineHeight: "1.2" }], // 76.29px
+        // Fluid display tokens
+        display: [
+          "clamp(56px, 8vw, 96px)",
+          { lineHeight: "1.05", letterSpacing: "-0.02em" },
+        ],
+        "display-sm": [
+          "clamp(36px, 5vw, 56px)",
+          { lineHeight: "1.1", letterSpacing: "-0.02em" },
+        ],
       },
       // Border Radius - Basado en Spacing
       borderRadius: {
@@ -89,24 +101,24 @@ export default {
           info: "var(--info)",
         },
       },
-      // Font Family - Nueva Identidad: Montserrat + Open Sans
+      // Font Family - Space Grotesk (display) + Inter (body)
       fontFamily: {
         sans: [
-          "Open Sans",
+          "Inter",
           "-apple-system",
           "BlinkMacSystemFont",
           "system-ui",
           "sans-serif",
         ],
         display: [
-          "Montserrat",
+          "Space Grotesk",
           "-apple-system",
           "BlinkMacSystemFont",
           "system-ui",
           "sans-serif",
         ],
         body: [
-          "Open Sans",
+          "Inter",
           "-apple-system",
           "BlinkMacSystemFont",
           "system-ui",
@@ -181,8 +193,6 @@ export default {
         "fade-in": "fadeIn 0.5s ease-out",
         "slide-up": "slideUp 0.5s ease-out",
         float: "float 3s ease-in-out infinite",
-        fadeIn: "fadeIn 0.3s ease-in-out",
-        slideInUp: "slideInUp 0.4s ease-out",
         scaleIn: "scaleIn 0.3s ease-out",
       },
       keyframes: {
@@ -192,10 +202,6 @@ export default {
         },
         slideUp: {
           "0%": { opacity: "0", transform: "translateY(20px)" },
-          "100%": { opacity: "1", transform: "translateY(0)" },
-        },
-        slideInUp: {
-          "0%": { opacity: "0", transform: "translateY(30px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
         scaleIn: {

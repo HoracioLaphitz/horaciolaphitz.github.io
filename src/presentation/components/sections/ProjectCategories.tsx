@@ -1,7 +1,7 @@
 import { useState, useMemo, useEffect } from "react";
-import ProjectCard from "../proyectos/ProjectCard";
-import ProjectFilters from "../proyectos/ProjectFilters";
-import { SearchIcon, FolderIcon } from "../ui/Icons";
+import ProjectCard from "@presentation/components/proyectos/ProjectCard";
+import ProjectFilters from "@presentation/components/proyectos/ProjectFilters";
+import { FolderIcon } from "@presentation/components/ui/Icons";
 import type { ProjectEntity } from "@domain/entities/project.entity";
 
 export interface SerializedProject {
@@ -41,7 +41,6 @@ interface ProjectCategoriesProps {
 
 const ProjectCategories = ({ posts }: ProjectCategoriesProps) => {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
-  const [searchQuery, setSearchQuery] = useState("");
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -73,22 +72,11 @@ const ProjectCategories = ({ posts }: ProjectCategoriesProps) => {
       filtered = filtered.filter((p) => p.category === selectedCategory);
     }
 
-    // Filter by search query
-    if (searchQuery.trim()) {
-      const query = searchQuery.toLowerCase().trim();
-      filtered = filtered.filter((p) => {
-        const searchableText = [p.title, p.description, p.category, ...p.tags]
-          .join(" ")
-          .toLowerCase();
-        return searchableText.includes(query);
-      });
-    }
-
     // Featured projects first, preserving original order within each group
     filtered.sort((a, b) => Number(b.featured) - Number(a.featured));
 
     return filtered;
-  }, [posts, selectedCategory, searchQuery]);
+  }, [posts, selectedCategory]);
 
   const getAnimationClass = (index: number) =>
     `transition-all duration-200 delay-${index * 75} ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
@@ -99,15 +87,12 @@ const ProjectCategories = ({ posts }: ProjectCategoriesProps) => {
       id="proyectos"
       className="bg-skin-secondary py-20 md:py-28"
     >
-      <div className="max-w-[980px] mx-auto px-6">
+      <div className="max-w-content mx-auto px-6">
         {/* Header */}
         <header
           className={`mb-12 lg:mb-16 ${getAnimationClass(0)}`}
         >
-          <h2
-            className="font-bold text-skin-text tracking-tight"
-            style={{ fontSize: "clamp(36px, 5vw, 56px)", letterSpacing: "-0.02em" }}
-          >
+          <h2 className="text-display-sm font-bold text-skin-text tracking-tight">
             Proyectos
           </h2>
         </header>
@@ -118,8 +103,6 @@ const ProjectCategories = ({ posts }: ProjectCategoriesProps) => {
             categories={projectCategories}
             selectedCategory={selectedCategory}
             onCategoryChange={setSelectedCategory}
-            searchQuery={searchQuery}
-            onSearchChange={setSearchQuery}
             totalPosts={posts.length}
             filteredCount={filteredPosts.length}
           />
@@ -150,34 +133,17 @@ const ProjectCategories = ({ posts }: ProjectCategoriesProps) => {
         {filteredPosts.length === 0 && (
           <div className={`text-center py-16 ${getAnimationClass(2)}`}>
             <div className="text-6xl mb-4 flex justify-center">
-              {searchQuery ? (
-                <SearchIcon className="w-16 h-16 text-skin-muted" />
-              ) : (
-                <FolderIcon className="w-16 h-16 text-skin-muted" />
-              )}
+              <FolderIcon className="w-16 h-16 text-skin-muted" />
             </div>
             <h3 className="text-xl font-bold text-skin-text mb-2">
-              {searchQuery
-                ? `No se encontraron resultados para "${searchQuery}"`
-                : "No se encontraron resultados con estos filtros"}
+              No se encontraron resultados con estos filtros
             </h3>
             <p className="text-skin-muted mb-6">
-              Probá con otros términos de búsqueda o ajustá los filtros
+              Ajustá los filtros para ver más proyectos
             </p>
             <div className="flex gap-3 justify-center flex-wrap">
-              {searchQuery && (
-                <button
-                  onClick={() => setSearchQuery("")}
-                  className="px-6 py-3 bg-skin-secondary border border-skin-border hover:border-skin-accent text-skin-text font-semibold rounded-lg transition-all duration-300"
-                >
-                  Limpiar búsqueda
-                </button>
-              )}
               <button
-                onClick={() => {
-                  setSelectedCategory("all");
-                  setSearchQuery("");
-                }}
+                onClick={() => setSelectedCategory("all")}
                 className="px-6 py-3 bg-brand-primary hover:bg-brand-hover text-skin-primary font-semibold rounded-lg transition-all duration-300"
               >
                 Mostrar todo

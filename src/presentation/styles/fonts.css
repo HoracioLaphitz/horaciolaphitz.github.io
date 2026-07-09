@@ -1,10 +1,10 @@
-/* Variable Fonts - Apple-style Typography */
+/* Variable Fonts - Space Grotesk (display) + Inter (body) */
 
-/* Inter is imported once in global.css */
+/* Inter is imported once in global.css. Space Grotesk is linked in Layout.astro <head>. */
 
 /* Font Preload Hints */
 :root {
-  --font-display: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  --font-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
 }
 
