@@ -10,5 +10,5 @@ export const dashboardRegistry: Partial<Record<DashboardSlug, DashboardComponent
     "dashboards-ventas-marketing-powerbi": lazy(() => import("./MarketBasketDashboard")),
     "ai-sales-assistant": lazy(() => import("./EcommerceExecutiveDashboard")),
     "nb-capitalizacion-bancos-etl": lazy(() => import("./BancosFinancieroDashboard")),
-    // "predice-precio-acciones": lazy(() => import("./AccionesFinancieroDashboard")),
+    "predice-precio-acciones": lazy(() => import("./AccionesFinancieroDashboard")),
 };
