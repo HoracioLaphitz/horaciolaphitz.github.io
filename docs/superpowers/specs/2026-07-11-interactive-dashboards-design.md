@@ -84,7 +84,16 @@ Mounting: `src/pages/proyectos/[slug].astro` renders `<ProjectDashboard client:v
 3. **Financiero Bancos** (`bancos_market_cap.csv`): top-10 market cap ranking bar with currency selector (USD/GBP/EUR/INR), KPI row (leader, top-10 total).
 4. **Financiero Acciones** (`precios_pred.csv`): actual vs predicted price lines with zoom/brush, KPI row (RMSE, last price).
 
-Visual design follows the `dataviz` skill at implementation time (accessible palette, light/dark consistency, one visual system across all four).
+### Visual Identity (per-project theming)
+
+No generic templated look. All four dashboards share one structural system (layout grid, typography, spacing, chart grammar, KPI card anatomy — per the `dataviz` skill), but **each dashboard has its own theme with colors alluding to its project**:
+
+- **Market Basket / SanoYFresco** (grocery, "healthy & fresh"): fresh greens + produce-inspired accents.
+- **Ejecutivo Ecommerce** (Olist, executive reporting): deep blue/teal corporate palette.
+- **Financiero Bancos** (banking): navy + gold, institutional feel.
+- **Financiero Acciones** (stock market): market green/red on dark terminal-inspired surface.
+
+Theming is implemented as a `DashboardTheme` token object (accent scale, categorical series colors, surface tints) passed to the shared components — identity changes per project, structure does not. All palettes must pass the `dataviz` skill's contrast/accessibility validation in both light and dark modes and fit the portfolio's existing aesthetic.
 
 ## Error Handling
 
