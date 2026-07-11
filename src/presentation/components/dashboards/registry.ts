@@ -8,7 +8,7 @@ type DashboardComponent = LazyExoticComponent<ComponentType>;
 export const dashboardRegistry: Partial<Record<DashboardSlug, DashboardComponent>> = {
     "sano-y-fresco-market-basket": lazy(() => import("./MarketBasketDashboard")),
     "dashboards-ventas-marketing-powerbi": lazy(() => import("./MarketBasketDashboard")),
-    // "ai-sales-assistant": lazy(() => import("./EcommerceExecutiveDashboard")),
+    "ai-sales-assistant": lazy(() => import("./EcommerceExecutiveDashboard")),
     // "nb-capitalizacion-bancos-etl": lazy(() => import("./BancosFinancieroDashboard")),
     // "predice-precio-acciones": lazy(() => import("./AccionesFinancieroDashboard")),
 };
