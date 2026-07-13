@@ -16,7 +16,7 @@ resources:
 
 Antes de optimizar cualquier modelo hace falta una línea base medible. Este notebook establece esa referencia para un clasificador de imágenes: si después una mejora no supera este número, no es mejora.
 
-## Cómo lo resolví
+## Resolución
 
 - Dataset de imágenes cargado con **tensorflow_datasets**, con normalización de píxeles a [0, 1].
 - Primera arquitectura: red densa (`Flatten` + capas `Dense`) como referencia.
@@ -27,6 +27,6 @@ Antes de optimizar cualquier modelo hace falta una línea base medible. Este not
 
 Python · TensorFlow · Keras · tensorflow_datasets · OpenCV
 
-## Qué aprendí
+## Conocimiento Demostrado
 
 El valor de un baseline honesto: la red densa ya clasifica razonablemente bien, y ese número es lo que justifica (o no) la complejidad extra de las capas convolucionales en las iteraciones siguientes.

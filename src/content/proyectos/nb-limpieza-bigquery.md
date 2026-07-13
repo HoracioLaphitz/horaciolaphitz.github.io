@@ -16,7 +16,7 @@ resources:
 
 **BigQuery** rechaza cargas con esquema inconsistente: nombres de columna con caracteres inválidos, tipos mezclados y nulos donde no van. Los datos crudos casi nunca llegan en ese estado.
 
-## Cómo lo resolví
+## Resolución
 
 - Diagnóstico inicial del dataset con **Pandas** y Seaborn: tipos, nulos y valores fuera de rango.
 - Normalización de nombres de columna con **expresiones regulares** (`re`) al formato que BigQuery exige: sin espacios ni caracteres especiales.
@@ -26,6 +26,6 @@ resources:
 
 Python · Pandas · Regex · Google BigQuery
 
-## Qué aprendí
+## Conocimiento Demostrado
 
 Que el warehouse define el contrato: la limpieza local tiene que apuntar al esquema que el destino exige, no a un estándar genérico de "datos limpios".

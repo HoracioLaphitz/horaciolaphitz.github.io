@@ -16,7 +16,7 @@ resources:
 
 Clasificación binaria: dado un conjunto de features, decidir sí o no. El accuracy solo no alcanza para evaluar un clasificador — con clases desbalanceadas puede ser alto y el modelo, inútil.
 
-## Cómo lo resolví
+## Resolución
 
 - Análisis exploratorio previo con **Pandas** y **Seaborn** para entender distribución de features y balance de clases.
 - Modelo de **regresión logística** con Scikit-learn, entrenado sobre el split de entrenamiento y evaluado sobre datos que nunca vio.
@@ -26,6 +26,6 @@ Clasificación binaria: dado un conjunto de features, decidir sí o no. El accur
 
 Python · Scikit-learn · Pandas · Seaborn
 
-## Qué aprendí
+## Conocimiento Demostrado
 
 A elegir la métrica según el costo del error: cuándo importa más el recall (no dejar pasar positivos) y cuándo la precision (no dar falsas alarmas). La matriz de confusión cuenta la historia que el accuracy esconde.

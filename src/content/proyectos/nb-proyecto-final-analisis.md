@@ -19,6 +19,6 @@ Recorre el ciclo completo: ingesta, limpieza, análisis exploratorio (EDA) y com
 
 Python · Pandas · Matplotlib · EDA
 
-## Qué aprendí
+## Conocimiento Demostrado
 
 A encadenar las fases del análisis en un pipeline coherente en lugar de pasos sueltos.

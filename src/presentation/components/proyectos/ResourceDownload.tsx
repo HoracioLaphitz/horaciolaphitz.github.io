@@ -60,7 +60,7 @@ export function ResourceDownload({
   return (
     <div className="mt-12 p-6 rounded-2xl bg-skin-surface border border-skin-border">
       <h2 className="text-2xl font-bold text-skin-primary mb-6">
-        Recursos Descargables
+        Recursos
       </h2>
 
       <div className="space-y-6">

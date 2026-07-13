@@ -144,7 +144,7 @@ export const PROFILE_DATA = new ProfileEntity(
       level: SkillLevel.Intermediate,
     },
     {
-      name: "RAG (Retrieval-Augmented Generation)",
+      name: "RAG",
       category: SkillCategory.DataAnalysis,
       level: SkillLevel.Intermediate,
     },

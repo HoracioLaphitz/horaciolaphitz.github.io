@@ -9,7 +9,7 @@ const CREDLY_BADGES = [
 const SKILL_GROUPS: { label: string; names: string[] }[] = [
   {
     label: "GenAI & IA",
-    names: ["LangChain", "LlamaIndex", "RAG (Retrieval-Augmented Generation)", "Vector Databases", "OpenAI API", "Prompt Engineering"],
+    names: ["LangChain", "LlamaIndex", "RAG", "Vector Databases", "OpenAI API", "Prompt Engineering"],
   },
   {
     label: "Análisis de Datos",
@@ -25,11 +25,11 @@ const SKILL_GROUPS: { label: string; names: string[] }[] = [
   },
   {
     label: "Soft Skills",
-    names: ["Resolución de Problemas", "Pensamiento Analítico", "Comunicación", "Trabajo en Equipo"],
+    names: ["Resoluciónn de Problemas", "Pensamiento Analítico", "Comunicación", "Trabajo en Equipo"],
   },
   {
-    label: "Sistemas de Gestión (ERP)",
-    names: ["Tango Gestión", "Parametrización Contable", "Gestión de Datos Maestros", "Gestión de Stock", "Procesos de Ventas", "Tesorería", "Gestión de Compras"],
+    label: "Tango Gestión (ERP)",
+    names: ["Parametrización Contable", "Gestión de Datos Maestros", "Gestión de Stock", "Procesos de Ventas", "Tesorería", "Gestión de Compras"],
   },
 ];
 
@@ -46,9 +46,8 @@ const Skills = () => {
     >
       <div className="mx-auto max-w-content px-6">
         <div
-          className={`mb-16 transition-all duration-200 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
-          }`}
+          className={`mb-16 transition-all duration-200 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
+            }`}
         >
           <h2
             className="text-display-sm font-bold text-skin-text tracking-tight"
@@ -62,9 +61,8 @@ const Skills = () => {
           {SKILL_GROUPS.map((group, gi) => (
             <div
               key={group.label}
-              className={`transition-all duration-200 ${
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
-              }`}
+              className={`transition-all duration-200 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
+                }`}
               style={{ transitionDelay: `${gi * 60}ms` }}
             >
               <h3 className="text-xs font-semibold text-skin-muted uppercase tracking-widest mb-4">
@@ -90,9 +88,8 @@ const Skills = () => {
 
         {/* Credly Badges */}
         <div
-          className={`mt-16 pt-12 border-t border-skin-border transition-all duration-200 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
-          }`}
+          className={`mt-16 pt-12 border-t border-skin-border transition-all duration-200 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
+            }`}
           style={{ transitionDelay: "600ms" }}
         >
           <h3 className="text-xs font-semibold text-skin-muted uppercase tracking-widest mb-6">

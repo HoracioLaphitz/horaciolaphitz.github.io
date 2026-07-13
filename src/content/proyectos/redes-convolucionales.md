@@ -1,6 +1,6 @@
 ---
-title: "Redes Convolucionales — Dígitos y Clasificador Perros/Gatos"
-description: "Dos CNN en un mismo proyecto: reconocimiento de dígitos manuscritos (MNIST) y un clasificador de perros vs gatos. Del dato crudo a la predicción, capa por capa."
+title: "Redes Convolucionales — Clasificador"
+description: "Dos CNN: reconocimiento de dígitos manuscritos (MNIST) y un clasificador de perros vs gatos. Del dato crudo a la predicción, capa por capa."
 pubDate: 2024-02-13
 category: "Análisis de datos"
 tags: ["Python", "TensorFlow", "CNN", "Deep Learning", "MNIST", "Computer Vision"]

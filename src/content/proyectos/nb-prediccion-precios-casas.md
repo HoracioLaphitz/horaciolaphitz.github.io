@@ -1,5 +1,5 @@
 ---
-title: "Predicción de Precios de Casas"
+title: "Predicción de Precios"
 description: "Modelo de regresión que pone precio a una vivienda a partir de sus características — superficie, ubicación, antigüedad — y se evalúa sobre datos que nunca vio."
 pubDate: 2024-04-01
 category: "Notebooks Analytics"
@@ -8,15 +8,16 @@ github: "https://github.com/HoracioLaphitz/horaciolaphitz.github.io/blob/main/pu
 draft: false
 resources:
   notebooks:
-    - name: "Predicción de Precios de Casas"
+    - name: "Predicción de Precios"
       path: "/Proyectos/Notebooks/Predice-Precios-Casas/Predice-Precios-Casas.ipynb"
 ---
 
 ## El problema
 
-Estimar el precio de una vivienda a partir de sus características — superficie, ubicación, antigüedad. Un problema de regresión supervisada clásico donde el riesgo es evaluar sobre los mismos datos con los que se entrenó.
+Estimar el precio de una vivienda a partir de sus características — superficie, ubicación, antigüedad.
+Un problema de regresión supervisada donde el riesgo es evaluar sobre los mismos datos con los que se entrenó.
 
-## Cómo lo resolví
+## Resolución
 
 - Análisis exploratorio con **Pandas** y **Seaborn**: correlaciones entre features y precio, distribución de la variable objetivo y detección de outliers.
 - Modelo de regresión con **Scikit-learn**, entrenado sobre el split de entrenamiento.
@@ -26,6 +27,6 @@ Estimar el precio de una vivienda a partir de sus características — superfici
 
 Python · Scikit-learn · Pandas · Seaborn · NumPy
 
-## Qué aprendí
+## Conocimiento Demostrado
 
 El flujo completo de una regresión supervisada: del EDA que sugiere qué features importan, al número de error que dice cuánto confiar en el modelo.

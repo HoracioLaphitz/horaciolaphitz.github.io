@@ -208,6 +208,8 @@ CMakeCache.txt
 .kiro/
 .agents/
 .claude/
+.superpowers/
+.atl/
 skills-lock.json
 .cursor/
 .windsurf/
@@ -424,4 +426,7 @@ logs/
 # ============================================================================
 
 !docs/**/*.md
+docs/superpowers/
 !Proyectos/ai-sales-assistant/tests/fixtures/*.csv
+.Rproj.user/
+.Rhistory

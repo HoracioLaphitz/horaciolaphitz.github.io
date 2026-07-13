@@ -1,6 +1,6 @@
 ---
-title: "Capitalización de Bancos — Web Scraping + ETL"
-description: "Cuando el dato vive en una web sin API, hay que ir a buscarlo: web scraping de los bancos más grandes del mundo y un pipeline ETL que los deja listos en SQLite y CSV."
+title: "Capitalización de Bancos"
+description: "Web scraping de los bancos más grandes del mundo y un pipeline ETL para análisis en SQL y python."
 pubDate: 2024-03-22
 category: "Notebooks Analytics"
 tags: ["Python", "Web Scraping", "ETL", "SQLite", "Pandas", "BeautifulSoup"]
@@ -16,7 +16,7 @@ resources:
 
 La capitalización de mercado de los bancos más grandes del mundo vive en una tabla de Wikipedia: sin API, sin CSV descargable. Proyecto de la carrera de **Data Engineering de IBM**: construir el pipeline completo para capturar ese dato y dejarlo consultable.
 
-## Cómo lo resolví
+## Resoluciónn
 
 Un pipeline **ETL** de punta a punta:
 
@@ -29,6 +29,6 @@ Un pipeline **ETL** de punta a punta:
 
 Python · BeautifulSoup · Requests · Pandas · SQLite
 
-## Qué aprendí
+## Conocimiento Demostrado
 
-La disciplina de un pipeline real: separar las fases, registrar cada paso y verificar la carga con consultas SQL al final. El scraping es lo de menos; la confiabilidad del flujo es el trabajo.
+La disciplina de pipelines: separar las fases, registrar cada paso y verificar la carga con consultas SQL al final. El scraping es lo de menos; la confiabilidad del flujo es el trabajo.

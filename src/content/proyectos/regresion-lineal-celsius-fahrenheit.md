@@ -1,6 +1,6 @@
 ---
-title: "Regresión Lineal — Celsius a Fahrenheit"
-description: "Un modelo que descubre solo la relación Celsius–Fahrenheit a partir de ejemplos, sin que nadie le dé la fórmula: el 'hola mundo' del machine learning, bien contado."
+title: "Regresión Lineal — Temperaturas"
+description: "Un modelo que descubre solo la relación Celsius–Fahrenheit a partir de ejemplos."
 pubDate: 2024-02-13
 category: "Análisis de datos"
 tags: ["Python", "Machine Learning", "Linear Regression", "TensorFlow"]
@@ -8,7 +8,7 @@ github: "https://github.com/HoracioLaphitz/Regresion_Lineal"
 draft: false
 resources:
   notebooks:
-    - name: "Regresión Lineal — Celsius a Fahrenheit"
+    - name: "Regresión Lineal — Temperaturas"
       path: "/Proyectos/Notebooks/Celcius_a_Fahrenheit.ipynb"
 ---
 

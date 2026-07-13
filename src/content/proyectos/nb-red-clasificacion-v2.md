@@ -1,5 +1,5 @@
 ---
-title: "Red de Clasificación — Iteración 2"
+title: "Red de Clasificación parte 2"
 description: "Segunda iteración de la red de clasificación, ajustando capas y regularización para mejorar la generalización."
 pubDate: 2024-03-08
 category: "Notebooks Analytics"
@@ -8,15 +8,15 @@ github: "https://github.com/HoracioLaphitz/horaciolaphitz.github.io/blob/main/pu
 draft: false
 resources:
   notebooks:
-    - name: "Red de Clasificación — Iteración 2"
+    - name: "Red de Clasificación parte 2"
       path: "/Proyectos/Notebooks/RedDeClasificacion2/RedDeClasificacion2.ipynb"
 ---
 
 ## El problema
 
-El modelo base clasifica, pero deja rendimiento sobre la mesa. Segunda iteración de la serie: ajustar arquitectura y entrenamiento para mejorar la generalización sin memorizar el set de entrenamiento.
+El modelo base clasifica, pero deja rendimiento sobre la mesa. Esta segunda iteración de la serie ajusta la arquitectura y el entrenamiento para mejorar la generalización sin memorizar nuevamente el set de entrenamiento.
 
-## Cómo lo resolví
+## Resolución
 
 - Mismo dataset vía **tensorflow_datasets**, mismo protocolo de evaluación — lo único que cambia es el modelo, para que la comparación contra el baseline sea limpia.
 - Ajustes de arquitectura sobre la variante convolucional (`Conv2D` + `MaxPooling2D` + `Dense`): profundidad y tamaño de capas.
@@ -26,6 +26,6 @@ El modelo base clasifica, pero deja rendimiento sobre la mesa. Segunda iteració
 
 Python · TensorFlow · Keras · tensorflow_datasets · OpenCV
 
-## Qué aprendí
+## Conocimiento Demostrado
 
-Iterar con disciplina: cambiar una cosa por vez y medir contra la misma referencia. Sin eso, no se sabe qué cambio produjo qué efecto.
+**Persistencia en el resutado**: cambiar una cosa por vez y medir contra la misma referencia. Sin eso, no se sabe qué cambio produjo qué efecto.

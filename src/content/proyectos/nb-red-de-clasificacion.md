@@ -16,7 +16,7 @@ resources:
 
 Clasificación multiclase de imágenes: dado un dígito manuscrito, decidir entre 10 categorías posibles. Es el problema canónico para entender cómo una red densa produce una distribución de probabilidad por clase.
 
-## Cómo lo resolví
+## Resolución
 
 - Carga y preprocesamiento del dataset con **tensorflow_datasets**: normalización de píxeles y separación entrenamiento/prueba.
 - Red densa en **Keras**: `Flatten` para pasar de matriz de píxeles a vector, capas `Dense` ocultas y salida softmax de 10 neuronas.
@@ -26,6 +26,6 @@ Clasificación multiclase de imágenes: dado un dígito manuscrito, decidir entr
 
 Python · TensorFlow · Keras · tensorflow_datasets
 
-## Qué aprendí
+## Conocimiento Demostrado
 
 Cómo se diseña la capa de salida según el problema — softmax y una neurona por clase — y a leer los errores del modelo mirando ejemplos concretos, no solo la métrica agregada.

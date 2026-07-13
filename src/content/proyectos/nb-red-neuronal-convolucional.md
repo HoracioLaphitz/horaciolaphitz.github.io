@@ -18,7 +18,7 @@ resources:
 
 Una red densa trata cada píxel como independiente y pierde la estructura espacial de la imagen. Las CNN existen para eso: detectar patrones locales (bordes, texturas, formas) y componerlos jerárquicamente.
 
-## Cómo lo resolví
+## Resolución
 
 - Dataset de imágenes vía **tensorflow_datasets**, con normalización y separación de los datos en entrenamiento y prueba.
 - Arquitectura convolucional en **Keras**: bloques `Conv2D` + `MaxPooling2D` para extraer features, luego `Flatten` + `Dense` para clasificar.
@@ -29,6 +29,6 @@ Una red densa trata cada píxel como independiente y pierde la estructura espaci
 
 Python · TensorFlow · Keras · tensorflow_datasets · OpenCV
 
-## Qué aprendí
+## Conocimiento Demostrado
 
 Por qué la convolución gana en visión: menos parámetros que una densa equivalente y mejor accuracy, porque la arquitectura codifica el conocimiento de que los píxeles vecinos se relacionan.

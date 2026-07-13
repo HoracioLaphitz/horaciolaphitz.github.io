@@ -18,7 +18,7 @@ const Hero = () => {
           }`}
       >
         <p className="text-sm font-semibold text-brand-primary uppercase tracking-widest mb-6">
-          Data | Machine Learning | Systems
+          Data | Machine Learning | Help Desk
         </p>
 
         <h1

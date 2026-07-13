@@ -16,7 +16,7 @@ resources:
 
 Un EDA manual completo — distribuciones, correlaciones, nulos, duplicados — consume horas de trabajo repetitivo antes de la primera decisión sobre los datos.
 
-## Cómo lo resolví
+## Resolución
 
 - **ydata-profiling** (ex Pandas Profiling) sobre el DataFrame: una llamada genera el reporte HTML completo.
 - El reporte cubre distribución por variable, matriz de correlaciones, valores faltantes, duplicados y alertas automáticas de calidad (alta cardinalidad, columnas constantes, correlaciones sospechosas).
@@ -26,6 +26,6 @@ Un EDA manual completo — distribuciones, correlaciones, nulos, duplicados — 
 
 Python · Pandas · ydata-profiling
 
-## Qué aprendí
+## Conocimiento Demostrado
 
 Dónde está el límite de la automatización: el reporte reemplaza el trabajo mecánico del EDA, pero la interpretación de qué es un problema real y qué es ruido sigue siendo del analista.

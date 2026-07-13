@@ -80,7 +80,7 @@ async function loadEcommerce(): Promise<EcommerceData> {
 function Shell({ children }: { children: ReactNode }) {
     return (
         <DashboardShell
-            title="Ejecutivo — Ecommerce Olist"
+            title="Ecommerce Olist"
             subtitle="KPIs mensuales del mart de Olist y modelo de churn de sellers."
             repoUrl={REPO_URL}
             theme={theme}

@@ -16,7 +16,7 @@ resources:
 
 Entrenar una red de visión desde cero exige millones de imágenes y horas de GPU. Para un problema de clasificación acotado, es pagar un costo que otro ya pagó.
 
-## Cómo lo resolví
+## Resolución
 
 - Modelo preentrenado descargado de **TensorFlow Hub** como extractor de features congelado: las capas convolucionales ya saben ver bordes, texturas y formas.
 - Encima del extractor, una capa `Dense` propia entrenada solo para las clases del problema nuevo.
@@ -26,6 +26,6 @@ Entrenar una red de visión desde cero exige millones de imágenes y horas de GP
 
 Python · TensorFlow · TensorFlow Hub · Keras · OpenCV · PIL
 
-## Qué aprendí
+## Conocimiento Demostrado
 
 Que la transferencia de aprendizaje cambia la economía del deep learning: con una fracción del cómputo y de los datos se llega a precisiones que desde cero serían inalcanzables en el mismo tiempo.

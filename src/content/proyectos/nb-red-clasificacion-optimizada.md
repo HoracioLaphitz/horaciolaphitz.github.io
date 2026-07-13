@@ -1,6 +1,6 @@
 ---
-title: "Red de Clasificación — Optimizada"
-description: "Versión optimizada de la red de clasificación: tuning de hiperparámetros y mejora de precisión sobre el modelo base."
+title: "Red de Clasificación "
+description: "Proyecto red de clasificación: tuning de hiperparámetros y mejora de precisión sobre un modelo base."
 pubDate: 2024-03-12
 category: "Notebooks Analytics"
 tags: ["Python", "TensorFlow", "Neural Network", "Classification", "Hyperparameter Tuning"]
@@ -8,7 +8,7 @@ github: "https://github.com/HoracioLaphitz/horaciolaphitz.github.io/blob/main/pu
 draft: false
 resources:
   notebooks:
-    - name: "Red de Clasificación — Optimizada"
+    - name: "Red de Clasificación "
       path: "/Proyectos/Notebooks/Red_Clasificacion_Optimizado/Red_Clasificacion_Optimizado.ipynb"
 ---
 
@@ -16,9 +16,9 @@ resources:
 
 Cierre de la serie de iteraciones sobre el clasificador **MNIST**: además de mejorar métricas, el código del notebook necesitaba estructura. Un experimento que no se puede leer ni repetir vale poco.
 
-## Cómo lo resolví
+## Resolución
 
-- Refactor completo aplicando **principios SOLID** dentro del notebook: una clase para gestión de datos (Single Responsibility), otra para construcción del modelo (Open/Closed) y otra para el entrenamiento.
+- **Principios SOLID** en práctica: una clase para gestión de datos (Single Responsibility), otra para construcción del modelo (Open/Closed) y otra para el entrenamiento.
 - Pipeline de datos con **tensorflow_datasets**: carga de MNIST, normalización y batching encapsulados en la clase de datos.
 - Modelo denso (`Flatten` + `Dense`) construido por la clase de modelo, con evaluación de accuracy sobre el set de prueba.
 
@@ -26,6 +26,6 @@ Cierre de la serie de iteraciones sobre el clasificador **MNIST**: además de me
 
 Python · TensorFlow · Keras · tensorflow_datasets · SOLID
 
-## Qué aprendí
+## Conocimiento Demostrado
 
-Que los principios de diseño de software también aplican a notebooks: separar datos, modelo y entrenamiento en clases hace que cada experimento sea legible, repetible y modificable sin romper el resto.
+Principios de diseño de software aplicados análisis de datos con notebooks: separación datos, modelo y entrenamiento para hacerlo legible, repetible y modificable a futuro.

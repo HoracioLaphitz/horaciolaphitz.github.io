@@ -16,7 +16,7 @@ resources:
 
 Los scripts de análisis crecen y se vuelven imposibles de mantener: funciones sueltas, estado global, código copiado. La programación orientada a objetos es la herramienta base para ponerles estructura.
 
-## Cómo lo resolví
+## Resolución
 
 Ejercicios prácticos de los cuatro pilares de la **POO** en Python:
 
@@ -29,6 +29,6 @@ Ejercicios prácticos de los cuatro pilares de la **POO** en Python:
 
 Python · POO
 
-## Qué aprendí
+## Conocimiento Demostrado
 
 La base que después uso en proyectos reales: el notebook de la red de clasificación optimizada aplica exactamente estos conceptos (clases para datos, modelo y entrenamiento) sobre un problema de deep learning.
