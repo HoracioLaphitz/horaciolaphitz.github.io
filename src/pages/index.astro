@@ -1,7 +1,8 @@
 ---
 import PageLayout from "@presentation/layouts/PageLayout.astro";
 import Hero from "@presentation/components/sections/Hero.tsx";
-import Timeline from "@presentation/components/sections/Timeline.tsx";
+import Experience from "@presentation/components/sections/Experience.tsx";
+import Certifications from "@presentation/components/sections/Certifications.tsx";
 import Skills from "@presentation/components/sections/Skills.tsx";
 import ProjectCategories from "@presentation/components/sections/ProjectCategories.tsx";
 import Contact from "@presentation/components/sections/Contact.tsx";
@@ -30,6 +31,7 @@ try {
   <Hero client:load />
   <ProjectCategories posts={proyectosSerializados} client:load />
   <Skills client:visible />
-  <Timeline client:visible />
+  <Experience client:visible />
+  <Certifications client:visible />
   <Contact client:visible />
 </PageLayout>
