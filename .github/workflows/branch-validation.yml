@@ -14,6 +14,9 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
 
+permissions:
+  contents: read
+
 jobs:
   validate-branch:
     name: Validate Branch Name
@@ -23,9 +26,11 @@ jobs:
     steps:
       - name: Extract branch name
         id: extract_branch
+        env:
+          HEAD_REF: ${{ github.head_ref }}
         run: |
           if [ "${{ github.event_name }}" == "pull_request" ]; then
-            BRANCH_NAME="${{ github.head_ref }}"
+            BRANCH_NAME="$HEAD_REF"
           else
             BRANCH_NAME="${GITHUB_REF#refs/heads/}"
           fi
