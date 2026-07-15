@@ -1,11 +1,14 @@
 import { useScrollAnimation } from "@presentation/hooks/useScrollAnimation";
 import { PROFILE_DATA } from "@data/profile-data";
+import type { Skill } from "@domain/entities/profile.entity";
 
-const CREDLY_BADGES = [
-  { id: "78a917fc-2fee-416b-a3c4-d14f3cd09541", label: "Python for Data Engineering – IBM" },
-  { id: "57d36636-8b10-4218-a641-7cd6fcf9d8fe", label: "Python for Data Science – IBM" },
-];
-
+/**
+ * Group configuration — defines which skills appear in each display group.
+ *
+ * CONTRACT: every name in `names[]` MUST exist in PROFILE_DATA.skills.
+ * Skills not found are silently skipped. Add new skills to profile-data.ts first,
+ * then reference them here. The source of truth is profile-data.ts, not this list.
+ */
 const SKILL_GROUPS: { label: string; names: string[] }[] = [
   {
     label: "GenAI & IA",
@@ -13,19 +16,23 @@ const SKILL_GROUPS: { label: string; names: string[] }[] = [
   },
   {
     label: "Análisis de Datos",
-    names: ["Python", "SQL", "Pandas", "NumPy", "Scikit-learn", "R", "Power BI", "Tableau", "Excel Avanzado"],
+    names: ["Pandas", "NumPy", "Scikit-learn", "XGBoost", "Deep Learning", "Computer Vision", "Market Basket Analysis", "Matplotlib", "Power BI", "Excel Avanzado"],
+  },
+  {
+    label: "Programación",
+    names: ["Python", "R", "TensorFlow"],
   },
   {
     label: "Bases de Datos & Cloud",
-    names: ["PostgreSQL", "MySQL", "MongoDB", "Databricks"],
+    names: ["SQL", "PostgreSQL", "MySQL", "BigQuery", "Databricks"],
   },
   {
     label: "Dev & Herramientas",
-    names: ["JavaScript", "TypeScript", "Git", "Docker"],
+    names: ["Git", "Docker", "Streamlit", "Web Scraping", "Testing"],
   },
   {
     label: "Soft Skills",
-    names: ["Resoluciónn de Problemas", "Pensamiento Analítico", "Comunicación", "Trabajo en Equipo"],
+    names: ["Resolución de Problemas", "Pensamiento Analítico", "Comunicación", "Trabajo en Equipo"],
   },
   {
     label: "Tango Gestión (ERP)",
@@ -33,21 +40,27 @@ const SKILL_GROUPS: { label: string; names: string[] }[] = [
   },
 ];
 
+const CREDLY_BADGES = [
+  { id: "78a917fc-2fee-416b-a3c4-d14f3cd09541", label: "Python for Data Engineering – IBM" },
+  { id: "57d36636-8b10-4218-a641-7cd6fcf9d8fe", label: "Python for Data Science – IBM" },
+] as const;
+
 const Skills = () => {
   const { elementRef, isVisible } = useScrollAnimation({ threshold: 0.1 });
 
-  const skillMap = new Map(PROFILE_DATA.skills.map((s: { name: string }) => [s.name, s]));
+  const skillMap = new Map<string, Skill>(
+    PROFILE_DATA.skills.map((s) => [s.name, s])
+  );
 
   return (
     <section
       ref={elementRef as React.RefObject<HTMLElement>}
       id="skills"
-      className="bg-skin-primary py-20 md:py-28"
+      className="bg-skin-primary py-16 md:py-20"
     >
       <div className="mx-auto max-w-content px-6">
         <div
-          className={`mb-16 transition-all duration-200 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
-            }`}
+          className={`mb-12 transition-all duration-200 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"}`}
         >
           <h2
             className="text-display-sm font-bold text-skin-text tracking-tight"
@@ -58,38 +71,36 @@ const Skills = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-10">
-          {SKILL_GROUPS.map((group, gi) => (
-            <div
-              key={group.label}
-              className={`transition-all duration-200 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
-                }`}
-              style={{ transitionDelay: `${gi * 60}ms` }}
-            >
-              <h3 className="text-xs font-semibold text-skin-muted uppercase tracking-widest mb-4">
-                {group.label}
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {group.names.map((name) => {
-                  const skill = skillMap.get(name);
-                  if (!skill) return null;
-                  return (
+          {SKILL_GROUPS.map((group, gi) => {
+            const visible = group.names.filter((name) => skillMap.has(name));
+
+            return (
+              <div
+                key={group.label}
+                className={`transition-all duration-200 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"}`}
+                style={{ transitionDelay: `${gi * 60}ms` }}
+              >
+                <h3 className="text-xs font-semibold text-skin-muted uppercase tracking-widest mb-4">
+                  {group.label}
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {visible.map((name) => (
                     <span
                       key={name}
                       className="px-3 py-1.5 text-sm font-medium text-skin-text bg-skin-secondary border border-skin-border rounded-lg hover:border-skin-border-medium transition-colors duration-200"
                     >
                       {name}
                     </span>
-                  );
-                })}
+                  ))}
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* Credly Badges */}
         <div
-          className={`mt-16 pt-12 border-t border-skin-border transition-all duration-200 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
-            }`}
+          className={`mt-16 pt-12 border-t border-skin-border transition-all duration-200 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"}`}
           style={{ transitionDelay: "600ms" }}
         >
           <h3 className="text-xs font-semibold text-skin-muted uppercase tracking-widest mb-6">

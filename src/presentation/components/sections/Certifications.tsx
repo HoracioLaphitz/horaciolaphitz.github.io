@@ -9,36 +9,59 @@ import {
 } from "@data/certifications";
 import CertificateModal from "./CertificateModal";
 
-const ISSUER_ORDER = [
-  "Google",
-  "IBM",
-  "Stanford",
-  "Udemy",
-  "Databricks",
-  "Domestika",
-  "Silicon Misiones",
-];
+const byDateDesc = (a: Certification, b: Certification) =>
+  b.sortDate.getTime() - a.sortDate.getTime();
 
 const Certifications = () => {
   const { elementRef, isVisible } = useScrollAnimation({ threshold: 0.1 });
   const [selectedCert, setSelectedCert] = useState<Certification | null>(null);
+  const [showAll, setShowAll] = useState(false);
 
-  const groups = ISSUER_ORDER.map((issuer) => ({
-    issuer,
-    certs: CERTIFICATIONS.filter((cert) => cert.issuer === issuer).sort(
-      (a, b) => b.sortDate.getTime() - a.sortDate.getTime()
-    ),
-  })).filter((group) => group.certs.length > 0);
+  const highlighted = CERTIFICATIONS.filter((c) => c.highlight).sort(byDateDesc);
+  const rest = CERTIFICATIONS.filter((c) => !c.highlight).sort(byDateDesc);
+
+  const renderCert = (cert: Certification) => {
+    const inner = (
+      <>
+        <span className="mb-1 block text-xs font-semibold uppercase tracking-widest text-brand-primary">
+          {cert.company}
+        </span>
+        <span className="block text-sm font-medium text-skin-text">
+          {cert.title}
+        </span>
+        <span className="mt-0.5 block font-mono text-xs text-skin-muted">
+          {cert.period}
+        </span>
+      </>
+    );
+    const base =
+      "rounded-lg border border-skin-border bg-skin-secondary px-4 py-3 text-left";
+    const key = `${cert.title}-${cert.period}`;
+
+    return cert.certificateUrl ? (
+      <button
+        key={key}
+        onClick={() => setSelectedCert(cert)}
+        className={`${base} transition-colors duration-200 hover:border-skin-border-medium`}
+      >
+        {inner}
+      </button>
+    ) : (
+      <div key={key} className={base}>
+        {inner}
+      </div>
+    );
+  };
 
   return (
     <section
       ref={elementRef as React.RefObject<HTMLElement>}
       id="certifications"
-      className="bg-skin-primary py-20 md:py-28"
+      className="bg-skin-primary py-16 md:py-20"
     >
       <div className="mx-auto max-w-content px-6">
         <div
-          className={`mb-16 transition-all duration-200 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
+          className={`mb-12 transition-all duration-200 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
             }`}
         >
           <h2
@@ -49,59 +72,13 @@ const Certifications = () => {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 gap-x-10 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
-          {groups.map((group, gi) => (
-            <div
-              key={group.issuer}
-              className={`transition-all duration-200 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
-                }`}
-              style={{ transitionDelay: `${gi * 60}ms` }}
-            >
-              <h3 className="mb-4 text-xs font-semibold uppercase tracking-widest text-skin-muted">
-                {group.issuer}
-              </h3>
-              <div className="flex flex-col gap-2">
-                {group.certs.map((cert) =>
-                  cert.certificateUrl ? (
-                    <button
-                      key={`${cert.title}-${cert.period}`}
-                      onClick={() => setSelectedCert(cert)}
-                      className="rounded-lg border border-skin-border bg-skin-secondary px-3 py-2 text-left transition-colors duration-200 hover:border-skin-border-medium"
-                    >
-                      <span className="block text-sm font-medium text-skin-text">
-                        {cert.title}
-                      </span>
-                      <span className="mt-0.5 block font-mono text-xs text-skin-muted">
-                        {cert.period}
-                      </span>
-                    </button>
-                  ) : (
-                    <div
-                      key={`${cert.title}-${cert.period}`}
-                      className="rounded-lg border border-skin-border bg-skin-secondary px-3 py-2"
-                    >
-                      <span className="block text-sm font-medium text-skin-text">
-                        {cert.title}
-                      </span>
-                      <span className="mt-0.5 block font-mono text-xs text-skin-muted">
-                        {cert.period}
-                      </span>
-                    </div>
-                  )
-                )}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Badges */}
+        {/* Insignias verificables — arriba */}
         <div
-          className={`mt-16 border-t border-skin-border pt-12 transition-all duration-200 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
+          className={`mb-12 transition-all duration-200 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
             }`}
-          style={{ transitionDelay: "600ms" }}
         >
           <h3 className="mb-6 text-xs font-semibold uppercase tracking-widest text-skin-muted">
-            Insignias
+            Insignias verificables
           </h3>
           <div className="flex flex-wrap items-start gap-4">
             {CREDLY_BADGES.map((badge) => (
@@ -118,10 +95,7 @@ const Certifications = () => {
             ))}
 
             {TANGO_BADGES.map((badge) => (
-              <div
-                key={badge.image}
-                className="flex flex-col items-center gap-2"
-              >
+              <div key={badge.image} className="flex flex-col items-center gap-2">
                 <img
                   src={badge.image}
                   alt={badge.label}
@@ -133,6 +107,39 @@ const Certifications = () => {
             ))}
           </div>
         </div>
+
+        {/* Destacadas — flagship para reclutadores */}
+        <div
+          className={`transition-all duration-200 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
+            }`}
+        >
+          <h3 className="mb-6 text-xs font-semibold uppercase tracking-widest text-skin-muted">
+            Destacadas
+          </h3>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {highlighted.map(renderCert)}
+          </div>
+        </div>
+
+        {/* Resto — formación complementaria, colapsable */}
+        {rest.length > 0 && (
+          <div className="mt-10">
+            <button
+              onClick={() => setShowAll((v) => !v)}
+              className="text-sm font-semibold text-brand-primary transition-colors duration-200 hover:opacity-80"
+            >
+              {showAll
+                ? "Ocultar formación complementaria"
+                : `Ver formación complementaria (${rest.length})`}
+            </button>
+
+            {showAll && (
+              <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {rest.map(renderCert)}
+              </div>
+            )}
+          </div>
+        )}
       </div>
 
       {selectedCert?.certificateUrl && (

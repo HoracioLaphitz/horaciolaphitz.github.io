@@ -9,7 +9,7 @@ const Contact = () => {
     <section
       ref={elementRef as React.RefObject<HTMLElement>}
       id="contacto"
-      className="bg-skin-secondary py-20 md:py-28"
+      className="bg-skin-secondary py-16 md:py-20"
     >
       <div className="mx-auto max-w-content px-6">
         <div

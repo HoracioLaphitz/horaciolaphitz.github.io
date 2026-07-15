@@ -6,6 +6,7 @@ category: "Notebooks Analytics"
 tags: ["Python", "Web Scraping", "ETL", "SQLite", "Pandas", "BeautifulSoup"]
 github: "https://github.com/HoracioLaphitz/Capitalizacion-del-Mercado-de-los-Bancos-mas-Grandes"
 draft: false
+featured: true
 resources:
   notebooks:
     - name: "Capitalización de Bancos — ETL"

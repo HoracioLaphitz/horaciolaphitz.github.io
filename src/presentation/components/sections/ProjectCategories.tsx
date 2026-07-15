@@ -85,7 +85,7 @@ const ProjectCategories = ({ posts }: ProjectCategoriesProps) => {
   return (
     <section
       id="proyectos"
-      className="bg-skin-secondary py-20 md:py-28"
+      className="bg-skin-secondary py-16 md:py-20"
     >
       <div className="max-w-content mx-auto px-6">
         {/* Header */}

@@ -13,6 +13,8 @@ export interface Certification {
   sortDate: Date;
   certificateUrl?: string;
   description?: string;
+  /** Flagship credential surfaced in the "Destacadas" tier for recruiters and visitors. */
+  highlight?: boolean;
 }
 
 export interface CredlyBadge {
@@ -33,6 +35,7 @@ export const CERTIFICATIONS: readonly Certification[] = [
     company: "Lovelytics Latam",
     issuer: "Databricks",
     sortDate: new Date(2026, 1, 1),
+    highlight: true,
     description: "Limpieza y validacion de datos con SQL en Databricks",
   },
   {
@@ -77,6 +80,7 @@ export const CERTIFICATIONS: readonly Certification[] = [
     company: "Stanford University - Coursera",
     issuer: "Stanford",
     sortDate: new Date(2024, 4, 1),
+    highlight: true,
     certificateUrl:
       "/Certificaciones/Supervised Machine Learning_ Regression and Classification.pdf",
   },
@@ -86,6 +90,7 @@ export const CERTIFICATIONS: readonly Certification[] = [
     company: "IBM - Coursera",
     issuer: "IBM",
     sortDate: new Date(2024, 3, 1),
+    highlight: true,
     certificateUrl: "/Certificaciones/IBM-python-data-engineering.pdf",
   },
   {
@@ -94,6 +99,7 @@ export const CERTIFICATIONS: readonly Certification[] = [
     company: "Google Careers - Coursera",
     issuer: "Google",
     sortDate: new Date(2024, 2, 1),
+    highlight: true,
     certificateUrl: "/Certificaciones/GOOGLE-PYTHON-CERTIFICATE.pdf",
   },
   {
@@ -110,6 +116,7 @@ export const CERTIFICATIONS: readonly Certification[] = [
     company: "IBM - Coursera",
     issuer: "IBM",
     sortDate: new Date(2024, 1, 1),
+    highlight: true,
     certificateUrl: "/Certificaciones/IBM-DATA SCIENCE - AI - DEVELOPMENT.pdf",
   },
   {

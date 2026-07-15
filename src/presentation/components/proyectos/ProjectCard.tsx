@@ -1,4 +1,4 @@
-import { RobotIcon, ChartBarIcon, BriefcaseIcon, PresentationChartLineIcon, DocumentIcon, BadgeStarIcon, GithubMarkIcon, DashboardIcon, ArrowRightIcon } from "@presentation/components/ui/Icons";
+import { RobotIcon, ChartBarIcon, BriefcaseIcon, PresentationChartLineIcon, DocumentIcon, GithubMarkIcon, DashboardIcon, ArrowRightIcon } from "@presentation/components/ui/Icons";
 import type { ReactElement } from "react";
 
 interface ProjectCardProps {
@@ -12,7 +12,7 @@ interface ProjectCardProps {
     featured?: boolean;
 }
 
-const ProjectCard = ({ title, description, slug, category, tags, github, dashboard, featured }: ProjectCardProps) => {
+const ProjectCard = ({ title, description, slug, category, tags, github, dashboard }: ProjectCardProps) => {
     const categoryIcons: Record<string, ReactElement> = {
         "Machine Learning": <RobotIcon className="w-4 h-4" />,
         "Análisis de datos": <ChartBarIcon className="w-4 h-4" />,
@@ -33,12 +33,6 @@ const ProjectCard = ({ title, description, slug, category, tags, github, dashboa
                     <span className="text-xs font-medium uppercase tracking-wide">
                         {category}
                     </span>
-                    {featured && (
-                        <span className="ml-auto flex items-center gap-1 text-xs font-semibold px-2 py-0.5 rounded-md bg-brand-primary/10 text-brand-primary">
-                            <BadgeStarIcon className="w-3 h-3" />
-                            Destacado
-                        </span>
-                    )}
                 </div>
 
                 {/* Título */}

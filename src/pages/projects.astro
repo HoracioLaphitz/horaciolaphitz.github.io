@@ -7,7 +7,7 @@ import { getCollection } from "astro:content";
 import { ProjectMapper } from "@infrastructure/mappers/project.mapper";
 
 // Fetch projects from Astro Content Collection and serialize for the island
-const proyectosRaw = await getCollection("proyectos");
+const proyectosRaw = await getCollection("proyectos", ({ data }) => !data.draft);
 const proyectos = serializeProjects(ProjectMapper.toDomainArray(proyectosRaw));
 ---
 

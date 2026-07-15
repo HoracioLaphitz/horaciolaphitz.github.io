@@ -5,6 +5,7 @@ pubDate: 2025-07-29
 category: "Análisis de datos"
 tags: ["Power BI", "Data Visualization", "Business Intelligence", "KPIs", "Dashboards"]
 draft: false
+featured: true
 ---
 
 ## Situación

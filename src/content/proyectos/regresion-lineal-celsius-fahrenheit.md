@@ -5,7 +5,7 @@ pubDate: 2024-02-13
 category: "Análisis de datos"
 tags: ["Python", "Machine Learning", "Linear Regression", "TensorFlow"]
 github: "https://github.com/HoracioLaphitz/Regresion_Lineal"
-draft: false
+draft: true
 resources:
   notebooks:
     - name: "Regresión Lineal — Temperaturas"

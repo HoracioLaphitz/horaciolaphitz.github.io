@@ -34,7 +34,7 @@ export const PROFILE_DATA = new ProfileEntity(
     },
     {
       period: "Ene 2021 – Nov 2025",
-      role: "Técnico en Sistemas",
+      role: "Help Desk",
       company: "PcService Posadas",
       location: "Posadas",
       description:
@@ -51,7 +51,7 @@ export const PROFILE_DATA = new ProfileEntity(
     },
     {
       period: "Jul 2019 – Dic 2019",
-      role: "Capacitador Técnico en Sistemas",
+      role: "Capacitador Help Desk",
       company: "Hospital Escuela Dr. Ramón Madariaga",
       location: "Posadas",
       description:
@@ -148,6 +148,26 @@ export const PROFILE_DATA = new ProfileEntity(
       category: SkillCategory.DataAnalysis,
       level: SkillLevel.Intermediate,
     },
+    {
+      name: "LlamaIndex",
+      category: SkillCategory.DataAnalysis,
+      level: SkillLevel.Intermediate,
+    },
+    {
+      name: "Vector Databases",
+      category: SkillCategory.DataAnalysis,
+      level: SkillLevel.Intermediate,
+    },
+    {
+      name: "OpenAI API",
+      category: SkillCategory.Tools,
+      level: SkillLevel.Intermediate,
+    },
+    {
+      name: "Prompt Engineering",
+      category: SkillCategory.DataAnalysis,
+      level: SkillLevel.Intermediate,
+    },
     // Data Analysis
     {
       name: "SQL",
@@ -170,12 +190,42 @@ export const PROFILE_DATA = new ProfileEntity(
       level: SkillLevel.Intermediate,
     },
     {
+      name: "XGBoost",
+      category: SkillCategory.DataAnalysis,
+      level: SkillLevel.Intermediate,
+    },
+    {
+      name: "Deep Learning",
+      category: SkillCategory.DataAnalysis,
+      level: SkillLevel.Intermediate,
+    },
+    {
+      name: "Computer Vision",
+      category: SkillCategory.DataAnalysis,
+      level: SkillLevel.Intermediate,
+    },
+    {
+      name: "Market Basket Analysis",
+      category: SkillCategory.DataAnalysis,
+      level: SkillLevel.Intermediate,
+    },
+    {
       name: "Power BI",
       category: SkillCategory.Visualization,
       level: SkillLevel.Advanced,
     },
     {
+      name: "Matplotlib",
+      category: SkillCategory.Visualization,
+      level: SkillLevel.Intermediate,
+    },
+    {
       name: "R",
+      category: SkillCategory.Programming,
+      level: SkillLevel.Intermediate,
+    },
+    {
+      name: "TensorFlow",
       category: SkillCategory.Programming,
       level: SkillLevel.Intermediate,
     },
@@ -191,6 +241,11 @@ export const PROFILE_DATA = new ProfileEntity(
       level: SkillLevel.Advanced,
     },
     {
+      name: "BigQuery",
+      category: SkillCategory.Database,
+      level: SkillLevel.Intermediate,
+    },
+    {
       name: "Databricks",
       category: SkillCategory.Tools,
       level: SkillLevel.Intermediate,
@@ -199,6 +254,21 @@ export const PROFILE_DATA = new ProfileEntity(
     { name: "Git", category: SkillCategory.Tools, level: SkillLevel.Advanced },
     {
       name: "Docker",
+      category: SkillCategory.Tools,
+      level: SkillLevel.Intermediate,
+    },
+    {
+      name: "Streamlit",
+      category: SkillCategory.Tools,
+      level: SkillLevel.Intermediate,
+    },
+    {
+      name: "Web Scraping",
+      category: SkillCategory.Tools,
+      level: SkillLevel.Intermediate,
+    },
+    {
+      name: "Testing",
       category: SkillCategory.Tools,
       level: SkillLevel.Intermediate,
     },
@@ -259,5 +329,5 @@ export const PROFILE_DATA = new ProfileEntity(
       category: SkillCategory.Tools,
       level: SkillLevel.Intermediate,
     },
-  ]
+  ],
 );

@@ -5,7 +5,7 @@ pubDate: 2024-03-06
 category: "Notebooks Analytics"
 tags: ["Python", "TensorFlow", "Neural Network", "Classification", "Deep Learning"]
 github: "https://github.com/HoracioLaphitz/horaciolaphitz.github.io/blob/main/public/Proyectos/Notebooks/Red-de-Clasificacion/Red%20de%20Clasificacion.ipynb"
-draft: false
+draft: true
 resources:
   notebooks:
     - name: "Red Neuronal de Clasificación"

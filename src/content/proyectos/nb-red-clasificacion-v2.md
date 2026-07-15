@@ -5,7 +5,7 @@ pubDate: 2024-03-08
 category: "Notebooks Analytics"
 tags: ["Python", "TensorFlow", "Neural Network", "Classification"]
 github: "https://github.com/HoracioLaphitz/horaciolaphitz.github.io/blob/main/public/Proyectos/Notebooks/RedDeClasificacion2/RedDeClasificacion2.ipynb"
-draft: false
+draft: true
 resources:
   notebooks:
     - name: "Red de Clasificación parte 2"

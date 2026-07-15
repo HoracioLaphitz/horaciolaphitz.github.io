@@ -12,11 +12,11 @@ const Experience = () => {
     <section
       ref={elementRef as React.RefObject<HTMLElement>}
       id="experience"
-      className="bg-skin-primary py-20 md:py-28"
+      className="bg-skin-secondary py-16 md:py-20"
     >
       <div className="mx-auto max-w-content px-6">
         <div
-          className={`mb-16 transition-all duration-200 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
+          className={`mb-12 transition-all duration-200 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
             }`}
         >
           <h2

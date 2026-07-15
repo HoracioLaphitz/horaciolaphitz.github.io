@@ -24,7 +24,7 @@ export const EXPERIENCE_ITEMS: readonly ExperienceItem[] = [
   },
   {
     period: "Ene 2021 – Nov 2025",
-    role: "Técnico en Sistemas",
+    role: "Help Desk",
     company: "PcService Posadas",
     location: "Posadas",
     description:
@@ -41,7 +41,7 @@ export const EXPERIENCE_ITEMS: readonly ExperienceItem[] = [
   },
   {
     period: "Jul 2019 – Dic 2019",
-    role: "Capacitador Técnico en Sistemas",
+    role: "Capacitador Help Desk",
     company: "Hospital Escuela Dr. Ramón Madariaga",
     location: "Posadas",
     description:

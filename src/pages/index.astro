@@ -15,7 +15,10 @@ import {
 
 let proyectosSerializados: SerializedProject[] = [];
 try {
-  const proyectosRaw = await getCollection("proyectos");
+  const proyectosRaw = await getCollection(
+    "proyectos",
+    ({ data }) => !data.draft
+  );
   proyectosSerializados = serializeProjects(
     ProjectMapper.toDomainArray(proyectosRaw)
   );
@@ -25,7 +28,7 @@ try {
 ---
 
 <PageLayout
-  title="Horacio Laphitz — Data Analyst | Python, SQL & ML"
+  title="Home"
   description="Data Analyst especializado en Python, SQL y Machine Learning: pipelines de datos, dashboards en Power BI y modelos evaluados con métricas."
 >
   <Hero client:load />

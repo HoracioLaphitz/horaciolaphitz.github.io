@@ -9,7 +9,7 @@ resources:
   notebooks:
     - name: "Red Neuronal Convolucional"
       path: "/Proyectos/Notebooks/Redes-Convolucionales-Repo/Red_Neuronal_Convolucional.ipynb"
-draft: false
+draft: true
 ---
 
 ## Situación

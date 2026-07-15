@@ -6,6 +6,7 @@ category: "Análisis de datos"
 tags: ["Python", "Machine Learning", "Scikit-learn", "Pandas", "Time Series", "Finance"]
 github: "https://github.com/HoracioLaphitz/PredicePrecioAcciones"
 draft: false
+featured: true
 resources:
   notebooks:
     - name: "Predicción de Precios de Acciones"

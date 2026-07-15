@@ -18,7 +18,7 @@ const Hero = () => {
           }`}
       >
         <p className="text-sm font-semibold text-brand-primary uppercase tracking-widest mb-6">
-          Data | Machine Learning | Help Desk
+          Data Analytics | Machine Learning | GenAI
         </p>
 
         <h1
@@ -32,7 +32,7 @@ const Hero = () => {
         </h1>
 
         <p className="text-lg text-skin-muted max-w-xl mx-auto leading-relaxed mb-10">
-          Analista de Datos con Python + SQL + Desarrollo Agéntico
+          Analista de Datos con Python + SQL + GenAI
         </p>
 
         <div className="flex flex-wrap items-center justify-center gap-6">
