@@ -6,8 +6,9 @@ category: "Análisis de datos"
 tags: ["Power BI", "Data Visualization", "Business Intelligence", "KPIs", "Dashboards"]
 showcase:
   context: "Resultados del análisis de canasta de mercado sin una presentación visual para la toma de decisiones diaria."
-  contribution: "Dos tableros interactivos en Power BI: indicadores de ventas y análisis de marketing con asociaciones de productos."
-  result: "Los resultados del cuaderno pasan a la operación mediante tableros para decidir la disposición, las promociones y los paquetes de productos."
+  contribution: "Diseñé dos vistas en Power BI para separar el seguimiento de ventas del análisis de asociaciones, segmentación y venta cruzada."
+  result: "Los tableros hacen consultables 4.975.718 transacciones y más de 50 reglas para orientar promociones y disposición de productos."
+  limit: "Presentan recomendaciones basadas en el análisis; el impacto de aplicarlas todavía no fue medido."
   evidenceAction: "Ver los tableros en Power BI"
 draft: false
 featured: true

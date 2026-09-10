@@ -24,7 +24,8 @@ describe("about section", () => {
     const about = renderToStaticMarkup(createElement(About));
 
     expect(about).toContain('id="about"');
-    expect(about).toContain("Aplicado");
+    expect(about).toContain("En desarrollo");
+    expect(about).not.toContain("Aplicado");
     expect(about).toContain("Datos y automatización");
     expect(about).toMatch(/datos.*automatizaci[oó]n/is);
     expect(about).toMatch(/Python.*SQL/is);

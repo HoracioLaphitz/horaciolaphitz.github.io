@@ -28,6 +28,7 @@ const showcaseSchema = z
     context: z.string().max(200),
     contribution: z.string().max(200),
     result: z.string().max(200),
+    limit: z.string().max(200),
     evidenceAction: z.string().max(100),
     artifact: z.string().optional(),
   })

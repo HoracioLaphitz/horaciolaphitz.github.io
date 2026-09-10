@@ -433,3 +433,5 @@ docs/superpowers/
 !Proyectos/ai-sales-assistant/tests/fixtures/*.csv
 .Rproj.user/
 .Rhistory
+.vercel
+.env*

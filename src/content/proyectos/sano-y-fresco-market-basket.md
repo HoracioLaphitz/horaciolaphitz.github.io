@@ -7,9 +7,10 @@ tags: ["Python", "SQL", "Market Basket Analysis", "Apriori", "Power BI", "Pandas
 github: "https://github.com/HoracioLaphitz/MarketBasketAnalytics"
 featured: true
 showcase:
-  context: "Más de 4,9 millones de transacciones de un comercio de productos orgánicos sin un análisis orientado a la toma de decisiones."
-  contribution: "Análisis de canasta de mercado con Apriori y reglas de asociación filtradas por confianza superior al 60 % y lift mayor que 1,5."
-  result: "Más de 50 reglas aplicables y un potencial de mejora de entre el 15 % y el 20 % en el ticket promedio."
+  context: "4.975.718 transacciones de un comercio de productos orgánicos sin un análisis orientado a la toma de decisiones."
+  contribution: "Elegí Apriori y filtré las reglas por confianza superior al 60 % y lift mayor que 1,5 para priorizar asociaciones útiles."
+  result: "Más de 50 reglas y un potencial estimado de mejora de entre el 15 % y el 20 % en el ticket promedio."
+  limit: "La mejora es una estimación del análisis, no un resultado observado después de aplicar las recomendaciones."
   evidenceAction: "Ver notebook y recursos en GitHub"
 draft: false
 resources:

@@ -4,6 +4,7 @@ import Hero from "@presentation/components/sections/Hero.tsx";
 import FeaturedProjects from "@presentation/components/sections/FeaturedProjects.astro";
 import About from "@presentation/components/sections/About.tsx";
 import Experience from "@presentation/components/sections/Experience.tsx";
+import Certifications from "@presentation/components/sections/Certifications.tsx";
 import Skills from "@presentation/components/sections/Skills.tsx";
 import Contact from "@presentation/components/sections/Contact.tsx";
 ---
@@ -16,6 +17,7 @@ import Contact from "@presentation/components/sections/Contact.tsx";
   <FeaturedProjects />
   <About />
   <Experience client:visible />
+  <Certifications client:visible />
   <Skills client:visible />
   <Contact client:visible />
 </PageLayout>

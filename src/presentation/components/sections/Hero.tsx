@@ -65,7 +65,7 @@ const Hero = () => {
           </h1>
 
           <p className="mt-6 max-w-3xl font-display text-xl font-medium leading-snug tracking-[-0.02em] text-skin-text-secondary sm:text-2xl">
-            Analista de datos
+            Analista de datos orientado a la automatización de procesos
           </p>
 
           <div className="mt-8 grid gap-8 border-t border-skin-border pt-7 lg:grid-cols-[minmax(0,1fr)_18rem]">
@@ -73,9 +73,9 @@ const Hero = () => {
             data-motion="hero-summary"
             className="max-w-[68ch] text-base leading-relaxed text-skin-text-secondary sm:text-lg"
             >
-            Trabajo con Python y SQL para preparar y validar información
-            disponible. Visualizo datos con Power BI y aplico modelos de
-            aprendizaje automático para responder preguntas concretas.
+            Preparo y valido datos con Python y SQL, automatizo tareas
+            repetitivas y convierto los resultados en tableros que ayudan a
+            tomar decisiones.
             </p>
 
             <div

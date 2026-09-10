@@ -6,6 +6,7 @@ interface ShowcaseData {
   context: string;
   contribution: string;
   result: string;
+  limit: string;
   evidenceAction: string;
   artifact?: string;
 }
@@ -17,7 +18,7 @@ interface Props {
 }
 
 const { project, showcase, index } = Astro.props;
-const { title, description, github, dashboard, maturity, tags } = project.data;
+const { title, github, dashboard, maturity } = project.data;
 const maturityLabel = getProjectMaturityLabel(maturity);
 ---
 
@@ -49,6 +50,10 @@ const maturityLabel = getProjectMaturityLabel(maturity);
       <div>
         <p class="text-xs font-semibold uppercase tracking-[0.12em] text-skin-muted mb-1">Resultado</p>
         <p class="text-sm md:text-base text-skin-text leading-relaxed">{showcase.result}</p>
+      </div>
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-[0.12em] text-skin-muted mb-1">Alcance</p>
+        <p class="text-sm md:text-base text-skin-text leading-relaxed">{showcase.limit}</p>
       </div>
 
       <div class="flex flex-wrap gap-2 pt-2">

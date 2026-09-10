@@ -6,24 +6,24 @@ import {
 
 const areas = [
   {
-    status: "Aplicado",
+    status: "Experiencia",
     title: "Datos y automatización",
     description:
-      "Experiencia práctica en validación, preparación y análisis de datos, con automatizaciones orientadas a reducir tareas repetitivas y mejorar la calidad de la información.",
+      "Preparo y valido datos, automatizo tareas repetitivas y traduzco hallazgos en tableros para la toma de decisiones.",
     Icon: ChartBarIcon,
   },
   {
-    status: "Aplicado",
+    status: "En desarrollo",
     title: "Flujos con agentes",
     description:
-      "Diseño y orquestación de flujos con agentes para integrar automatización, validación y ejecución controlada de procesos.",
+      "Desarrollo pruebas propias con RAG y agentes para automatizar, validar y ejecutar procesos de forma controlada.",
     Icon: RobotIcon,
   },
   {
-    status: "Aplicado",
+    status: "Práctica",
     title: "Evaluación de resultados",
     description:
-      "Comparo respuestas y registro errores en pruebas con agentes. Esto me permite identificar limitaciones, mejorar la calidad de las respuestas y optimizar la interacción con los modelos.",
+      "Comparo respuestas, registro errores y ajusto las pruebas cuando un resultado no se sostiene con la evidencia.",
     Icon: CheckCircleIcon,
   },
 ] as const;
@@ -44,15 +44,20 @@ const About = () => (
           className="max-w-xl text-display-sm font-bold tracking-tight text-skin-text"
           style={{ letterSpacing: "-0.02em" }}
         >
-          Datos y agentes
+          Datos, procesos y personas
         </h2>
         <div className="mt-6 max-w-2xl space-y-4 text-sm leading-7 text-skin-muted md:text-base">
           <p>
-            Trabajo con Python y SQL para preparar información, validar datos,
-            automatizar procesos y acompañar el trabajo diario, además de
-            construir tableros en Power BI. Actualmente exploro modelos
-            multimodales, RAG y agentes aplicados al desarrollo de código y a la
-            automatización de flujos.
+            Trabajo con Python y SQL para preparar información, validar datos y
+            automatizar procesos. La experiencia en soporte corporativo me
+            enseñó a diagnosticar fallas, documentar lo observado y acompañar a
+            usuarios. En la implementación de R.I.S.mi coordiné capacitaciones,
+            relevé requerimientos técnicos y seguí el trabajo del equipo.
+          </p>
+          <p>
+            Mi próximo paso es consolidar esta experiencia en un rol de análisis
+            de datos con foco en automatización. RAG y los flujos con agentes
+            siguen siendo un área de estudio y práctica en proyectos propios.
           </p>
         </div>
       </div>

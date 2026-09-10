@@ -1,6 +1,6 @@
 ---
 title: "Análisis de comercio electrónico — ETL, aplicación y predicción de abandono"
-description: "Plataforma de análisis sobre más de 100.000 órdenes de Olist Brasil: proceso ETL hacia un data mart en estrella, aplicación de Streamlit con seis secciones y un modelo XGBoost que predice el abandono de vendedores con un AUC-ROC de 0,99."
+description: "Aplicación de análisis de comercio electrónico con un proceso ETL hacia un esquema estrella, seis secciones en Streamlit y un modelo XGBoost para estudiar el abandono de vendedores."
 pubDate: 2026-06-30
 category: "Data Science"
 tags: ["Python", "Streamlit", "XGBoost", "SQL", "ETL", "Churn Prediction", "Testing"]
@@ -8,9 +8,10 @@ github: "https://github.com/HoracioLaphitz/Data-Analysis-Ecommerce"
 dashboard: "https://data-analysis-ecommerce-horaciolaphitz.streamlit.app/"
 featured: true
 showcase:
-  context: "Más de 100.000 órdenes de Olist Brasil en tablas relacionales sin preparar para el análisis."
-  contribution: "Proceso ETL hacia un data mart en estrella, aplicación de Streamlit con seis secciones y modelo XGBoost para predecir el abandono de vendedores."
-  result: "AUC-ROC de 0,99, 2.433 vendedores analizados y una aplicación desplegada."
+  context: "Datos públicos de comercio electrónico distribuidos en tablas relacionales que requerían preparación para responder preguntas de negocio."
+  contribution: "Elegí un esquema estrella, separé el ETL del análisis e incorporé controles de calidad antes de sumar la predicción de abandono."
+  result: "Aplicación desplegada con seis secciones, un modelo con AUC-ROC de 0,99 y pruebas automatizadas para cada capa."
+  limit: "Proyecto de portfolio con datos públicos; el resultado del modelo no acredita impacto en una operación real."
   evidenceAction: "Ver la aplicación y el código en GitHub"
 draft: false
 ---

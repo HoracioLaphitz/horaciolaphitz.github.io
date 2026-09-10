@@ -704,7 +704,7 @@ describe("motion orchestration contracts", () => {
     expect(heading.textContent).toBe("Horacio Laphitz");
     expect(summary.tagName).toBe("P");
     expect(summary.textContent).toContain(
-      "Trabajo con Python y SQL para preparar",
+      "Preparo y valido datos con Python y SQL",
     );
     expect(actions.tagName).toBe("DIV");
     expect(Array.from(actions.querySelectorAll(":scope > a")).map((link) => link.getAttribute("href"))).toEqual([
@@ -828,7 +828,6 @@ describe("motion orchestration contracts", () => {
     expect(Array.from(contact.querySelectorAll("a")).map((link) => link.getAttribute("href"))).toEqual([
       "mailto:horaciolaphitz99@gmail.com",
       "https://www.linkedin.com/in/horacio-laphitz/",
-      "https://github.com/horaciolaphitz",
     ]);
     expect(skillsGroup.dataset.motion).toBeUndefined();
     expect(experienceGroup.dataset.motion).toBeUndefined();
@@ -904,7 +903,6 @@ describe("motion orchestration contracts", () => {
     expect(Array.from(contactGroup.querySelectorAll("a")).map((link) => link.getAttribute("href"))).toEqual([
       "mailto:horaciolaphitz99@gmail.com",
       "https://www.linkedin.com/in/horacio-laphitz/",
-      "https://github.com/horaciolaphitz",
     ]);
     expect(useScopedMotion).not.toHaveBeenCalled();
 
@@ -948,13 +946,14 @@ describe("motion orchestration contracts", () => {
     );
 
     expect(homePage.match(/client:load/g)).toHaveLength(1);
-    expect(homePage.match(/client:visible/g)).toHaveLength(3);
+    expect(homePage.match(/client:visible/g)).toHaveLength(4);
     expect(homePage).toMatch(/import FeaturedProjects from "@presentation\/components\/sections\/FeaturedProjects\.astro";/);
     expect(homePage).toMatch(/<FeaturedProjects\s*\/>/);
     expect(homePage).toMatch(/<Hero client:load\s*\/>/);
     expect(homePage).toMatch(/<About\s*\/>/);
     expect(homePage).toMatch(/<Skills client:visible\s*\/>/);
     expect(homePage).toMatch(/<Experience client:visible\s*\/>/);
+    expect(homePage).toMatch(/<Certifications client:visible\s*\/>/);
     expect(homePage).toMatch(/<Contact client:visible\s*\/>/);
   });
 });

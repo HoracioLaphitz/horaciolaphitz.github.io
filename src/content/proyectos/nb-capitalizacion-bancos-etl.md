@@ -7,8 +7,9 @@ tags: ["Python", "Web Scraping", "ETL", "SQLite", "Pandas", "BeautifulSoup"]
 github: "https://github.com/HoracioLaphitz/Capitalizacion-del-Mercado-de-los-Bancos-mas-Grandes"
 showcase:
   context: "La capitalización de mercado de los bancos más grandes vive en una tabla de Wikipedia: sin API, sin CSV descargable."
-  contribution: "Extracción web con BeautifulSoup y proceso ETL completo —extracción, transformación y carga en SQLite y CSV— con registro de eventos."
-  result: "Datos disponibles para consultas SQL y un proceso auditable mediante el registro de cada etapa."
+  contribution: "Separé extracción, transformación y carga; guardé la salida en SQLite y CSV y registré cada etapa para poder rastrear fallas."
+  result: "Datos consultables con SQL y una ejecución auditable mediante el registro de eventos y la verificación final de la carga."
+  limit: "Proyecto de formación basado en una tabla web; un cambio en la fuente puede requerir ajustar la extracción."
   evidenceAction: "Ver notebook y código en GitHub"
 draft: false
 featured: true
