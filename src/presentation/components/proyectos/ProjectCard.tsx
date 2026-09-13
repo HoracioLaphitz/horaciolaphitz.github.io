@@ -36,17 +36,17 @@ const ProjectCard = ({ title, description, slug, category, tags, github, dashboa
                 {/* Header con categoría */}
                 <div className="flex items-center gap-2 mb-3 text-skin-muted">
                     {categoryIcons[category] || <DocumentIcon className="w-4 h-4 text-brand-primary" />}
-                    <span className="text-xs font-medium uppercase tracking-[0.15em] text-skin-muted">
+                    <span className="min-w-0 break-words text-xs font-medium uppercase tracking-[0.15em] text-skin-muted">
                         {categoryLabel}
                     </span>
                 </div>
                 {/* Título */}
-                <h3 className="text-lg md:text-xl font-semibold text-skin-text mb-2 tracking-tight transition-colors duration-200 line-clamp-2">
+                <h3 className="break-words text-lg font-semibold text-skin-text mb-2 tracking-tight transition-colors duration-200 md:text-xl">
                     {title}
                 </h3>
 
                 {/* Descripción */}
-                <p className="text-sm text-skin-muted mb-5 leading-relaxed line-clamp-3 flex-grow font-normal">
+                <p className="break-words text-sm text-skin-muted mb-5 leading-relaxed flex-grow font-normal">
                     {description}
                 </p>
 

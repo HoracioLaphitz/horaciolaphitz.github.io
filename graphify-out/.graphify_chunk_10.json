@@ -1,0 +1,125 @@
+{
+  "nodes": [
+    {
+      "id": "public_img_logos_bold_italic_multipurpse_typography_logo_design_brand_identity_clean_comic_style_for_design_company_horacio_laphitz_typography_wordmark",
+      "label": "Horacio Laphitz Typography Wordmark",
+      "file_type": "image",
+      "source_file": "J:\\Proyectos\\Portfolio-26\\public\\img\\logos\\Bold Italic Multipurpse Typography Logo Design Brand Identity Clean Comic Style for Design Company.svg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "public_img_logos_bold_italic_multipurpse_typography_logo_design_brand_identity_clean_comic_style_for_design_company_horacio_laphitz",
+      "label": "Horacio Laphitz",
+      "file_type": "concept",
+      "source_file": "J:\\Proyectos\\Portfolio-26\\public\\img\\logos\\Bold Italic Multipurpse Typography Logo Design Brand Identity Clean Comic Style for Design Company.svg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "public_img_logos_bold_italic_multipurpse_typography_logo_design_brand_identity_clean_comic_style_for_design_company_horacio_laphitz_personal_brand",
+      "label": "Horacio Laphitz Personal Brand",
+      "file_type": "concept",
+      "source_file": "J:\\Proyectos\\Portfolio-26\\public\\img\\logos\\Bold Italic Multipurpse Typography Logo Design Brand Identity Clean Comic Style for Design Company.svg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "public_img_logos_bold_italic_multipurpse_typography_logo_design_brand_identity_clean_comic_style_for_design_company_mixed_bold_and_italic_serif_typography",
+      "label": "Mixed Bold and Italic Serif Typography",
+      "file_type": "concept",
+      "source_file": "J:\\Proyectos\\Portfolio-26\\public\\img\\logos\\Bold Italic Multipurpse Typography Logo Design Brand Identity Clean Comic Style for Design Company.svg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "public_img_logos_bold_italic_multipurpse_typography_logo_design_brand_identity_clean_comic_style_for_design_company_minimal_monochrome_logo",
+      "label": "Minimal Monochrome Logo",
+      "file_type": "concept",
+      "source_file": "J:\\Proyectos\\Portfolio-26\\public\\img\\logos\\Bold Italic Multipurpse Typography Logo Design Brand Identity Clean Comic Style for Design Company.svg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "public_img_logos_bold_italic_multipurpse_typography_logo_design_brand_identity_clean_comic_style_for_design_company_centered_horizontal_wordmark",
+      "label": "Centered Horizontal Wordmark",
+      "file_type": "concept",
+      "source_file": "J:\\Proyectos\\Portfolio-26\\public\\img\\logos\\Bold Italic Multipurpse Typography Logo Design Brand Identity Clean Comic Style for Design Company.svg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    }
+  ],
+  "edges": [
+    {
+      "source": "public_img_logos_bold_italic_multipurpse_typography_logo_design_brand_identity_clean_comic_style_for_design_company_horacio_laphitz_typography_wordmark",
+      "target": "public_img_logos_bold_italic_multipurpse_typography_logo_design_brand_identity_clean_comic_style_for_design_company_horacio_laphitz",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "J:\\Proyectos\\Portfolio-26\\public\\img\\logos\\Bold Italic Multipurpse Typography Logo Design Brand Identity Clean Comic Style for Design Company.svg",
+      "source_location": null,
+      "weight": 1
+    },
+    {
+      "source": "public_img_logos_bold_italic_multipurpse_typography_logo_design_brand_identity_clean_comic_style_for_design_company_horacio_laphitz_typography_wordmark",
+      "target": "public_img_logos_bold_italic_multipurpse_typography_logo_design_brand_identity_clean_comic_style_for_design_company_horacio_laphitz_personal_brand",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "J:\\Proyectos\\Portfolio-26\\public\\img\\logos\\Bold Italic Multipurpse Typography Logo Design Brand Identity Clean Comic Style for Design Company.svg",
+      "source_location": null,
+      "weight": 1
+    },
+    {
+      "source": "public_img_logos_bold_italic_multipurpse_typography_logo_design_brand_identity_clean_comic_style_for_design_company_horacio_laphitz_typography_wordmark",
+      "target": "public_img_logos_bold_italic_multipurpse_typography_logo_design_brand_identity_clean_comic_style_for_design_company_mixed_bold_and_italic_serif_typography",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "J:\\Proyectos\\Portfolio-26\\public\\img\\logos\\Bold Italic Multipurpse Typography Logo Design Brand Identity Clean Comic Style for Design Company.svg",
+      "source_location": null,
+      "weight": 1
+    },
+    {
+      "source": "public_img_logos_bold_italic_multipurpse_typography_logo_design_brand_identity_clean_comic_style_for_design_company_horacio_laphitz_typography_wordmark",
+      "target": "public_img_logos_bold_italic_multipurpse_typography_logo_design_brand_identity_clean_comic_style_for_design_company_minimal_monochrome_logo",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "J:\\Proyectos\\Portfolio-26\\public\\img\\logos\\Bold Italic Multipurpse Typography Logo Design Brand Identity Clean Comic Style for Design Company.svg",
+      "source_location": null,
+      "weight": 1
+    },
+    {
+      "source": "public_img_logos_bold_italic_multipurpse_typography_logo_design_brand_identity_clean_comic_style_for_design_company_horacio_laphitz_typography_wordmark",
+      "target": "public_img_logos_bold_italic_multipurpse_typography_logo_design_brand_identity_clean_comic_style_for_design_company_centered_horizontal_wordmark",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "J:\\Proyectos\\Portfolio-26\\public\\img\\logos\\Bold Italic Multipurpse Typography Logo Design Brand Identity Clean Comic Style for Design Company.svg",
+      "source_location": null,
+      "weight": 1
+    }
+  ],
+  "hyperedges": [],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

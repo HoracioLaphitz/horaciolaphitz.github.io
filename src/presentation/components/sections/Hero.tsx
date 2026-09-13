@@ -1,5 +1,4 @@
 import { useRef } from "react";
-import { ENTERPRISE_AI_EVIDENCE } from "@data/enterprise-ai-evidence.v1";
 import { PUBLIC_POSITIONING } from "@data/public-positioning.v1";
 import { useScopedMotion } from "@presentation/hooks/useScopedMotion";
 import {
@@ -48,7 +47,7 @@ const Hero = () => {
       id="inicio"
       className="border-b border-skin-border bg-skin-primary"
     >
-      <div className="mx-auto max-w-content px-4 pb-14 pt-16 sm:px-6 sm:pb-16 sm:pt-20 lg:pt-24">
+      <div className="mx-auto max-w-content px-4 pb-14 pt-16 sm:px-6 sm:pb-20 sm:pt-20 lg:pt-24">
         <div className="max-w-4xl">
           <p
             data-motion="hero-eyebrow"
@@ -64,18 +63,18 @@ const Hero = () => {
             {PUBLIC_POSITIONING.identity.name}
           </h1>
 
-          <p className="mt-6 max-w-3xl font-display text-xl font-medium leading-snug tracking-[-0.02em] text-skin-text-secondary sm:text-2xl">
+          <p className="mt-6 max-w-3xl font-display text-2xl font-medium leading-snug tracking-[-0.02em] text-skin-text-secondary sm:text-3xl">
             Analista de datos orientado a la automatización de procesos
           </p>
 
-          <div className="mt-8 grid gap-8 border-t border-skin-border pt-7 lg:grid-cols-[minmax(0,1fr)_18rem]">
+          <div className="mt-9 grid gap-8 border-t border-skin-border pt-7 lg:grid-cols-[minmax(0,1fr)_18rem]">
             <p
-            data-motion="hero-summary"
-            className="max-w-[68ch] text-base leading-relaxed text-skin-text-secondary sm:text-lg"
+              data-motion="hero-summary"
+              className="max-w-[68ch] text-base leading-relaxed text-skin-text-secondary sm:text-lg"
             >
-            Preparo y valido datos con Python y SQL, automatizo tareas
-            repetitivas y convierto los resultados en tableros que ayudan a
-            tomar decisiones.
+              Preparo y valido datos con Python y SQL, automatizo tareas
+              repetitivas y convierto los resultados en tableros que ayudan a
+              tomar decisiones.
             </p>
 
             <div
@@ -84,14 +83,14 @@ const Hero = () => {
             >
               <a
                 href="#proyectos"
-                className="focus-ring inline-flex min-h-11 items-center justify-between rounded-xl bg-brand-primary px-5 text-sm font-semibold text-white hover:bg-brand-hover"
+                className="focus-ring inline-flex min-h-11 items-center justify-between border border-brand-primary bg-brand-primary px-5 text-sm font-semibold text-white hover:bg-brand-hover"
               >
                 Proyectos
                 <ArrowRightIcon className="h-4 w-4" />
               </a>
               <a
                 href={`mailto:${PUBLIC_POSITIONING.contact.email}`}
-                className="focus-ring inline-flex min-h-11 items-center justify-between rounded-xl border border-skin-border-medium px-5 text-sm font-semibold text-skin-text hover:bg-skin-secondary"
+                className="focus-ring inline-flex min-h-11 items-center justify-between border border-skin-border-medium px-5 text-sm font-semibold text-skin-text hover:bg-skin-secondary"
               >
                 Contacto
                 <ArrowRightIcon className="h-4 w-4" />
@@ -99,7 +98,7 @@ const Hero = () => {
               <a
                 href="/CV_HoracioLaphitz.pdf"
                 download
-                className="focus-ring inline-flex min-h-11 items-center gap-2 rounded-xl px-5 text-sm font-semibold text-brand-primary hover:bg-skin-secondary"
+                className="focus-ring inline-flex min-h-11 items-center gap-2 px-5 text-sm font-semibold text-brand-primary hover:bg-skin-secondary"
               >
                 Descargar CV
                 <DownloadIcon className="h-4 w-4" />
@@ -127,24 +126,7 @@ const Hero = () => {
           ))}
         </div>
 
-        <details className="mt-6 rounded-xl bg-skin-secondary p-4 text-sm">
-          <summary className="focus-ring cursor-pointer rounded-lg font-semibold text-skin-text">
-            Pruebas y estudios con IA
-          </summary>
-          <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {ENTERPRISE_AI_EVIDENCE.map((capability) => (
-              <article
-                key={capability.claimId}
-                data-claim-id={capability.claimId}
-                className="rounded-xl bg-skin-primary p-4"
-              >
-                <h2 className="text-sm font-semibold text-skin-text">
-                  {capability.scope}
-                </h2>
-              </article>
-            ))}
-          </div>
-        </details>
+        {/* TODO: Restore after distinct headings and visible supporting evidence are approved. */}
       </div>
     </section>
   );

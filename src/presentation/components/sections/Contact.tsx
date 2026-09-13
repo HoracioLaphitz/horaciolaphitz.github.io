@@ -4,7 +4,6 @@ import {
   GithubIcon,
   ArrowRightIcon,
 } from "@presentation/components/ui/Icons";
-import { AvailabilityBadge } from "@presentation/components/ui/AvailabilityBadge";
 import { PROFILE_DATA } from "@data/profile-data";
 import { PUBLIC_POSITIONING } from "@data/public-positioning.v1";
 
@@ -17,9 +16,7 @@ const Contact = () => {
       <div className="mx-auto max-w-content px-6">
         <div>
           <div className="max-w-3xl">
-            <div className="mb-6">
-              <AvailabilityBadge variant="full" />
-            </div>
+            {/* TODO: Restore only with approved truthful availability copy. */}
             <h2
               className="text-display-sm font-bold text-skin-text tracking-tight mb-4"
               style={{ letterSpacing: "-0.02em" }}

@@ -1,0 +1,125 @@
+{
+  "nodes": [
+    {
+      "id": "public_certificaciones_tango_starter_tango_ai_starter_badge",
+      "label": "Tango AI Starter Badge",
+      "file_type": "image",
+      "source_file": "J:\\Proyectos\\Portfolio-26\\public\\Certificaciones\\Tango_Starter.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "public_certificaciones_tango_starter_tango_ai_software",
+      "label": "Tango AI Software",
+      "file_type": "concept",
+      "source_file": "J:\\Proyectos\\Portfolio-26\\public\\Certificaciones\\Tango_Starter.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "public_certificaciones_tango_starter_starter_level",
+      "label": "Starter Level",
+      "file_type": "concept",
+      "source_file": "J:\\Proyectos\\Portfolio-26\\public\\Certificaciones\\Tango_Starter.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "public_certificaciones_tango_starter_hexagonal_metallic_badge_design",
+      "label": "Hexagonal Metallic Badge Design",
+      "file_type": "concept",
+      "source_file": "J:\\Proyectos\\Portfolio-26\\public\\Certificaciones\\Tango_Starter.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "public_certificaciones_tango_starter_green_aurora_light_rays",
+      "label": "Green Aurora Light Rays",
+      "file_type": "concept",
+      "source_file": "J:\\Proyectos\\Portfolio-26\\public\\Certificaciones\\Tango_Starter.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "public_certificaciones_tango_starter_digital_credential_badge",
+      "label": "Digital Credential Badge",
+      "file_type": "concept",
+      "source_file": "J:\\Proyectos\\Portfolio-26\\public\\Certificaciones\\Tango_Starter.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    }
+  ],
+  "edges": [
+    {
+      "source": "public_certificaciones_tango_starter_tango_ai_starter_badge",
+      "target": "public_certificaciones_tango_starter_tango_ai_software",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "J:\\Proyectos\\Portfolio-26\\public\\Certificaciones\\Tango_Starter.png",
+      "source_location": null,
+      "weight": 1
+    },
+    {
+      "source": "public_certificaciones_tango_starter_tango_ai_starter_badge",
+      "target": "public_certificaciones_tango_starter_starter_level",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "J:\\Proyectos\\Portfolio-26\\public\\Certificaciones\\Tango_Starter.png",
+      "source_location": null,
+      "weight": 1
+    },
+    {
+      "source": "public_certificaciones_tango_starter_tango_ai_starter_badge",
+      "target": "public_certificaciones_tango_starter_hexagonal_metallic_badge_design",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "J:\\Proyectos\\Portfolio-26\\public\\Certificaciones\\Tango_Starter.png",
+      "source_location": null,
+      "weight": 1
+    },
+    {
+      "source": "public_certificaciones_tango_starter_tango_ai_starter_badge",
+      "target": "public_certificaciones_tango_starter_green_aurora_light_rays",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "J:\\Proyectos\\Portfolio-26\\public\\Certificaciones\\Tango_Starter.png",
+      "source_location": null,
+      "weight": 1
+    },
+    {
+      "source": "public_certificaciones_tango_starter_tango_ai_starter_badge",
+      "target": "public_certificaciones_tango_starter_digital_credential_badge",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "J:\\Proyectos\\Portfolio-26\\public\\Certificaciones\\Tango_Starter.png",
+      "source_location": null,
+      "weight": 1
+    }
+  ],
+  "hyperedges": [],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

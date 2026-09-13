@@ -13,6 +13,7 @@ showcase:
   result: "Aplicación desplegada con seis secciones, un modelo con AUC-ROC de 0,99 y pruebas automatizadas para cada capa."
   limit: "Proyecto de portfolio con datos públicos; el resultado del modelo no acredita impacto en una operación real."
   evidenceAction: "Ver la aplicación y el código en GitHub"
+  artifact: "https://github.com/HoracioLaphitz/Data-Analysis-Ecommerce"
 draft: false
 ---
 

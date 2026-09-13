@@ -84,7 +84,7 @@ const CertificateModal = ({ title, url, onClose }: CertificateModalProps) => {
         onClick={(event) => event.stopPropagation()}
       >
         <div className="flex items-center justify-between gap-3 border-b border-skin-border bg-skin-secondary p-3 sm:p-4">
-          <h3 id={titleId} className="min-w-0 truncate text-base font-bold text-skin-text sm:text-lg">{title}</h3>
+          <h3 id={titleId} className="min-w-0 break-words text-base font-bold text-skin-text sm:text-lg">{title}</h3>
           <div className="flex gap-2 flex-shrink-0">
             <a
               href={url}

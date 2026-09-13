@@ -34,12 +34,10 @@ const featuredCopy = [
   .join("\n");
 
 describe("home capability presentation", () => {
-  it("Hero renders Enterprise AI evidence in a collapsible details element", () => {
-    expect(heroSource).toContain("ENTERPRISE_AI_EVIDENCE");
-    expect(heroSource).toContain("capability.claimId");
-    expect(heroSource).toContain("capability.scope");
-    expect(heroSource).toContain("<details");
-    expect(heroSource).toContain("Pruebas y estudios con IA");
+  it("omits undifferentiated Enterprise AI scope headings from the Hero", () => {
+    expect(heroSource).not.toContain("ENTERPRISE_AI_EVIDENCE");
+    expect(heroSource).not.toContain("capability.scope");
+    expect(heroSource).not.toContain("Pruebas y estudios con IA");
   });
 
   it("retains project discovery and avoids unsupported enterprise case-study language", () => {
@@ -78,6 +76,24 @@ describe("home capability presentation", () => {
     expect(featuredCardSource).toContain("showcase.limit");
     expect(featuredCardSource).toContain("Alcance");
     expect(featuredCopy.match(/^\s+limit:/gm)).toHaveLength(4);
+  });
+
+  it("uses a showcase artifact for the primary evidence action when present", () => {
+    const olistShowcase = readFileSync(
+      resolve(process.cwd(), "src/content/proyectos/ai-sales-assistant.md"),
+      "utf8",
+    ).split("draft: false", 1)[0];
+
+    expect(olistShowcase).toContain(
+      'artifact: "https://github.com/HoracioLaphitz/Data-Analysis-Ecommerce"',
+    );
+    expect(featuredCardSource).toContain(
+      "showcase.artifact ?? `/proyectos/${project.id}`",
+    );
+    expect(featuredCardSource).toContain('target={showcase.artifact ? "_blank" : undefined}');
+    expect(featuredCardSource).toContain(
+      'rel={showcase.artifact ? "noopener noreferrer" : undefined}',
+    );
   });
 
   it("keeps homepage Olist copy free of the omitted volume and seller counts", () => {

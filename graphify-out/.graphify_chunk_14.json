@@ -1,0 +1,286 @@
+{
+  "nodes": [
+    {
+      "id": "public_proyectos_dashboards_dashmarketing_sanoyfresco_marketing_association_rules_dashboard",
+      "label": "SanoYFresco Marketing Association Rules Dashboard",
+      "file_type": "image",
+      "source_file": "J:\\Proyectos\\Portfolio-26\\public\\Proyectos\\dashboards\\DashMarketing.jpg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "public_proyectos_dashboards_dashmarketing_market_basket_association_rules",
+      "label": "Market Basket Association Rules",
+      "file_type": "concept",
+      "source_file": "J:\\Proyectos\\Portfolio-26\\public\\Proyectos\\dashboards\\DashMarketing.jpg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "public_proyectos_dashboards_dashmarketing_399_association_rules",
+      "label": "399 Association Rules",
+      "file_type": "concept",
+      "source_file": "J:\\Proyectos\\Portfolio-26\\public\\Proyectos\\dashboards\\DashMarketing.jpg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "public_proyectos_dashboards_dashmarketing_average_confidence_8_3",
+      "label": "Average Confidence 8.3",
+      "file_type": "concept",
+      "source_file": "J:\\Proyectos\\Portfolio-26\\public\\Proyectos\\dashboards\\DashMarketing.jpg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "public_proyectos_dashboards_dashmarketing_average_lift_1_5",
+      "label": "Average Lift 1.5",
+      "file_type": "concept",
+      "source_file": "J:\\Proyectos\\Portfolio-26\\public\\Proyectos\\dashboards\\DashMarketing.jpg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "public_proyectos_dashboards_dashmarketing_average_support_6_5",
+      "label": "Average Support 6.5",
+      "file_type": "concept",
+      "source_file": "J:\\Proyectos\\Portfolio-26\\public\\Proyectos\\dashboards\\DashMarketing.jpg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "public_proyectos_dashboards_dashmarketing_product_category_navigation",
+      "label": "Product Category Navigation",
+      "file_type": "concept",
+      "source_file": "J:\\Proyectos\\Portfolio-26\\public\\Proyectos\\dashboards\\DashMarketing.jpg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "public_proyectos_dashboards_dashmarketing_confidence_lift_and_product_filters",
+      "label": "Confidence, Lift and Product Filters",
+      "file_type": "concept",
+      "source_file": "J:\\Proyectos\\Portfolio-26\\public\\Proyectos\\dashboards\\DashMarketing.jpg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "public_proyectos_dashboards_dashmarketing_antecedent_consequent_lift_table",
+      "label": "Antecedent-Consequent-Lift Table",
+      "file_type": "concept",
+      "source_file": "J:\\Proyectos\\Portfolio-26\\public\\Proyectos\\dashboards\\DashMarketing.jpg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "public_proyectos_dashboards_dashmarketing_red_onion_to_organic_cilantro_rule",
+      "label": "Red Onion to Organic Cilantro Rule (Lift 3.60)",
+      "file_type": "concept",
+      "source_file": "J:\\Proyectos\\Portfolio-26\\public\\Proyectos\\dashboards\\DashMarketing.jpg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "public_proyectos_dashboards_dashmarketing_cilantro_to_lemons_rule",
+      "label": "Cilantro to Lemons Rule (Lift 3.60)",
+      "file_type": "concept",
+      "source_file": "J:\\Proyectos\\Portfolio-26\\public\\Proyectos\\dashboards\\DashMarketing.jpg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "public_proyectos_dashboards_dashmarketing_organic_garlic_to_organic_yellow_onion_rule",
+      "label": "Organic Garlic to Organic Yellow Onion Rule (Lift 3.50)",
+      "file_type": "concept",
+      "source_file": "J:\\Proyectos\\Portfolio-26\\public\\Proyectos\\dashboards\\DashMarketing.jpg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "public_proyectos_dashboards_dashmarketing_cross_selling_decision_support",
+      "label": "Cross-Selling Decision Support",
+      "file_type": "concept",
+      "source_file": "J:\\Proyectos\\Portfolio-26\\public\\Proyectos\\dashboards\\DashMarketing.jpg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    }
+  ],
+  "edges": [
+    {
+      "source": "public_proyectos_dashboards_dashmarketing_sanoyfresco_marketing_association_rules_dashboard",
+      "target": "public_proyectos_dashboards_dashmarketing_market_basket_association_rules",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "J:\\Proyectos\\Portfolio-26\\public\\Proyectos\\dashboards\\DashMarketing.jpg",
+      "source_location": null,
+      "weight": 1
+    },
+    {
+      "source": "public_proyectos_dashboards_dashmarketing_sanoyfresco_marketing_association_rules_dashboard",
+      "target": "public_proyectos_dashboards_dashmarketing_399_association_rules",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "J:\\Proyectos\\Portfolio-26\\public\\Proyectos\\dashboards\\DashMarketing.jpg",
+      "source_location": null,
+      "weight": 1
+    },
+    {
+      "source": "public_proyectos_dashboards_dashmarketing_sanoyfresco_marketing_association_rules_dashboard",
+      "target": "public_proyectos_dashboards_dashmarketing_average_confidence_8_3",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "J:\\Proyectos\\Portfolio-26\\public\\Proyectos\\dashboards\\DashMarketing.jpg",
+      "source_location": null,
+      "weight": 1
+    },
+    {
+      "source": "public_proyectos_dashboards_dashmarketing_sanoyfresco_marketing_association_rules_dashboard",
+      "target": "public_proyectos_dashboards_dashmarketing_average_lift_1_5",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "J:\\Proyectos\\Portfolio-26\\public\\Proyectos\\dashboards\\DashMarketing.jpg",
+      "source_location": null,
+      "weight": 1
+    },
+    {
+      "source": "public_proyectos_dashboards_dashmarketing_sanoyfresco_marketing_association_rules_dashboard",
+      "target": "public_proyectos_dashboards_dashmarketing_average_support_6_5",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "J:\\Proyectos\\Portfolio-26\\public\\Proyectos\\dashboards\\DashMarketing.jpg",
+      "source_location": null,
+      "weight": 1
+    },
+    {
+      "source": "public_proyectos_dashboards_dashmarketing_sanoyfresco_marketing_association_rules_dashboard",
+      "target": "public_proyectos_dashboards_dashmarketing_product_category_navigation",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "J:\\Proyectos\\Portfolio-26\\public\\Proyectos\\dashboards\\DashMarketing.jpg",
+      "source_location": null,
+      "weight": 1
+    },
+    {
+      "source": "public_proyectos_dashboards_dashmarketing_sanoyfresco_marketing_association_rules_dashboard",
+      "target": "public_proyectos_dashboards_dashmarketing_confidence_lift_and_product_filters",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "J:\\Proyectos\\Portfolio-26\\public\\Proyectos\\dashboards\\DashMarketing.jpg",
+      "source_location": null,
+      "weight": 1
+    },
+    {
+      "source": "public_proyectos_dashboards_dashmarketing_sanoyfresco_marketing_association_rules_dashboard",
+      "target": "public_proyectos_dashboards_dashmarketing_antecedent_consequent_lift_table",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "J:\\Proyectos\\Portfolio-26\\public\\Proyectos\\dashboards\\DashMarketing.jpg",
+      "source_location": null,
+      "weight": 1
+    },
+    {
+      "source": "public_proyectos_dashboards_dashmarketing_antecedent_consequent_lift_table",
+      "target": "public_proyectos_dashboards_dashmarketing_red_onion_to_organic_cilantro_rule",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "J:\\Proyectos\\Portfolio-26\\public\\Proyectos\\dashboards\\DashMarketing.jpg",
+      "source_location": null,
+      "weight": 1
+    },
+    {
+      "source": "public_proyectos_dashboards_dashmarketing_antecedent_consequent_lift_table",
+      "target": "public_proyectos_dashboards_dashmarketing_cilantro_to_lemons_rule",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "J:\\Proyectos\\Portfolio-26\\public\\Proyectos\\dashboards\\DashMarketing.jpg",
+      "source_location": null,
+      "weight": 1
+    },
+    {
+      "source": "public_proyectos_dashboards_dashmarketing_antecedent_consequent_lift_table",
+      "target": "public_proyectos_dashboards_dashmarketing_organic_garlic_to_organic_yellow_onion_rule",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "J:\\Proyectos\\Portfolio-26\\public\\Proyectos\\dashboards\\DashMarketing.jpg",
+      "source_location": null,
+      "weight": 1
+    },
+    {
+      "source": "public_proyectos_dashboards_dashmarketing_sanoyfresco_marketing_association_rules_dashboard",
+      "target": "public_proyectos_dashboards_dashmarketing_cross_selling_decision_support",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "J:\\Proyectos\\Portfolio-26\\public\\Proyectos\\dashboards\\DashMarketing.jpg",
+      "source_location": null,
+      "weight": 1
+    }
+  ],
+  "hyperedges": [
+    {
+      "id": "dashmarketing_top_lift_association_rules",
+      "label": "Top Lift Association Rules",
+      "nodes": [
+        "public_proyectos_dashboards_dashmarketing_red_onion_to_organic_cilantro_rule",
+        "public_proyectos_dashboards_dashmarketing_cilantro_to_lemons_rule",
+        "public_proyectos_dashboards_dashmarketing_organic_garlic_to_organic_yellow_onion_rule"
+      ],
+      "relation": "form",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "J:\\Proyectos\\Portfolio-26\\public\\Proyectos\\dashboards\\DashMarketing.jpg"
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

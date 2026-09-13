@@ -8,6 +8,7 @@ export const PUBLIC_POSITIONING = {
   version: "v1",
   identity: {
     name: "Horacio Laphitz",
+    // TODO: Approve the final professional headline and unify it across the portfolio, GitHub, and LinkedIn.
     role: "Analista de datos",
   },
   contact: {

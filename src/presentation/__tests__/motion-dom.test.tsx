@@ -835,6 +835,16 @@ describe("motion orchestration contracts", () => {
     expect(contactGroup.dataset.motion).toBeUndefined();
   });
 
+  it("does not render unavailable copy in Contact or Footer", () => {
+    const contact = parseMarkup(renderToStaticMarkup(<Contact />));
+    const footer = parseMarkup(renderToStaticMarkup(<Footer />));
+
+    expect(contact.querySelector('[role="status"]')).toBeNull();
+    expect(footer.querySelector('[role="status"]')).toBeNull();
+    expect(contact.textContent).not.toMatch(/No disponible/);
+    expect(footer.textContent).not.toMatch(/No disponible/);
+  });
+
   it("adopts a scoped observed reveal for the existing Skills content group", async () => {
     const serverSkills = parseMarkup(renderToStaticMarkup(<Skills />));
     const serverSkillsGroup = serverSkills.querySelector("section > div") as HTMLElement;

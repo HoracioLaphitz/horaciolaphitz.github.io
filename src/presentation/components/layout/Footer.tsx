@@ -1,5 +1,4 @@
 import { GithubIcon, LinkedinIcon, MailIcon, DownloadIcon } from "../ui/Icons";
-import { AvailabilityBadge } from "../ui/AvailabilityBadge";
 import { PUBLIC_POSITIONING } from "@data/public-positioning.v1";
 
 const Footer = () => {
@@ -26,9 +25,7 @@ const Footer = () => {
               <DownloadIcon className="w-3.5 h-3.5" />
               Descargar CV
             </a>
-            <div className="pt-1">
-              <AvailabilityBadge variant="compact" />
-            </div>
+            {/* TODO: Restore only with approved truthful availability copy. */}
             <div className="flex items-center gap-2 pt-1">
               <a
                 href={PUBLIC_POSITIONING.contact.linkedin}

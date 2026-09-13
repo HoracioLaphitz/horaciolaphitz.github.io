@@ -19,14 +19,26 @@ const featuredProjects = allProjects
 
 <section
   id="proyectos"
-  class="bg-skin-primary py-16 md:py-24"
+  class="border-b border-skin-border bg-skin-secondary py-16 md:py-24"
 >
   <div class="mx-auto max-w-content px-6">
     <header class="mb-10 lg:mb-12">
-      <h2 class="text-display-sm font-bold text-skin-text tracking-tight" style={{ letterSpacing: "-0.02em" }}>
+      <div class="mb-5 flex items-center gap-3" aria-hidden="true">
+        <span class="h-2 w-2 bg-[#c45a2b] dark:bg-[#e39a73]" />
+        <span class="h-px flex-1 bg-skin-border" />
+        {featuredProjects.map((_, index) => (
+          <span class={`h-2 w-2 border ${index === 0 ? "border-skin-text bg-skin-text" : "border-skin-border-medium"}`} />
+        ))}
+      </div>
+      <p class="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-brand-primary">
+        Proyectos destacados
+      </p>
+      <h2 class="text-display-sm font-bold tracking-tight text-skin-text" style={{ letterSpacing: "-0.02em" }}>
         Proyectos
       </h2>
-    
+      <p class="mt-4 max-w-2xl text-base leading-relaxed text-skin-text-secondary">
+        Casos de trabajo con contexto, contribución, resultado y alcance.
+      </p>
     </header>
 
     {featuredProjects.length === 4 ? (
@@ -42,7 +54,7 @@ const featuredProjects = allProjects
     ) : (
       <div class="rounded-xl bg-skin-secondary p-8 text-center">
         <p class="text-skin-muted">
-          Encontrados: {featuredProjects.length}
+          No hay proyectos destacados disponibles.
         </p>
       </div>
     )}

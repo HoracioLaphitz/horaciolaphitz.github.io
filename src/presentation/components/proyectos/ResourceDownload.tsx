@@ -37,7 +37,7 @@ const ResourceItem = ({
   >
     <div className="flex-shrink-0 text-skin-accent">{getIcon(type)}</div>
     <div className="flex-1 min-w-0">
-      <p className="truncate font-medium text-skin-text transition-colors group-hover:text-skin-accent">
+      <p className="break-words font-medium text-skin-text transition-colors group-hover:text-skin-accent">
         {resource.name}
       </p>
       {resource.description && (

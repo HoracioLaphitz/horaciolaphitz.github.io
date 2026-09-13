@@ -22,47 +22,46 @@ const { title, github, dashboard, maturity } = project.data;
 const maturityLabel = getProjectMaturityLabel(maturity);
 ---
 
-<article class="group relative border-b border-skin-border/40 py-10 first:pt-0 last:border-b-0">
-  <div class="grid gap-6 md:grid-cols-[1fr_2fr] md:gap-10">
-    <div>
-      <span class="font-mono text-xs text-skin-muted tracking-tight">
-        {String(index + 1).padStart(2, "0")}
-      </span>
-      <h3 class="mt-2 text-xl md:text-2xl font-semibold text-skin-text tracking-tight">
+<article class="group relative border-b border-skin-border py-10 first:pt-0 last:border-b-0">
+  <div class="grid gap-8 md:grid-cols-[13rem_1fr] md:gap-10">
+    <div class="relative border border-skin-border bg-skin-primary p-5">
+      <span class="absolute -top-px left-5 h-1.5 w-10 bg-[#c45a2b] dark:bg-[#e39a73]" aria-hidden="true" />
+      <span class="font-mono text-xs tracking-tight text-skin-muted">{String(index + 1).padStart(2, "0")}</span>
+      <h3 class="mt-8 break-words text-xl font-semibold tracking-tight text-skin-text md:text-2xl">
         {title}
       </h3>
       {maturityLabel && (
-        <p class="mt-2 text-xs font-medium uppercase tracking-[0.14em] text-brand-primary">
+        <p class="mt-3 text-xs font-medium uppercase tracking-[0.14em] text-brand-primary">
           {maturityLabel}
         </p>
       )}
     </div>
 
-    <div class="space-y-4">
+    <div class="grid gap-x-8 gap-y-5 sm:grid-cols-2">
       <div>
-        <p class="text-xs font-semibold uppercase tracking-[0.12em] text-skin-muted mb-1">Contexto</p>
-        <p class="text-sm md:text-base text-skin-text leading-relaxed">{showcase.context}</p>
+        <p class="mb-1 text-xs font-semibold uppercase tracking-[0.12em] text-skin-muted">Contexto</p>
+        <p class="text-sm leading-relaxed text-skin-text md:text-base">{showcase.context}</p>
       </div>
       <div>
-        <p class="text-xs font-semibold uppercase tracking-[0.12em] text-skin-muted mb-1">Contribución</p>
-        <p class="text-sm md:text-base text-skin-text leading-relaxed">{showcase.contribution}</p>
+        <p class="mb-1 text-xs font-semibold uppercase tracking-[0.12em] text-skin-muted">Contribución</p>
+        <p class="text-sm leading-relaxed text-skin-text md:text-base">{showcase.contribution}</p>
+      </div>
+      <div class="border-l-2 border-[#c45a2b] pl-3 dark:border-[#e39a73]">
+        <p class="mb-1 text-xs font-semibold uppercase tracking-[0.12em] text-skin-muted">Resultado</p>
+        <p class="text-sm leading-relaxed text-skin-text md:text-base">{showcase.result}</p>
       </div>
       <div>
-        <p class="text-xs font-semibold uppercase tracking-[0.12em] text-skin-muted mb-1">Resultado</p>
-        <p class="text-sm md:text-base text-skin-text leading-relaxed">{showcase.result}</p>
-      </div>
-      <div>
-        <p class="text-xs font-semibold uppercase tracking-[0.12em] text-skin-muted mb-1">Alcance</p>
-        <p class="text-sm md:text-base text-skin-text leading-relaxed">{showcase.limit}</p>
+        <p class="mb-1 text-xs font-semibold uppercase tracking-[0.12em] text-skin-muted">Alcance</p>
+        <p class="text-sm leading-relaxed text-skin-text md:text-base">{showcase.limit}</p>
       </div>
 
-      <div class="flex flex-wrap gap-2 pt-2">
+      <div class="flex flex-wrap gap-2 pt-1 sm:col-span-2">
         {github && (
           <a
             href={github}
             target="_blank"
             rel="noopener noreferrer"
-            class="focus-ring inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-full bg-skin-primary text-skin-text border border-skin-border/40 hover:bg-skin-primary/80 transition-colors"
+            class="focus-ring inline-flex min-h-11 items-center gap-1.5 border border-skin-border bg-skin-primary px-3 text-xs font-medium text-skin-text hover:bg-skin-primary/80"
           >
             Código
           </a>
@@ -72,14 +71,16 @@ const maturityLabel = getProjectMaturityLabel(maturity);
             href={dashboard}
             target="_blank"
             rel="noopener noreferrer"
-            class="focus-ring inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-full bg-skin-primary text-skin-text border border-skin-border/40 hover:bg-skin-primary/80 transition-colors"
+            class="focus-ring inline-flex min-h-11 items-center gap-1.5 border border-skin-border bg-skin-primary px-3 text-xs font-medium text-skin-text hover:bg-skin-primary/80"
           >
             Dashboard
           </a>
         )}
         <a
-          href={`/proyectos/${project.id}`}
-          class="focus-ring inline-flex items-center gap-1 px-4 py-1.5 text-xs font-medium rounded-full bg-brand-primary text-white hover:opacity-90 transition-opacity ml-auto"
+          href={showcase.artifact ?? `/proyectos/${project.id}`}
+          target={showcase.artifact ? "_blank" : undefined}
+          rel={showcase.artifact ? "noopener noreferrer" : undefined}
+          class="focus-ring inline-flex min-h-11 items-center gap-1 border border-brand-primary bg-brand-primary px-4 text-xs font-medium text-white hover:bg-brand-hover sm:ml-auto"
         >
           {showcase.evidenceAction}
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

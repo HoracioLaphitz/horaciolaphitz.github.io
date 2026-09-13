@@ -1,0 +1,146 @@
+{
+  "nodes": [
+    {
+      "id": "public_img_pythonfordatascienceandai_ibm_python_for_data_science_and_ai_digital_credential",
+      "label": "IBM Python for Data Science and AI Digital Credential",
+      "file_type": "image",
+      "source_file": "J:\\Proyectos\\Portfolio-26\\public\\img\\PythonForDataScienceAndAI.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "public_img_pythonfordatascienceandai_ibm_developer_skills_network",
+      "label": "IBM Developer Skills Network",
+      "file_type": "concept",
+      "source_file": "J:\\Proyectos\\Portfolio-26\\public\\img\\PythonForDataScienceAndAI.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "public_img_pythonfordatascienceandai_python_for_data_science_and_ai",
+      "label": "Python for Data Science and AI",
+      "file_type": "concept",
+      "source_file": "J:\\Proyectos\\Portfolio-26\\public\\img\\PythonForDataScienceAndAI.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "public_img_pythonfordatascienceandai_coursera",
+      "label": "Coursera",
+      "file_type": "concept",
+      "source_file": "J:\\Proyectos\\Portfolio-26\\public\\img\\PythonForDataScienceAndAI.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "public_img_pythonfordatascienceandai_ibm_digital_credential",
+      "label": "IBM Digital Credential",
+      "file_type": "concept",
+      "source_file": "J:\\Proyectos\\Portfolio-26\\public\\img\\PythonForDataScienceAndAI.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "public_img_pythonfordatascienceandai_circular_orange_badge_design",
+      "label": "Circular Orange Badge Design",
+      "file_type": "concept",
+      "source_file": "J:\\Proyectos\\Portfolio-26\\public\\img\\PythonForDataScienceAndAI.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "public_img_pythonfordatascienceandai_global_map_background",
+      "label": "Global Map Background",
+      "file_type": "concept",
+      "source_file": "J:\\Proyectos\\Portfolio-26\\public\\img\\PythonForDataScienceAndAI.png",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    }
+  ],
+  "edges": [
+    {
+      "source": "public_img_pythonfordatascienceandai_ibm_python_for_data_science_and_ai_digital_credential",
+      "target": "public_img_pythonfordatascienceandai_ibm_developer_skills_network",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "J:\\Proyectos\\Portfolio-26\\public\\img\\PythonForDataScienceAndAI.png",
+      "source_location": null,
+      "weight": 1
+    },
+    {
+      "source": "public_img_pythonfordatascienceandai_ibm_python_for_data_science_and_ai_digital_credential",
+      "target": "public_img_pythonfordatascienceandai_python_for_data_science_and_ai",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "J:\\Proyectos\\Portfolio-26\\public\\img\\PythonForDataScienceAndAI.png",
+      "source_location": null,
+      "weight": 1
+    },
+    {
+      "source": "public_img_pythonfordatascienceandai_ibm_python_for_data_science_and_ai_digital_credential",
+      "target": "public_img_pythonfordatascienceandai_coursera",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "J:\\Proyectos\\Portfolio-26\\public\\img\\PythonForDataScienceAndAI.png",
+      "source_location": null,
+      "weight": 1
+    },
+    {
+      "source": "public_img_pythonfordatascienceandai_ibm_python_for_data_science_and_ai_digital_credential",
+      "target": "public_img_pythonfordatascienceandai_ibm_digital_credential",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "J:\\Proyectos\\Portfolio-26\\public\\img\\PythonForDataScienceAndAI.png",
+      "source_location": null,
+      "weight": 1
+    },
+    {
+      "source": "public_img_pythonfordatascienceandai_ibm_python_for_data_science_and_ai_digital_credential",
+      "target": "public_img_pythonfordatascienceandai_circular_orange_badge_design",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "J:\\Proyectos\\Portfolio-26\\public\\img\\PythonForDataScienceAndAI.png",
+      "source_location": null,
+      "weight": 1
+    },
+    {
+      "source": "public_img_pythonfordatascienceandai_ibm_python_for_data_science_and_ai_digital_credential",
+      "target": "public_img_pythonfordatascienceandai_global_map_background",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "J:\\Proyectos\\Portfolio-26\\public\\img\\PythonForDataScienceAndAI.png",
+      "source_location": null,
+      "weight": 1
+    }
+  ],
+  "hyperedges": [],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

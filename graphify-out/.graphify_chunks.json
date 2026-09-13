@@ -1,0 +1,371 @@
+[
+  {
+    "kind": "document",
+    "files": [
+      "J:\\Proyectos\\Portfolio-26\\.pre-commit-config.yaml",
+      "J:\\Proyectos\\Portfolio-26\\pnpm-workspace.yaml",
+      "J:\\Proyectos\\Portfolio-26\\README.md",
+      "J:\\Proyectos\\Portfolio-26\\.github\\dependabot.yml",
+      "J:\\Proyectos\\Portfolio-26\\.github\\DEPLOY_CHECKLIST.md",
+      "J:\\Proyectos\\Portfolio-26\\.github\\workflows\\branch-validation.yml",
+      "J:\\Proyectos\\Portfolio-26\\.github\\workflows\\deploy.yml",
+      "J:\\Proyectos\\Portfolio-26\\.github\\workflows\\hotfix.yml",
+      "J:\\Proyectos\\Portfolio-26\\.github\\workflows\\smoke-test.yml",
+      "J:\\Proyectos\\Portfolio-26\\.github\\workflows\\validate-pr.yml",
+      "J:\\Proyectos\\Portfolio-26\\.github\\workflows\\vercel-preview.yml",
+      "J:\\Proyectos\\Portfolio-26\\.github\\workflows\\vercel-production.yml",
+      "J:\\Proyectos\\Portfolio-26\\docs\\design.md",
+      "J:\\Proyectos\\Portfolio-26\\docs\\structure.md",
+      "J:\\Proyectos\\Portfolio-26\\public\\CV-HoracioNahuelLaphitz.pdf",
+      "J:\\Proyectos\\Portfolio-26\\public\\CV_HoracioLaphitz.pdf",
+      "J:\\Proyectos\\Portfolio-26\\public\\llms.txt",
+      "J:\\Proyectos\\Portfolio-26\\public\\robots.txt",
+      "J:\\Proyectos\\Portfolio-26\\public\\.well-known\\security.txt",
+      "J:\\Proyectos\\Portfolio-26\\public\\Certificaciones\\Analista-Compútacional-datos.pdf",
+      "J:\\Proyectos\\Portfolio-26\\public\\Certificaciones\\CertificadoDeData&Analytics.pdf",
+      "J:\\Proyectos\\Portfolio-26\\public\\Certificaciones\\CertificadoDigitalBasesdeDatos.pdf"
+    ]
+  },
+  {
+    "kind": "document",
+    "files": [
+      "J:\\Proyectos\\Portfolio-26\\public\\Certificaciones\\CertificadoLaphitzHoracioIntroaLaProgramacion.pdf",
+      "J:\\Proyectos\\Portfolio-26\\public\\Certificaciones\\certificate-of-completion-for-tu-primera-experiencia-como-analista-de-datos.pdf",
+      "J:\\Proyectos\\Portfolio-26\\public\\Certificaciones\\CertificateinBusiness&OperationsManagementExcellence.pdf",
+      "J:\\Proyectos\\Portfolio-26\\public\\Certificaciones\\Curso final de análisis computacional de datos completa un caso practico.pdf",
+      "J:\\Proyectos\\Portfolio-26\\public\\Certificaciones\\DatosEnInformacion.pdf",
+      "J:\\Proyectos\\Portfolio-26\\public\\Certificaciones\\Expertise en Ventas.pdf",
+      "J:\\Proyectos\\Portfolio-26\\public\\Certificaciones\\Fundamentos de ciencia de datos.pdf",
+      "J:\\Proyectos\\Portfolio-26\\public\\Certificaciones\\GoBeyondtheNumbersTranslateData.pdf",
+      "J:\\Proyectos\\Portfolio-26\\public\\Certificaciones\\GOOGLE-Analisis-computacional-de-datos-R.pdf",
+      "J:\\Proyectos\\Portfolio-26\\public\\Certificaciones\\GOOGLE-Analista-Compútacional-datos.pdf",
+      "J:\\Proyectos\\Portfolio-26\\public\\Certificaciones\\GOOGLE-DatosEnInformacion.pdf",
+      "J:\\Proyectos\\Portfolio-26\\public\\Certificaciones\\GOOGLE-PYTHON-CERTIFICATE.pdf",
+      "J:\\Proyectos\\Portfolio-26\\public\\Certificaciones\\IBM-DATA SCIENCE - AI - DEVELOPMENT.pdf",
+      "J:\\Proyectos\\Portfolio-26\\public\\Certificaciones\\IBM-python-data-engineering.pdf",
+      "J:\\Proyectos\\Portfolio-26\\public\\Certificaciones\\IBMinsignia1.pdf",
+      "J:\\Proyectos\\Portfolio-26\\public\\Certificaciones\\insignia2.pdf",
+      "J:\\Proyectos\\Portfolio-26\\public\\Certificaciones\\Introducción a la Programación.pdf",
+      "J:\\Proyectos\\Portfolio-26\\public\\Certificaciones\\Microsoft Office Mastery Learn Word Excel and PowerPoint.pdf",
+      "J:\\Proyectos\\Portfolio-26\\public\\Certificaciones\\Office Mastery.pdf",
+      "J:\\Proyectos\\Portfolio-26\\public\\Certificaciones\\Prefesional diploma in corporate managemet.pdf",
+      "J:\\Proyectos\\Portfolio-26\\public\\Certificaciones\\Python-Developer-Udemy.pdf",
+      "J:\\Proyectos\\Portfolio-26\\public\\Certificaciones\\R.pdf"
+    ]
+  },
+  {
+    "kind": "document",
+    "files": [
+      "J:\\Proyectos\\Portfolio-26\\public\\Certificaciones\\Sales & Service Data Analysis & Analytics Expert.pdf",
+      "J:\\Proyectos\\Portfolio-26\\public\\Certificaciones\\SILICON MISIONES- Certificado Digital Bases de Datos.pdf",
+      "J:\\Proyectos\\Portfolio-26\\public\\Certificaciones\\SILICON MISIONES- Certificado Laphitz Horacio Intro a la programacion.pdf",
+      "J:\\Proyectos\\Portfolio-26\\public\\Certificaciones\\SILICON MISIONES-Certificado de Data & Analytics.pdf",
+      "J:\\Proyectos\\Portfolio-26\\public\\Certificaciones\\Supervised Machine Learning_ Regression and Classification.pdf",
+      "J:\\Proyectos\\Portfolio-26\\public\\notebooks-html\\nb-capitalizacion-bancos-etl\\capitalizacion-de-bancos-etl.html",
+      "J:\\Proyectos\\Portfolio-26\\public\\notebooks-html\\nb-limpieza-bigquery\\limpieza-de-datos-para-bigquery.html",
+      "J:\\Proyectos\\Portfolio-26\\public\\notebooks-html\\nb-pandas-profiling-eda\\pandas-profiling.html",
+      "J:\\Proyectos\\Portfolio-26\\public\\notebooks-html\\nb-poo-python\\programacion-orientada-a-objetos.html",
+      "J:\\Proyectos\\Portfolio-26\\public\\notebooks-html\\nb-prediccion-precios-casas\\prediccion-de-precios-de-casas.html",
+      "J:\\Proyectos\\Portfolio-26\\public\\notebooks-html\\nb-primer-modelo-regresion-lineal\\primer-modelo-de-regresion-lineal.html",
+      "J:\\Proyectos\\Portfolio-26\\public\\notebooks-html\\nb-red-clasificacion-base\\red-de-clasificacion-base.html",
+      "J:\\Proyectos\\Portfolio-26\\public\\notebooks-html\\nb-red-clasificacion-optimizada\\red-de-clasificacion-optimizada.html",
+      "J:\\Proyectos\\Portfolio-26\\public\\notebooks-html\\nb-red-clasificacion-v2\\red-de-clasificacion-iteracion-2.html",
+      "J:\\Proyectos\\Portfolio-26\\public\\notebooks-html\\nb-red-de-clasificacion\\red-neuronal-de-clasificacion.html",
+      "J:\\Proyectos\\Portfolio-26\\public\\notebooks-html\\nb-red-neuronal-convolucional\\analisis-exploratorio.html",
+      "J:\\Proyectos\\Portfolio-26\\public\\notebooks-html\\nb-red-neuronal-convolucional\\cnn-principal.html",
+      "J:\\Proyectos\\Portfolio-26\\public\\notebooks-html\\nb-red-neuronal-terremotos\\red-neuronal-terremotos.html",
+      "J:\\Proyectos\\Portfolio-26\\public\\notebooks-html\\nb-regresion-logistica\\regresion-logistica.html",
+      "J:\\Proyectos\\Portfolio-26\\public\\notebooks-html\\nb-transferencia-aprendizaje\\transferencia-de-aprendizaje.html",
+      "J:\\Proyectos\\Portfolio-26\\public\\notebooks-html\\prediccion-imagenes\\transferencia-de-aprendizaje.html",
+      "J:\\Proyectos\\Portfolio-26\\public\\notebooks-html\\predice-precio-acciones\\prediccion-de-precios-de-acciones.html"
+    ]
+  },
+  {
+    "kind": "document",
+    "files": [
+      "J:\\Proyectos\\Portfolio-26\\public\\notebooks-html\\redes-convolucionales\\red-neuronal-convolucional.html",
+      "J:\\Proyectos\\Portfolio-26\\public\\notebooks-html\\regresion-lineal-celsius-fahrenheit\\regresion-lineal-celsius-a-fahrenheit.html",
+      "J:\\Proyectos\\Portfolio-26\\public\\notebooks-html\\sano-y-fresco-market-basket\\market-basket-analysis.html",
+      "J:\\Proyectos\\Portfolio-26\\public\\Proyectos\\README.md",
+      "J:\\Proyectos\\Portfolio-26\\public\\Proyectos\\analisis\\Cyclistic_Analisis.pdf",
+      "J:\\Proyectos\\Portfolio-26\\public\\Proyectos\\Notebooks\\README.md",
+      "J:\\Proyectos\\Portfolio-26\\public\\Proyectos\\Notebooks\\requirements.txt",
+      "J:\\Proyectos\\Portfolio-26\\public\\Proyectos\\Notebooks\\Red-Neuronal-Convolucional\\README.md",
+      "J:\\Proyectos\\Portfolio-26\\public\\Proyectos\\Notebooks\\Red-Neuronal-Convolucional\\requirements.txt",
+      "J:\\Proyectos\\Portfolio-26\\public\\Proyectos\\project\\project\\reporte_analisis_optimizado.pdf",
+      "J:\\Proyectos\\Portfolio-26\\public\\Proyectos\\project\\project\\reporte_analisis_pacientes.pdf",
+      "J:\\Proyectos\\Portfolio-26\\public\\Proyectos\\Proyecto SanoYFresco\\README.md",
+      "J:\\Proyectos\\Portfolio-26\\public\\Proyectos\\Proyecto SanoYFresco\\Media\\Colores.txt",
+      "J:\\Proyectos\\Portfolio-26\\src\\content\\proyectos\\ai-sales-assistant.md",
+      "J:\\Proyectos\\Portfolio-26\\src\\content\\proyectos\\analisis-cyclistic-bike-share.md",
+      "J:\\Proyectos\\Portfolio-26\\src\\content\\proyectos\\dashboards-ventas-marketing-powerbi.md",
+      "J:\\Proyectos\\Portfolio-26\\src\\content\\proyectos\\github-analisis-datos-2.md",
+      "J:\\Proyectos\\Portfolio-26\\src\\content\\proyectos\\github-autoencoder.md",
+      "J:\\Proyectos\\Portfolio-26\\src\\content\\proyectos\\github-cancer-issue.md",
+      "J:\\Proyectos\\Portfolio-26\\src\\content\\proyectos\\github-capitalizacion-del-mercado-de-los-bancos-mas-grandes.md",
+      "J:\\Proyectos\\Portfolio-26\\src\\content\\proyectos\\github-clustering.md"
+    ]
+  },
+  {
+    "kind": "document",
+    "files": [
+      "J:\\Proyectos\\Portfolio-26\\src\\content\\proyectos\\github-curva-soberanos-ar.md",
+      "J:\\Proyectos\\Portfolio-26\\src\\content\\proyectos\\github-data-analysis-ecommerce.md",
+      "J:\\Proyectos\\Portfolio-26\\src\\content\\proyectos\\github-deepdreams.md",
+      "J:\\Proyectos\\Portfolio-26\\src\\content\\proyectos\\github-django-crud-react.md",
+      "J:\\Proyectos\\Portfolio-26\\src\\content\\proyectos\\github-eda-ibm.md",
+      "J:\\Proyectos\\Portfolio-26\\src\\content\\proyectos\\github-eda-procesos.md",
+      "J:\\Proyectos\\Portfolio-26\\src\\content\\proyectos\\github-etl.md",
+      "J:\\Proyectos\\Portfolio-26\\src\\content\\proyectos\\github-extraer-transformar-cargar.md",
+      "J:\\Proyectos\\Portfolio-26\\src\\content\\proyectos\\github-horaciolaphitz-github-io.md",
+      "J:\\Proyectos\\Portfolio-26\\src\\content\\proyectos\\github-horaciolaphitz.md",
+      "J:\\Proyectos\\Portfolio-26\\src\\content\\proyectos\\github-marketbasketanalytics.md",
+      "J:\\Proyectos\\Portfolio-26\\src\\content\\proyectos\\github-porfolio.md",
+      "J:\\Proyectos\\Portfolio-26\\src\\content\\proyectos\\github-portfolio-python.md",
+      "J:\\Proyectos\\Portfolio-26\\src\\content\\proyectos\\github-portfolioastro.md",
+      "J:\\Proyectos\\Portfolio-26\\src\\content\\proyectos\\github-prediccionimagenes.md",
+      "J:\\Proyectos\\Portfolio-26\\src\\content\\proyectos\\github-prediceprecioacciones.md",
+      "J:\\Proyectos\\Portfolio-26\\src\\content\\proyectos\\github-redes-convolucionales.md",
+      "J:\\Proyectos\\Portfolio-26\\src\\content\\proyectos\\github-redes-generativas-adversariales.md",
+      "J:\\Proyectos\\Portfolio-26\\src\\content\\proyectos\\github-regresion-lineal.md",
+      "J:\\Proyectos\\Portfolio-26\\src\\content\\proyectos\\github-titanic-arbol-de-decision.md",
+      "J:\\Proyectos\\Portfolio-26\\src\\content\\proyectos\\github-visualizando-lo-incierto.md"
+    ]
+  },
+  {
+    "kind": "document",
+    "files": [
+      "J:\\Proyectos\\Portfolio-26\\src\\content\\proyectos\\github-warriors-games.md",
+      "J:\\Proyectos\\Portfolio-26\\src\\content\\proyectos\\nb-capitalizacion-bancos-etl.md",
+      "J:\\Proyectos\\Portfolio-26\\src\\content\\proyectos\\nb-limpieza-bigquery.md",
+      "J:\\Proyectos\\Portfolio-26\\src\\content\\proyectos\\nb-pandas-profiling-eda.md",
+      "J:\\Proyectos\\Portfolio-26\\src\\content\\proyectos\\nb-poo-python.md",
+      "J:\\Proyectos\\Portfolio-26\\src\\content\\proyectos\\nb-prediccion-precios-casas.md",
+      "J:\\Proyectos\\Portfolio-26\\src\\content\\proyectos\\nb-primer-modelo-regresion-lineal.md",
+      "J:\\Proyectos\\Portfolio-26\\src\\content\\proyectos\\nb-proyecto-final-analisis.md",
+      "J:\\Proyectos\\Portfolio-26\\src\\content\\proyectos\\nb-red-clasificacion-base.md",
+      "J:\\Proyectos\\Portfolio-26\\src\\content\\proyectos\\nb-red-clasificacion-optimizada.md",
+      "J:\\Proyectos\\Portfolio-26\\src\\content\\proyectos\\nb-red-clasificacion-v2.md",
+      "J:\\Proyectos\\Portfolio-26\\src\\content\\proyectos\\nb-red-de-clasificacion.md",
+      "J:\\Proyectos\\Portfolio-26\\src\\content\\proyectos\\nb-red-neuronal-convolucional.md",
+      "J:\\Proyectos\\Portfolio-26\\src\\content\\proyectos\\nb-red-neuronal-terremotos.md",
+      "J:\\Proyectos\\Portfolio-26\\src\\content\\proyectos\\nb-regresion-logistica.md",
+      "J:\\Proyectos\\Portfolio-26\\src\\content\\proyectos\\nb-transferencia-aprendizaje.md",
+      "J:\\Proyectos\\Portfolio-26\\src\\content\\proyectos\\prediccion-imagenes.md",
+      "J:\\Proyectos\\Portfolio-26\\src\\content\\proyectos\\predice-precio-acciones.md",
+      "J:\\Proyectos\\Portfolio-26\\src\\content\\proyectos\\redes-convolucionales.md",
+      "J:\\Proyectos\\Portfolio-26\\src\\content\\proyectos\\regresion-lineal-celsius-fahrenheit.md",
+      "J:\\Proyectos\\Portfolio-26\\src\\content\\proyectos\\sano-y-fresco-market-basket.md"
+    ]
+  },
+  {
+    "kind": "image",
+    "files": [
+      "J:\\Proyectos\\Portfolio-26\\public\\Certificaciones\\Tango_Starter.png"
+    ]
+  },
+  {
+    "kind": "image",
+    "files": [
+      "J:\\Proyectos\\Portfolio-26\\public\\Certificaciones\\Tango_Trainee.png"
+    ]
+  },
+  {
+    "kind": "image",
+    "files": [
+      "J:\\Proyectos\\Portfolio-26\\public\\img\\dashboards\\placeholder.svg"
+    ]
+  },
+  {
+    "kind": "image",
+    "files": [
+      "J:\\Proyectos\\Portfolio-26\\public\\img\\logos\\Bold Italic Multipurpse Typography Logo Design Brand Identity Clean Comic Style for Design Company.svg"
+    ]
+  },
+  {
+    "kind": "image",
+    "files": [
+      "J:\\Proyectos\\Portfolio-26\\public\\img\\profile.png"
+    ]
+  },
+  {
+    "kind": "image",
+    "files": [
+      "J:\\Proyectos\\Portfolio-26\\public\\img\\PythonForDataScienceAndAI.png"
+    ]
+  },
+  {
+    "kind": "image",
+    "files": [
+      "J:\\Proyectos\\Portfolio-26\\public\\img\\PythonProjectForDataEngineering.png"
+    ]
+  },
+  {
+    "kind": "image",
+    "files": [
+      "J:\\Proyectos\\Portfolio-26\\public\\Proyectos\\dashboards\\DashMarketing.jpg"
+    ]
+  },
+  {
+    "kind": "image",
+    "files": [
+      "J:\\Proyectos\\Portfolio-26\\public\\Proyectos\\dashboards\\DASHVentas.jpg"
+    ]
+  },
+  {
+    "kind": "image",
+    "files": [
+      "J:\\Proyectos\\Portfolio-26\\public\\Proyectos\\Proyecto SanoYFresco\\DashMarketing.jpg"
+    ]
+  },
+  {
+    "kind": "image",
+    "files": [
+      "J:\\Proyectos\\Portfolio-26\\public\\Proyectos\\Proyecto SanoYFresco\\DASHVentas.jpg"
+    ]
+  },
+  {
+    "kind": "image",
+    "files": [
+      "J:\\Proyectos\\Portfolio-26\\public\\Proyectos\\Proyecto SanoYFresco\\Media\\flecha-hacia-arriba.png"
+    ]
+  },
+  {
+    "kind": "image",
+    "files": [
+      "J:\\Proyectos\\Portfolio-26\\public\\Proyectos\\Proyecto SanoYFresco\\Media\\icono cesta.png"
+    ]
+  },
+  {
+    "kind": "image",
+    "files": [
+      "J:\\Proyectos\\Portfolio-26\\public\\Proyectos\\Proyecto SanoYFresco\\Media\\icono euro.png"
+    ]
+  },
+  {
+    "kind": "image",
+    "files": [
+      "J:\\Proyectos\\Portfolio-26\\public\\Proyectos\\Proyecto SanoYFresco\\Media\\icono hash.png"
+    ]
+  },
+  {
+    "kind": "image",
+    "files": [
+      "J:\\Proyectos\\Portfolio-26\\public\\Proyectos\\Proyecto SanoYFresco\\Media\\icono media.png"
+    ]
+  },
+  {
+    "kind": "image",
+    "files": [
+      "J:\\Proyectos\\Portfolio-26\\public\\Proyectos\\Proyecto SanoYFresco\\Media\\icono ventas.png"
+    ]
+  },
+  {
+    "kind": "image",
+    "files": [
+      "J:\\Proyectos\\Portfolio-26\\public\\Proyectos\\Proyecto SanoYFresco\\Media\\imagenes secciones\\Bebidas.jpg"
+    ]
+  },
+  {
+    "kind": "image",
+    "files": [
+      "J:\\Proyectos\\Portfolio-26\\public\\Proyectos\\Proyecto SanoYFresco\\Media\\imagenes secciones\\Cremas.jpg"
+    ]
+  },
+  {
+    "kind": "image",
+    "files": [
+      "J:\\Proyectos\\Portfolio-26\\public\\Proyectos\\Proyecto SanoYFresco\\Media\\imagenes secciones\\Frutas.jpg"
+    ]
+  },
+  {
+    "kind": "image",
+    "files": [
+      "J:\\Proyectos\\Portfolio-26\\public\\Proyectos\\Proyecto SanoYFresco\\Media\\imagenes secciones\\Hierbas.jpg"
+    ]
+  },
+  {
+    "kind": "image",
+    "files": [
+      "J:\\Proyectos\\Portfolio-26\\public\\Proyectos\\Proyecto SanoYFresco\\Media\\imagenes secciones\\Leche.jpg"
+    ]
+  },
+  {
+    "kind": "image",
+    "files": [
+      "J:\\Proyectos\\Portfolio-26\\public\\Proyectos\\Proyecto SanoYFresco\\Media\\imagenes secciones\\Organicos.jpg"
+    ]
+  },
+  {
+    "kind": "image",
+    "files": [
+      "J:\\Proyectos\\Portfolio-26\\public\\Proyectos\\Proyecto SanoYFresco\\Media\\imagenes secciones\\Untables.jpg"
+    ]
+  },
+  {
+    "kind": "image",
+    "files": [
+      "J:\\Proyectos\\Portfolio-26\\public\\Proyectos\\Proyecto SanoYFresco\\Media\\imagenes secciones\\Verduras.jpg"
+    ]
+  },
+  {
+    "kind": "image",
+    "files": [
+      "J:\\Proyectos\\Portfolio-26\\public\\Proyectos\\Proyecto SanoYFresco\\Media\\Logo.jpg"
+    ]
+  },
+  {
+    "kind": "image",
+    "files": [
+      "J:\\Proyectos\\Portfolio-26\\public\\Proyectos\\Proyecto SanoYFresco\\Media\\web.jpg"
+    ]
+  },
+  {
+    "kind": "image",
+    "files": [
+      "J:\\Proyectos\\Portfolio-26\\tests\\screenshots\\gracias-desktop.png"
+    ]
+  },
+  {
+    "kind": "image",
+    "files": [
+      "J:\\Proyectos\\Portfolio-26\\tests\\screenshots\\gracias-mobile.png"
+    ]
+  },
+  {
+    "kind": "image",
+    "files": [
+      "J:\\Proyectos\\Portfolio-26\\tests\\screenshots\\home-desktop.png"
+    ]
+  },
+  {
+    "kind": "image",
+    "files": [
+      "J:\\Proyectos\\Portfolio-26\\tests\\screenshots\\home-mobile.png"
+    ]
+  },
+  {
+    "kind": "image",
+    "files": [
+      "J:\\Proyectos\\Portfolio-26\\tests\\screenshots\\project-detail-desktop.png"
+    ]
+  },
+  {
+    "kind": "image",
+    "files": [
+      "J:\\Proyectos\\Portfolio-26\\tests\\screenshots\\project-detail-mobile.png"
+    ]
+  },
+  {
+    "kind": "image",
+    "files": [
+      "J:\\Proyectos\\Portfolio-26\\tests\\screenshots\\projects-desktop.png"
+    ]
+  },
+  {
+    "kind": "image",
+    "files": [
+      "J:\\Proyectos\\Portfolio-26\\tests\\screenshots\\projects-mobile.png"
+    ]
+  }
+]

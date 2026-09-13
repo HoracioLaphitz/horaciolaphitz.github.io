@@ -83,7 +83,10 @@ const Navigation = () => {
           const el = document.querySelector(path);
           if (el) {
             const top = el.getBoundingClientRect().top + window.pageYOffset - 56;
-            window.scrollTo({ top, behavior: "smooth" });
+            const behavior = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+              ? "auto"
+              : "smooth";
+            window.scrollTo({ top, behavior });
           }
         } else {
           window.location.href = `/${path}`;
@@ -95,7 +98,7 @@ const Navigation = () => {
   );
 
   const navClass = scrolled
-    ? "bg-skin-primary border-b border-skin-border shadow-sm"
+    ? "bg-skin-primary border-b border-skin-border"
     : "bg-skin-primary border-b border-skin-border/60";
 
   return (
@@ -129,10 +132,10 @@ const Navigation = () => {
                     href={item.path}
                     onClick={(e) => handleNavClick(e, item.path)}
                     aria-current={isActive ? "true" : undefined}
-                    className={`focus-ring inline-flex min-h-11 items-center rounded-lg px-3.5 text-sm transition-colors duration-200 ${
+                    className={`focus-ring inline-flex min-h-11 items-center border-b-2 px-3.5 text-xs uppercase tracking-[0.12em] transition-colors duration-200 ${
                       isActive
-                        ? "text-skin-text font-semibold"
-                        : "text-skin-muted hover:text-skin-text"
+                        ? "border-brand-primary font-semibold text-skin-text"
+                        : "border-transparent text-skin-muted hover:border-skin-border-medium hover:text-skin-text"
                     }`}
                   >
                     {item.name}
@@ -193,10 +196,10 @@ const Navigation = () => {
                       href={item.path}
                       onClick={(e) => handleNavClick(e, item.path)}
                       aria-current={isActive ? "true" : undefined}
-                      className={`focus-ring flex min-h-11 items-center rounded-lg px-4 text-sm transition-colors ${
+                      className={`focus-ring flex min-h-11 items-center border-l-2 px-4 text-sm transition-colors ${
                         isActive
-                          ? "bg-skin-secondary text-skin-text font-semibold"
-                          : "text-skin-muted hover:bg-skin-secondary hover:text-skin-text"
+                          ? "border-brand-primary bg-skin-secondary font-semibold text-skin-text"
+                          : "border-transparent text-skin-muted hover:bg-skin-secondary hover:text-skin-text"
                       }`}
                     >
                       {item.name}
