@@ -17,7 +17,7 @@ interface Props {
 
 const {
   title,
-  description = `${PUBLIC_POSITIONING.identity.role} que está ${PUBLIC_POSITIONING.positioning.qualification.toLowerCase()} ${PUBLIC_POSITIONING.positioning.focus}.`,
+  description = `${PUBLIC_POSITIONING.identity.role}. ${PUBLIC_POSITIONING.identity.headline}`,
   image = "/img/profile.png",
   type = "website",
   canonical,
@@ -26,7 +26,7 @@ const {
 const siteUrl = PUBLIC_POSITIONING.siteUrl;
 const fullTitle =
   title === "Home"
-    ? `${PUBLIC_POSITIONING.identity.name} - ${PUBLIC_POSITIONING.identity.role}`
+    ? `${PUBLIC_POSITIONING.identity.name} | ${PUBLIC_POSITIONING.identity.role}`
     : `${title} | ${PUBLIC_POSITIONING.identity.name}`;
 const ogImage = new URL(image, siteUrl).href;
 const canonicalUrl = canonical
@@ -98,87 +98,89 @@ const canonicalUrl = canonical
       image: new URL(image, siteUrl).href,
       email: PUBLIC_POSITIONING.contact.email,
       sameAs: [PUBLIC_POSITIONING.contact.linkedin, PUBLIC_POSITIONING.contact.github],
-        "knowsAbout": [
-          "Python Programming",
-          "SQL Database Management",
-          "Power BI",
-          "Databricks",
-          "ETL Pipelines",
-          "Machine Learning",
-          "Data Visualization",
-          "Business Intelligence",
-          "Data Science",
-          "LangChain"
-        ],
-        "hasCredential": [
-          {
-            "@type": "EducationalOccupationalCredential",
-            "name": "Google Data Analytics Professional Certificate",
-            "credentialCategory": "certificate",
-            "recognizedBy": {
-              "@type": "Organization",
-              "name": "Google"
-            }
-          },
-          {
-            "@type": "EducationalOccupationalCredential",
-            "name": "IBM Data Science Professional Certificate",
-            "credentialCategory": "certificate",
-            "recognizedBy": {
-              "@type": "Organization",
-              "name": "IBM"
-            }
-          },
-          {
-            "@type": "EducationalOccupationalCredential",
-            "name": "Supervised Machine Learning",
-            "credentialCategory": "certificate",
-            "recognizedBy": {
-              "@type": "Organization",
-              "name": "Stanford University"
-            }
+      knowsAbout: [
+        "Python Programming",
+        "SQL Database Management",
+        "Power BI",
+        "Data Analysis",
+        "ETL Pipelines",
+        "Machine Learning",
+        "Data Visualization",
+        "Business Intelligence",
+        "Pandas",
+        "PostgreSQL",
+        "MySQL",
+        "Web Scraping",
+        "RAG",
+        "LangChain"
+      ],
+      hasCredential: [
+        {
+          "@type": "EducationalOccupationalCredential",
+          name: "Google Data Analytics Professional Certificate",
+          credentialCategory: "certificate",
+          recognizedBy: {
+            "@type": "Organization",
+            name: "Google"
           }
-        ],
-        "hasOccupation": {
-          "@type": "Occupation",
-          "name": PUBLIC_POSITIONING.identity.role,
-          "occupationLocation": {
-            "@type": "Place",
-            "name": "Argentina",
-            "address": {
-              "@type": "PostalAddress",
-              "addressCountry": "AR"
-            }
-          },
-          "skills": [
-            "Python Programming (Pandas, NumPy, Scikit-learn)",
-            "SQL Database Management (PostgreSQL, MySQL)",
-            "Power BI Dashboard Development",
-            "Databricks",
-            "Machine Learning Model Development",
-            "ETL Pipeline Development",
-            "Data Cleaning & Preprocessing",
-            "KPI Definition & Tracking",
-            "Data Visualization",
-            "Excel Advanced",
-            "Git Version Control"
-          ],
-          "responsibilities": "Transform complex datasets into actionable business insights, develop predictive models, create executive dashboards, automate data pipelines, and communicate findings to stakeholders."
         },
-        "alumniOf": [
-          {
-            "@type": "EducationalOrganization",
-            "name": "Google Career Certificates"
-          },
-          {
-            "@type": "EducationalOrganization",
-            "name": "IBM"
-          },
-          {
-            "@type": "EducationalOrganization",
-            "name": "Stanford University"
+        {
+          "@type": "EducationalOccupationalCredential",
+          name: "IBM Data Science Professional Certificate",
+          credentialCategory: "certificate",
+          recognizedBy: {
+            "@type": "Organization",
+            name: "IBM"
           }
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          name: "Supervised Machine Learning",
+          credentialCategory: "certificate",
+          recognizedBy: {
+            "@type": "Organization",
+            name: "Stanford University"
+          }
+        }
+      ],
+      hasOccupation: {
+        "@type": "Occupation",
+        name: PUBLIC_POSITIONING.identity.role,
+        occupationLocation: {
+          "@type": "Place",
+          name: "Argentina",
+          address: {
+            "@type": "PostalAddress",
+            addressCountry: "AR"
+          }
+        },
+        skills: [
+          "Python Programming (Pandas, NumPy, Scikit-learn)",
+          "SQL Database Management (PostgreSQL, MySQL)",
+          "Power BI Dashboard Development",
+          "ETL Pipeline Development",
+          "Data Cleaning & Preprocessing",
+          "Machine Learning Model Development",
+          "Data Visualization",
+          "Web Scraping",
+          "RAG (Retrieval-Augmented Generation)"
         ],
+        responsibilities: "Transform complex datasets into actionable business insights, develop ETL pipelines, create executive dashboards, automate data processes, and build ML models."
+      },
+      alumniOf: [
+        {
+          "@type": "EducationalOrganization",
+          name: "Google Career Certificates"
+        },
+        {
+          "@type": "EducationalOrganization",
+          name: "IBM"
+        },
+        {
+          "@type": "EducationalOrganization",
+          name: "Stanford University"
+        }
+      ],
     }).replace(/</g, "\\u003c")} />
 
     <link rel="manifest" href="/manifest.json" />

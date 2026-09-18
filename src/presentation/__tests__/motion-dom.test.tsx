@@ -821,14 +821,16 @@ describe("motion orchestration contracts", () => {
 
     expect(skillsGroup.textContent).toContain("Competencias");
     expect(experienceGroup.textContent).toContain("Experiencia");
-    expect(experience.querySelectorAll("article")).toHaveLength(6);
+    expect(experience.querySelectorAll("article")).toHaveLength(5);
     expect(certificationsGroup.textContent).toContain("Certificaciones");
     expect(contactGroup.textContent).toContain("¡Hablemos!");
     expect(contact.querySelectorAll("form, input, select, textarea")).toHaveLength(0);
-    expect(Array.from(contact.querySelectorAll("a")).map((link) => link.getAttribute("href"))).toEqual([
-      "mailto:horaciolaphitz99@gmail.com",
-      "https://www.linkedin.com/in/horacio-laphitz/",
-    ]);
+    // Contact now includes mailto, CV download, LinkedIn, and GitHub
+    const contactHrefs = Array.from(contact.querySelectorAll("a")).map((link) => link.getAttribute("href"));
+    expect(contactHrefs).toContain("mailto:horaciolaphitz99@gmail.com");
+    expect(contactHrefs).toContain("https://www.linkedin.com/in/horacio-laphitz/");
+    expect(contactHrefs).toContain("https://github.com/horaciolaphitz");
+    expect(contactHrefs).toContain("/CV_HoracioLaphitz.pdf");
     expect(skillsGroup.dataset.motion).toBeUndefined();
     expect(experienceGroup.dataset.motion).toBeUndefined();
     expect(certificationsGroup.dataset.motion).toBeUndefined();
@@ -875,7 +877,7 @@ describe("motion orchestration contracts", () => {
     expect(experienceGroup.dataset.motion).toBeUndefined();
     expectFinalVisibleState(experienceGroup);
     expect(experienceGroup.textContent).toContain("Experiencia");
-    expect(container.querySelectorAll("article")).toHaveLength(6);
+    expect(container.querySelectorAll("article")).toHaveLength(5);
     expect(useScopedMotion).not.toHaveBeenCalled();
 
     root.unmount();
@@ -910,10 +912,12 @@ describe("motion orchestration contracts", () => {
     expect(contactGroup.dataset.motion).toBeUndefined();
     expectFinalVisibleState(contactGroup);
     expect(contactGroup.textContent).toContain("¡Hablemos!");
-    expect(Array.from(contactGroup.querySelectorAll("a")).map((link) => link.getAttribute("href"))).toEqual([
-      "mailto:horaciolaphitz99@gmail.com",
-      "https://www.linkedin.com/in/horacio-laphitz/",
-    ]);
+    // Contact includes mailto, CV download, LinkedIn, and GitHub
+    const contactHrefs = Array.from(contactGroup.querySelectorAll("a")).map((link) => link.getAttribute("href"));
+    expect(contactHrefs).toContain("mailto:horaciolaphitz99@gmail.com");
+    expect(contactHrefs).toContain("https://www.linkedin.com/in/horacio-laphitz/");
+    expect(contactHrefs).toContain("https://github.com/horaciolaphitz");
+    expect(contactHrefs).toContain("/CV_HoracioLaphitz.pdf");
     expect(useScopedMotion).not.toHaveBeenCalled();
 
     root.unmount();

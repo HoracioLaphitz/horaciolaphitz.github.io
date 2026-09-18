@@ -2,92 +2,74 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 import { PROFILE_DATA } from "@data/profile-data";
 import Skills, {
-  SKILL_GROUPS,
-  getVisibleSkillGroups,
+  SKILL_TIERS,
+  getVisibleSkillTiers,
 } from "@presentation/components/sections/Skills";
 
-const dataAnalysisTechniques = [
+const coreSkills = [
+  "Python",
+  "SQL",
+  "Power BI",
+  "Excel avanzado",
+  "Pandas",
+  "PostgreSQL",
+  "MySQL",
+  "Git",
+];
+
+const dataAutomationSkills = [
   "ETL",
-  "EDA",
   "Limpieza y preparación de datos",
-  "Estadística descriptiva",
   "Análisis estadístico",
-  "Pruebas de hipótesis e inferencia",
-  "Correlación",
-  "Chi-cuadrado",
-  "Análisis multivariante",
-  "Series temporales",
-  "Segmentación y RFM",
-  "Reglas de asociación (Market Basket)",
+  "Scikit-learn",
+  "Streamlit",
+  "Web Scraping",
+  "SQLite",
+  "Databricks",
+  "BigQuery",
+  "XGBoost",
+  "Docker",
+  "Testing",
 ];
 
-const genAiTechniques = [
+const appliedAiSkills = [
   "RAG",
-  "Descomposición de tareas",
-  "Enrutamiento supervisor",
-  "Subagentes especializados",
-  "Human-in-the-loop",
-  "MCP",
-  "A2A",
-  "Evaluación de agentes",
-  "Observabilidad de agentes",
-  "Gobernanza de agentes",
-];
-
-const machineLearningTechniques = [
-  "Aprendizaje supervisado",
-  "Aprendizaje no supervisado",
-  "Regresión",
-  "Clasificación",
-  "Clustering",
-  "Ingeniería de variables",
-  "Selección de variables",
-  "Reducción de dimensionalidad",
-  "PCA",
-  "Validación y métricas",
-  "Ajuste de hiperparámetros",
-  "Deep Learning",
-  "Computer Vision",
-  "Transfer Learning",
+  "LangChain",
+  "LangGraph",
+  "OpenAI API",
+  "Prompt Engineering",
 ];
 
 describe("skills presentation", () => {
   it("keeps the display configuration backed by profile data and free of duplicates", () => {
-    const configuredNames = SKILL_GROUPS.flatMap(({ names }) => names);
+    const configuredNames = SKILL_TIERS.flatMap(({ names }) => names);
     const profileNames = new Set(PROFILE_DATA.skills.map(({ name }) => name));
 
     expect(configuredNames.filter((name) => !profileNames.has(name))).toEqual([]);
     expect(configuredNames).toHaveLength(new Set(configuredNames).size);
   });
 
-  it("exposes the approved data-analysis and machine-learning techniques", () => {
-    const groups = getVisibleSkillGroups(PROFILE_DATA.skills);
-    const dataAnalysis = groups.find(
-      ({ label }) => label === "Análisis de Datos",
-    );
-    const genAi = groups.find(({ label }) => label === "GenAI e IA");
-    const machineLearning = groups.find(
-      ({ label }) => label === "Aprendizaje automático",
-    );
+  it("exposes the three-tier system with correct skills", () => {
+    const tiers = getVisibleSkillTiers(PROFILE_DATA.skills);
+    const core = tiers.find(({ label }) => label === "Core");
+    const dataAutomation = tiers.find(({ label }) => label === "Datos y automatización");
+    const appliedAi = tiers.find(({ label }) => label === "IA aplicada (en estudio)");
 
-    expect(dataAnalysis?.skills.map(({ name }) => name)).toEqual(
-      dataAnalysisTechniques,
-    );
-    expect(genAi?.skills.map(({ name }) => name)).toEqual(genAiTechniques);
-    expect(machineLearning?.skills.map(({ name }) => name)).toEqual(
-      machineLearningTechniques,
-    );
-    expect(machineLearning?.skills.map(({ name }) => name)).not.toContain(
-      "Aprendizaje por refuerzo",
-    );
+    // Sort both arrays for comparison since order may differ
+    const sortByName = (a: string, b: string) => a.localeCompare(b);
+    expect(core?.skills.map(({ name }) => name).sort(sortByName)).toEqual([...coreSkills].sort(sortByName));
+    expect(dataAutomation?.skills.map(({ name }) => name).sort(sortByName)).toEqual([...dataAutomationSkills].sort(sortByName));
+    expect(appliedAi?.skills.map(({ name }) => name).sort(sortByName)).toEqual([...appliedAiSkills].sort(sortByName));
   });
 
   it("renders only non-empty groups in an intrinsically aligned grid", () => {
-    const groups = getVisibleSkillGroups(PROFILE_DATA.skills);
+    const tiers = getVisibleSkillTiers(PROFILE_DATA.skills);
     const html = renderToStaticMarkup(<Skills />);
 
-    expect(groups.every(({ skills }) => skills.length > 0)).toBe(true);
+    expect(tiers.every(({ skills }) => skills.length > 0)).toBe(true);
     expect(html).toContain("items-start");
-    expect(html).not.toContain("Aprendizaje por refuerzo");
+    expect(html).toContain("Core");
+    expect(html).toContain("Datos y automatización");
+    expect(html).toContain("IA aplicada (en estudio)");
   });
 });

@@ -23,11 +23,10 @@ const maturityLabel = getProjectMaturityLabel(maturity);
 ---
 
 <article class="group relative border-b border-skin-border py-10 first:pt-0 last:border-b-0">
-  <div class="grid gap-8 md:grid-cols-[13rem_1fr] md:gap-10">
-    <div class="relative border border-skin-border bg-skin-primary p-5">
-      <span class="absolute -top-px left-5 h-1.5 w-10 bg-[#c45a2b] dark:bg-[#e39a73]" aria-hidden="true" />
+  <div class="grid gap-8 md:grid-cols-[18rem_minmax(0,1fr)] md:gap-10">
+    <div class="border-b border-skin-border pb-6 md:border-b-0 md:border-r md:pb-0 md:pr-10">
       <span class="font-mono text-xs tracking-tight text-skin-muted">{String(index + 1).padStart(2, "0")}</span>
-      <h3 class="mt-8 break-words text-xl font-semibold tracking-tight text-skin-text md:text-2xl">
+      <h3 class="mt-4 break-words text-xl font-semibold tracking-tight text-skin-text md:text-2xl">
         {title}
       </h3>
       {maturityLabel && (
@@ -35,18 +34,63 @@ const maturityLabel = getProjectMaturityLabel(maturity);
           {maturityLabel}
         </p>
       )}
+
+      <nav class="mt-8" aria-label={`Ruta operativa de ${title}`}>
+        <ol class="flex flex-col gap-1">
+          <li>
+            <a
+              href={`#${project.id}-question`}
+              aria-label={`Pregunta: contexto de ${title}`}
+              class="focus-ring inline-flex min-h-11 items-center gap-2 text-xs font-medium text-skin-text hover:text-brand-primary"
+            >
+              <span class="font-mono text-skin-muted" aria-hidden="true">01</span>
+              <span>Pregunta</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href={`#${project.id}-data`}
+              aria-label={`Datos: contribución de ${title}`}
+              class="focus-ring inline-flex min-h-11 items-center gap-2 text-xs font-medium text-skin-text hover:text-brand-primary"
+            >
+              <span class="font-mono text-skin-muted" aria-hidden="true">02</span>
+              <span>Datos</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href={`#${project.id}-analysis`}
+              aria-label={`Análisis: resultado de ${title}`}
+              class="focus-ring inline-flex min-h-11 items-center gap-2 text-xs font-medium text-skin-text hover:text-brand-primary"
+            >
+              <span class="font-mono text-skin-muted" aria-hidden="true">03</span>
+              <span>Análisis</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href={`#${project.id}-automation`}
+              aria-label={`Automatización: evidencia de ${title}`}
+              class="focus-ring inline-flex min-h-11 items-center gap-2 text-xs font-medium text-skin-text hover:text-brand-primary"
+            >
+              <span class="font-mono text-skin-muted" aria-hidden="true">04</span>
+              <span>Automatización</span>
+            </a>
+          </li>
+        </ol>
+      </nav>
     </div>
 
     <div class="grid gap-x-8 gap-y-5 sm:grid-cols-2">
-      <div>
+      <div id={`${project.id}-question`} class="scroll-mt-24">
         <p class="mb-1 text-xs font-semibold uppercase tracking-[0.12em] text-skin-muted">Contexto</p>
         <p class="text-sm leading-relaxed text-skin-text md:text-base">{showcase.context}</p>
       </div>
-      <div>
+      <div id={`${project.id}-data`} class="scroll-mt-24">
         <p class="mb-1 text-xs font-semibold uppercase tracking-[0.12em] text-skin-muted">Contribución</p>
         <p class="text-sm leading-relaxed text-skin-text md:text-base">{showcase.contribution}</p>
       </div>
-      <div class="border-l-2 border-[#c45a2b] pl-3 dark:border-[#e39a73]">
+      <div id={`${project.id}-analysis`} class="scroll-mt-24 border-t border-skin-border pt-4">
         <p class="mb-1 text-xs font-semibold uppercase tracking-[0.12em] text-skin-muted">Resultado</p>
         <p class="text-sm leading-relaxed text-skin-text md:text-base">{showcase.result}</p>
       </div>
@@ -55,7 +99,7 @@ const maturityLabel = getProjectMaturityLabel(maturity);
         <p class="text-sm leading-relaxed text-skin-text md:text-base">{showcase.limit}</p>
       </div>
 
-      <div class="flex flex-wrap gap-2 pt-1 sm:col-span-2">
+      <div id={`${project.id}-automation`} class="flex flex-wrap gap-2 pt-1 sm:col-span-2 scroll-mt-24">
         {github && (
           <a
             href={github}

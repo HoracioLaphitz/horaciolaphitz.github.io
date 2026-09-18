@@ -5,20 +5,30 @@ import {
 } from "./enterprise-ai-evidence.v1";
 
 export const PUBLIC_POSITIONING = {
-  version: "v1",
+  version: "v1.1",
   identity: {
     name: "Horacio Laphitz",
-    // TODO: Approve the final professional headline and unify it across the portfolio, GitHub, and LinkedIn.
-    role: "Analista de datos",
+    role: "Data Analyst · Automation · Applied AI",
+    headline:
+      "Transformo datos y procesos manuales en análisis, automatizaciones y herramientas de decisión usando Python, SQL, Power BI e IA aplicada.",
   },
   contact: {
     email: "horaciolaphitz99@gmail.com",
     linkedin: "https://www.linkedin.com/in/horacio-laphitz/",
     github: "https://github.com/horaciolaphitz",
+    credly: "https://www.credly.com/users/horacio-laphitz",
   },
   siteUrl: "https://horaciolaphitz.vercel.app",
+  availability: {
+    openToWork: true,
+    location: "Posadas, Misiones, Argentina",
+    remote: true,
+    hybrid: true,
+    relocate: false,
+    note: "Disponible para posiciones remotas o híbridas.",
+  },
   positioning: {
-    focus: "Análisis de datos y automatización con Python, SQL y Power BI. Estudio de RAG y flujos con agentes en proyectos personales",
+    focus: "Análisis de datos, automatización de procesos e IA aplicada con Python, SQL y Power BI. Exploración activa de RAG y agentes para automatizar flujos de trabajo.",
     qualification: "Actualmente profundizando conocimientos en",
   },
   maturityStatuses: ALLOWED_MATURITY_STATUSES,
@@ -29,9 +39,22 @@ export const PUBLIC_POSITIONING = {
   })),
 } as const satisfies {
   version: string;
-  identity: { name: string; role: string };
-  contact: { email: string; linkedin: string; github: string };
+  identity: { name: string; role: string; headline: string };
+  contact: {
+    email: string;
+    linkedin: string;
+    github: string;
+    credly: string;
+  };
   siteUrl: string;
+  availability: {
+    openToWork: boolean;
+    location: string;
+    remote: boolean;
+    hybrid: boolean;
+    relocate: boolean;
+    note: string;
+  };
   positioning: { focus: string; qualification: MaturityStatus };
   maturityStatuses: readonly MaturityStatus[];
   capabilities: readonly {

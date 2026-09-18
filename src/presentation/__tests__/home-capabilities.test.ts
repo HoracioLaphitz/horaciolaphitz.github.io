@@ -52,17 +52,16 @@ describe("home capability presentation", () => {
     );
   });
 
-  it("qualifies private agent infrastructure as an area in development", () => {
+  it("qualifies private agent infrastructure as an area in active exploration", () => {
     expect(aboutSource).toContain(
-      "Flujos con agentes",
+      "IA aplicada",
     );
     expect(aboutSource).toContain(
-      "Desarrollo pruebas propias con RAG y agentes",
+      "Estudio RAG y flujos con agentes",
     );
-    expect(aboutSource).toContain('status: "En desarrollo"');
+    expect(aboutSource).toContain('status: "Exploración activa"');
     expect(aboutSource).not.toContain('status: "Aplicado"');
     expect(aboutSource).toContain("R.I.S.mi");
-    expect(aboutSource).toMatch(/requerimientos técnicos/i);
     expect(aboutSource).toMatch(/soporte corporativo/i);
     expect(aboutSource).not.toContain(
       "Agentes y Subagentes autónomos en infraestructura privada",

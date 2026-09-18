@@ -2,126 +2,74 @@ import { PROFILE_DATA } from "@data/profile-data";
 import type { Skill } from "@domain/entities/profile.entity";
 
 /**
- * Group configuration — defines which skills appear in each display group.
+ * Three-tier skill system:
+ * Tier 1: Core (daily use, solid evidence)
+ * Tier 2: Data & Automation (project-proven)
+ * Tier 3: Applied AI (learning + personal projects)
  *
- * CONTRACT: every name in `names[]` MUST exist in PROFILE_DATA.skills.
- * Skills not found are silently skipped. Add new skills to profile-data.ts first,
- * then reference them here. The source of truth is profile-data.ts, not this list.
+ * Only skills with demonstrable evidence are shown.
+ * Agent frameworks without project evidence are excluded from public display.
  */
-export const SKILL_GROUPS: { label: string; names: string[] }[] = [
+
+export const SKILL_TIERS: {
+  label: string;
+  description: string;
+  names: string[];
+}[] = [
   {
-    label: "GenAI e IA",
+    label: "Core",
+    description: "Tecnologías que uso a diario con evidencia sólida",
     names: [
-      "RAG",
-      "Descomposición de tareas",
-      "Enrutamiento supervisor",
-      "Subagentes especializados",
-      "Human-in-the-loop",
-      "MCP",
-      "A2A",
-      "Evaluación de agentes",
-      "Observabilidad de agentes",
-      "Gobernanza de agentes",
-    ],
-  },
-  {
-    label: "Análisis de Datos",
-    names: [
-      "ETL",
-      "EDA",
-      "Limpieza y preparación de datos",
-      "Estadística descriptiva",
-      "Análisis estadístico",
-      "Pruebas de hipótesis e inferencia",
-      "Correlación",
-      "Chi-cuadrado",
-      "Análisis multivariante",
-      "Series temporales",
-      "Segmentación y RFM",
-      "Reglas de asociación (Market Basket)",
-    ],
-  },
-  {
-    label: "Aprendizaje automático",
-    names: [
-      "Aprendizaje supervisado",
-      "Aprendizaje no supervisado",
-      "Regresión",
-      "Clasificación",
-      "Clustering",
-      "Ingeniería de variables",
-      "Selección de variables",
-      "Reducción de dimensionalidad",
-      "PCA",
-      "Validación y métricas",
-      "Ajuste de hiperparámetros",
-      "Deep Learning",
-      "Computer Vision",
-      "Transfer Learning",
-    ],
-  },
-  {
-    label: "Frameworks y herramientas",
-    names: [
-      "Pandas",
-      "NumPy",
-      "Matplotlib",
+      "Python",
+      "SQL",
       "Power BI",
       "Excel avanzado",
+      "Pandas",
+      "PostgreSQL",
+      "MySQL",
+      "Git",
+    ],
+  },
+  {
+    label: "Datos y automatización",
+    description: "Herramientas y métodos aplicados en proyectos",
+    names: [
+      "ETL",
+      "Limpieza y preparación de datos",
+      "Análisis estadístico",
+      "Scikit-learn",
+      "Streamlit",
+      "Web Scraping",
+      "SQLite",
+      "Databricks",
+      "BigQuery",
+      "XGBoost",
+      "Docker",
+      "Testing",
+    ],
+  },
+  {
+    label: "IA aplicada (en estudio)",
+    description: "Exploración activa en proyectos propios",
+    names: [
+      "RAG",
       "LangChain",
       "LangGraph",
-      "LlamaIndex",
-      "CrewAI",
-      "Autogen/AG2",
-      "Claude Agent SDK",
-      "Google ADK",
-      "OpenAI Agents SDK",
       "OpenAI API",
-      "Scikit-learn",
-      "XGBoost",
-      "TensorFlow",
-      "Streamlit",
-    ],
-  },
-  {
-    label: "Programación",
-    names: ["Python", "R", "SQL"],
-  },
-  {
-    label: "Bases de datos y nube",
-    names: ["PostgreSQL", "MySQL", "BigQuery", "Databricks"],
-  },
-  {
-    label: "Desarrollo y herramientas",
-    names: ["Git", "Docker", "Web Scraping", "Testing"],
-  },
-  {
-    label: "Habilidades interpersonales",
-    names: [
-      "Resolución de problemas",
-      "Pensamiento analítico",
-      "Comunicación",
-      "Trabajo en equipo",
-    ],
-  },
-  {
-    label: "Tango Gestión (ERP)",
-    names: [
-      "Parametrización contable",
-      "Gestión de datos maestros",
-      "Gestión de stock",
-      "Procesos de ventas",
-      "Tesorería",
-      "Gestión de compras",
+      "Prompt Engineering",
     ],
   },
 ];
 
-export const getVisibleSkillGroups = (skills: readonly Skill[]) => {
+export const getAllVisibleSkillNames = (): string[] =>
+  SKILL_TIERS.flatMap((tier) => tier.names);
+
+export const getVisibleSkillTiers = (skills: readonly Skill[]) => {
   const skillMap = new Map(skills.map((skill) => [skill.name, skill]));
 
-  return SKILL_GROUPS.map(({ label, names }) => ({
+  return SKILL_TIERS.map(({ label, description, names }) => ({
     label,
+    description,
     skills: names
       .map((name) => skillMap.get(name))
       .filter((skill): skill is Skill => skill !== undefined),
@@ -129,29 +77,37 @@ export const getVisibleSkillGroups = (skills: readonly Skill[]) => {
 };
 
 const Skills = () => {
-  const visibleGroups = getVisibleSkillGroups(PROFILE_DATA.skills);
+  const visibleTiers = getVisibleSkillTiers(PROFILE_DATA.skills);
 
   return (
-    <section id="skills" className="bg-skin-primary py-16 md:py-20">
-      <div className="mx-auto max-w-content px-6">
-        <div className="mb-12">
+    <section
+      id="skills"
+      className="border-b border-skin-border/40 bg-skin-primary py-12 sm:py-14 lg:py-[clamp(3rem,7vh,5rem)]"
+    >
+      <div className="mx-auto w-full max-w-content px-4 sm:px-6 lg:max-w-container-xl lg:px-8">
+        <div className="mb-8 lg:mb-10">
           <h2
             className="text-display-sm font-bold text-skin-text tracking-tight"
             style={{ letterSpacing: "-0.02em" }}
           >
             Competencias
           </h2>
+          <p className="mt-3 text-sm text-skin-muted">
+            Tecnologías con evidencia en proyectos propios o experiencia
+            laboral.
+          </p>
         </div>
 
-        <div className="grid items-start grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {visibleGroups.map(({ label, skills }) => (
+        <div className="grid grid-cols-1 items-start gap-5 lg:grid-cols-3 lg:gap-6">
+          {visibleTiers.map(({ label, description, skills }) => (
             <article
               key={label}
               className="self-start rounded-xl bg-skin-secondary p-6"
             >
-              <h3 className="mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-skin-muted">
+              <h3 className="mb-1 text-xs font-semibold uppercase tracking-[0.15em] text-brand-primary">
                 {label}
               </h3>
+              <p className="mb-4 text-xs text-skin-muted">{description}</p>
               <div className="flex flex-wrap gap-2">
                 {skills.map(({ name }) => (
                   <span

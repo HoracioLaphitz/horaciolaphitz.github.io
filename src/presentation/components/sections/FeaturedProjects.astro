@@ -19,21 +19,12 @@ const featuredProjects = allProjects
 
 <section
   id="proyectos"
-  class="border-b border-skin-border bg-skin-secondary py-16 md:py-24"
+  aria-labelledby="featured-projects-title"
+  class="border-b border-skin-border/40 bg-skin-primary py-12 sm:py-14 lg:py-[clamp(3rem,7vh,5rem)]"
 >
-  <div class="mx-auto max-w-content px-6">
-    <header class="mb-10 lg:mb-12">
-      <div class="mb-5 flex items-center gap-3" aria-hidden="true">
-        <span class="h-2 w-2 bg-[#c45a2b] dark:bg-[#e39a73]" />
-        <span class="h-px flex-1 bg-skin-border" />
-        {featuredProjects.map((_, index) => (
-          <span class={`h-2 w-2 border ${index === 0 ? "border-skin-text bg-skin-text" : "border-skin-border-medium"}`} />
-        ))}
-      </div>
-      <p class="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-brand-primary">
-        Proyectos destacados
-      </p>
-      <h2 class="text-display-sm font-bold tracking-tight text-skin-text" style={{ letterSpacing: "-0.02em" }}>
+  <div class="mx-auto w-full max-w-content px-4 sm:px-6 lg:max-w-container-xl lg:px-8">
+    <header class="mb-8 lg:mb-10">
+      <h2 id="featured-projects-title" class="text-display-sm font-bold tracking-tight text-skin-text" style={{ letterSpacing: "-0.02em" }}>
         Proyectos
       </h2>
       <p class="mt-4 max-w-2xl text-base leading-relaxed text-skin-text-secondary">
@@ -59,7 +50,7 @@ const featuredProjects = allProjects
       </div>
     )}
 
-    <div class="mt-10 text-center">
+    <div class="mt-8 text-center lg:mt-10">
       <a
         href="/projects"
         class="focus-ring inline-flex items-center gap-2 px-6 py-3 text-sm font-medium rounded-full bg-brand-primary text-white hover:opacity-90 transition-opacity"

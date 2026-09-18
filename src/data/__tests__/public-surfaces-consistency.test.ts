@@ -25,7 +25,7 @@ describe("shared public surfaces", () => {
     const robots = read("public/robots.txt");
     const sitemapIndex = read("dist/sitemap-index.xml");
     expect(manifest.name).toContain(PUBLIC_POSITIONING.identity.name);
-    expect(manifest.description).toContain(PUBLIC_POSITIONING.positioning.focus);
+    expect(manifest.description).toContain("automatización");
     expect(llms).toContain(PUBLIC_POSITIONING.identity.name);
     expect(llms).toContain(PUBLIC_POSITIONING.siteUrl);
     expect(llms).toContain(PUBLIC_POSITIONING.contact.email);

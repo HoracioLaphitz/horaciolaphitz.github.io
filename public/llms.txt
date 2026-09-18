@@ -1,12 +1,13 @@
-# Horacio Laphitz — Analista de Datos
+# Horacio Laphitz — Data Analyst · Automation · Applied AI
 
-> Enterprise AI solutions architecture, autonomous agents, and private LLM infrastructure. Estado: Currently deepening expertise in.
+> Data analysis, process automation, and applied AI with Python, SQL, and Power BI. Active exploration of RAG and agents for workflow automation.
 
 ## About
 
 - **Name:** Horacio Laphitz
-- **Role:** Analista de Datos
-- **Focus:** Enterprise AI solutions architecture, autonomous agents, and private LLM infrastructure
+- **Role:** Data Analyst · Automation · Applied AI
+- **Focus:** Data analysis, process automation, and applied AI with Python, SQL, and Power BI
+- **Location:** Posadas, Misiones, Argentina
 - **Email:** horaciolaphitz99@gmail.com
 
 ## Links
@@ -14,10 +15,11 @@
 - Portfolio: https://horaciolaphitz.vercel.app
 - GitHub: https://github.com/horaciolaphitz
 - LinkedIn: https://www.linkedin.com/in/horacio-laphitz/
+- Credly: https://www.credly.com/users/horacio-laphitz
 
 ## Evidence status
 
-Enterprise-AI capability areas without qualifying delivery evidence are marked as In development or Currently deepening expertise in. Existing analytics and data projects remain Portfolio project evidence.
+Applied AI skills (RAG, agents, LangChain) are under active study/personal projects, not production deployment. Data analysis and automation projects have verifiable evidence via GitHub repos and deployed apps.
 
 ## Sitemap
 

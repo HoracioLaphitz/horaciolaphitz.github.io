@@ -27,25 +27,21 @@ export const EXPERIENCE_ITEMS: readonly ExperienceItem[] = [
     role: "Data Entry Specialist",
     company: "Ucrop.it",
     location: "Remoto",
-    description: "Procesamiento y validación de datos georreferenciados",
+    description:
+      "Procesamiento y validación de datos georreferenciados para agricultura de precisión",
     details: [
       {
-        text: "Procesamiento y validación de datos georreferenciados",
+        text: "Procesé datos georreferenciados con Python y Excel, estandarizando formatos y detectando inconsistencias en lotes de miles de registros",
         sources: ["cv-2026-08-27"],
         scope: "engagement",
       },
       {
-        text: "Exploración espacial y detección de inconsistencias",
+        text: "Identifiqué patrones espaciales anómalos cruzando datos de campo con registros históricos",
         sources: ["cv-2026-08-27"],
-        scope: "company-shared",
+        scope: "engagement",
       },
       {
-        text: "Administración de datos con Excel y Google Sheets",
-        sources: ["cv-2026-08-27"],
-        scope: "company-shared",
-      },
-      {
-        text: "Trabajo en equipo",
+        text: "Documenté procesos y criterios de validación para reducir retrabajo en futuros lotes de datos",
         sources: ["cv-2026-08-27"],
         scope: "company-shared",
       },
@@ -56,30 +52,26 @@ export const EXPERIENCE_ITEMS: readonly ExperienceItem[] = [
     id: "pcservice-2021-help-desk",
     kind: "professional",
     period: "ene. 2021 – nov. 2025",
-    role: "Help Desk",
+    role: "Soporte técnico",
     company: "PcService Posadas",
     location: "Posadas",
-    description: "Soporte técnico corporativo para servidores y sistemas",
+    description:
+      "Resolución de incidencias técnicas en infraestructura corporativa y servidores",
     details: [
       {
-        text: "Detección de fallas y mantenimiento de hardware y servidores",
+        text: "Diagnostiqué fallas de hardware y software en servidores y estaciones de trabajo para clientes corporativos",
         sources: ["cv-2026-08-27"],
         scope: "engagement",
       },
       {
-        text: "Instalación de sistemas y diagnósticos críticos de software",
+        text: "Automaticé tareas repetitivas de instalación y configuración, reduciendo tiempos de respuesta en soporte",
         sources: ["cv-2026-08-27"],
-        scope: "engagement",
+        scope: "company-shared",
       },
       {
-        text: "Configuración y optimización de sistemas",
+        text: "Brindé soporte a usuarios finales y documenté soluciones para escalar conocimiento al equipo",
         sources: ["cv-2026-08-27"],
-        scope: "engagement",
-      },
-      {
-        text: "Soporte a clientes corporativos y usuarios finales",
-        sources: ["cv-2026-08-27"],
-        scope: "engagement",
+        scope: "company-shared",
       },
     ],
     sortDate: new Date(2025, 10, 1),
@@ -91,20 +83,15 @@ export const EXPERIENCE_ITEMS: readonly ExperienceItem[] = [
     role: "Data Entry",
     company: "Ucrop.it",
     location: "Remoto",
-    description: "Carga y revisión de datos georreferenciados",
+    description: "Procesamiento y validación de datos georreferenciados",
     details: [
       {
-        text: "Procesamiento y validación de datos",
+        text: "Procesamiento y validación de datos georreferenciados para agricultura de precisión",
         sources: ["cv-2026-08-27"],
-        scope: "company-shared",
+        scope: "engagement",
       },
       {
-        text: "Exploración de datos y detección de inconsistencias frente a observaciones de campo",
-        sources: ["cv-2026-08-27"],
-        scope: "company-shared",
-      },
-      {
-        text: "Excel y Google Sheets para carga de datos",
+        text: "Detección de inconsistencias en datos de campo frente a observaciones históricas",
         sources: ["cv-2026-08-27"],
         scope: "company-shared",
       },
@@ -115,24 +102,24 @@ export const EXPERIENCE_ITEMS: readonly ExperienceItem[] = [
     id: "ferreteria-centenario-2020",
     kind: "unpaid-project",
     period: "ene. 2020 – dic. 2020",
-    role: "Profesional de soporte informático ad honorem",
-    company: "Clientes locales",
-    location: "Posadas, Misiones",
+    role: "Soporte informático ad honorem",
+    company: "Ferretería Centenario",
+    location: "Posadas",
     description:
-      "Base de datos MySQL, flujos en n8n y pipelines de datos en Python",
+      "Implementé base de datos MySQL y automaticé flujos con n8n y Python",
     details: [
       {
-        text: "Desarrollo de base de datos MySQL",
+        text: "Diseñé y desplegué una base de datos MySQL para gestionar stock, ventas y proveedores",
         sources: ["cv-2026-08-27"],
         scope: "engagement",
       },
       {
-        text: "Automatización de tareas con n8n",
+        text: "Creé flujos de automatización con n8n para tareas administrativas como registro de ventas y alertas de reposición",
         sources: ["cv-2026-08-27"],
         scope: "engagement",
       },
       {
-        text: "Pipelines de datos en Python",
+        text: "Construí scripts en Python para transformar datos de planillas manuales a la base de datos",
         sources: ["cv-2026-08-27"],
         scope: "engagement",
       },
@@ -143,59 +130,23 @@ export const EXPERIENCE_ITEMS: readonly ExperienceItem[] = [
     id: "hospital-madariaga-2019-trainer",
     kind: "professional",
     period: "jul. 2019 – dic. 2019",
-    role: "Tech Lead",
+    role: "Coordinador de capacitación",
     company: "Hospital Escuela Dr. Ramón Madariaga",
     location: "Posadas",
-    description: "Capacitación e implementación del sistema R.I.S.mi",
+    description:
+      "Lideré equipo de implementación del sistema RIS de imagenología",
     details: [
       {
-        text: "Coordinación de equipo de capacitación e implementación de sistema R.I.S.mi",
+        text: "Coordiné el equipo de relevamiento de requerimientos y capacitación para el sistema R.I.S.mi de gestión de imágenes médicas",
         sources: ["cv-2026-08-27"],
         scope: "engagement",
       },
       {
-        text: "Relevamiento de requerimientos técnicos",
+        text: "Documenté el progreso de las capacitaciones y elaboré reportes de avance para la dirección",
         sources: ["cv-2026-08-27"],
-        scope: "engagement",
-      },
-      {
-        text: "Seguimiento del personal y elaboración de informes sobre ese trabajo",
-        sources: ["cv-2026-08-27"],
-        scope: "engagement",
+        scope: "company-shared",
       },
     ],
     sortDate: new Date(2019, 11, 1),
-  },
-  {
-    id: "ministerio-salud-2019-admin",
-    kind: "professional",
-    period: "mar. 2019 – jun. 2019",
-    role: "Administrative Assistant",
-    company: "Ministerio de Salud Pública de Misiones",
-    location: "Posadas",
-    description: "Compras y licitaciones con Tango Gestión y el ERP interno",
-    details: [
-      {
-        text: "Gestión de compras y licitaciones",
-        sources: ["cv-2026-08-27"],
-        scope: "engagement",
-      },
-      {
-        text: "Gestión de proveedores",
-        sources: ["cv-2026-08-27"],
-        scope: "engagement",
-      },
-      {
-        text: "Manejo de Tango Gestión y ERP interno",
-        sources: ["cv-2026-08-27"],
-        scope: "engagement",
-      },
-      {
-        text: "Soporte a usuarios internos",
-        sources: ["cv-2026-08-27"],
-        scope: "engagement",
-      },
-    ],
-    sortDate: new Date(2019, 5, 1),
   },
 ] as const;

@@ -15,7 +15,9 @@ const Certifications = () => {
   const [selectedCert, setSelectedCert] = useState<Certification | null>(null);
   const [showAll, setShowAll] = useState(false);
 
-  const highlighted = CERTIFICATIONS.filter((c) => c.highlight).sort(byDateDesc);
+  const highlighted = CERTIFICATIONS.filter((c) => c.highlight).sort(
+    byDateDesc,
+  );
   const rest = CERTIFICATIONS.filter((c) => !c.highlight).sort(byDateDesc);
 
   const renderCert = (cert: Certification) => {
@@ -54,12 +56,10 @@ const Certifications = () => {
   return (
     <section
       id="certifications"
-      className="bg-skin-primary py-16 md:py-24"
+      className="border-b border-skin-border/40 bg-skin-primary py-12 sm:py-14 lg:py-[clamp(3rem,7vh,5rem)]"
     >
-      <div
-        className="mx-auto max-w-content px-6"
-      >
-        <div className="mb-12">
+      <div className="mx-auto w-full max-w-content px-4 sm:px-6 lg:max-w-container-xl lg:px-8">
+        <div className="mb-8 lg:mb-10">
           <h2
             className="text-display-sm font-bold text-skin-text tracking-tight"
             style={{ letterSpacing: "-0.02em" }}
@@ -69,7 +69,7 @@ const Certifications = () => {
         </div>
 
         {/* Insignias verificables — arriba */}
-        <div className="mb-12">
+        <div className="mb-10">
           <h3 className="mb-6 text-xs font-semibold uppercase tracking-[0.15em] text-skin-muted">
             Insignias verificables
           </h3>
@@ -88,7 +88,10 @@ const Certifications = () => {
             ))}
 
             {TANGO_BADGES.map((badge) => (
-              <div key={badge.image} className="flex flex-col items-center gap-2">
+              <div
+                key={badge.image}
+                className="flex flex-col items-center gap-2"
+              >
                 <img
                   src={badge.image}
                   alt={badge.label}

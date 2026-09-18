@@ -2,16 +2,16 @@ import { EXPERIENCE_ITEMS } from "@data/experience";
 
 const Experience = () => {
   const items = [...EXPERIENCE_ITEMS].sort(
-    (a, b) => b.sortDate.getTime() - a.sortDate.getTime()
+    (a, b) => b.sortDate.getTime() - a.sortDate.getTime(),
   );
 
   return (
     <section
       id="experience"
-      className="bg-skin-secondary/50 py-16 md:py-24"
+      className="border-b border-skin-border/40 bg-skin-primary py-12 sm:py-14 lg:py-[clamp(3rem,7vh,5rem)]"
     >
-      <div className="mx-auto max-w-content px-6">
-        <div className="mb-12">
+      <div className="mx-auto w-full max-w-content px-4 sm:px-6 lg:max-w-container-xl lg:px-8">
+        <div className="mb-8 lg:mb-10">
           <h2
             className="text-display-sm font-bold text-skin-text tracking-tight"
             style={{ letterSpacing: "-0.02em" }}
@@ -24,21 +24,23 @@ const Experience = () => {
           {items.map((item) => (
             <article
               key={item.id}
-              className="grid gap-3 border-b border-skin-border/40 py-8 md:grid-cols-[180px_1fr] md:gap-8"
+              className="grid gap-3 border-b border-skin-border/40 py-6 md:grid-cols-[180px_1fr] md:gap-8 lg:py-7"
               itemScope
               itemType="https://schema.org/OrganizationRole"
             >
               <span className="font-mono text-xs text-skin-muted tracking-tight md:pt-1">
                 {item.period}
               </span>
-              <div>
+              <div className="max-w-4xl">
                 <h3 className="text-lg md:text-xl font-semibold text-skin-text tracking-tight">
                   {item.role}
                 </h3>
                 <p className="mt-1 text-sm font-medium text-skin-muted">
                   {item.company}
                   {item.location ? ` · ${item.location}` : ""}
-                  {item.kind === "unpaid-project" ? " · Experiencia no remunerada" : ""}
+                  {item.kind === "unpaid-project"
+                    ? " · Experiencia no remunerada"
+                    : ""}
                 </p>
                 <p className="mt-3 text-sm leading-relaxed text-skin-text font-normal">
                   {item.description}

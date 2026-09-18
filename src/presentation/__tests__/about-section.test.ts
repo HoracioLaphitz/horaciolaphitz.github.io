@@ -5,7 +5,8 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 import About from "@presentation/components/sections/About";
 
-const read = (path: string) => readFileSync(resolve(process.cwd(), path), "utf8");
+const read = (path: string) =>
+  readFileSync(resolve(process.cwd(), path), "utf8");
 
 describe("about section", () => {
   it("places the About section immediately after the Hero on the home page", () => {
@@ -14,26 +15,32 @@ describe("about section", () => {
     const featuredPosition = page.indexOf("<FeaturedProjects");
     const aboutPosition = page.indexOf("<About");
 
-    expect(page).toContain('import About from "@presentation/components/sections/About.tsx"');
+    expect(page).toContain(
+      'import About from "@presentation/components/sections/About.tsx"',
+    );
     expect(heroPosition).toBeGreaterThan(-1);
-    expect(featuredPosition).toBeGreaterThan(heroPosition);
-    expect(aboutPosition).toBeGreaterThan(featuredPosition);
+    expect(aboutPosition).toBeGreaterThan(heroPosition);
+    expect(featuredPosition).toBeGreaterThan(aboutPosition);
   });
 
-  it("communicates evidence boundaries and enterprise AI operating concerns", () => {
+  it("communicates evidence boundaries and applied AI operating concerns", () => {
     const about = renderToStaticMarkup(createElement(About));
 
     expect(about).toContain('id="about"');
-    expect(about).toContain("En desarrollo");
+    expect(about).toContain("Exploración activa");
     expect(about).not.toContain("Aplicado");
-    expect(about).toContain("Datos y automatización");
+    expect(about).toContain("Análisis de datos");
     expect(about).toMatch(/datos.*automatizaci[oó]n/is);
     expect(about).toMatch(/Python.*SQL/is);
-    expect(about).not.toMatch(/desplegado.*producci[oó]n|casos? empresariales? en producci[oó]n/is);
+    expect(about).not.toMatch(
+      /desplegado.*producci[oó]n|casos? empresariales? en producci[oó]n/is,
+    );
   });
 
   it("links About from the primary and footer navigation", () => {
-    const navigation = read("src/presentation/components/layout/Navigation.tsx");
+    const navigation = read(
+      "src/presentation/components/layout/Navigation.tsx",
+    );
     const footer = read("src/presentation/components/layout/Footer.tsx");
 
     expect(navigation).toContain('{ name: "Proyectos", path: "#proyectos" }');

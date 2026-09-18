@@ -406,6 +406,11 @@ export const PROFILE_DATA = new ProfileEntity(
       category: SkillCategory.Tools,
       level: SkillLevel.Intermediate,
     },
+    {
+      name: "SQLite",
+      category: SkillCategory.Database,
+      level: SkillLevel.Advanced,
+    },
     // Dev Tools
     { name: "Git", category: SkillCategory.Tools, level: SkillLevel.Advanced },
     {

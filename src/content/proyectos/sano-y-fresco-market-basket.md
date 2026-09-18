@@ -1,6 +1,6 @@
 ---
 title: "SanoYFresco — Análisis de canasta de mercado"
-description: "Más de 4,9 millones de transacciones de un comercio de productos orgánicos. Apliqué el algoritmo Apriori para descubrir qué productos se compran juntos y orientar decisiones sobre su disposición y venta cruzada, con un potencial de mejora de entre el 15 % y el 20 % en el ticket promedio."
+description: "Más de 4,9 millones de transacciones de un comercio de productos orgánicos. Apliqué el algoritmo Apriori para descubrir qué productos se compran juntos y orientar decisiones sobre su disposición y venta cruzada, con una estimación de mejora de entre el 15 % y el 20 % en el ticket promedio según el análisis."
 pubDate: 2025-07-29
 category: "Análisis de datos"
 tags: ["Python", "SQL", "Market Basket Analysis", "Apriori", "Power BI", "Pandas", "mlxtend"]

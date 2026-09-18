@@ -3,10 +3,7 @@ import { PUBLIC_POSITIONING } from "@data/public-positioning.v1";
 import { useScopedMotion } from "@presentation/hooks/useScopedMotion";
 import {
   ArrowRightIcon,
-  ChartBarIcon,
-  DatabaseIcon,
   DownloadIcon,
-  RobotIcon,
 } from "@presentation/components/ui/Icons";
 
 const HERO_MOTION_TARGETS = [
@@ -18,21 +15,21 @@ const HERO_MOTION_TARGETS = [
 
 const capabilities = [
   {
+    index: "01",
     title: "Análisis de datos",
     description:
       "Python, SQL y Power BI para preparar datos y responder preguntas concretas.",
-    Icon: ChartBarIcon,
   },
   {
+    index: "02",
     title: "Automatización e integración",
     description: "Procesos y validaciones para reducir tareas repetitivas.",
-    Icon: DatabaseIcon,
   },
   {
+    index: "03",
     title: "Pruebas con agentes de IA",
     description:
       "Estoy probando RAG y flujos con agentes en proyectos propios.",
-    Icon: RobotIcon,
   },
 ] as const;
 
@@ -45,32 +42,38 @@ const Hero = () => {
     <section
       ref={root}
       id="inicio"
-      className="border-b border-skin-border bg-skin-primary"
+      className="flex min-h-[calc(100svh-3.5rem)] border-b border-skin-border/40 bg-skin-primary text-skin-text"
     >
-      <div className="mx-auto max-w-content px-4 pb-14 pt-16 sm:px-6 sm:pb-20 sm:pt-20 lg:pt-24">
-        <div className="max-w-4xl">
+      <div className="mx-auto flex w-full max-w-content flex-col px-4 py-6 sm:px-6 sm:py-8 lg:max-w-container-xl lg:px-8 lg:py-[clamp(1.5rem,3vh,2.5rem)]">
+        <div className="flex items-center justify-between gap-6 border-b border-skin-border/60 pb-5">
           <p
             data-motion="hero-eyebrow"
-            className="mb-5 max-w-2xl text-xs font-semibold uppercase tracking-[0.14em] text-brand-primary sm:text-sm"
+            className="text-[0.6875rem] font-semibold uppercase tracking-[0.2em] text-skin-muted"
           >
-            Análisis de datos · Automatización
+            Análisis de datos · Automatizaciones
           </p>
+        </div>
 
-          <h1
-            data-motion="hero-heading"
-            className="max-w-3xl font-display text-[clamp(3rem,8vw,6rem)] font-bold leading-[0.98] tracking-[-0.03em] text-skin-text"
-          >
-            {PUBLIC_POSITIONING.identity.name}
-          </h1>
+        <div className="grid flex-1 gap-8 py-8 lg:grid-cols-[minmax(0,1.25fr)_minmax(21rem,0.75fr)] lg:items-stretch lg:gap-12 lg:py-[clamp(2rem,5vh,4rem)]">
+          <div className="flex flex-col justify-center">
+            <h1
+              data-motion="hero-heading"
+              className="font-display text-[clamp(3rem,6vw,6.5rem)] font-bold leading-[0.9] tracking-[-0.055em] text-skin-text"
+            >
+              {PUBLIC_POSITIONING.identity.name}
+            </h1>
 
-          <p className="mt-6 max-w-3xl font-display text-2xl font-medium leading-snug tracking-[-0.02em] text-skin-text-secondary sm:text-3xl">
-            Analista de datos orientado a la automatización de procesos
-          </p>
+            <p className="mt-6 text-xs font-semibold uppercase tracking-[0.18em] text-[#a66545]">
+              Analista de datos orientado a la automatización de procesos
+            </p>
 
-          <div className="mt-9 grid gap-8 border-t border-skin-border pt-7 lg:grid-cols-[minmax(0,1fr)_18rem]">
+            <p className="mt-4 max-w-3xl font-display text-[clamp(2rem,3.7vw,4rem)] font-medium leading-[1.02] tracking-[-0.04em] text-skin-text-secondary">
+              Análisis que explica. Automatización que ejecuta.
+            </p>
+
             <p
               data-motion="hero-summary"
-              className="max-w-[68ch] text-base leading-relaxed text-skin-text-secondary sm:text-lg"
+              className="mt-6 max-w-[58ch] text-sm leading-relaxed text-skin-muted sm:text-base"
             >
               Preparo y valido datos con Python y SQL, automatizo tareas
               repetitivas y convierto los resultados en tableros que ayudan a
@@ -79,18 +82,18 @@ const Hero = () => {
 
             <div
               data-motion="hero-actions"
-              className="grid content-start gap-2"
+              className="mt-7 flex flex-col gap-2 sm:flex-row sm:flex-wrap"
             >
               <a
                 href="#proyectos"
-                className="focus-ring inline-flex min-h-11 items-center justify-between border border-brand-primary bg-brand-primary px-5 text-sm font-semibold text-white hover:bg-brand-hover"
+                className="focus-ring inline-flex min-h-11 items-center justify-between gap-8 bg-brand-primary px-5 text-sm font-semibold text-white transition-colors hover:bg-brand-hover"
               >
                 Proyectos
                 <ArrowRightIcon className="h-4 w-4" />
               </a>
               <a
                 href={`mailto:${PUBLIC_POSITIONING.contact.email}`}
-                className="focus-ring inline-flex min-h-11 items-center justify-between border border-skin-border-medium px-5 text-sm font-semibold text-skin-text hover:bg-skin-secondary"
+                className="focus-ring inline-flex min-h-11 items-center justify-between gap-8 border border-skin-border-medium px-5 text-sm font-semibold text-skin-text transition-colors hover:bg-skin-secondary"
               >
                 Contacto
                 <ArrowRightIcon className="h-4 w-4" />
@@ -98,35 +101,43 @@ const Hero = () => {
               <a
                 href="/CV_HoracioLaphitz.pdf"
                 download
-                className="focus-ring inline-flex min-h-11 items-center gap-2 px-5 text-sm font-semibold text-brand-primary hover:bg-skin-secondary"
+                className="focus-ring inline-flex min-h-11 items-center gap-2 px-5 text-sm font-semibold text-[#a66545] transition-colors hover:bg-skin-secondary"
               >
-                Descargar CV
                 <DownloadIcon className="h-4 w-4" />
+                Descargar CV
               </a>
             </div>
           </div>
-        </div>
 
-        <div className="mt-12 grid border-y border-skin-border sm:grid-cols-3">
-          {capabilities.map(({ title, description, Icon }, index) => (
-            <article
-              key={title}
-              className={`grid grid-cols-[2.25rem_1fr] gap-3 py-5 sm:px-5 ${index > 0 ? "border-t border-skin-border sm:border-l sm:border-t-0" : ""}`}
-            >
-              <Icon className="h-6 w-6 text-brand-primary" />
-              <div>
-                <h2 className="text-sm font-semibold text-skin-text">
-                  {title}
-                </h2>
-                <p className="mt-1 text-sm leading-relaxed text-skin-muted">
-                  {description}
-                </p>
-              </div>
-            </article>
-          ))}
+          <aside
+            aria-label="Áreas de trabajo"
+            className="self-stretch bg-[#171714] px-6 py-6 text-[#f4f1e9] sm:px-8 lg:flex lg:flex-col lg:justify-center lg:px-10"
+          >
+            <p className="mb-5 text-[0.6875rem] font-semibold uppercase tracking-[0.2em] text-[#a66545]">
+              Áreas de trabajo
+            </p>
+            <div>
+              {capabilities.map(({ index, title, description }) => (
+                <article
+                  key={title}
+                  className="grid grid-cols-[2rem_1fr] gap-4 border-t border-[#34332e] py-5 first:border-t-0 first:pt-0 last:pb-0"
+                >
+                  <span className="text-xs font-semibold tracking-[0.16em] text-[#a66545]">
+                    {index}
+                  </span>
+                  <div>
+                    <h2 className="text-sm font-semibold text-[#f4f1e9]">
+                      {title}
+                    </h2>
+                    <p className="mt-2 max-w-[34ch] text-sm leading-relaxed text-[#96938b]">
+                      {description}
+                    </p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </aside>
         </div>
-
-        {/* TODO: Restore after distinct headings and visible supporting evidence are approved. */}
       </div>
     </section>
   );
