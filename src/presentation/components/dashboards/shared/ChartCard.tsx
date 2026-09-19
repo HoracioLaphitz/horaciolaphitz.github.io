@@ -45,7 +45,10 @@ export function ChartCard({ title, children, className = "", expandable = true, 
                         </button>
                     )}
                 </div>
-                <div className="w-full min-w-0" style={{ height: dynamicHeight }}>
+                <div
+                    className="w-full min-w-0"
+                    style={{ width: "100%", height: dynamicHeight, minHeight: "12rem" }}
+                >
                     {isExpanded ? (
                         <div className="flex h-full items-center justify-center text-sm text-skin-muted">
                             Vista expandida

@@ -39,12 +39,17 @@ function openLightbox(src: string, alt: string) {
   overlay.appendChild(img);
   document.body.appendChild(overlay);
 
-  const close = () => overlay.remove();
-  overlay.addEventListener("click", close);
-  document.addEventListener("keydown", function onKey(e) {
+  const onKey = (e: KeyboardEvent) => {
     if (e.key === "Escape") {
       close();
-      document.removeEventListener("keydown", onKey);
     }
-  });
+  };
+
+  const close = () => {
+    overlay.remove();
+    document.removeEventListener("keydown", onKey);
+  };
+
+  overlay.addEventListener("click", close);
+  document.addEventListener("keydown", onKey);
 }

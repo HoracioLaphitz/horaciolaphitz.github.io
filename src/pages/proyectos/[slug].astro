@@ -41,7 +41,9 @@ const hasDashboard = (DASHBOARD_SLUGS as readonly string[]).includes(
 
   <ContentImages client:load />
 
-  {hasDashboard && <ProjectDashboard client:visible slug={proyecto.id} />}
+  {hasDashboard && (
+    <ProjectDashboard client:only="react" slug={proyecto.id} />
+  )}
 
   <ResourceDownload
     client:load

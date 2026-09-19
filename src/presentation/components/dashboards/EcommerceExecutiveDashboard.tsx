@@ -148,7 +148,7 @@ export default function EcommerceExecutiveDashboard() {
                     title="Ingresos mensuales"
                     description="Evolución de ingresos mes a mes durante el período analizado."
                 >
-                    <ResponsiveContainer>
+                    <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={192}>
                         <LineChart data={data.months} margin={{ left: 8, right: 8 }}>
                             <CartesianGrid stroke={theme.grid} vertical={false} />
                             <XAxis
@@ -179,7 +179,7 @@ export default function EcommerceExecutiveDashboard() {
                     description="Categorías de productos con mayor ingreso total."
                     dataPoints={data.categories.length}
                 >
-                    <ResponsiveContainer>
+                    <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={192}>
                         <BarChart
                             data={data.categories}
                             layout="vertical"
@@ -216,7 +216,7 @@ export default function EcommerceExecutiveDashboard() {
                 description="Variables con mayor peso en la predicción de churn de vendedores según el modelo XGBoost."
                 dataPoints={data.features.length}
             >
-                <ResponsiveContainer>
+                <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={192}>
                     <BarChart data={data.features} layout="vertical" margin={{ left: 8, right: 8 }}>
                         <CartesianGrid stroke={theme.grid} horizontal={false} />
                         <XAxis

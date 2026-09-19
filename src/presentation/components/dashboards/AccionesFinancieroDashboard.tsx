@@ -102,7 +102,7 @@ export default function AccionesFinancieroDashboard() {
                 title="Real vs Predicción"
                 className="!border-slate-800 !bg-[#0b1220] [&_h3]:!text-slate-100"
             >
-                <ResponsiveContainer>
+                <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={192}>
                     <LineChart data={data} margin={{ left: 8, right: 8 }}>
                         <CartesianGrid stroke={theme.grid} vertical={false} />
                         <XAxis

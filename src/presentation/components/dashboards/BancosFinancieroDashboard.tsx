@@ -135,7 +135,7 @@ export default function BancosFinancieroDashboard() {
             </div>
 
             <ChartCard title={`Top 10 por capitalización de mercado — ${unit}`}>
-                <ResponsiveContainer>
+                <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={192}>
                     <BarChart data={ranked} layout="vertical" margin={{ left: 8, right: 8 }}>
                         <CartesianGrid stroke={theme.grid} horizontal={false} />
                         <XAxis

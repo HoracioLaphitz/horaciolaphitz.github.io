@@ -698,7 +698,7 @@ describe("motion orchestration contracts", () => {
 
     expect(eyebrow.tagName).toBe("P");
     expect(eyebrow.textContent).toBe(
-      "Análisis de datos · Automatización",
+      "Análisis de datos · Automatizaciones",
     );
     expect(heading.tagName).toBe("H1");
     expect(heading.textContent).toBe("Horacio Laphitz");

@@ -127,7 +127,7 @@ export default function MarketBasketDashboard() {
                     dataPoints={top.length}
                     description="Las 10 reglas de asociación más fuertes, ordenadas por lift. El lift indica cuánto más probable es comprar el consecuente dado el antecedente."
                 >
-                    <ResponsiveContainer>
+                    <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={192}>
                         <BarChart data={top} layout="vertical" margin={{ left: 8, right: 8 }}>
                             <CartesianGrid stroke={theme.grid} horizontal={false} />
                             <XAxis
@@ -157,7 +157,7 @@ export default function MarketBasketDashboard() {
                     title="Soporte × Confianza (tamaño = lift)"
                     description="Cada punto es una regla de asociación. Posición horizontal = soporte, vertical = confianza, tamaño del círculo = lift."
                 >
-                    <ResponsiveContainer>
+                    <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={192}>
                         <ScatterChart margin={{ left: 8, right: 8 }}>
                             <CartesianGrid stroke={theme.grid} />
                             <XAxis
@@ -191,6 +191,20 @@ export default function MarketBasketDashboard() {
                         </ScatterChart>
                     </ResponsiveContainer>
                 </ChartCard>
+            </div>
+
+            <div className="mb-lg">
+                <label htmlFor="rule-filter" className="sr-only">
+                    Filtrar reglas por producto
+                </label>
+                <input
+                    id="rule-filter"
+                    type="search"
+                    placeholder="Filtrar por antecedente o consecuente…"
+                    value={filter}
+                    onChange={(e) => setFilter(e.target.value)}
+                    className="w-full max-w-md rounded-lg border border-skin-border bg-skin-primary px-sm py-xs text-sm text-skin-text placeholder:text-skin-muted focus:border-skin-accent focus:outline-none"
+                />
             </div>
 
             <DataTable description="Reglas de asociación filtradas. El lift mide la fuerza de la relación entre productos.">
