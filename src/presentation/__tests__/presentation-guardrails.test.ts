@@ -13,11 +13,24 @@ describe("presentation accessibility and visual guardrails", () => {
     expect(navigation).toContain('aria-expanded={isMenuOpen}');
     expect(navigation).toContain('aria-controls="navigation-menu"');
     expect(navigation).toContain('id="navigation-menu"');
+    expect(navigation).toContain('event.key === "Escape"');
+    expect(navigation).toContain("menuButtonRef.current?.focus()");
     expect(navigation).toContain('PUBLIC_POSITIONING');
     expect(footer).toContain('PUBLIC_POSITIONING');
     expect(contact).toContain('PUBLIC_POSITIONING');
     expect(footer).toContain("CV_HoracioLaphitz.pdf");
     expect(contact).toContain("mailto:");
+    expect(footer).toContain('aria-label="Navegaci\u00F3n del pie"');
+  });
+
+  it("keeps conditional controls out of the accessibility tree while hidden", () => {
+    const backToTop = read("src/presentation/components/ui/BackToTop.tsx");
+    const certifications = read("src/presentation/components/sections/Certifications.tsx");
+    expect(backToTop).toContain("tabIndex={visible ? 0 : -1}");
+    expect(backToTop).toContain("aria-hidden={!visible}");
+    expect(certifications).toContain('aria-controls="complementary-certifications"');
+    expect(certifications).toContain("aria-expanded={showAll}");
+    expect(certifications).toContain('id="complementary-certifications"');
   });
 
   it("uses valid semantic color tokens on resources and notebooks", () => {

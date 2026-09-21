@@ -119,6 +119,8 @@ const Certifications = () => {
           <div className="mt-10">
             <button
               onClick={() => setShowAll((v) => !v)}
+              aria-expanded={showAll}
+              aria-controls="complementary-certifications"
               className="text-sm font-semibold text-brand-primary transition-colors duration-200 hover:opacity-80"
             >
               {showAll
@@ -127,7 +129,7 @@ const Certifications = () => {
             </button>
 
             {showAll && (
-              <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              <div id="complementary-certifications" className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {rest.map(renderCert)}
               </div>
             )}

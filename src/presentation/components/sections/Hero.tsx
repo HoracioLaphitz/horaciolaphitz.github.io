@@ -63,7 +63,7 @@ const Hero = () => {
               {PUBLIC_POSITIONING.identity.name}
             </h1>
 
-            <p className="mt-6 text-xs font-semibold uppercase tracking-[0.18em] text-[#a66545]">
+            <p className="mt-6 text-xs font-semibold uppercase tracking-[0.18em] text-[#895137] dark:text-[#c17d5b]">
               Analista de datos orientado a la automatización de procesos
             </p>
 
@@ -101,7 +101,7 @@ const Hero = () => {
               <a
                 href="/CV_HoracioLaphitz.pdf"
                 download
-                className="focus-ring inline-flex min-h-11 items-center gap-2 px-5 text-sm font-semibold text-[#a66545] transition-colors hover:bg-skin-secondary"
+                className="focus-ring inline-flex min-h-11 items-center gap-2 px-5 text-sm font-semibold text-[#895137] transition-colors hover:bg-skin-secondary dark:text-[#c17d5b]"
               >
                 <DownloadIcon className="h-4 w-4" />
                 Descargar CV

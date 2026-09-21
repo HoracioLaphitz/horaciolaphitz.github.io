@@ -18,7 +18,7 @@ interface Props {
 const {
   title,
   description = `${PUBLIC_POSITIONING.identity.role}. ${PUBLIC_POSITIONING.identity.headline}`,
-  image = "/img/profile.png",
+  image = "/img/social-card.jpg",
   type = "website",
   canonical,
 } = Astro.props;
@@ -39,6 +39,15 @@ const canonicalUrl = canonical
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <script is:inline>
+      (() => {
+        try {
+          const saved = localStorage.getItem("theme");
+          const dark = saved === "dark" || (saved !== "light" && matchMedia("(prefers-color-scheme: dark)").matches);
+          document.documentElement.classList.toggle("dark", dark);
+        } catch {}
+      })();
+    </script>
 
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
@@ -190,7 +199,7 @@ const canonicalUrl = canonical
   </head>
   <body class="relative">
     <slot />
-    <Footer client:load />
+    <Footer />
     <BackToTop client:load />
     <Analytics />
     <SpeedInsights />

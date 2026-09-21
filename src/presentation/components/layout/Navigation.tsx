@@ -8,6 +8,19 @@ const Navigation = () => {
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState<string>("/");
   const observerRef = useRef<IntersectionObserver | null>(null);
+  const menuButtonRef = useRef<HTMLButtonElement | null>(null);
+
+  useEffect(() => {
+    if (!isMenuOpen) return;
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsMenuOpen(false);
+        menuButtonRef.current?.focus();
+      }
+    };
+    document.addEventListener("keydown", closeOnEscape);
+    return () => document.removeEventListener("keydown", closeOnEscape);
+  }, [isMenuOpen]);
 
   useEffect(() => {
     let ticking = false;
@@ -150,6 +163,7 @@ const Navigation = () => {
             <div className="md:hidden flex items-center gap-2">
               <ThemeToggle />
               <button
+                ref={menuButtonRef}
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 className="focus-ring inline-flex h-11 w-11 items-center justify-center rounded-xl text-skin-muted hover:bg-skin-secondary hover:text-skin-text"
                 aria-label={menuLabel}

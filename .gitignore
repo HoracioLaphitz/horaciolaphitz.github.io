@@ -227,6 +227,7 @@ protocolo_*.md
 # This prevents documentation bloat in the repository
 
 *.md
+!AGENTS.md
 !README.md
 !LICENSE.md
 !SECURITY.md
@@ -428,10 +429,12 @@ logs/
 # ============================================================================
 
 !docs/**/*.md
-docs/deploy/
 docs/superpowers/
 !Proyectos/ai-sales-assistant/tests/fixtures/*.csv
 .Rproj.user/
 .Rhistory
 .vercel
 .env*
+/graphify-out/
+/.codegraph/
+/.pi/

@@ -2,7 +2,7 @@
 # Branch: develop, feature/*
 # Purpose: Validate code quality, tests, and build before merging to main
 # Triggers: Pull requests to main or develop
-# Dependencies: pnpm, Node.js 23, Astro
+# Dependencies: pnpm, Node.js 22, Astro
 # Outputs: Validation report and build artifacts
 
 name: Validate Pull Request
@@ -28,16 +28,16 @@ jobs:
           submodules: false
           fetch-depth: 0
 
-      - name: Setup Node.js 23
-        uses: actions/setup-node@v4
-        with:
-          node-version: "23"
-          cache: "pnpm"
-
       - name: Setup pnpm
         uses: pnpm/action-setup@v3
         with:
-          version: 9
+          version: 11.1.2
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "pnpm"
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -68,16 +68,16 @@ jobs:
           submodules: false
           fetch-depth: 0
 
-      - name: Setup Node.js 23
-        uses: actions/setup-node@v4
-        with:
-          node-version: "23"
-          cache: "pnpm"
-
       - name: Setup pnpm
         uses: pnpm/action-setup@v3
         with:
-          version: 9
+          version: 11.1.2
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "pnpm"
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile

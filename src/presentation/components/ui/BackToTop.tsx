@@ -29,6 +29,8 @@ const BackToTop = () => {
     <button
       onClick={handleClick}
       aria-label="Volver arriba"
+      aria-hidden={!visible}
+      tabIndex={visible ? 0 : -1}
       className={`fixed bottom-6 right-6 z-50 inline-flex h-11 w-11 items-center justify-center rounded-full bg-skin-secondary border border-skin-border shadow-lg text-skin-text transition-all duration-300 ${
         visible
           ? "translate-y-0 opacity-100"

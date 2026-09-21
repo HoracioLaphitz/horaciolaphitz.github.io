@@ -60,7 +60,7 @@ const Footer = () => {
             <h4 className="text-xs font-semibold uppercase tracking-[0.1em] text-skin-text">
               Explorar
             </h4>
-            <nav className="flex flex-col gap-2">
+            <nav aria-label="Navegación del pie" className="flex flex-col gap-2">
               <a
                 href="/#inicio"
                 className="text-xs text-skin-muted hover:text-skin-text transition-colors"
