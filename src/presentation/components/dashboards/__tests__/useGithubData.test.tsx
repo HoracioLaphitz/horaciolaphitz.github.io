@@ -65,7 +65,7 @@ describe("useGithubData", () => {
     setCached(cacheKey, cachedValue);
 
     const loadFn = vi.fn().mockResolvedValue({ items: [9, 9, 9] });
-    let currentState: GithubDataState<{ items: number[] }> | null = null;
+    let currentState: any = null;
 
     const { cleanup } = mountHarness(cacheKey, loadFn, (state) => {
       currentState = state;
@@ -89,7 +89,7 @@ describe("useGithubData", () => {
     });
     const loadFn = vi.fn().mockReturnValue(loadPromise);
 
-    let currentState: GithubDataState<typeof freshData> | null = null;
+    let currentState: any = null;
 
     const { cleanup } = mountHarness(cacheKey, loadFn, (state) => {
       currentState = state;
@@ -122,7 +122,7 @@ describe("useGithubData", () => {
     });
     const loadFn = vi.fn().mockReturnValue(loadPromise);
 
-    let currentState: GithubDataState<unknown> | null = null;
+    let currentState: any = null;
 
     const { cleanup } = mountHarness(cacheKey, loadFn, (state) => {
       currentState = state;
@@ -155,7 +155,7 @@ describe("useGithubData", () => {
       return Promise.resolve("Datos recuperados");
     });
 
-    let currentState: GithubDataState<string> | null = null;
+    let currentState: any = null;
 
     const { cleanup } = mountHarness(cacheKey, loadFn, (state) => {
       currentState = state;
@@ -191,7 +191,7 @@ describe("useGithubData", () => {
     });
     const loadFn = vi.fn().mockReturnValue(loadPromise);
 
-    let currentState: GithubDataState<string> | null = null;
+    let currentState: any = null;
 
     const { cleanup } = mountHarness(cacheKey, loadFn, (state) => {
       currentState = state;
