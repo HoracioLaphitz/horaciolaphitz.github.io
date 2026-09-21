@@ -3,7 +3,7 @@
 /**
  * Script de Verificación de Configuración de Deploy
  * 
- * Verifica que todo esté configurado correctamente para deploy a GitHub Pages
+ * Verifica que todo esté configurado correctamente para deploy a Vercel
  */
 
 import { readFileSync, existsSync } from 'fs';
@@ -128,21 +128,11 @@ const checks = {
         }
       }
       
-      // Verificar base
-      if (!config.includes('base:')) {
-        warning('Propiedad "base" no encontrada en config');
-      } else {
-        const baseMatch = config.match(/base:\s*["']([^"']+)["']/);
-        if (baseMatch) {
-          success(`Base configurado: ${baseMatch[1]}`);
-        }
-      }
-      
       // Verificar output
-      if (config.includes('output: "static"') || config.includes("output: 'static'")) {
+      if (config.includes('output: "static') || config.includes("output: 'static'")) {
         success('Output configurado como "static"');
       } else {
-        error('Output debe ser "static" para GitHub Pages');
+        error('Output debe ser "static" para Vercel');
         return false;
       }
       
@@ -184,54 +174,31 @@ const checks = {
     }
   },
 
-  // 4. Verificar GitHub Actions workflow
-  githubWorkflow: () => {
-    section('4. Verificando GitHub Actions workflow');
-    const workflowPath = join(rootDir, '.github', 'workflows', 'deploy.yml');
+  // 4. Verificar Vercel config
+  vercelConfig: () => {
+    section('4. Verificando vercel.json');
+    const vercelPath = join(rootDir, 'vercel.json');
     
-    if (!existsSync(workflowPath)) {
-      error('Workflow de GitHub Actions no encontrado');
-      info('Crea .github/workflows/deploy.yml');
+    if (!existsSync(vercelPath)) {
+      error('vercel.json no encontrado');
+      info('Crea vercel.json para headers de seguridad y configuración de Vercel');
       return false;
     }
     
-    success('Workflow encontrado: .github/workflows/deploy.yml');
+    success('vercel.json encontrado');
     
     try {
-      const workflow = readFileSync(workflowPath, 'utf-8');
+      const vercel = JSON.parse(readFileSync(vercelPath, 'utf-8'));
       
-      // Verificar triggers
-      if (workflow.includes('push:') && workflow.includes('branches: [main]')) {
-        success('Trigger configurado para push a main');
+      if (vercel.headers) {
+        success('Headers de seguridad configurados');
       } else {
-        warning('Trigger de push a main no encontrado');
-      }
-      
-      // Verificar permissions
-      if (workflow.includes('pages: write')) {
-        success('Permisos de pages configurados');
-      } else {
-        error('Falta permiso "pages: write"');
-        return false;
-      }
-      
-      // Verificar jobs
-      const hasValidate = workflow.includes('validate:') || workflow.includes('name: Pre-Deployment Validation');
-      const hasBuild = workflow.includes('build:') || workflow.includes('name: Build Site');
-      const hasDeploy = workflow.includes('deploy:') || workflow.includes('name: Deploy to GitHub Pages');
-      
-      if (hasValidate) success('Job "validate" encontrado');
-      if (hasBuild) success('Job "build" encontrado');
-      if (hasDeploy) success('Job "deploy" encontrado');
-      
-      if (!hasBuild || !hasDeploy) {
-        error('Faltan jobs requeridos en el workflow');
-        return false;
+        warning('Sin headers de seguridad en vercel.json');
       }
       
       return true;
     } catch (err) {
-      error(`Error leyendo workflow: ${err.message}`);
+      error(`Error leyendo vercel.json: ${err.message}`);
       return false;
     }
   },
@@ -379,7 +346,7 @@ const checks = {
 async function main() {
   log('\n🔍 VERIFICACIÓN DE CONFIGURACIÓN DE DEPLOY\n', 'cyan');
   log('Este script verifica que tu proyecto esté configurado correctamente');
-  log('para deploy a GitHub Pages.\n');
+  log('para deploy a Vercel.\n');
 
   const results = {};
   let allPassed = true;
@@ -410,8 +377,8 @@ async function main() {
     log('\nPróximos pasos:', 'cyan');
     log('1. Hacer commit de cualquier cambio pendiente');
     log('2. Ejecutar: git push origin main');
-    log('3. Configurar GitHub Pages en el repositorio');
-    log('4. Verificar que el workflow se ejecute correctamente\n');
+    log('3. Vercel detectará el push y hará deploy automático');
+    log('4. Verificar que el dashboard de Vercel muestra el deploy\n');
   } else {
     error('❌ Hay problemas que necesitan ser corregidos');
     log('\nRevisa los errores arriba y corrígelos antes de hacer deploy.\n', 'yellow');

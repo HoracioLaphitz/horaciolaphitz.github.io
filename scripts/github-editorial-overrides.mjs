@@ -52,8 +52,8 @@ export const GITHUB_EDITORIAL_OVERRIDES = Object.freeze({
     description: "Script en Python que automatiza la carga, transformación y extracción de archivos XML, CSV y JSON para su análisis o uso en modelos.",
   },
   "horaciolaphitz.github.io": {
-    title: "Portfolio anterior en GitHub Pages",
-    description: "Versión anterior del portfolio publicada mediante GitHub Pages.",
+    "title": "Repositorio del portfolio",
+    "description": "Repositorio fuente del portfolio desplegado en Vercel."
   },
   horaciolaphitz: {
     title: "Perfil de GitHub",

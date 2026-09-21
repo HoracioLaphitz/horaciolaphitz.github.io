@@ -1,5 +1,5 @@
 # Script de Push a GitHub
-# Este script verifica el estado y hace push a GitHub
+# Este script verifica el estado y hace push a GitHub (deploy automático a Vercel)
 
 Write-Host "`n🚀 PUSH A GITHUB`n" -ForegroundColor Cyan
 
@@ -106,8 +106,6 @@ if ($LASTEXITCODE -ne 0) {
 
 Write-Host "`n✅ Push exitoso!" -ForegroundColor Green
 Write-Host "`n📋 Próximos pasos:" -ForegroundColor Cyan
-Write-Host "1. Ve a: https://github.com/$($remote -replace '.*github.com[:/]', '' -replace '.git$', '')" -ForegroundColor White
-Write-Host "2. Click en 'Settings' → 'Pages'" -ForegroundColor White
-Write-Host "3. En 'Source', selecciona 'GitHub Actions'" -ForegroundColor White
-Write-Host "4. Espera a que el workflow se ejecute (pestaña 'Actions')" -ForegroundColor White
-Write-Host "5. Tu sitio estará en: https://horaciolaphitz.github.io`n" -ForegroundColor White
+Write-Host "1. Vercel detectará el push y hará deploy automático" -ForegroundColor White
+Write-Host "2. Verifica el deploy en: https://vercel.com/dashboard" -ForegroundColor White
+Write-Host "3. Tu sitio se actualizará en producción automáticamente`n" -ForegroundColor White

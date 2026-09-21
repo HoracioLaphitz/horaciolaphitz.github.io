@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Script para verificar el estado del deploy
+ * Script para verificar el estado del deploy a Vercel
  */
 
 import { exec } from 'child_process';
@@ -78,15 +78,8 @@ async function checkRemoteBranches() {
     const { stdout } = await execAsync('git branch -r');
     const branches = stdout.trim().split('\n').map(b => b.trim());
     
-    const hasGhPages = branches.some(b => b.includes('gh-pages'));
     const hasMain = branches.some(b => b.includes('main'));
     const hasMaster = branches.some(b => b.includes('master'));
-    
-    if (hasGhPages) {
-      log('✅ Rama gh-pages existe', 'green');
-    } else {
-      log('⚠️  Rama gh-pages no existe (se creará en el primer deploy)', 'yellow');
-    }
     
     if (hasMain) {
       log('✅ Rama main existe', 'green');
@@ -107,16 +100,9 @@ async function showDeployInfo() {
     const { stdout } = await execAsync('git remote get-url origin');
     const repoUrl = stdout.trim();
     
-    // Extraer usuario/repo de la URL
-    const match = repoUrl.match(/github\.com[:/](.+?)\.git/);
-    if (match) {
-      const [, userRepo] = match;
-      const siteUrl = `https://${userRepo.split('/')[0]}.github.io`;
-      
-      log(`Repositorio: ${repoUrl}`, 'yellow');
-      log(`Sitio: ${siteUrl}`, 'green');
-      log(`\nPara deployar: pnpm run deploy`, 'cyan');
-    }
+    log(`Repositorio: ${repoUrl}`, 'yellow');
+    log(`Producción: Vercel (deploy automático en push a main)`, 'green');
+    log(`\nPara deployar: git push origin main`, 'cyan');
   } catch (error) {
     log('❌ Error al obtener información del repositorio', 'red');
   }
@@ -133,8 +119,8 @@ async function showNextSteps() {
       log('1. Commitear cambios:', 'yellow');
       log('   git add .', 'reset');
       log('   git commit -m "feat: descripción"', 'reset');
-      log('2. Deploy:', 'yellow');
-      log('   pnpm run deploy', 'reset');
+      log('2. Push a main (deploy automático):', 'yellow');
+      log('   git push origin main', 'reset');
     } else {
       const fs = await import('fs');
       const distExists = fs.existsSync('dist');
@@ -142,11 +128,11 @@ async function showNextSteps() {
       if (!distExists) {
         log('1. Build del proyecto:', 'yellow');
         log('   pnpm build', 'reset');
-        log('2. Deploy:', 'yellow');
-        log('   pnpm run deploy', 'reset');
+        log('2. Push a main (deploy automático):', 'yellow');
+        log('   git push origin main', 'reset');
       } else {
         log('✅ Todo listo para deploy:', 'green');
-        log('   pnpm run deploy', 'reset');
+        log('   git push origin main', 'reset');
       }
     }
   } catch (error) {

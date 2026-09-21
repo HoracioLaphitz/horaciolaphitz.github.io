@@ -1,17 +1,16 @@
 #!/usr/bin/env node
 
 /**
- * Script de validación de tamaños de archivo para GitHub Pages
+ * Script de validación de tamaños de archivo para build
  * 
  * Propósito:
- * - Prevenir que archivos grandes (>100MB) rompan el deploy
- * - Validar que el build total no exceda límites de GitHub Pages
+ * - Prevenir que archivos grandes rompan el build de Vercel
+ * - Validar que el build total no exceda límites razonables
  * - Generar reportes de archivos problemáticos
  * 
- * Límites de GitHub Pages:
- * - Archivo individual: 100MB
- * - Repositorio total: 1GB recomendado
- * - Build artifact: 10GB máximo
+ * Límites de Vercel (plan gratuito):
+ * - Build output: 100MB recomendado
+ * - Archivo individual: 100MB máximo
  */
 
 import { readdir, stat } from 'fs/promises';
@@ -142,7 +141,7 @@ class FileSizeValidator {
     // Archivos críticos (>100MB)
     if (this.largeFiles.length > 0) {
       console.log('\n🚨 ARCHIVOS CRÍTICOS (>100MB):');
-      console.log('   Estos archivos ROMPERÁN el deploy de GitHub Pages\n');
+      console.log('   Estos archivos ROMPERÁN el build de Vercel\n');
       
       this.largeFiles
         .sort((a, b) => b.size - a.size)
@@ -152,11 +151,11 @@ class FileSizeValidator {
           console.log('');
         });
     }
-
+    
     // Archivos de advertencia (>50MB)
     if (this.warningFiles.length > 0) {
       console.log('\n⚠️  ARCHIVOS DE ADVERTENCIA (>50MB):');
-      console.log('   Estos archivos son grandes pero no romperán el deploy\n');
+      console.log('   Estos archivos son grandes pero no romperán el build\n');
       
       this.warningFiles
         .sort((a, b) => b.size - a.size)
@@ -171,20 +170,20 @@ class FileSizeValidator {
         console.log(`   ... y ${this.warningFiles.length - 10} archivos más\n`);
       }
     }
-
+    
     // Validación de tamaño total
     if (totalSizeGB > LIMITS.TOTAL_SIZE_ERROR_GB) {
       console.log('\n❌ ERROR: Tamaño total excede 1GB');
-      console.log('   GitHub Pages recomienda repositorios menores a 1GB');
+      console.log('   Se recomienda repositorios menores a 1GB');
     } else if (totalSizeGB > LIMITS.TOTAL_SIZE_WARNING_GB) {
       console.log('\n⚠️  ADVERTENCIA: Tamaño total cercano al límite');
       console.log(`   Actual: ${totalSizeGB.toFixed(2)} GB / Recomendado: <1GB`);
     } else {
       console.log('\n✅ Tamaño total dentro de límites aceptables');
     }
-
+    
     console.log('\n═'.repeat(60));
-
+    
     return {
       hasErrors: this.largeFiles.length > 0 || totalSizeGB > LIMITS.TOTAL_SIZE_ERROR_GB,
       hasWarnings: this.warningFiles.length > 0 || totalSizeGB > LIMITS.TOTAL_SIZE_WARNING_GB,
@@ -232,7 +231,7 @@ async function main() {
   
   console.log('🔍 Iniciando validación de tamaños de archivo...');
   console.log(`📁 Directorio: ${targetDir}\n`);
-
+  
   const validator = new FileSizeValidator(targetDir);
   
   try {
