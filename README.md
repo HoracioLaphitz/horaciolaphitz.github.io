@@ -1,5 +1,7 @@
 # Portfolio - Horacio Laphitz
 
+## Descripción
+
 Portfolio profesional Analisis de Datos.
 
 ## 👋 Sobre mí
@@ -30,3 +32,17 @@ src/
 ```
 
 © 2026 Horacio Laphitz.
+
+## Diagrama
+
+[Explorar la arquitectura interactiva en GitDiagram](https://gitdiagram.com/HoracioLaphitz/horaciolaphitz.github.io)
+
+```mermaid
+flowchart LR
+  A[".ghpagesignore + .gitattributes + .github"] --> B["Procesamiento de horaciolaphitz.github.io"]
+  B --> C["Resultados del proyecto"]
+```
+
+## Tecnologías
+
+- Tecnologías por documentar tras revisar el código fuente.
