@@ -49,7 +49,7 @@ export const SKILL_TIERS: {
     ],
   },
   {
-    label: "IA aplicada (en estudio)",
+    label: "IA aplicada",
     description: "Exploración activa en proyectos propios",
     names: [
       "RAG",

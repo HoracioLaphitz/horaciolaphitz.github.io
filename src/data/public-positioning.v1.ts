@@ -5,12 +5,12 @@ import {
 } from "./enterprise-ai-evidence.v1";
 
 export const PUBLIC_POSITIONING = {
-  version: "v1.1",
+  version: "v1.2",
   identity: {
     name: "Horacio Laphitz",
-    role: "Data Analyst · Automation · Applied AI",
+    role: "Soporte IT · Hardware · Analista de Datos",
     headline:
-      "Transformo datos y procesos manuales en análisis, automatizaciones y herramientas de decisión usando Python, SQL, Power BI e IA aplicada.",
+      "Resuelvo problemas de equipos y sistemas, acompaño a usuarios y preparo datos para mejorar el trabajo operativo. Combino soporte técnico con Python, SQL y Power BI.",
   },
   contact: {
     email: "horaciolaphitz99@gmail.com",

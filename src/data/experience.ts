@@ -17,6 +17,8 @@ export interface ExperienceItem {
   readonly description: string;
   readonly details: readonly ExperienceDetail[];
   readonly sortDate: Date;
+  readonly companyUrl?: string;
+  readonly companyLinkedin?: string;
 }
 
 export const EXPERIENCE_ITEMS: readonly ExperienceItem[] = [
@@ -26,6 +28,8 @@ export const EXPERIENCE_ITEMS: readonly ExperienceItem[] = [
     period: "dic. 2025 – mar. 2026",
     role: "Data Entry Specialist",
     company: "Ucrop.it",
+    companyUrl: "https://ucrop.it",
+    companyLinkedin: "https://ar.linkedin.com/company/ucropit",
     location: "Remoto",
     description:
       "Procesamiento y validación de datos georreferenciados para agricultura de precisión",
@@ -52,24 +56,35 @@ export const EXPERIENCE_ITEMS: readonly ExperienceItem[] = [
     id: "pcservice-2021-help-desk",
     kind: "professional",
     period: "ene. 2021 – nov. 2025",
-    role: "Soporte técnico",
+    role: "Técnico de Soporte IT y Hardware",
     company: "PcService Posadas",
+    companyLinkedin: "https://www.instagram.com/pcservice_posadas/",
     location: "Posadas",
     description:
-      "Resolución de incidencias técnicas en infraestructura corporativa y servidores",
+      "Resolución de fallas de hardware y software en PC, servidores y estaciones de trabajo",
     details: [
       {
-        text: "Diagnostiqué fallas de hardware y software en servidores y estaciones de trabajo para clientes corporativos",
+        text: "Diagnostiqué y resolví fallas de hardware y software en PC, servidores y estaciones de trabajo",
         sources: ["cv-2026-08-27"],
         scope: "engagement",
       },
       {
-        text: "Automaticé tareas repetitivas de instalación y configuración, reduciendo tiempos de respuesta en soporte",
+        text: "Realicé mantenimiento preventivo y correctivo, instalación y configuración de Windows y Linux, controladores, programas y periféricos",
+        sources: ["cv-2026-08-27"],
+        scope: "engagement",
+      },
+      {
+        text: "Evalué problemas de arranque, rendimiento, temperatura, memoria, almacenamiento y compatibilidad de componentes",
+        sources: ["cv-2026-08-27"],
+        scope: "engagement",
+      },
+      {
+        text: "Asesoré a clientes sobre reparación, actualización y reemplazo de componentes, explicando las alternativas técnicas",
         sources: ["cv-2026-08-27"],
         scope: "company-shared",
       },
       {
-        text: "Brindé soporte a usuarios finales y documenté soluciones para escalar conocimiento al equipo",
+        text: "Brindé soporte a usuarios y documenté soluciones; también automaticé tareas repetitivas de instalación y configuración",
         sources: ["cv-2026-08-27"],
         scope: "company-shared",
       },
@@ -82,6 +97,8 @@ export const EXPERIENCE_ITEMS: readonly ExperienceItem[] = [
     period: "abr. 2024 – may. 2024",
     role: "Data Entry",
     company: "Ucrop.it",
+    companyUrl: "https://ucrop.it",
+    companyLinkedin: "https://ar.linkedin.com/company/ucropit",
     location: "Remoto",
     description: "Procesamiento y validación de datos georreferenciados",
     details: [
@@ -104,6 +121,7 @@ export const EXPERIENCE_ITEMS: readonly ExperienceItem[] = [
     period: "ene. 2020 – dic. 2020",
     role: "Soporte informático ad honorem",
     company: "Ferretería Centenario",
+    companyLinkedin: "https://www.cylex.com.ar/posadas/ferreteria-centenario-11540656.html",
     location: "Posadas",
     description:
       "Implementé base de datos MySQL y automaticé flujos con n8n y Python",
@@ -130,23 +148,64 @@ export const EXPERIENCE_ITEMS: readonly ExperienceItem[] = [
     id: "hospital-madariaga-2019-trainer",
     kind: "professional",
     period: "jul. 2019 – dic. 2019",
-    role: "Coordinador de capacitación",
+    role: "Capacitador técnico y soporte en implementación de sistemas",
     company: "Hospital Escuela Dr. Ramón Madariaga",
+    companyUrl: "https://parquesaludmisiones.org.ar/",
     location: "Posadas",
     description:
-      "Lideré equipo de implementación del sistema RIS de imagenología",
+      "Coordiné capacitaciones y acompañé la implementación del sistema R.I.S.mi de imagenología",
     details: [
       {
-        text: "Coordiné el equipo de relevamiento de requerimientos y capacitación para el sistema R.I.S.mi de gestión de imágenes médicas",
+        text: "Coordiné capacitaciones y acompañé la implementación del sistema R.I.S.mi",
         sources: ["cv-2026-08-27"],
         scope: "engagement",
       },
       {
-        text: "Documenté el progreso de las capacitaciones y elaboré reportes de avance para la dirección",
+        text: "Relevé necesidades de usuarios y requerimientos técnicos para facilitar la adopción del sistema",
+        sources: ["cv-2026-08-27"],
+        scope: "engagement",
+      },
+      {
+        text: "Resolví consultas, realicé seguimiento de incidencias y elaboré reportes de avance",
+        sources: ["cv-2026-08-27"],
+        scope: "company-shared",
+      },
+      {
+        text: "Expliqué procedimientos a usuarios con distintos niveles de conocimiento tecnológico",
         sources: ["cv-2026-08-27"],
         scope: "company-shared",
       },
     ],
     sortDate: new Date(2019, 11, 1),
+  },
+  {
+    id: "ministerio-salud-publica-2019",
+    kind: "professional",
+    period: "mar. 2019 – jun. 2019",
+    role: "Asistente Administrativo Contable",
+    company: "Ministerio de Salud Pública de Misiones",
+    companyUrl: "https://salud.misiones.gob.ar",
+    companyLinkedin: "https://ar.linkedin.com/company/ministerio-de-salud-publica-de-la-provincia-de-misiones",
+    location: "Posadas",
+    description:
+      "Gestión de compras, proveedores y documentación en el área de Cuentas Especiales y Arancelamiento",
+    details: [
+      {
+        text: "Gestioné compras de insumos, proveedores y documentación de procesos de licitación",
+        sources: ["cv-2026-08-27"],
+        scope: "engagement",
+      },
+      {
+        text: "Cargué, controlé y organicé información administrativa mediante Tango Gestión y sistemas ERP internos",
+        sources: ["cv-2026-08-27"],
+        scope: "company-shared",
+      },
+      {
+        text: "Colaboré con el equipo contable en la elaboración de informes y la administración del área",
+        sources: ["cv-2026-08-27"],
+        scope: "company-shared",
+      },
+    ],
+    sortDate: new Date(2019, 5, 1),
   },
 ] as const;

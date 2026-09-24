@@ -36,7 +36,18 @@ const Experience = () => {
                   {item.role}
                 </h3>
                 <p className="mt-1 text-sm font-medium text-skin-muted">
-                  {item.company}
+                  {item.companyUrl ? (
+                    <a
+                      href={item.companyUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="underline decoration-skin-border/50 underline-offset-2 hover:text-skin-text hover:decoration-skin-border-medium transition-colors"
+                    >
+                      {item.company}
+                    </a>
+                  ) : (
+                    item.company
+                  )}
                   {item.location ? ` · ${item.location}` : ""}
                   {item.kind === "unpaid-project"
                     ? " · Experiencia no remunerada"
@@ -51,6 +62,20 @@ const Experience = () => {
                       <li key={i}>{detail.text}</li>
                     ))}
                   </ul>
+                )}
+                {item.companyLinkedin && (
+                  <div className="mt-3 flex items-center gap-3 text-xs text-skin-muted">
+                    {item.companyLinkedin && (
+                      <a
+                        href={item.companyLinkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 underline decoration-skin-border/50 underline-offset-2 hover:text-skin-text hover:decoration-skin-border-medium transition-colors"
+                      >
+                        Visitar
+                      </a>
+                    )}
+                  </div>
                 )}
               </div>
             </article>

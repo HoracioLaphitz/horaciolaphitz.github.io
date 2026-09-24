@@ -50,7 +50,7 @@ const Hero = () => {
             data-motion="hero-eyebrow"
             className="text-[0.6875rem] font-semibold uppercase tracking-[0.2em] text-skin-muted"
           >
-            Análisis de datos · Automatizaciones
+            Soporte IT · Hardware · Análisis de datos
           </p>
         </div>
 
@@ -69,15 +69,6 @@ const Hero = () => {
 
             <p className="mt-4 max-w-3xl font-display text-[clamp(2rem,3.7vw,4rem)] font-medium leading-[1.02] tracking-[-0.04em] text-skin-text-secondary">
               Análisis que explica. Automatización que ejecuta.
-            </p>
-
-            <p
-              data-motion="hero-summary"
-              className="mt-6 max-w-[58ch] text-sm leading-relaxed text-skin-muted sm:text-base"
-            >
-              Preparo y valido datos con Python y SQL, automatizo tareas
-              repetitivas y convierto los resultados en tableros que ayudan a
-              tomar decisiones.
             </p>
 
             <div

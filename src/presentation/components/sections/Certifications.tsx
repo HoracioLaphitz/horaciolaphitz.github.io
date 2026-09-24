@@ -38,19 +38,33 @@ const Certifications = () => {
       "focus-ring min-h-11 rounded-xl bg-skin-secondary p-5 text-left transition-colors duration-200 hover:bg-skin-tertiary";
     const key = `${cert.title}-${cert.period}`;
 
-    return cert.certificateUrl ? (
-      <button
-        key={key}
-        onClick={() => setSelectedCert(cert)}
-        className={`${base} hover:shadow-xs`}
-      >
-        {inner}
-      </button>
-    ) : (
-      <div key={key} className={base}>
-        {inner}
-      </div>
-    );
+    if (cert.certificateUrl) {
+      return (
+        <button
+          key={key}
+          onClick={() => setSelectedCert(cert)}
+          className={`${base} hover:shadow-xs`}
+        >
+          {inner}
+        </button>
+      );
+    }
+
+    if (cert.verifyUrl) {
+      return (
+        <a
+          key={key}
+          href={cert.verifyUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`${base} hover:shadow-xs`}
+        >
+          {inner}
+        </a>
+      );
+    }
+
+    return <div key={key} className={base}>{inner}</div>;
   };
 
   return (

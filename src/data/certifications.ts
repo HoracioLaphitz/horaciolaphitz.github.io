@@ -12,8 +12,9 @@ export interface Certification {
   issuer: string;
   sortDate: Date;
   certificateUrl?: string;
+  verifyUrl?: string;
+  issuerUrl?: string;
   description?: string;
-  /** Flagship credential surfaced in the "Destacadas" tier for recruiters and visitors. */
   highlight?: boolean;
 }
 
@@ -33,7 +34,8 @@ export const CERTIFICATIONS: readonly Certification[] = [
     period: "feb. 2026",
     title: "SQL con Databricks",
     company: "Lovelytics Latam",
-    issuer: "Databricks",
+    issuerUrl: "https://trabajo.lovelytics.com/",
+    issuer: "Lovelytics LATAM (Databricks Partner)",
     sortDate: new Date(2026, 1, 1),
     highlight: true,
     description: "Limpieza y validacion de datos con SQL en Databricks",
@@ -77,7 +79,8 @@ export const CERTIFICATIONS: readonly Certification[] = [
   {
     period: "may. 2024",
     title: "Supervised Machine Learning",
-    company: "Stanford University - Coursera",
+    verifyUrl: "https://coursera.org/verify/2DYSGFQ9MBE",
+    issuerUrl: "https://www.coursera.org/learn/machine-learning",
     issuer: "Stanford",
     sortDate: new Date(2024, 4, 1),
     highlight: true,
@@ -86,7 +89,7 @@ export const CERTIFICATIONS: readonly Certification[] = [
   },
   {
     period: "abr. 2024",
-    title: "Python for Data Engineering",
+    verifyUrl: "https://coursera.org/verify/BFNQDFWFJ9SX",
     company: "IBM - Coursera",
     issuer: "IBM",
     sortDate: new Date(2024, 3, 1),
@@ -112,9 +115,8 @@ export const CERTIFICATIONS: readonly Certification[] = [
   },
   {
     period: "feb. 2024",
-    title: "Python for Data Science, AI & Development",
-    company: "IBM - Coursera",
-    issuer: "IBM",
+    verifyUrl: "https://coursera.org/verify/2XP2FCM9QXTU",
+    issuerUrl: "https://www.coursera.org/learn/python-for-applied-data-science-ai",
     sortDate: new Date(2024, 1, 1),
     highlight: true,
     certificateUrl: "/Certificaciones/IBM-DATA SCIENCE - AI - DEVELOPMENT.pdf",
@@ -182,6 +184,7 @@ export const CERTIFICATIONS: readonly Certification[] = [
     title: "Bases de Datos desde Cero",
     company: "Silicon Misiones",
     issuer: "Silicon Misiones",
+    issuerUrl: "https://siliconmisiones.gob.ar",
     sortDate: new Date(2023, 6, 1),
     certificateUrl:
       "/Certificaciones/SILICON MISIONES- Certificado Digital Bases de Datos.pdf",

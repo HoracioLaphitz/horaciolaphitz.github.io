@@ -19,6 +19,8 @@ export interface Experience {
   readonly location: string;
   readonly description?: string;
   readonly sortDate: Date;
+  readonly companyUrl?: string;
+  readonly companyLinkedin?: string;
 }
 
 export interface Certification {
@@ -27,6 +29,8 @@ export interface Certification {
   readonly issuer: string;
   readonly certificateUrl?: string;
   readonly credlyBadgeId?: string;
+  readonly verifyUrl?: string;
+  readonly issuerUrl?: string;
   readonly sortDate: Date;
 }
 
@@ -36,6 +40,7 @@ export interface Education {
   readonly institution: string;
   readonly location: string;
   readonly sortDate: Date;
+  readonly institutionUrl?: string;
 }
 
 export interface Skill {

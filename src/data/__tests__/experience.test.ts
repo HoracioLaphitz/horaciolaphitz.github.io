@@ -4,7 +4,7 @@ import { PROFILE_DATA } from "../profile-data";
 
 describe("employment evidence", () => {
   it("preserves entries and includes one unpaid project", () => {
-    expect(EXPERIENCE_ITEMS.length).toBeGreaterThanOrEqual(4);
+    expect(EXPERIENCE_ITEMS.length).toBeGreaterThanOrEqual(5);
     expect(EXPERIENCE_ITEMS.filter(({ company }) => company === "Ucrop.it"))
       .toHaveLength(2);
     expect(EXPERIENCE_ITEMS.find(({ id }) => id === "ferreteria-centenario-2020"))
@@ -24,11 +24,12 @@ describe("employment evidence", () => {
 
 describe("preserved evidence", () => {
   const BASELINE_CLAIMS = [
+    { source: "experience", period: "mar. 2019 – jun. 2019", role: "Asistente Administrativo Contable", company: "Ministerio de Salud Pública de Misiones", location: "Posadas", description: "Gestión de compras" },
     { source: "experience", period: "dic. 2025 – mar. 2026", role: "Data Entry Specialist", company: "Ucrop.it", location: "Remoto", description: "Procesamiento y validación de datos georreferenciados" },
-    { source: "experience", period: "ene. 2021 – nov. 2025", role: "Soporte técnico", company: "PcService Posadas", location: "Posadas", description: "Resolución de incidencias técnicas" },
+    { source: "experience", period: "ene. 2021 – nov. 2025", role: "Técnico de Soporte IT y Hardware", company: "PcService Posadas", location: "Posadas", description: "Resolución de fallas de hardware y software" },
     { source: "experience", period: "abr. 2024 – may. 2024", role: "Data Entry", company: "Ucrop.it", location: "Remoto", description: "Procesamiento y validación" },
     { source: "experience", period: "ene. 2020 – dic. 2020", role: "Soporte informático ad honorem", company: "Ferretería Centenario", location: "Posadas", description: "Implementé base de datos MySQL" },
-    { source: "experience", period: "jul. 2019 – dic. 2019", role: "Coordinador de capacitación", company: "Hospital Escuela Dr. Ramón Madariaga", location: "Posadas", description: "Lideré equipo de implementación" },
+    { source: "experience", period: "jul. 2019 – dic. 2019", role: "Capacitador técnico y soporte en implementación de sistemas", company: "Hospital Escuela Dr. Ramón Madariaga", location: "Posadas", description: "Coordiné capacitaciones y acompañé" },
   ] as const;
 
   for (const claim of BASELINE_CLAIMS) {

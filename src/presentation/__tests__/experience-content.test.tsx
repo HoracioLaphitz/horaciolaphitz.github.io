@@ -5,7 +5,7 @@ import Experience from "../components/sections/Experience";
 describe("Experience", () => {
   it("renders all preserved and CV-supported evidence", () => {
     const html = renderToStaticMarkup(<Experience />);
-    expect((html.match(/<article/g) ?? [])).toHaveLength(5);
+    expect((html.match(/<article/g) ?? [])).toHaveLength(6);
     expect(html).toContain("Experiencia no remunerada");
     expect(html).toContain("Ferretería Centenario");
   });
@@ -23,12 +23,18 @@ describe("Experience", () => {
     expect(html).toContain("Python");
   });
 
+  it("renders Ministerio de Salud Pública", () => {
+    const html = renderToStaticMarkup(<Experience />);
+    expect(html).toContain("Ministerio de Salud Pública de Misiones");
+    expect(html).toContain("Tango Gestión");
+  });
+
   it("renders every baseline claim", () => {
     const html = renderToStaticMarkup(<Experience />);
     const claims = [
       "Procesamiento y validación de datos georreferenciados",
-      "Resolución de incidencias técnicas",
-      "Coordiné el equipo",
+      "Resolución de fallas de hardware y software",
+      "Coordiné capacitaciones y acompañé",
       "Implementé base de datos MySQL",
     ];
     for (const claim of claims) {

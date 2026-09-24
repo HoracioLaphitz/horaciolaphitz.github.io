@@ -821,7 +821,7 @@ describe("motion orchestration contracts", () => {
 
     expect(skillsGroup.textContent).toContain("Competencias");
     expect(experienceGroup.textContent).toContain("Experiencia");
-    expect(experience.querySelectorAll("article")).toHaveLength(5);
+    expect(experience.querySelectorAll("article")).toHaveLength(6);
     expect(certificationsGroup.textContent).toContain("Certificaciones");
     expect(contactGroup.textContent).toContain("¡Hablemos!");
     expect(contact.querySelectorAll("form, input, select, textarea")).toHaveLength(0);
@@ -877,7 +877,7 @@ describe("motion orchestration contracts", () => {
     expect(experienceGroup.dataset.motion).toBeUndefined();
     expectFinalVisibleState(experienceGroup);
     expect(experienceGroup.textContent).toContain("Experiencia");
-    expect(container.querySelectorAll("article")).toHaveLength(5);
+    expect(container.querySelectorAll("article")).toHaveLength(6);
     expect(useScopedMotion).not.toHaveBeenCalled();
 
     root.unmount();

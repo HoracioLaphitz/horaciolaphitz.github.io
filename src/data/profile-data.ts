@@ -18,7 +18,7 @@ export const PROFILE_DATA = new ProfileEntity(
   "Horacio Laphitz",
   "",
   [
-    "Trabajo con Python, SQL y Power BI para preparar datos, crear tableros y automatizar tareas repetitivas",
+    "Resuelvo problemas de equipos y sistemas, acompaño a usuarios y preparo datos con Python, SQL y Power BI. Soporte IT y hardware como foco principal; análisis de datos, automatización e IA como capacidades complementarias.",
   ],
   {
     email: "horaciolaphitz99@gmail.com",
@@ -85,14 +85,89 @@ export const PROFILE_DATA = new ProfileEntity(
   ],
   [
     {
-      period: "2018 – 2020",
-      degree: "Técnico Superior en Análisis de Sistemas",
-      institution: "Instituto Superior Antonio Ruiz de Montoya",
+      period: "2023 – actualidad",
+      degree: "Analista en Sistemas de Comunicación",
+      institution: "Universidad Nacional de Misiones",
+      institutionUrl: "https://www.fceqyn.unam.edu.ar/carreras/analista-en-sistemas-de-computacion/",
       location: "Posadas, Misiones",
-      sortDate: new Date(2020, 11, 1),
+      sortDate: new Date(2023, 0, 1),
+    },
+    {
+      period: "2019 – 2020",
+      degree: "Contador Público Nacional (ciclo básico)",
+      institution: "Universidad de la Cuenca del Plata",
+      institutionUrl: "https://www.ucp.edu.ar/carreras/contador-publico/",
+      location: "Posadas, Misiones",
+      sortDate: new Date(2020, 0, 1),
     },
   ],
   [
+    // Soporte IT y Hardware (fuente de la verdad - bloque principal)
+    {
+      name: "Soporte técnico IT",
+      category: SkillCategory.Tools,
+      level: SkillLevel.Advanced,
+    },
+    {
+      name: "Diagnóstico de hardware",
+      category: SkillCategory.Tools,
+      level: SkillLevel.Advanced,
+    },
+    {
+      name: "Mantenimiento preventivo y correctivo",
+      category: SkillCategory.Tools,
+      level: SkillLevel.Advanced,
+    },
+    {
+      name: "Windows",
+      category: SkillCategory.Tools,
+      level: SkillLevel.Advanced,
+    },
+    {
+      name: "Linux",
+      category: SkillCategory.Tools,
+      level: SkillLevel.Advanced,
+    },
+    {
+      name: "Periféricos",
+      category: SkillCategory.Tools,
+      level: SkillLevel.Intermediate,
+    },
+    {
+      name: "Resolución de incidencias",
+      category: SkillCategory.Tools,
+      level: SkillLevel.Advanced,
+    },
+    {
+      name: "Atención al usuario",
+      category: SkillCategory.Soft,
+      level: SkillLevel.Advanced,
+    },
+    {
+      name: "Capacitación de usuarios",
+      category: SkillCategory.Soft,
+      level: SkillLevel.Advanced,
+    },
+    {
+      name: "Relevamiento de necesidades",
+      category: SkillCategory.Soft,
+      level: SkillLevel.Intermediate,
+    },
+    {
+      name: "Documentación técnica",
+      category: SkillCategory.Tools,
+      level: SkillLevel.Advanced,
+    },
+    {
+      name: "Implementación de sistemas",
+      category: SkillCategory.Tools,
+      level: SkillLevel.Intermediate,
+    },
+    {
+      name: "Organización documental",
+      category: SkillCategory.Tools,
+      level: SkillLevel.Intermediate,
+    },
     // GenAI & LLMs
     {
       name: "Python",
