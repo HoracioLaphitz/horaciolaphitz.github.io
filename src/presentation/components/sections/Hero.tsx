@@ -16,20 +16,27 @@ const HERO_MOTION_TARGETS = [
 const capabilities = [
   {
     index: "01",
+    title: "Soporte IT y hardware",
+    description:
+      "Mesa de ayuda, diagnóstico, redes y sistemas. Windows, Linux, Active Directory, Microsoft 365, VPN, TCP/IP y más.",
+  },
+  {
+    index: "02",
+    title: "Atención al cliente",
+    description:
+      "Comunicación efectiva, escucha activa, empatía, gestión del estrés y resolución de incidencias.",
+  },
+  {
+    index: "03",
     title: "Análisis de datos",
     description:
       "Python, SQL y Power BI para preparar datos y responder preguntas concretas.",
   },
   {
-    index: "02",
-    title: "Automatización e integración",
-    description: "Procesos y validaciones para reducir tareas repetitivas.",
-  },
-  {
-    index: "03",
-    title: "Pruebas con agentes de IA",
+    index: "04",
+    title: "Automatización e IA",
     description:
-      "Estoy probando RAG y flujos con agentes en proyectos propios.",
+      "Procesos, validaciones y agentes de IA para reducir tareas repetitivas.",
   },
 ] as const;
 

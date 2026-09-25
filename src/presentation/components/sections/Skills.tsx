@@ -17,8 +17,35 @@ export const SKILL_TIERS: {
   names: string[];
 }[] = [
   {
-    label: "Core",
-    description: "Tecnologías que uso a diario con evidencia sólida",
+    label: "Soporte IT",
+    description: "Infraestructura, hardware y asistencia técnica",
+    names: [
+      "Soporte técnico IT",
+      "Mesa de ayuda (Help Desk)",
+      "Diagnóstico de hardware",
+      "Mantenimiento preventivo y correctivo",
+      "Windows 10/11",
+      "Windows Server",
+      "Linux",
+      "Active Directory",
+      "Microsoft 365",
+      "Microsoft Teams",
+      "Redes TCP/IP",
+      "VPN",
+      "DNS / DHCP",
+      "Gestión de tickets",
+      "Acceso remoto (RDP/TeamViewer)",
+      "Periféricos e impresoras",
+      "Backups y recuperación",
+      "Resolución de incidencias",
+      "Documentación técnica",
+      "SCCM",
+      "Implementación de sistemas",
+    ],
+  },
+  {
+    label: "Datos y automatización",
+    description: "Herramientas y métodos aplicados en proyectos",
     names: [
       "Python",
       "SQL",
@@ -27,13 +54,6 @@ export const SKILL_TIERS: {
       "Pandas",
       "PostgreSQL",
       "MySQL",
-      "Git",
-    ],
-  },
-  {
-    label: "Datos y automatización",
-    description: "Herramientas y métodos aplicados en proyectos",
-    names: [
       "ETL",
       "Limpieza y preparación de datos",
       "Análisis estadístico",
@@ -46,6 +66,7 @@ export const SKILL_TIERS: {
       "XGBoost",
       "Docker",
       "Testing",
+      "Git",
     ],
   },
   {
@@ -57,6 +78,27 @@ export const SKILL_TIERS: {
       "LangGraph",
       "OpenAI API",
       "Prompt Engineering",
+    ],
+  },
+  {
+    label: "Habilidades blandas",
+    description: "Competencias interpersonales y profesionales",
+    names: [
+      "Atención al usuario",
+      "Capacitación de usuarios",
+      "Comunicación efectiva",
+      "Escucha activa",
+      "Empatía",
+      "Manejo del estrés",
+      "Gestión del tiempo",
+      "Proactividad",
+      "Adaptabilidad",
+      "Trabajo en equipo",
+      "Aprendizaje continuo",
+      "Relevamiento de necesidades",
+      "Resolución de problemas",
+      "Pensamiento analítico",
+      "Comunicación",
     ],
   },
 ];
@@ -98,7 +140,7 @@ const Skills = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 items-start gap-5 lg:grid-cols-3 lg:gap-6">
+        <div className="grid grid-cols-1 items-start gap-5 lg:grid-cols-4 lg:gap-6">
           {visibleTiers.map(({ label, description, skills }) => (
             <article
               key={label}

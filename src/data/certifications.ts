@@ -79,6 +79,7 @@ export const CERTIFICATIONS: readonly Certification[] = [
   {
     period: "may. 2024",
     title: "Supervised Machine Learning",
+    company: "Stanford University - Coursera",
     verifyUrl: "https://coursera.org/verify/2DYSGFQ9MBE",
     issuerUrl: "https://www.coursera.org/learn/machine-learning",
     issuer: "Stanford",
@@ -89,6 +90,7 @@ export const CERTIFICATIONS: readonly Certification[] = [
   },
   {
     period: "abr. 2024",
+    title: "Python for Data Engineering",
     verifyUrl: "https://coursera.org/verify/BFNQDFWFJ9SX",
     company: "IBM - Coursera",
     issuer: "IBM",
@@ -115,8 +117,11 @@ export const CERTIFICATIONS: readonly Certification[] = [
   },
   {
     period: "feb. 2024",
+    title: "Python for Applied Data Science & AI",
+    company: "IBM - Coursera",
     verifyUrl: "https://coursera.org/verify/2XP2FCM9QXTU",
     issuerUrl: "https://www.coursera.org/learn/python-for-applied-data-science-ai",
+    issuer: "IBM",
     sortDate: new Date(2024, 1, 1),
     highlight: true,
     certificateUrl: "/Certificaciones/IBM-DATA SCIENCE - AI - DEVELOPMENT.pdf",

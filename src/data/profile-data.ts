@@ -18,7 +18,8 @@ export const PROFILE_DATA = new ProfileEntity(
   "Horacio Laphitz",
   "",
   [
-    "Resuelvo problemas de equipos y sistemas, acompaño a usuarios y preparo datos con Python, SQL y Power BI. Soporte IT y hardware como foco principal; análisis de datos, automatización e IA como capacidades complementarias.",
+    "Resuelvo problemas de equipos y redes, brindo soporte técnico de primer nivel y acompaño a usuarios. Windows, Linux, Active Directory, Microsoft 365 y gestión de tickets. Análisis de datos con Python y SQL como capacidad complementaria.",
+
   ],
   {
     email: "horaciolaphitz99@gmail.com",
@@ -109,6 +110,11 @@ export const PROFILE_DATA = new ProfileEntity(
       level: SkillLevel.Advanced,
     },
     {
+      name: "Mesa de ayuda (Help Desk)",
+      category: SkillCategory.Tools,
+      level: SkillLevel.Advanced,
+    },
+    {
       name: "Diagnóstico de hardware",
       category: SkillCategory.Tools,
       level: SkillLevel.Advanced,
@@ -119,9 +125,19 @@ export const PROFILE_DATA = new ProfileEntity(
       level: SkillLevel.Advanced,
     },
     {
-      name: "Windows",
+      name: "Windows 10/11",
       category: SkillCategory.Tools,
       level: SkillLevel.Advanced,
+    },
+    {
+      name: "Windows Server",
+      category: SkillCategory.Tools,
+      level: SkillLevel.Intermediate,
+    },
+    {
+      name: "Active Directory",
+      category: SkillCategory.Tools,
+      level: SkillLevel.Intermediate,
     },
     {
       name: "Linux",
@@ -129,7 +145,52 @@ export const PROFILE_DATA = new ProfileEntity(
       level: SkillLevel.Advanced,
     },
     {
-      name: "Periféricos",
+      name: "Microsoft 365",
+      category: SkillCategory.Tools,
+      level: SkillLevel.Intermediate,
+    },
+    {
+      name: "Microsoft Teams",
+      category: SkillCategory.Tools,
+      level: SkillLevel.Intermediate,
+    },
+    {
+      name: "Redes TCP/IP",
+      category: SkillCategory.Tools,
+      level: SkillLevel.Intermediate,
+    },
+    {
+      name: "VPN",
+      category: SkillCategory.Tools,
+      level: SkillLevel.Intermediate,
+    },
+    {
+      name: "DNS / DHCP",
+      category: SkillCategory.Tools,
+      level: SkillLevel.Intermediate,
+    },
+    {
+      name: "Gestión de tickets",
+      category: SkillCategory.Tools,
+      level: SkillLevel.Advanced,
+    },
+    {
+      name: "SCCM",
+      category: SkillCategory.Tools,
+      level: SkillLevel.Beginner,
+    },
+    {
+      name: "Acceso remoto (RDP/TeamViewer)",
+      category: SkillCategory.Tools,
+      level: SkillLevel.Advanced,
+    },
+    {
+      name: "Periféricos e impresoras",
+      category: SkillCategory.Tools,
+      level: SkillLevel.Intermediate,
+    },
+    {
+      name: "Backups y recuperación",
       category: SkillCategory.Tools,
       level: SkillLevel.Intermediate,
     },
@@ -167,6 +228,52 @@ export const PROFILE_DATA = new ProfileEntity(
       name: "Organización documental",
       category: SkillCategory.Tools,
       level: SkillLevel.Intermediate,
+    },
+    // Habilidades blandas transversales
+    {
+      name: "Comunicación efectiva",
+      category: SkillCategory.Soft,
+      level: SkillLevel.Advanced,
+    },
+    {
+      name: "Escucha activa",
+      category: SkillCategory.Soft,
+      level: SkillLevel.Advanced,
+    },
+    {
+      name: "Empatía",
+      category: SkillCategory.Soft,
+      level: SkillLevel.Advanced,
+    },
+    {
+      name: "Manejo del estrés",
+      category: SkillCategory.Soft,
+      level: SkillLevel.Advanced,
+    },
+    {
+      name: "Gestión del tiempo",
+      category: SkillCategory.Soft,
+      level: SkillLevel.Advanced,
+    },
+    {
+      name: "Proactividad",
+      category: SkillCategory.Soft,
+      level: SkillLevel.Advanced,
+    },
+    {
+      name: "Adaptabilidad",
+      category: SkillCategory.Soft,
+      level: SkillLevel.Advanced,
+    },
+    {
+      name: "Trabajo en equipo",
+      category: SkillCategory.Soft,
+      level: SkillLevel.Advanced,
+    },
+    {
+      name: "Aprendizaje continuo",
+      category: SkillCategory.Soft,
+      level: SkillLevel.Advanced,
     },
     // GenAI & LLMs
     {
